@@ -68,6 +68,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-web-base" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/03/web-base/" class="article-date">
+  <time datetime="2016-03-03T13:22:18.000Z" itemprop="datePublished">2016-03-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/03/web-base/">计算机网络基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>计算机技术与通信技术的发展和结合，产生了计算机网络，其对计算机系统的组织方式产生了深远的影响。计算机网络最常见的有工业计算机网络（Profibus现场总线、CAN总线和工业以太网等）、上用计算机网络（Internet等）已被广泛地应用于各行各业。可以说，计算机网络是IT和信息产业的基础和核心。</p>
+<h2 id="计算机网络简述"><a href="#计算机网络简述" class="headerlink" title="计算机网络简述"></a>计算机网络简述</h2><p>从建立一个网络的工程视角来看，建立因特网需要智能终端（PC、服务器、工作站等）、传输介质（光纤、同轴电缆、双绞线、无线电和卫星等）和软件（操作系统、TCP/IP协议、通信软件等）三大部分。</p>
+<h4 id="数据交换"><a href="#数据交换" class="headerlink" title="数据交换"></a>数据交换</h4><p>数据交换是计算机网络的网络核心。根据原理不同，数据交换可分为电路交换和存储-转发交换。电路交换网络中的复用技术可分为频分复用交换和时分复用交换，存储转发交换可分为分组交换和报文交换。</p>
+<ul>
+<li>电路交换的基本思想是：收发双方之间的数据通信过程由三个阶段组成，分别是呼叫阶段（建立连接阶段）、数据传输阶段、释放阶段（断开阶段）。呼叫阶段负责在收发双方之间建立物理通路，包括正向呼叫阶段和方向确认阶段，然后收发双方独占这一物理线路。电路交换的优点是实时性强，管理简单。缺点是手法双方之间独占线路和全部带宽。其适用于实时交互式业务以及大数量传输。为了让更多的用户设备能够同时共用一段线路来发送自己的数据，通常将线路资源按照某种技术划分为“片”，将链路带宽划分为“片”的方法由两种：频分划分和时隙划分。</li>
+<li>存储转发交换技术的主要思想是：借鉴了邮政服务的基本思想。数据通信之前，不需要再收发双方之间建立连接，收发双方之间的数据通信以相邻两个节点之间的接力传输完成，只要相邻的两个设备之间的线路是空闲的，一方就可以将自己的数据发送给其邻居节点，下一个节点等到何其下下个节点空闲时，再转发给下下个节点，最终转发给目标节点。报文交换是把需要发送的数据打包成一个文件，分组交换则是把需要发送的数据文件分成多个较小的小文件。其使用与突发性业务、可靠性要求高的业务，如计算机通信。</li>
+</ul>
+<h4 id="计算机网络的拓扑结构"><a href="#计算机网络的拓扑结构" class="headerlink" title="计算机网络的拓扑结构"></a>计算机网络的拓扑结构</h4><p>常见的拓扑结构有：网状结构、总线结构、环形结构、星形结构、树型结构</p>
+<h2 id="网络协议与网络体系结构"><a href="#网络协议与网络体系结构" class="headerlink" title="网络协议与网络体系结构"></a>网络协议与网络体系结构</h2><p>不同的设备、介质和语言的计算机网络之间进行通信和数据传输要设计并制定一系列的规则，网络协议则是一组控制数据通信的规则。一个网络协议的基本要素有：语法（指明传输数据的结构格式等）、语义（定义控制信息的具体内容）、同步（定义通信过程的时间先后和速度匹配）。</p>
+<h4 id="OSI-RM参考模型"><a href="#OSI-RM参考模型" class="headerlink" title="OSI/RM参考模型"></a>OSI/RM参考模型</h4><p>在OSI/RM擦考模型中，网络协议体系结构自下而上共分为七层，分别是物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。每个层次都从上层取得数据，加上首部信息形成新的数据单元。</p>
+<ul>
+<li>物理层：其任务是实现互联系统间物理介质上位流的透明传输，实现系统间物理通信，其余各层都是虚拟通信。</li>
+<li>数据链路层：在两个数据链路层之间建立和维持一条或多条数据链路。它提供无差错（差错校验）的通信服务，为网络层提供透明的帧传输服务。</li>
+<li>网络层：接收来自传输层的报文分段，把它们转换成报文分组后送到指定的目的机。</li>
+<li>传输层：又称端-端协议。提供一种独立于通信子网的数据传输服务，即对高层隐藏通信子网的结构，使源机和目的机之间的连接就像简单的点对点的连接。</li>
+<li>会话层：为两个表示层金城建立会晤连接。</li>
+<li>表示层：为应用层提供有关信息表示的服务。</li>
+<li>应用层：为用户提供了接口，负责系统中两个应用进程之间的信息交换。<br><img src="/img/计算机基础/网络七层参考模型.png" alt=""></li>
+</ul>
+<h4 id="TCP-IP参考模型"><a href="#TCP-IP参考模型" class="headerlink" title="TCP/IP参考模型"></a>TCP/IP参考模型</h4><p>在TCP/IP参考模型中，网络协议体系结构自上而下共分为4层，分别是网络接口层、互联网络层、传输层和应用层。</p>
+<ul>
+<li>Host-to-Network。未做真正描述，仅指出主机必须使用某种协议与网络连接，以便通过网络传递IP分组。</li>
+<li>Internet层。定义了标准的分组格式和协议（IP协议），控制通信子网提供源点到目的点的IP分组传送（提供不可靠的无连接服务）。</li>
+<li>Transport层。提供源端到目的端主机上对等实体之间的数据传送服务。TCP和UDP处于此层。</li>
+<li>Application层。提供各种Internet管理和应用服务功能。<br><img src="img/计算机基础/网络协议比较.png" alt="OSI/RM和TCP/IP协议对应关系"></li>
+</ul>
+<h4 id="网络协议混合模型"><a href="#网络协议混合模型" class="headerlink" title="网络协议混合模型"></a>网络协议混合模型</h4><p>在混合模型中，网络协议体系结构自上而下分为5层，分别是物理层、数据链路层、网络层、传输层和应用层。</p>
+<ul>
+<li>物理层。提供透明的比特流传输服务，在信道上传送位流。数据传输方式分为模拟传输(宽度传输)和数字传输（基带传输）。信息交互方式分为单工、半双工、双工。编码与调制：数字数据/模拟数据 -&gt; 数字信号/模拟信号。信道复用技术：频分、时分、波分、码分等。</li>
+<li>数据链路层。提供相邻节点之间的透明帧传输服务，同时也包括差错控制技术等。成帧技术有四种：字符计数法、字符填充法、位填充法和物理层违例码。差错控制技术：奇偶校验技术、海明编码、CRC编码。数据重传和流量控制：停止/等待协议、连续ARQ协议和滑动窗口协议等。</li>
+<li>网络层。提供源主机到目的机之间的数据报文传输服务，同时也提供路由选择服务等。因特网中典型的网络层协议有IP、路由协议。网络层必须具备交换、路由和连接管理等三类基本功能。虚电路通信子网（面向连接）和数据报通信子网（面向无连接）。</li>
+<li>传输层。提供源主机进程和目的主机进程之间的数据传输服务。Internet中典型的传输层协议有TCP和UDP。TCP使用三次握手建立连接。</li>
+<li>应用层。支持网络应用，接收来自应用程序的进程并未应用程序提供数据传输服务。Internet中常见的应用层协议有FTP、SMTP、HTTP等。DNS是运行在UDP协议上的域名解析系统。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilcdqw0l000138q983e40ewr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Computer-base" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/02/Computer-base/" class="article-date">
@@ -105,15 +181,15 @@
 <li>计算思维面向所有人，所有的地方。</li>
 <li>计算思维关注依旧亟待理解和解决的智力上极有挑战性并且引人入胜的科学问题。</li>
 </ul>
-<h3 id="科技创新三大思维"><a href="#科技创新三大思维" class="headerlink" title="科技创新三大思维"></a>科技创新三大思维</h3><p>科学界一般认为，科学方法分为理论、实验和计算三大类，想对应的是三大科学思维：理论思维、实验思维和计算思维</p>
+<h4 id="科技创新三大思维"><a href="#科技创新三大思维" class="headerlink" title="科技创新三大思维"></a>科技创新三大思维</h4><p>科学界一般认为，科学方法分为理论、实验和计算三大类，相对应的是三大科学思维：理论思维、实验思维和计算思维</p>
 <ul>
 <li>理论思维以数学为基础。公理化方法是最重要的理论思维方法。公理化系统有三个条件：无矛盾性、独立性、完备性。</li>
 <li>实验思维以物理等学科为基础。对实验思维来说，最为重要的事情就是设计、制造实验仪器和追求理想的实验环境。</li>
 <li>计算思维以计算机科学为基础。数学和工程思维的互补和融合很好的体现在抽象、理论和设计3个形态/过程上。</li>
 </ul>
-<p>##可计算性和算法<br>可计算性是指一个实际问题是否可以使用计算机来解决。可计算性理论是研究计算的一般性质的数学理论，也称为算法理论。计算的过程就是执行算法的过程。可计算函数的精确定义是：能够在抽象计算机上编出程序并计算其值的函数。图灵机就是一种在理论计算机科学中广泛采用的抽象计算机，可用一个图灵机来计算其值的函数是可计算函数，找不到图灵机来计算其值的函数是不可计算函数。建立计算的数学模型是可计算性理论的中心问题。在可计算性理论中，将问题分为可计算的和不可计算的。在复杂性理论中，目标是把可计算的问题分成简单的和困难的，研究的是算法的时间复杂性和空间复杂性，主要解决算法的效率思维。</p>
-<h3 id="图灵和图灵机"><a href="#图灵和图灵机" class="headerlink" title="图灵和图灵机"></a>图灵和图灵机</h3><p>所谓的图灵机就是指一个抽象的机器，它有一条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。<br><img src="/img/计算机基础/图灵机.png" alt="图灵机"><br>图灵机的基本思想是用机器来模拟人用纸笔进行数字运算的过程，可用图灵机来计算其值的函数称为可计算函数。可以证明，存在一个通用通用图灵机，它可以模拟任何其他的图灵机，通用图灵机正是后来出现的存储指令的通用数字计算机的理论原型。半个多世纪以来，数学家提出的各种各样的计算模型都被证明是和图灵机等价的。</p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>算法可以理解为由基本运算及规定的运算顺序所构成的完整的解题步骤。或看成按照要求设计好的有限的确切的计算序列，并且他可以解决一类问题。算法不等于程序，不等于计算方法，程序的编制不可能优于算法的设计。</p>
+<h2 id="可计算性和算法"><a href="#可计算性和算法" class="headerlink" title="可计算性和算法"></a>可计算性和算法</h2><p>可计算性是指一个实际问题是否可以使用计算机来解决。可计算性理论是研究计算的一般性质的数学理论，也称为算法理论。计算的过程就是执行算法的过程。可计算函数的精确定义是：能够在抽象计算机上编出程序并计算其值的函数。图灵机就是一种在理论计算机科学中广泛采用的抽象计算机，可用一个图灵机来计算其值的函数是可计算函数，找不到图灵机来计算其值的函数是不可计算函数。建立计算的数学模型是可计算性理论的中心问题。在可计算性理论中，将问题分为可计算的和不可计算的。在复杂性理论中，目标是把可计算的问题分成简单的和困难的，研究的是算法的时间复杂性和空间复杂性，主要解决算法的效率思维。</p>
+<h4 id="图灵和图灵机"><a href="#图灵和图灵机" class="headerlink" title="图灵和图灵机"></a>图灵和图灵机</h4><p>所谓的图灵机就是指一个抽象的机器，它有一条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。<br><img src="/img/计算机基础/图灵机.png" alt="图灵机"><br>图灵机的基本思想是用机器来模拟人用纸笔进行数字运算的过程，可用图灵机来计算其值的函数称为可计算函数。可以证明，存在一个通用通用图灵机，它可以模拟任何其他的图灵机，通用图灵机正是后来出现的存储指令的通用数字计算机的理论原型。半个多世纪以来，数学家提出的各种各样的计算模型都被证明是和图灵机等价的。</p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>算法可以理解为由基本运算及规定的运算顺序所构成的完整的解题步骤。或看成按照要求设计好的有限的确切的计算序列，并且他可以解决一类问题。算法不等于程序，不等于计算方法，程序的编制不可能优于算法的设计。</p>
 <p>算法的特征有：可行性、确定性、有穷性、输入、输出。描述算法的工具有自然语言、传统流程图、PAD图、N-S图和伪代码等。</p>
 <p>算法的基本要素为：</p>
 <ul>
@@ -129,13 +205,13 @@
 <li>执行计划。执行计划，检查每个执行步骤，保持执行过程的准确记录。</li>
 <li>反思展望。对整个解题过程进行必要的检查和反思，也包括检验得到的答案是否适合和符合问题的实际。</li>
 </ol>
-<h2 id="计算机概述"><a href="#计算机概述" class="headerlink" title="计算机概述"></a>计算机概述</h2><h3 id="计算机发展"><a href="#计算机发展" class="headerlink" title="计算机发展"></a>计算机发展</h3><p>计算机的发展经历了大型计算机、微型计算机和计算机网络等不同阶段。在计算机不同的发展阶段，其决定性作用的是电子元器件。所以，计算机发展阶段通常按照计算机中主要功能部件所采用的电子器件（逻辑原件）的不同来划分。一般讲计算机发展分为4个阶段，习惯上称为4代：电子管计算机、晶体管计算机、集成电路计算机和大规模/超大规模集成电路计算机。<br>第四代计算机的另一个重要分支是以大规模、超大规模集成电路为基础发展起来的微处理器（CPU）和微型计算机。未来计算机的芯片的制造技术可能为：超导技术、纳米技术、光技术、生物技术和量子技术。</p>
+<h2 id="计算机概述"><a href="#计算机概述" class="headerlink" title="计算机概述"></a>计算机概述</h2><h4 id="计算机发展"><a href="#计算机发展" class="headerlink" title="计算机发展"></a>计算机发展</h4><p>计算机的发展经历了大型计算机、微型计算机和计算机网络等不同阶段。在计算机不同的发展阶段，其决定性作用的是电子元器件。所以，计算机发展阶段通常按照计算机中主要功能部件所采用的电子器件（逻辑原件）的不同来划分。一般讲计算机发展分为4个阶段，习惯上称为4代：电子管计算机、晶体管计算机、集成电路计算机和大规模/超大规模集成电路计算机。<br>第四代计算机的另一个重要分支是以大规模、超大规模集成电路为基础发展起来的微处理器（CPU）和微型计算机。未来计算机的芯片的制造技术可能为：超导技术、纳米技术、光技术、生物技术和量子技术。</p>
 <h3 id="计算机分类"><a href="#计算机分类" class="headerlink" title="计算机分类"></a>计算机分类</h3><p>目前，国内外计算机界以及各类教科书都是采用国际沿用的分类方法，一般把计算机分为巨型机、大型主机、小型机（8~12颗CPU）、工作站（以个人计算机和分布式网络计算为基础，主要面向专业应用领域而设计开发的高性能计算机）和个人计算机等几种类型。</p>
 <h3 id="计算机特点及发展趋势"><a href="#计算机特点及发展趋势" class="headerlink" title="计算机特点及发展趋势"></a>计算机特点及发展趋势</h3><p>计算机是一种可以进行自动控制、具有记忆功能的现代化计算工具和信息处理工具。它有以下5个方面的优点：1.运算速度快 2.计算精度高 3.记忆能力强 4.具有逻辑判断能力 5.可靠性高，通用性强。</p>
 <p>计算机的发展表现为：巨型化（速度、存储量等方面）、微型化、多媒体（交互方式）、网络化和智能化。</p>
 <p>计算机的主要用途为：数值计算、数据及事务处理、自动控制与人工智能、通信与网络、电子商务、物联网、云计算。</p>
-<h2 id="计算机基础知识"><a href="#计算机基础知识" class="headerlink" title="计算机基础知识"></a>计算机基础知识</h2><h3 id="计算机系统组成"><a href="#计算机系统组成" class="headerlink" title="计算机系统组成"></a>计算机系统组成</h3><p>一个完整的计算机系统是由硬件系统和软件系统组成的。<br>计算机硬件系统由运算器、控制器、存储器、输入设备和输出设备组成。控制器控制存储器、运算器、输入输出设备。数据从输入设备传给存储器，经由运算器计算后再返回给存储器，最后在输出设备上显示。存储器会传递数据给控制器。<br>计算机软件系统层次有：裸机、操作系统、开发工具（支撑软件）、应用软件。</p>
-<h3 id="计算机工作原理"><a href="#计算机工作原理" class="headerlink" title="计算机工作原理"></a>计算机工作原理</h3><p>计算机的工作原理，其主要特点是：</p>
+<h2 id="计算机基础知识"><a href="#计算机基础知识" class="headerlink" title="计算机基础知识"></a>计算机基础知识</h2><h4 id="计算机系统组成"><a href="#计算机系统组成" class="headerlink" title="计算机系统组成"></a>计算机系统组成</h4><p>一个完整的计算机系统是由硬件系统和软件系统组成的。<br>计算机硬件系统由运算器、控制器、存储器、输入设备和输出设备组成。控制器控制存储器、运算器、输入输出设备。数据从输入设备传给存储器，经由运算器计算后再返回给存储器，最后在输出设备上显示。存储器会传递数据给控制器。<br>计算机软件系统层次有：裸机、操作系统、开发工具（支撑软件）、应用软件。</p>
+<h4 id="计算机工作原理"><a href="#计算机工作原理" class="headerlink" title="计算机工作原理"></a>计算机工作原理</h4><p>计算机的工作原理，其主要特点是：</p>
 <ul>
 <li>计算机硬件系统由运算器等五大部件主城，并规定了他们的基本功能</li>
 <li>计算机内部采用二进制来表示指令和数据。每一条指令通常包括操作码和地址码。</li>
@@ -143,28 +219,28 @@
 <li>存储单位是定长的线性组织。存储空间的单元是直接寻址的。</li>
 <li>在执行程序和处理数据时，必须将程序和数据从外存储器装入内存储器中，然后才能使计算机在工作时自动地从存储器中取出指令并加以执行。</li>
 </ul>
-<h3 id="计算机编码系统"><a href="#计算机编码系统" class="headerlink" title="计算机编码系统"></a>计算机编码系统</h3><p>计算机中不但使用数值型数据（二/八/十/十六进制等），还大量使用费数值型数据，如字符、汉子等。信息编码就是指对数据计算机的各种数值和非数值型数据用二进制进行编码的方式。在输入过程中，系统自动将用户输入的各种数据按编码的类型转换成相应的二进制形式存入计算机存储单元中。在输出过程中，再由系统自动地将二进制编码数据转换成用户可以识别的数据格式输出给用户。常用的编码方式有</p>
+<h4 id="计算机编码系统"><a href="#计算机编码系统" class="headerlink" title="计算机编码系统"></a>计算机编码系统</h4><p>计算机中不但使用数值型数据（二/八/十/十六进制等），还大量使用费数值型数据，如字符、汉子等。信息编码就是指对数据计算机的各种数值和非数值型数据用二进制进行编码的方式。在输入过程中，系统自动将用户输入的各种数据按编码的类型转换成相应的二进制形式存入计算机存储单元中。在输出过程中，再由系统自动地将二进制编码数据转换成用户可以识别的数据格式输出给用户。常用的编码方式有</p>
 <ul>
 <li>BCD编码，即二-十进制编码。用四位二进制表示十进制数，四位分别表示8/4/2/1.</li>
 <li>ASCII码。一个ASCII码占用一个字节（最高位为0），来表示十进制、大小写英文字母、常用的运算符和标点符号等共128个。</li>
 <li>汉字编码。根据一字一码的原则，国际码（GB 2312-80）字符规定，每个字符有一个2字节代码（区码/位码）组成，每个字节的最高位为0。汉字通过输入设备将外码送入计算机，再由汉字系统将其转换为内码（GB内码，两个字节其高位都为1）存储、传送和处理，当需要输出时，再由汉字系统调用字库（点阵）中汉字的字形码得到结果并输出。 </li>
 </ul>
 <h2 id="微型计算机硬件"><a href="#微型计算机硬件" class="headerlink" title="微型计算机硬件"></a>微型计算机硬件</h2><p>微型计算机，简称“微型机”或“微机”，是发展最快的一类计算机。下图为微型计算机组成图：<br><img src="/img/计算机基础/微型计算机系统.png" alt="微型计算机系统组成"></p>
-<h3 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h3><p>主板是一个插槽的几何体，也是整个硬件系统的平台，微机的各个部件都要直接插在主板上或者通过电缆连接在主板上。它主要有两个功能：提供CPU、内存和各种功能卡的插座，以及，为各种常用外部设备提供通用接口。主板主要部件有：芯片组、CPU插座、内存插糟、总线扩展槽、输入/输出接口、基本输入输出系统BIOS和CMOS。</p>
-<h3 id="微机总线"><a href="#微机总线" class="headerlink" title="微机总线"></a>微机总线</h3><p>总线是各部件见有效高速传输各种信息的通道。总线一般分为内部总线、系统总线和外部总线。</p>
+<h4 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h4><p>主板是一个插槽的几何体，也是整个硬件系统的平台，微机的各个部件都要直接插在主板上或者通过电缆连接在主板上。它主要有两个功能：提供CPU、内存和各种功能卡的插座，以及，为各种常用外部设备提供通用接口。主板主要部件有：芯片组、CPU插座、内存插糟、总线扩展槽、输入/输出接口、基本输入输出系统BIOS和CMOS。</p>
+<h4 id="微机总线"><a href="#微机总线" class="headerlink" title="微机总线"></a>微机总线</h4><p>总线是各部件见有效高速传输各种信息的通道。总线一般分为内部总线、系统总线和外部总线。</p>
 <ul>
 <li>内部总线。即微处理器级总线，包括地址总线、数据综合和控制总线，从CPU引脚引出，用来实现CPU与外围控制芯片（主存、Cache等）。常见的总线有：I2C总线、SPI总线、SCI总线。</li>
 <li>数据总线。又称为I/O通道总线，同样包括地址线、数据线和控制线，用于CPU和接口卡的连接。常见的总线标准有：ISA总线、PCI总线、AGP总线等。</li>
 <li>外部总线。是微机和外部设备之间的总线，常见的总线有：RS-232C总线、USB总线、RS.485总线和IEEE-488总线等。</li>
 </ul>
-<h3 id="微处理器"><a href="#微处理器" class="headerlink" title="微处理器"></a>微处理器</h3><p>微机的CPU一般由运算器、控制器和寄存器三个部分组成，通过CPU内部总线连接在一起。其性能主要包括：主频（执行指令的速度）、字长（一次处理的二进制位数）、几核等。</p>
-<h3 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h3><p>内存储器分为只读存储器（ROM）、随机读/写存储器和高速缓冲存储器三类。</p>
+<h4 id="微处理器"><a href="#微处理器" class="headerlink" title="微处理器"></a>微处理器</h4><p>微机的CPU一般由运算器、控制器和寄存器三个部分组成，通过CPU内部总线连接在一起。其性能主要包括：主频（执行指令的速度）、字长（一次处理的二进制位数）、几核等。</p>
+<h4 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h4><p>内存储器分为只读存储器（ROM）、随机读/写存储器和高速缓冲存储器三类。</p>
 <ul>
 <li>只读存储器（Read Only Memory）。ROM所存数据稳定，断电后所存数据也不会改变，结构简单，因此常用用于存储各种固定程序和数组。ROM在没有通电时也能将数据记录下来，是一种非挥发性内存。</li>
 <li>随机读/写存储器（Random Access Memory）。RAM是计算机工作的存储区，一起要执行的程序和数据都要先装入该存储器内。存储器的数据可以反复使用，断电后，数据会消失。</li>
 <li>高速缓冲存储器（Cache）。是CPU与内存之间设置的一级或两级高速校容量存储器。</li>
 </ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
 <li>硬盘的存储量较大，其主要性能技术指标有：容量、转速、平常寻道时间等，常见的借口方式有：IDE接口、SATA接口、SCSI借口、SAS接口、光纤通道和USB接口等。</li>
 <li>声卡。声卡是处理声音的设备，它具有把声音编程相应数字信号，以及再将数字信号转换成声音的A/D、D/A转换功能。</li>
 <li>显卡又称显示适配器，是计算机最基本、最重要的配件之一。显卡是电脑进行数模信号转换的设备，承担输出显示图形的任务，具有图像处理能力，可协助CPU工作，提高整体的运行速度。</li>
@@ -175,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilazvbdz0004b8q97b1tcnfp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilcdqw05000038q9owwcn97f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -213,8 +289,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="C语言概论"><a href="#C语言概论" class="headerlink" title="C语言概论"></a>C语言概论</h2><h3 id="C语言简介"><a href="#C语言简介" class="headerlink" title="C语言简介"></a>C语言简介</h3><p>C语言是一门通用计算机编程语言，应用广泛，它对编写需要进行硬件操作的场合，优于其他高级语言。C语言的设计目标是提供一种能以简易的方式编译、处理低级存储器、产生少量的机器码以及不需要任何运行环境支持便能运行的编程语言，它兼具汇编语言（执行速度快，能充分发挥硬件的潜力）和高级语言（编程/调试方便、可读性/可移植性好）的优点。尽管C语言体提供了许多低级处理的功能，但仍然保持着良好跨平台的特性，不仅可以在电脑平台编译，还可以在一些嵌入式处理器以及超级电脑等作业平台。目前，C语言仍然具有非常强的活力。</p>
-<h3 id="微型计算机系统"><a href="#微型计算机系统" class="headerlink" title="微型计算机系统"></a>微型计算机系统</h3><ol>
+        <h2 id="C语言概论"><a href="#C语言概论" class="headerlink" title="C语言概论"></a>C语言概论</h2><h4 id="C语言简介"><a href="#C语言简介" class="headerlink" title="C语言简介"></a>C语言简介</h4><p>C语言是一门通用计算机编程语言，应用广泛，它对编写需要进行硬件操作的场合，优于其他高级语言。C语言的设计目标是提供一种能以简易的方式编译、处理低级存储器、产生少量的机器码以及不需要任何运行环境支持便能运行的编程语言，它兼具汇编语言（执行速度快，能充分发挥硬件的潜力）和高级语言（编程/调试方便、可读性/可移植性好）的优点。尽管C语言体提供了许多低级处理的功能，但仍然保持着良好跨平台的特性，不仅可以在电脑平台编译，还可以在一些嵌入式处理器以及超级电脑等作业平台。目前，C语言仍然具有非常强的活力。</p>
+<h4 id="微型计算机系统"><a href="#微型计算机系统" class="headerlink" title="微型计算机系统"></a>微型计算机系统</h4><ol>
 <li><p>二进制编码系统<br>计算机只能识别和处理二进制码，现在，英文字母、运算符和标点符号等字符都采用<a href="http://baike.baidu.com/link?url=4HqGUw2qbiz6aCZrELg1b2WRGChKcXncb_doav_Ml6vlejh3G1xT6AZgyT1ba_v6Q0U-EiyRRiIbQ9pj-3WZe11JKg8JfKp7H2G7yxuPn1x7dnPwpbhmQXheVU7wwMTBfeZWsu8zBMCzwJoVxB4_oK" target="_blank" rel="external">ASCII码</a>。对于多媒体计算机，把文本、图像、声音等信息按某种标准格式进行二进制编码，就可以解决文本、图像和声音等的控制管理、存储、变换和传送等。行使这些功能的系统都统称为二进制编码系统。</p>
 </li>
 <li><p>微型计算机硬件的基本组成<br>计算机发展至今，其结构依然为<a href="http://baike.baidu.com/link?url=Xqi6R2MTk-ywT4dARLDyZs1rGAlZ11wyvSWUk-6RApdYzWr3wMXsHN2vG4s5uQZeyyMjbUumtaZAKsvT-eXuZ_" target="_blank" rel="external">冯*诺依曼结构</a>。即由运算器、控制器、存储器、输入设备和输出设备等5部分组成。<br><img src="/img/C-Language/主机系统的基本结构图.png" alt="主机系统的基本结构图"></p>
@@ -225,12 +301,12 @@
 <li>存储器分为外存储器和内存储器（RAM和ROM）。每个存储单元为一个字节byte/B（8bits）。</li>
 <li>输入/输出接口和外部设备是人机交互的接口。<br>计算机的层次结构有：裸机/操作系统/语言处理系统（核心为程序设计语言的编译系统）/通用软件、应用软件、工具软件。<br><img src="/img/C-Language/微型机系统的构成.png" alt="微型机系统的构成"></li>
 </ul>
-<h3 id="C语言语法简述"><a href="#C语言语法简述" class="headerlink" title="C语言语法简述"></a>C语言语法简述</h3><ul>
+<h4 id="C语言语法简述"><a href="#C语言语法简述" class="headerlink" title="C语言语法简述"></a>C语言语法简述</h4><ul>
 <li>高级语言程序均由一个主程序和若干个子程序组成，C语言也不例外。函数是一个独立的程序块，相互不能嵌套函数定义。函数分为标准函数和用户自定义函数。</li>
 <li>C语言的基本语言单位称为单词，分为5大类：标识符、关键字、常量、运算符和分隔符。</li>
 <li>运行一个C程序，指从建立源程序文件到执行该程序并输出正确结果的全过程。其包含编辑（建议源程序文件）、编译（翻译为二进制代码形式的目标程序）、连接（与C库函数装配成可执行的程序.exe）、运行（运行exe）。</li>
 </ul>
-<h2 id="程序和流程控制"><a href="#程序和流程控制" class="headerlink" title="程序和流程控制"></a>程序和流程控制</h2><h3 id="一般程序版式"><a href="#一般程序版式" class="headerlink" title="一般程序版式"></a>一般程序版式</h3><p>程序的编写有一定的逻辑和规范，一般情况C语言程序包含以下几个部分：</p>
+<h2 id="程序和流程控制"><a href="#程序和流程控制" class="headerlink" title="程序和流程控制"></a>程序和流程控制</h2><h4 id="一般程序版式"><a href="#一般程序版式" class="headerlink" title="一般程序版式"></a>一般程序版式</h4><p>程序的编写有一定的逻辑和规范，一般情况C语言程序包含以下几个部分：</p>
 <ol>
 <li>注释部分：/<em>内容</em>/  或者  //内容</li>
 <li>预处理块（#include&lt;&gt;等）、全局变量说明</li>
@@ -240,18 +316,18 @@
 <li>执行部分：整个程序的核心，一般是对程序算法用结构化程序设计方法进行描述，然后转换为C语言语句</li>
 <li>信息输出部分</li>
 </ol>
-<h3 id="结构化程序设计"><a href="#结构化程序设计" class="headerlink" title="结构化程序设计"></a>结构化程序设计</h3><p>结构化设计的基本思想是：任何程序都可以用三种基本结构表示，即顺序结构、选择结构、循环结构。这三种基本结构可进行反复嵌套。C语言为这种流程结构提供了相应的流程控制语句：</p>
+<h4 id="结构化程序设计"><a href="#结构化程序设计" class="headerlink" title="结构化程序设计"></a>结构化程序设计</h4><p>结构化设计的基本思想是：任何程序都可以用三种基本结构表示，即顺序结构、选择结构、循环结构。这三种基本结构可进行反复嵌套。C语言为这种流程结构提供了相应的流程控制语句：</p>
 <ul>
 <li>选择语句：if else    switch case break</li>
 <li>循环语句：for while  do while 辅助词：break continue return goto </li>
 </ul>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="结构化软件及其优越性"><a href="#结构化软件及其优越性" class="headerlink" title="结构化软件及其优越性"></a>结构化软件及其优越性</h3><p>当开发一些比较复杂的软件时，结构化方法是常常采用的方法。结构化开发方法的基本要点是：</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="结构化软件及其优越性"><a href="#结构化软件及其优越性" class="headerlink" title="结构化软件及其优越性"></a>结构化软件及其优越性</h4><p>当开发一些比较复杂的软件时，结构化方法是常常采用的方法。结构化开发方法的基本要点是：</p>
 <ol>
 <li>自顶向下：将复杂的大问题分解为相对简单的小问题，找出每个问题的关键和重点所在</li>
 <li>逐步求精：将现实世界的问题经过几次抽象/细化处理，最后到求解域中只是一些简单的算法描述和算法实现问题。</li>
 <li>模块化设计：逐步求精的结果是以子功能块为单位的算法描述。以子功能为单位进行程序设计时，实现其求解算法的方式称为模块化。其目的为：为了降低程序复杂性，使程序设计、调试和维护等操作简单化。</li>
 </ol>
-<h3 id="函数的定义和调用"><a href="#函数的定义和调用" class="headerlink" title="函数的定义和调用"></a>函数的定义和调用</h3><ul>
+<h4 id="函数的定义和调用"><a href="#函数的定义和调用" class="headerlink" title="函数的定义和调用"></a>函数的定义和调用</h4><ul>
 <li>函数定义的一般格式：&lt;存储类型&gt; &lt;数据函数体&gt; 函数名 (&lt;形式参数及说明&gt;){ 说明语句；执行语句；}</li>
 <li>函数的存储类型说明只有extern和static，缺省表示定义的函数为外部函数。</li>
 <li>形式参数对应说明，如（int x, int y）</li>
@@ -261,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilazvbdq0001b8q9kv40m7yr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilcdqw0l000538q97fxrp673" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -299,9 +375,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据类型、运算符和表达式"><a href="#数据类型、运算符和表达式" class="headerlink" title="数据类型、运算符和表达式"></a>数据类型、运算符和表达式</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>在C语言中，数据类型可分为基本数据类型、构造数据类型、指针数据类型等。基本数据类型的最主要特点为：其值不可再分解为其他类型，即基本数据类型是自我说明的。</p>
+        <h2 id="数据类型、运算符和表达式"><a href="#数据类型、运算符和表达式" class="headerlink" title="数据类型、运算符和表达式"></a>数据类型、运算符和表达式</h2><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>在C语言中，数据类型可分为基本数据类型、构造数据类型、指针数据类型等。基本数据类型的最主要特点为：其值不可再分解为其他类型，即基本数据类型是自我说明的。</p>
 <p><img src="/img/C-Language/数据类型分类.png" alt="数据类型分类"></p>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><ul>
 <li>整型常量</li>
 </ul>
 <ol>
@@ -322,12 +398,12 @@
 <li>字符串常量：字符串常量是用双引号括起来的。字符串的最后自动加字符’\0’，表示字符串结束。</li>
 <li>符号常量：如# define 标识符 常量  例：# define PI 3.1415926</li>
 </ul>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>在程序执行过程中，值可以改变的量称为变量。一个变量应该有一个名字，同时在内存中占据着一定的存储单元。命名规则为：</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>在程序执行过程中，值可以改变的量称为变量。一个变量应该有一个名字，同时在内存中占据着一定的存储单元。命名规则为：</p>
 <ul>
 <li>必须以英文字母或者下划线开头，由字母、数字和下划线组成。</li>
 <li>不能与关键字重名，长度受限制，对大小写敏感。<br><img src="/img/C-Language/数值类型的长度.png" alt="数值类型的长度和值域"></li>
 </ul>
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p><img src="/img/C-Language/运算符的优先级.png" alt="C中运算符的优先级"></p>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p><img src="/img/C-Language/运算符的优先级.png" alt="C中运算符的优先级"></p>
 <ul>
 <li>算术运算时的自动类型转换</li>
 </ul>
@@ -340,7 +416,7 @@
 <li>强制类型转换：（类型名）表达式，例如（int）m</li>
 <li>常见问题：数据溢出，浮点变量的舍入误差，忽略变量类型进行不合法的运行等。</li>
 </ul>
-<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><ol>
+<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><ol>
 <li>基本赋值表达式：左值表达式=右值表达式</li>
 <li>复合赋值表达式： += -= *= /= %= &amp;= |= ^= &lt;&lt;= &gt;&gt;= 左op=右 等价于 左=左op右</li>
 <li>条件运算表达式：表达式1？ 表达式2：表达式3 表达式1成立则运行表达式2，否则执行表达式3。</li>
@@ -355,18 +431,18 @@
 <li>auto型和register型变量的内存是动态分配的，初始值是不定的，每次都要重新初始化，不一定为0。</li>
 <li>static型和外部参数型变量的内存是全局存在的，分配内存后在整个程序运行完毕后才释放，其初始值为0。</li>
 </ul>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组的定义及初始化"><a href="#数组的定义及初始化" class="headerlink" title="数组的定义及初始化"></a>数组的定义及初始化</h3><p>数组的定义：&lt;存储类型&gt; &lt;数据类型&gt; 数组名 </p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h4 id="数组的定义及初始化"><a href="#数组的定义及初始化" class="headerlink" title="数组的定义及初始化"></a>数组的定义及初始化</h4><p>数组的定义：&lt;存储类型&gt; &lt;数据类型&gt; 数组名 </p>
 <ul>
 <li>数组下标不允许包含变量</li>
 <li>数组名表示数据存储区域的首地址。data和&amp;data[0]表示首地址</li>
 <li>数组作为一个整体不能参加各种运算，只有数组的元素变量可以进行数据处理</li>
 <li>数组可以进行初始化。数组最好进行初始化操作，如下：<code>int a[3][2] = {1,2,3,4,5,6};</code> 或者 <code>int a[3][2] = { {1,2,3},{4,5,6} };</code></li>
 </ul>
-<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><ul>
+<h4 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h4><ul>
 <li>选择排序法：先找出全部的最小数，再找出除了最小数之前的最小数，最后得到从小到大排序数组。</li>
 <li>冒泡排序法：比较相邻两个数据，冒泡排序，最后可得到最大的数字，最终得到从小到大排序数组。</li>
 </ul>
-<h3 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h3><ul>
+<h4 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h4><ul>
 <li>一维字符数组：char string[20]={‘s’,’t’,’r’,’i’,’n’,’g’,’\0’};(‘\0’表示结束)，string则表示”string”</li>
 <li>二维字符数组：<code>char string[3][10]={&quot;how&quot;,&quot;are&quot;,&quot;you?&quot;};</code> string[0]表示”how”……</li>
 <li>字符串处理函数</li>
@@ -380,32 +456,32 @@
 <li>strlen（字符数组） 测试字符串的长度，并返回。不包含’\0’</li>
 </ol>
 <h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针是C语言的一大特征。利用指针可以直接对内存中各种不同数据结构的数据进行快速处理，并且指针为函数间各类数据的传递提供了简捷便利的方法。</p>
-<h3 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h3><ul>
+<h4 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h4><ul>
 <li>计算机的内存是以字节为单位的一片连续的存储空间，每个字节都有一个编号——内存的地址。内存为地址和存放的内容。</li>
 <li>高级语言提供了通过各种每年工资而不是地址的方式来访问内存的方法，即系统给变量名和变量地址间建立了关系表。</li>
 <li>C语言中有一种特殊性质的指针变量，其为存放地址的变量。即指针变量指向了一个地址的内存区域。</li>
 <li>在程序中，参加数据处理的量不是指针本身的量，因为指针本身是个地址量。指针的目标才是要处理的数据。</li>
 </ul>
-<h3 id="指针变量的定义和使用"><a href="#指针变量的定义和使用" class="headerlink" title="指针变量的定义和使用"></a>指针变量的定义和使用</h3><ul>
+<h4 id="指针变量的定义和使用"><a href="#指针变量的定义和使用" class="headerlink" title="指针变量的定义和使用"></a>指针变量的定义和使用</h4><ul>
 <li>指针变量的定义：&lt;存储类型&gt; &lt;数据类型&gt; *指针名 （存储类型指指针的类型，数据类型指指针内容的类型）</li>
 <li>指针变量的初始化：&lt;存储类型&gt; &lt;数据类型&gt; <em>指针名[=初始地址值] （它不是一个运算表达式，地址值是赋给指针的）<br>  例：int </em>pa=&amp;a；等同于 int *pa；pa=&amp;a；</li>
 <li>void指针：定义一个指针变量，不定义指向哪种具体的数据类型，称为“无类型指针”。</li>
 <li>&amp;为取地址运算符，*为取内容运算符。</li>
 <li>使用指针的目的是用指针引用变量，所以必须使指针指向确定的目标对象。<br>  以下为错误：int <em>p； </em>p=5； 要把p指向变量等对象。</li>
 </ul>
-<h3 id="指针运算"><a href="#指针运算" class="headerlink" title="指针运算"></a>指针运算</h3><ul>
+<h4 id="指针运算"><a href="#指针运算" class="headerlink" title="指针运算"></a>指针运算</h4><ul>
 <li>对于不同数据类型的指针p，p+n表示p+n*sizeof（p）（字节）</li>
 <li>指针p1和p2之间的数据个数：指针p1-p2 表示 （p1-p2）/sizeof（p）</li>
 <li>malloc函数获取内存空间，free释放malloc函数获取的空间，成对出现。 </li>
 </ul>
 <h2 id="结构和联合"><a href="#结构和联合" class="headerlink" title="结构和联合"></a>结构和联合</h2><p>结构的作用是将不同数据类型的数据组合成一个有机的整体，不仅为处理复杂的数据结构提供了手段，而且为函数间传递不同类型的数据提供了便利。</p>
-<h3 id="结构的定义以及结构变量的定义和使用"><a href="#结构的定义以及结构变量的定义和使用" class="headerlink" title="结构的定义以及结构变量的定义和使用"></a>结构的定义以及结构变量的定义和使用</h3><ul>
+<h4 id="结构的定义以及结构变量的定义和使用"><a href="#结构的定义以及结构变量的定义和使用" class="headerlink" title="结构的定义以及结构变量的定义和使用"></a>结构的定义以及结构变量的定义和使用</h4><ul>
 <li>结构的定义：struct 结构名{ 数据类型 成员名1；数据类型 成员名2；……数据类型成员名n}；</li>
 <li>结构变量的定义：&lt;存储类型&gt; struct 结构名 结构变量名 ={初始数据}；</li>
 <li>结构的使用形式：结构变量名.成员名</li>
 </ul>
-<h3 id="联合"><a href="#联合" class="headerlink" title="联合"></a>联合</h3><ul>
-<li>联合体在定义、说明和使用形式上与结构相似，二者本质上的不同仅在于使用内存的方式上。<h3 id="类型定义语句和枚举类型"><a href="#类型定义语句和枚举类型" class="headerlink" title="类型定义语句和枚举类型"></a>类型定义语句和枚举类型</h3></li>
+<h4 id="联合"><a href="#联合" class="headerlink" title="联合"></a>联合</h4><ul>
+<li>联合体在定义、说明和使用形式上与结构相似，二者本质上的不同仅在于使用内存的方式上。<h4 id="类型定义语句和枚举类型"><a href="#类型定义语句和枚举类型" class="headerlink" title="类型定义语句和枚举类型"></a>类型定义语句和枚举类型</h4></li>
 <li>C语言为编程者提供了一种新的类型名来代替已有的基本数据类型名和已经定义的类型的功能。例： typeof unsigned char BYTE；</li>
 <li>C语言把一组整型符号常量按顺序集合成一种数据类型，称为枚举类型。如：enum WEEKDAY{sun，mon，tue，wedthu，fri，sat}</li>
 </ul>
@@ -413,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilazvbdg0000b8q9v3sel9zs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilcdqw10000738q9001wkri7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -453,7 +529,6 @@
       
         <h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><ul>
 <li>C语言的优势</li>
-<li>冯诺依曼结构</li>
 <li>运行一个C程序的全过程</li>
 <li>一个C语言函数的一般板式和内容</li>
 <li>C语言的结构化程序设计（3个结构）</li>
@@ -464,11 +539,28 @@
 <li>指针的概念、定义、初始化及应用</li>
 <li>结构、联合的概念区别以及定义和使用</li>
 </ul>
+<h2 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h2><ul>
+<li>什么是计算思维？</li>
+<li>三大类科学方法及其对应的三大思维。</li>
+<li>图灵机及可计算性</li>
+<li>什么是算法？算法的基本要素和复杂度</li>
+<li>冯诺依曼结构</li>
+<li>计算机的系统组成（软件和硬件）及工作原理。</li>
+<li>常见的编码方式。</li>
+<li>主板、微机总线、CPU、内存、显卡、声卡等。</li>
+</ul>
+<h2 id="计算机网络及应用基础"><a href="#计算机网络及应用基础" class="headerlink" title="计算机网络及应用基础"></a>计算机网络及应用基础</h2><ul>
+<li>一个计算机网络一般由什么组成？</li>
+<li>数据交换分为哪两类？其基本思想是什么？</li>
+<li>什么是网络协议，其三个基本要素是什么？</li>
+<li>三种最常见的网络协议模型及其分层</li>
+<li>每层的具体功能以及主要内容。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilazvbes000qb8q9874mzkg3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilcdqw0l000438q9kcv1k0oy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -514,18 +606,18 @@
 <li><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">hexo系列教程：（四）hexo博客的优化技巧</a></li>
 <li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">hexo系列教程：（五）hexo博客的优化技巧续</a><br>根据以上教程，一步一步来，基本可以搭建完成你的博客啦~</li>
 </ul>
-<h2 id="我在搭建中出现的问题"><a href="#我在搭建中出现的问题" class="headerlink" title="我在搭建中出现的问题"></a>我在搭建中出现的问题</h2><h3 id="Gitbash使用问题"><a href="#Gitbash使用问题" class="headerlink" title="Gitbash使用问题"></a>Gitbash使用问题</h3><ul>
+<h2 id="我在搭建中出现的问题"><a href="#我在搭建中出现的问题" class="headerlink" title="我在搭建中出现的问题"></a>我在搭建中出现的问题</h2><h4 id="Gitbash使用问题"><a href="#Gitbash使用问题" class="headerlink" title="Gitbash使用问题"></a>Gitbash使用问题</h4><ul>
 <li>在初次使用时，会发现行首有一个$符号，有这个符号时，就代表Gitbash在等待你的指令。</li>
 <li>当你输入指令后，按回车键，Gitbash开始执行命令。但是此时看起来可能没有任何反应，请耐心等待。</li>
 <li>命令执行完成后，你会再次发现$符号。如果执行有错，根据相关提示，google解决方案。</li>
 <li>有些常见问题可在这个博客里面找到解决方案：<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">HEXO+Github,搭建属于自己的博客</a></li>
 </ul>
-<h3 id="注册Github账号问题"><a href="#注册Github账号问题" class="headerlink" title="注册Github账号问题"></a>注册Github账号问题</h3><p>上面的教程中没有详细讲解，可以参考下面这个教程<br> <a href="http://blog.csdn.net/renfufei/article/details/37725057/" target="_blank" rel="external">创建GitHub技术博客全攻略</a><br>根据上面这个教程，完成到第三步（创建页面仓库）即可。如果都完成也没有问题，部署完hexo博客后，会替换成新界面的。</p>
-<h3 id="hexo-服务器问题"><a href="#hexo-服务器问题" class="headerlink" title="hexo 服务器问题"></a>hexo 服务器问题</h3><ul>
+<h4 id="注册Github账号问题"><a href="#注册Github账号问题" class="headerlink" title="注册Github账号问题"></a>注册Github账号问题</h4><p>上面的教程中没有详细讲解，可以参考下面这个教程<br> <a href="http://blog.csdn.net/renfufei/article/details/37725057/" target="_blank" rel="external">创建GitHub技术博客全攻略</a><br>根据上面这个教程，完成到第三步（创建页面仓库）即可。如果都完成也没有问题，部署完hexo博客后，会替换成新界面的。</p>
+<h4 id="hexo-服务器问题"><a href="#hexo-服务器问题" class="headerlink" title="hexo 服务器问题"></a>hexo 服务器问题</h4><ul>
 <li>本地查看过程中，请先在Gitbash中执行以下命令，安装hexo服务器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="部署问题"><a href="#部署问题" class="headerlink" title="部署问题"></a>部署问题</h3><ul>
+<h4 id="部署问题"><a href="#部署问题" class="headerlink" title="部署问题"></a>部署问题</h4><ul>
 <li>在部署过程中，错误提示：Deployer not found：git时，在Gitbash中执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -540,16 +632,16 @@
 <li>deploy完成后，会显示以下信息，此时，则上传到你的github账号的内存里面，过一小段时间，你的博客信息就会更新。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="主题问题"><a href="#主题问题" class="headerlink" title="主题问题"></a>主题问题</h3><ul>
+<h4 id="主题问题"><a href="#主题问题" class="headerlink" title="主题问题"></a>主题问题</h4><ul>
 <li>在上面的系列教材中，hexo的默认主题是light。但目前（2016.2），hexo的默认主题是landscape。其yml文件内容有所不同，暂时默认，以后再进行修改即可。</li>
 <li>最开始显示的时候，你在右边栏看不到分类，tag，tagcloud这些东西，这是因为你的分类和标签里面没有任何内容，所以没有显示。只需要在你的新建的md文件上面填写tag，categories的内容就会显示了。<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> hexo+github博客前期实现步骤</span><br><span class="line"><span class="attr">date:</span> <span class="number">2016</span><span class="bullet">-02</span><span class="bullet">-25</span> <span class="number">19</span>:<span class="number">02</span>:<span class="number">05</span></span><br><span class="line"><span class="attr">tags:</span> [Hexo,其他]</span><br><span class="line"><span class="attr">categories:</span> Hexo</span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="markdown写法问题"><a href="#markdown写法问题" class="headerlink" title="markdown写法问题"></a>markdown写法问题</h3><ul>
+<h4 id="markdown写法问题"><a href="#markdown写法问题" class="headerlink" title="markdown写法问题"></a>markdown写法问题</h4><ul>
 <li>markdown很简单，基本的书写看这个介绍即可：<a href="http://sspai.com/25137" target="_blank" rel="external">认识与入门 Markdown</a></li>
 <li>markdown编写工具也有很多，网页版的就有很多（左边写markdown，右边显示结果）。我用的sublime。以后发现好的再推荐。</li>
 </ul>
-<h3 id="hexo文件夹结构"><a href="#hexo文件夹结构" class="headerlink" title="hexo文件夹结构"></a>hexo文件夹结构</h3><ol>
+<h4 id="hexo文件夹结构"><a href="#hexo文件夹结构" class="headerlink" title="hexo文件夹结构"></a>hexo文件夹结构</h4><ol>
 <li>source：资源文件夹是存放用户资源的地方，里面有一个_post文件夹是放你自己的post文件的地方</li>
 <li>themes：主题文件夹，hexo会根据主题来生成静态页面，里面有默认的主题landscape文件夹</li>
 <li>scaffolds：模板文件夹，新建文章时，hexo会根据其建立文件。hexo有三种默认布局：post page 和draft</li>
@@ -559,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilazvbe10005b8q9z5m48rh7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilcdqw10000a38q9tydheope" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -622,6 +714,10 @@
       <ul>
         
           <li>
+            <a href="/2016/03/03/web-base/">计算机网络基础</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/02/Computer-base/">大学计算机基础</a>
           </li>
         
@@ -635,10 +731,6 @@
         
           <li>
             <a href="/2016/03/01/question/">知识要点</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/25/hexo-github/">hexo+github博客前期实现步骤</a>
           </li>
         
       </ul>
