@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TCP/IP | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入RFC文档并公布。互联网协议=TCP/IP。
+TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP/IP">
+<meta property="og:url" content="http://yoursite.com/2016/03/07/TCP-IP/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入RFC文档并公布。互联网协议=TCP/IP。
+TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首">
+<meta property="og:updated_time" content="2016-03-07T14:37:45.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP/IP">
+<meta name="twitter:description" content="TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入RFC文档并公布。互联网协议=TCP/IP。
+TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TCP-IP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/07/TCP-IP/" class="article-date">
+  <time datetime="2016-03-07T12:09:11.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TCP/IP
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入<a href="https://www.rfc-editor.org/rfc" target="_blank" rel="external">RFC</a>文档并公布。互联网协议=TCP/IP。</p>
+<h2 id="TCP-IP分层模型与通信示例"><a href="#TCP-IP分层模型与通信示例" class="headerlink" title="TCP/IP分层模型与通信示例"></a>TCP/IP分层模型与通信示例</h2><p>在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首部、以太网包首部，网络中传输的数据包由两部分组成：协议所要用到的首部、上层传过来的数据。另外，每个分层的包首部汇总还含有一个识别位，用来标示上一层协议的种类信息。</p>
+<h4 id="甲给乙发送电子邮件“早上好”"><a href="#甲给乙发送电子邮件“早上好”" class="headerlink" title="甲给乙发送电子邮件“早上好”"></a>甲给乙发送电子邮件“早上好”</h4><ol>
+<li>应用程序处理：进行编码处理（如UTF-8编码），并由应用判断何时发送数据建立TCP连接。</li>
+<li>TCP模块的处理：在应用层数据的前端附加一个TCP首部，包含源端口号、目标端口号、序号以及校验和，再发给IP，提供将应用层发来的数据发送至对端的可靠传输。</li>
+<li>IP模块的处理：IP将TCP传过来的数据包当做数据，并在TCP首都的前端加上自己的IP首部，包含发送端IP地址和接收端IP地址等。参考路由控制表决定接手此IP包的路由或主机，并发给下一节点的驱动程序。此时要知道接收端的MAC地址，以将MAC地址和IP地址交给以太网的驱动程序，可以利用ARP查找。</li>
+<li>网络接口（以太网驱动）的处理： 给从IP传过来的IP包加上以太网包首部（包含接/发端MAC地址、标志以太网类型的以太网数据的协议）并进行发送处理。发送处理中的FCS由硬件计算，添加到包的最后。</li>
+<li>网络接口（以太网驱动）的处理：主机收到以太网包后，从包首部找到MAC地址，判断是否为发给自己的包，不是则丢弃数据。是的话，检查上层的数据类型，传给相应的子程序，如IP程序。</li>
+<li>IP模块的处理：如果是发给自己的IP地址，则可接受数据并查找上一层的协议。在有路由器的情况下，如果不是自己的地址，则借助路由控制表，调查应该送达的主机或路由器后转发数据。</li>
+<li>TCP模块的处理：首先计算校验和，判断数据是否被破坏。然后检查是在安装序号接收数据，最后是检查端口号，确定具体的应用程序。接收完毕后发生一个“确认回执”给发送端。</li>
+<li>应用程序的处理：接收端应用程序接收数据，解析数据。给句解析结果反馈信息，如已接受、被退回等。</li>
+</ol>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP和ICMP两个协议组成，当然还有DNS、ARP等于IP相关的协议。</p>
+<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由以及IP分包和组包。</p>
+<ul>
+<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。</li>
+<li>一个数据包之所以能够成功地到达最终的目标地址，全靠路由控制。一跳（Hop）指利用数据连输层以下分层的功能传输数据帧的一起区间。</li>
+<li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
+</ul>
+<h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>DNS为域名服务器，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cili3e8k60004usq9uw60hjv6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/03/web-base/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 15px;">C-Language</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/计算机基础/" style="font-size: 20px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/07/TCP-IP/">TCP/IP</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/03/web-base/">计算机网络基础</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/02/Computer-base/">大学计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/C-gaishu/">C语言概述及流程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/C-data/">C语言数据结构相关基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
