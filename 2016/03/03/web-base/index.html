@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://yoursite.com/img/计算机基础/网络七层参考模型.png">
 <meta property="og:image" content="http://yoursite.com/img/计算机基础/网络协议比较.png">
 <meta property="og:image" content="http://yoursite.com/img/计算机基础/计算机网络构成.png">
-<meta property="og:updated_time" content="2016-03-07T12:58:48.310Z">
+<meta property="og:updated_time" content="2016-03-08T05:45:41.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络基础">
 <meta name="twitter:description" content="计算机技术与通信技术的发展和结合，产生了计算机网络，其对计算机系统的组织方式产生了深远的影响。计算机网络最常见的有工业计算机网络（Profibus现场总线、CAN总线和工业以太网等）、上用计算机网络（Internet等）已被广泛地应用于各行各业。可以说，计算机网络是IT和信息产业的基础和核心。
@@ -142,11 +142,19 @@
 <h4 id="路由器-3层交换机"><a href="#路由器-3层交换机" class="headerlink" title="路由器/3层交换机"></a>路由器/3层交换机</h4><p>路由器是在网络层层面上连接两个网络、并对分组报文进行转发的设备。路由器是根据IP地址进行处理的。路由器可以连接两个不同的数据链路，现在人们在家或实验室连接互联网时使用的宽度路由器也是路由器的一种。路由器还有分担网络负荷的作用（隔绝链路层的广播消息等），有些路由器还具备一定的网络安全功能。</p>
 <h4 id="4-7层交换机"><a href="#4-7层交换机" class="headerlink" title="4~7层交换机"></a>4~7层交换机</h4><p>4~7层交换机负责处理从传输层到应用层的数据。它以TCP等协议的传输层以及上面的应用层为基础，分析收发数据，并对其进行特定的处理。如，企业通常假设多台服务器（同一URL）来负担前端的访问需求，这些服务器的前端加的负载均衡器就是其一。以及，实际通信是，在网络拥堵时，优先处理语音等及时性要求高的通信请求的宽度控制也是4~7层交换机的重要功能。其他如广域网加速器、特殊应用访问加速以及防火墙（防止互联网的非法访问）等。</p>
 <h4 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h4><p>网关是OSI参考模型中负责将从运输层到应用层的数据进行转换和转发的设备。网关与4~7层交换机的区别是网关还负责对数据进行转换。如互联网邮件和手机邮件之间的转换服务。以及，在万维网中，为了控制网络流量以及处于安全，使用的代理服务器也属于网关的一种——应用网关。</p>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h4 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h4><p>防火墙的种类和形态有很多种，如专门过滤特定数据包的包过滤防火墙、数据到达应用后由应用处理并拒绝非法访问的应用网关等，其基本设计思路为：暴露给危险的主机和路由器的个数要有限。比如，设置防火墙，可以限制从互联网访问的主机个数，限制只能内网访问，限制端口的访问等。</p>
+<h4 id="IDS（入侵检测系统）"><a href="#IDS（入侵检测系统）" class="headerlink" title="IDS（入侵检测系统）"></a>IDS（入侵检测系统）</h4><p>数据包符合安全策略，防火墙会让其通过，但无法判断当前访问是否为非法访问，而IDS正是检查这种非法访问的情况，并及时通知网络管理员的系统。一般在防火墙或DMZ等便捷设备上进行设置。IDS有定期采集日志、长期监控、通知异常等功能。</p>
+<h4 id="反病毒-个人防火墙"><a href="#反病毒-个人防火墙" class="headerlink" title="反病毒/个人防火墙"></a>反病毒/个人防火墙</h4><p>反病毒和个人防火墙是继IDS和防火墙之后的另外两种安全对策，是用户使用的软件。</p>
+<h4 id="加密技术基础"><a href="#加密技术基础" class="headerlink" title="加密技术基础"></a>加密技术基础</h4><p>为了防止信息的泄漏、实现机密数据的传输，出现了各种各样的加密技术（出现在各层）。如PKI、CA数字证书等。</p>
+<ul>
+<li>加密是利用某个值（密匙）对明文的数据通过一定的算法变换成加密数据的过程，逆反过程称为解密。</li>
+<li>身份认证技术。在实时安全对策时，有必要验证使用者的正确性和真实性，要用到认证技术。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cili3e8kq0009usq94dstdxuw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilizphp5000phsq9wvvs8swl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>

@@ -114,12 +114,48 @@
 <li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
 </ul>
 <h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
-<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>DNS为域名服务器，</p>
+<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不知检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
+<h4 id="ARP（IPv4、IPv6）"><a href="#ARP（IPv4、IPv6）" class="headerlink" title="ARP（IPv4、IPv6）"></a>ARP（IPv4、IPv6）</h4><p>ARP是一种解决地址问题的协议。以目标IP地址为线索，用来定位下一个应该接收数据分包的网络设备对应的MAC地址。ARP借助ARP请求与ARP响应两种类型的包确定MAC地址，源主机要通过广播发送一个ARP请求包，下一个网络设备确定是自己后，将MAC地址塞入ARP响应返回，进而实现IP通信。</p>
+<ul>
+<li>RARP是ARP反过来，从MAC地址定位IP地址的一种协议。例如通过DHCP自动获取IP地址。</li>
+<li>代理ARP：通常ARP包会被路由器隔离，使用代理ARP的路由器可以将ARP请求转发给相邻的网段。</li>
+</ul>
+<h4 id="ICMP（IPv4、IPv6）"><a href="#ICMP（IPv4、IPv6）" class="headerlink" title="ICMP（IPv4、IPv6）"></a>ICMP（IPv4、IPv6）</h4><p>ICMP的主要功能包括，确认IP包是否成功送达目标地址，通知在发送过程中IP包被废弃的具体原因，改善网络设置等。ICMP的消息大致分为两类：通知出错原因的错误消息、用于诊断的查询消息，主要的ICMP消息有：目标不可达消息、重定向消息、超时消息、返回消息等。ICMP使用IP发送。</p>
+<h4 id="DHCP（IPv4、IPv6）"><a href="#DHCP（IPv4、IPv6）" class="headerlink" title="DHCP（IPv4、IPv6）"></a>DHCP（IPv4、IPv6）</h4><p>DHCP协议可以实现自动设置IP地址、统一管理IP地址分配，实现即插即用。使用DHCP前，要假设DHCP服务器，并将所要分配的IP地址设置到服务器上，还需要相应的子网掩码、路由控制信息以及DNS服务器的地址等。一般的家庭网络都由宽带路由器冲到DHCP的角色。</p>
+<h4 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h4><p>IP隧道可以将IPv6网络发过来的包统和为一个数据，再为之追加一个IPv4首部在IPv4网络中传送（要在下个IPv6网络中，去除追加的IPv4首部），也可以将ipv4网络发过来的包统和为一个数据，再为之追加一个IPv6首部在IPv6网络中传送。</p>
+<h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><p>TCP和UDP是传输层具有代表性的协议。TCP提供可靠的通信传输，而UDP常被用于让广播和细节控制交给应用的不可靠通信传输。传输层要指出具体的程序，使用端口号（有逻辑端口和物理端口，此处指逻辑端口0~65535）这样的一种识别码，通过端口识别，将数据传递给HTTP、FTP等应用层协议。</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
+<ul>
+<li>通过序列号与确认应答提高可靠性。发送端如果没有收到接收端发送的确认应答（ACK），进行重发。</li>
+<li>重发超时，发送端等待确认应答时间超时后，重发。</li>
+<li>连接管理：在通信前，通过TCP首部发送一个SNY包作为建立连接的请求并等待应答，收到确认应答，开始发送数据。最后发送FIN请求切断连接，获取确认应答后，断开连接。</li>
+<li>利用窗口控制提高速度，并进行重发控制。</li>
+<li>拥塞控制：在通信一开始时就会通过一个叫慢启动的算法得出的数值，对发送量进行控制。</li>
+</ul>
+<h4 id="TDP"><a href="#TDP" class="headerlink" title="TDP"></a>TDP</h4><p>UDP是不具有可靠性的数据报协议。它不提供复杂的控制机制，细微的处理它会交给上层的应用去完成，它在收到应用程序发来的数据后，立即鸳鸯发送到网络。UDP主要用于那些对高速传输和实时性有较高要求的通信或广播通信，比如DNS、即时通信等。</p>
+<h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><p>利用网络的应用程序很多，包括web浏览器、电子邮件、远程登录、文件传输、网络管理扥个，能够让这些应用程序进行特定通信处理的正是应用协议。</p>
+<h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p>远程登录主要使用TELNET和SSH两种协议，TELNET经常用于登录路由器或高性能交换机等网络设备进行相应的设置。SSH是加密的远程登录系统，可以具有更强的认证机制，可以转发文件，可以使用端口转发功能。OpenSSH是SSH协议的免费开源实现。</p>
+<h4 id="WWW万维网"><a href="#WWW万维网" class="headerlink" title="WWW万维网"></a>WWW万维网</h4><p>万维网（又称web）是将互联网中的信息以超文本形式展现的系统。WWW定义了3个重要的概念：访问信息的手段和位置（URI）、信息的表现形式（HTML）以及信息转发（HTTP）等。</p>
+<ul>
+<li>URI（Uniform Resource Identifier）用来标识资源，是一种可以用于WWW之外的高效的识别码，可用于主页地址、电子邮件、电话号码等各种组合中。URL常被用来标示互联网中所有资源的具体位置。</li>
+<li>HTML：具有纯文本的功能，在页面中可以为文字或图像附加链接。它是WWW通用的数据表现协议，可以认为HTML属于WWW的表示层。另，JavaScript是一种嵌入在HTML中的编程语言。</li>
+<li>HTTP。当用户在浏览器的地址栏里输入所要访问的Web也的URI后，HTTP的处理机会开始，首先客户端向服务器的80端口建立一个TCP链接，然后在这个TCP连接上进行请求和应答以及数据报文的发送。</li>
+<li>HTTPS ：Web中可以通过TLS/SSL对http通信进行加密，这种http通信叫做HTTPS通信。</li>
+</ul>
+<h2 id="域名、URL、网站名"><a href="#域名、URL、网站名" class="headerlink" title="域名、URL、网站名"></a>域名、URL、网站名</h2><p><a href="http://mail.163.com/index.html" target="_blank" rel="external">http://mail.163.com/index.html</a></p>
+<ul>
+<li>http:// 这是个协议，即http超文本传输协议，也就是网页在网上传输的协议。</li>
+<li>mail 这个是服务器名，代表一个邮箱服务器</li>
+<li>163.com 这个是域名，是用来定位网站的独一无二的名字</li>
+<li>mail.163.com 这个是网站名，由服务器名+域名组成</li>
+<li>index.html 这个是根目录下得默认网页</li>
+<li>整体叫做URL，统一资源定位符，定位网上资源。由协议 + 服务器 + 域名 + 网页html组成</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cili3e8k60004usq9uw60hjv6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilizphnr0000hsq9n8ifhsvt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -199,11 +235,19 @@
 <h4 id="路由器-3层交换机"><a href="#路由器-3层交换机" class="headerlink" title="路由器/3层交换机"></a>路由器/3层交换机</h4><p>路由器是在网络层层面上连接两个网络、并对分组报文进行转发的设备。路由器是根据IP地址进行处理的。路由器可以连接两个不同的数据链路，现在人们在家或实验室连接互联网时使用的宽度路由器也是路由器的一种。路由器还有分担网络负荷的作用（隔绝链路层的广播消息等），有些路由器还具备一定的网络安全功能。</p>
 <h4 id="4-7层交换机"><a href="#4-7层交换机" class="headerlink" title="4~7层交换机"></a>4~7层交换机</h4><p>4~7层交换机负责处理从传输层到应用层的数据。它以TCP等协议的传输层以及上面的应用层为基础，分析收发数据，并对其进行特定的处理。如，企业通常假设多台服务器（同一URL）来负担前端的访问需求，这些服务器的前端加的负载均衡器就是其一。以及，实际通信是，在网络拥堵时，优先处理语音等及时性要求高的通信请求的宽度控制也是4~7层交换机的重要功能。其他如广域网加速器、特殊应用访问加速以及防火墙（防止互联网的非法访问）等。</p>
 <h4 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h4><p>网关是OSI参考模型中负责将从运输层到应用层的数据进行转换和转发的设备。网关与4~7层交换机的区别是网关还负责对数据进行转换。如互联网邮件和手机邮件之间的转换服务。以及，在万维网中，为了控制网络流量以及处于安全，使用的代理服务器也属于网关的一种——应用网关。</p>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h4 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h4><p>防火墙的种类和形态有很多种，如专门过滤特定数据包的包过滤防火墙、数据到达应用后由应用处理并拒绝非法访问的应用网关等，其基本设计思路为：暴露给危险的主机和路由器的个数要有限。比如，设置防火墙，可以限制从互联网访问的主机个数，限制只能内网访问，限制端口的访问等。</p>
+<h4 id="IDS（入侵检测系统）"><a href="#IDS（入侵检测系统）" class="headerlink" title="IDS（入侵检测系统）"></a>IDS（入侵检测系统）</h4><p>数据包符合安全策略，防火墙会让其通过，但无法判断当前访问是否为非法访问，而IDS正是检查这种非法访问的情况，并及时通知网络管理员的系统。一般在防火墙或DMZ等便捷设备上进行设置。IDS有定期采集日志、长期监控、通知异常等功能。</p>
+<h4 id="反病毒-个人防火墙"><a href="#反病毒-个人防火墙" class="headerlink" title="反病毒/个人防火墙"></a>反病毒/个人防火墙</h4><p>反病毒和个人防火墙是继IDS和防火墙之后的另外两种安全对策，是用户使用的软件。</p>
+<h4 id="加密技术基础"><a href="#加密技术基础" class="headerlink" title="加密技术基础"></a>加密技术基础</h4><p>为了防止信息的泄漏、实现机密数据的传输，出现了各种各样的加密技术（出现在各层）。如PKI、CA数字证书等。</p>
+<ul>
+<li>加密是利用某个值（密匙）对明文的数据通过一定的算法变换成加密数据的过程，逆反过程称为解密。</li>
+<li>身份认证技术。在实时安全对策时，有必要验证使用者的正确性和真实性，要用到认证技术。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cili3e8kq0009usq94dstdxuw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilizphp5000phsq9wvvs8swl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -322,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cili3e8kq000busq9nbb6m987" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilizpho70005hsq973x1bh8b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -408,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cili3e8jw0001usq9alqhmwpc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilizphny0001hsq94w14xyhc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -560,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cili3e8jm0000usq9496q9j3y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilizphpp000uhsq9r11712c2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -626,12 +670,25 @@
 <li>什么是网络协议，其三个基本要素是什么？</li>
 <li>三种最常见的网络协议模型及其分层</li>
 <li>每层的具体功能以及主要内容。</li>
+<li>网络的构成要素（常见硬件及功能）</li>
+<li>网络安全构成要素：防火墙、IDS、反病毒/个人防火墙功能</li>
+</ul>
+<h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><ul>
+<li>TCP/IP的概念以及特点</li>
+<li>TCP/IP分层模型与通信实例：甲主机发给乙主机邮件“早上好”</li>
+<li>IP协议三大作用模块：IP寻址、路由以及IP分包和组包</li>
+<li>IP地址分类、掩码以及广播地址</li>
+<li>DNS、ARP、ICMP、DHCP、IP隧道功能作用</li>
+<li>TCP和UDP的区别和用途</li>
+<li>TCP建立连接过程、重发控制、滑动窗口协议、拥塞控制</li>
+<li>web的三个重要概念</li>
+<li>什么是域名、URL、网站名、服务器</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cili3e8kg0007usq9izb17jba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilizphp1000ohsq9eqxvjwcw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -722,7 +779,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cili3e8kg0005usq9qoxqkho0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilizpho50004hsq9qzly5n5e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
