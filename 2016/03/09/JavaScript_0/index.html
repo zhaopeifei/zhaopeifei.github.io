@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript概述 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
+JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript概述">
+<meta property="og:url" content="http://yoursite.com/2016/03/09/JavaScript_0/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
+JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对">
+<meta property="og:updated_time" content="2016-03-09T13:21:05.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript概述">
+<meta name="twitter:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
+JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/09/JavaScript_0/" class="article-date">
+  <time datetime="2016-03-09T11:28:58.000Z" itemprop="datePublished">2016-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript概述
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h2><p>JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。</p>
+<h2 id="JavaScript实现"><a href="#JavaScript实现" class="headerlink" title="JavaScript实现"></a>JavaScript实现</h2><p>JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对象模型。这三个主要部分，在当前主流浏览器中都得到了不同程度的支持。所有浏览器对ECMAScript的支持都还不错，但对DOM的支持彼此相差比较多，对于纳入HTML5标准的BOM来说，都实现了某些众所周知的共同特性，但其他特性还是会因浏览器而异。</p>
+<ul>
+<li>ECMAScript提供核心语言功能。这门语言本身并不包含输入和输出定义，Web浏览器知识其实现可能的宿主环境之一。</li>
+<li>DOM，提供访问和操作页面内容的方法和接口。是负责制定web通信标准的W3C（万维网联盟）着手规划的，目前有DOM1级、DOM2级、DOM3级。不同的浏览器对DOM的支持程度不同，但是目前，支持DOM已经成为浏览器开发商的首要目标。</li>
+<li>BOM，提供与浏览器交互的方法和接口。由于没有BOM标准可以遵循，因此每个浏览器都有自己的实现。现在HTML5致力于把很多BOM功能写入正式规范，BOM实现的细节有望朝着兼容性越来越高的方向发展。</li>
+</ul>
+<h2 id="在HTML中使用JavaScript"><a href="#在HTML中使用JavaScript" class="headerlink" title="在HTML中使用JavaScript"></a>在HTML中使用JavaScript</h2><h4 id="元素"><a href="#元素" class="headerlink" title="元素"></a><script>元素</h4><p>向HTML页面中插入JavaScript的主要方法就是使用 <code>&lt;script&gt;</code> 元素。常用的有以下几个属性：</p>
+<ul>
+<li>async：表示应该立即下载脚本，但不应该妨碍页面中的其他操作。只对外部脚本有效。标记问async的多个脚本不保证按照他们放置的先后顺序执行。</li>
+<li>defer：表示脚本可以延迟到文档完全被解析和显示后再执行。但有的浏览器会忽略这个属性。</li>
+<li>src：表示包含要执行代码的外部文件。外部文件既可以是同一个服务器上的，也可以是其他任何域的。引用了外部文件，就不能在再嵌入额外的JavaScript代码了，否则会被忽略。</li>
+<li>type：表示编写代码使用的脚本语言的内容类型。默认为text/javacript（一般要标明），其他值有application/javascript等。</li>
+</ul>
+<h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><ul>
+<li>按照HTML文档流从上至下顺序解析JavaScript代码，包含外部文件。</li>
+<li>一个<code>&lt;script&gt;</code>中的JavaScript代码称为一个代码块。先解析一个代码块再解析下一个代码块，代码块间相互独立，但共享变量和方法。</li>
+<li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，然后执行赋值函数等。</li>
+<li>在解释器对放在head中的JavaScript所有代码（包含要下载的外部文件）依次解析完毕之前，页面中的其余内容不会被浏览器加载或显示。所以，如果脚本在执行时不会影响页面的构造，把延迟脚本放在页面底部（body的最后）是最佳选择。</li>
+</ul>
+<h4 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h4><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
+</script></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilkytcw40001pkq9x9rlc7rh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/09/JavaScript-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript基本概念
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/08/data-structure/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构（C语言版）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 15px;">C-Language</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 15px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 20px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/09/JavaScript-1/">JavaScript基本概念</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/09/JavaScript_0/">JavaScript概述</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/data-structure/">数据结构（C语言版）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/07/TCP-IP/">TCP/IP</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/03/web-base/">计算机网络基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
