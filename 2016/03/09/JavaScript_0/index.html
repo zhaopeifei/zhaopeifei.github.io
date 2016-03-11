@@ -13,7 +13,7 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
 JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对">
-<meta property="og:updated_time" content="2016-03-09T13:21:05.339Z">
+<meta property="og:updated_time" content="2016-03-11T07:41:35.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript概述">
 <meta name="twitter:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
@@ -116,12 +116,18 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
 <li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，然后执行赋值函数等。</li>
 <li>在解释器对放在head中的JavaScript所有代码（包含要下载的外部文件）依次解析完毕之前，页面中的其余内容不会被浏览器加载或显示。所以，如果脚本在执行时不会影响页面的构造，把延迟脚本放在页面底部（body的最后）是最佳选择。</li>
 </ul>
+<h4 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h4><p>在ECMAScript中，包含两种不同数据类型的值：基本数据类型和引用数据类型（object）。基本数据类型可以操作保存在变量中的实际的值，而引用类型的值是保存在内存中的对象，不允许直接访问内存中的位置，也就是说不能直接操作引用类型的值。</p>
+<ul>
+<li>将值1复制给值2。如果其为基本类型值，两个变量是独立的；如果是引用数据类型，一个值改变，另外一个也发生改变（因为复制的是指针）。</li>
+<li>每个函数的执行环境都有一个与之相连的变量对象。每个环境都可以向上搜素作用域链，以查询变量和函数名；但是任何环境之间不能通过向下搜索作用域链而进入另一个执行环境。所以，局部环境可以访问全局环境，全局环境不能访问局部环境。但是，if、for等语句是没有局部环境的，即if和for中定义的变量是全局变量。</li>
+<li>垃圾收集。JavaScript有自动垃圾收集机制（固定的时间间隔）。释放离开函数的局部变量；跟踪变量是否有用（标记清除、引用次数）。垃圾收集机制回收工作量相当大，设置合适的间隔很重要，严重影响性能问题。</li>
+</ul>
 <h4 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h4><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
 </script></h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilkytcw40001pkq9x9rlc7rh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilneatig0001ykq9fzhc2ktq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>

@@ -125,17 +125,81 @@
     var num = Number(&quot;0123&quot;);//123，前导的零都会被忽略
     var num = Number(&quot;0xf&quot;);//15，包含十六进制格式，转换为相同大小的十进制
     var num = Number(&quot;&quot;);//0，为空字符串，则返回0
-    var num = Number(&quot;hello 123&quot;);//NaN，如果字符串中包含以上之外的字符，转换为NaN。</code><br>在将字符串转换为Number时，一般使用parseInt()/patseFloat()<br>`<br>    var num = parseInt(“123blue”);   //123，<br>    var num = parseInt(“”);   //NaN<br>    var num = parseInt(“070”);   //56，八进制<br>    var num = parseInt(“0xf”);   //15，十六进制<br>    var num = parseInt(“22.5”);   //22<br>    var num = parseInt(“AF”,16);   //175，按十六进制解析</p>
+    var num = Number(&quot;hello 123&quot;);//NaN，如果字符串中包含以上之外的字符，转换为NaN。</code></p>
+<p>在将字符串转换为Number时，一般使用parseInt()/patseFloat()<br>`<br>    var num = parseInt(“123blue”);   //123，<br>    var num = parseInt(“”);   //NaN<br>    var num = parseInt(“070”);   //56，八进制<br>    var num = parseInt(“0xf”);   //15，十六进制<br>    var num = parseInt(“22.5”);   //22<br>    var num = parseInt(“AF”,16);   //175，按十六进制解析</p>
 <pre><code>var num = parseFloat(&quot;0908.5&quot;);   //908.5
 var num = parseFloat(&quot;3.15e7&quot;);   //32150000
 var num = parseFloat(&quot;0xf&quot;);   //0
 </code></pre><p>`</p>
 <h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>表示字符串，可以由双引号或单引号表示，将其他类型的数值转换为字符串可以用.toString()方法（如果有该方法。且可以赋参数，表示按多少进制转换）。还可以使用String()方法，如果值有.toString()则调用；如果值是null，则返回”null”；如果值是undefined，返回”undefined”；</p>
-<h2 id="object"><a href="#object" class="headerlink" title="object"></a>object</h2>
+<h2 id="object类型"><a href="#object类型" class="headerlink" title="object类型"></a>object类型</h2><p>ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过new操作符后跟要常见的对象类型的名称来创建。<br><code>var o = new Object();   //可以省略圆括号，但是不推荐</code><br>在ECMAScript中，Object类型是所有它的实例的基础。但ECMA-262中对象的行为不一定适用于JavaScript中的其他对象，比如宿主对象DOM和BOM都可能自定义对象，而不继承Object。Object的实例都具有以下属性和方法：</p>
+<ul>
+<li>constructor：保存着用于创建当前对象的函数。对于前面的例子而言，构造函数就是Object()</li>
+<li>hasOwnProperty(propertyName)：用于检查给定的属性在当前对象实例中是否存在。prototypeName是字符串形式，比如”name”</li>
+<li>isPrototypeOf(object)：用于检查传入的对象是否是当前对象的原型</li>
+<li>propertyIsEnumerable(propertyName)：用于检查给定的属性是否能够使用for-in语句来枚举。</li>
+<li>toLocaleString()：返回对象的字符串表示，该字符串与执行环境的地区对应。</li>
+<li>toString()：返回对象的字符串表示</li>
+<li>valueOf()：返回对象的字符串、数值或布尔值表示。通常与toString()方法返回值相同。</li>
+</ul>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>ECMAScript操作符的与众不同之处在于，它们能够适用于很多值，例如字符串、数字值、布尔值，甚至对象。不过，在应用于对象时，相应的操作符通常会调用对象的valueOf()或toString()方法，以便取得可以操作的值。</p>
+<ul>
+<li>一元操作符：递增递减（++、–前置后置）、一元加和减（将非数值转换为数值，减则转换为负值）</li>
+<li>位操作符：NOT（按位非）、AND（按位与）、OR（按位或）、XOR（按位异或）、&lt;&lt;（左移）、&gt;&gt;（有符号右移）、&gt;&gt;&gt;（无符号右移）</li>
+<li>布尔操作符：!（逻辑非）、 &amp;&amp;（逻辑与）、 ||（逻辑或）</li>
+<li>乘性操作符：*（乘法）、/（除法）、%（求模）</li>
+<li>加性操作符：+（加法，负无穷加正无穷等于NaN，有一个为字符串，则另一个也转换为字符串拼接）- （一个为NaN，则返回NaN；把字符串等操作数转换为数值）</li>
+<li>关系操作符：&lt;、&gt;、&lt;=、&gt;=、==、!=、===（全等，在比较之前不转换操作符）、!==（不全等。不转换）</li>
+<li>条件操作符：条件？操作1：操作2（条件成立，操作1；不成立，操作2）</li>
+<li>赋值操作符：*=、/=、%=、+=、-+、&lt;&lt;=、&gt;&gt;=</li>
+<li>使用逗号可以在一条语句中执行多个操作，如<code>var num1 = 1, num2 = 2;</code></li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><p><code>if(i &gt; 5){
+        alert(&#39;大于5&#39;);
+    }else if(i &lt; 0){
+        alert(&quot;小于0&quot;);
+    }else{
+        alert(&quot;在0~5之间&quot;);
+    }</code></p>
+<h4 id="do-while语句、while语句"><a href="#do-while语句、while语句" class="headerlink" title="do-while语句、while语句"></a>do-while语句、while语句</h4><p>do-while为后测试循环语句，while为前测试循环语句<br><code>var i = 0;
+    do{
+        i += 2;
+    }while(i &lt; 0); // 最后i等于2，在执行之后才会测试出口条件</code></p>
+<h4 id="for语句、for-in语句"><a href="#for语句、for-in语句" class="headerlink" title="for语句、for-in语句"></a>for语句、for-in语句</h4><p>`<br>    for(var i = 0; i &lt; 10; i++){<br>        if(i % 3 == 0){<br>            continue;        //跳出本次循环，继续执行下次循环<br>        }<br>        if(i % 5 == 0){<br>            break;           //跳出循环。<br>        }<br>    }</p>
+<pre><code>for(var propName in window){
+    document.write(propName);    
+}
+</code></pre><p>`</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>`<br>    start: for(var i = 0; i &lt; 10 ; i++){<br>        alert(i);<br>    } //它是label语句，为代码添加标签。label:statement</p>
+<pre><code>with(location){
+    var qs = search.substring(1); //等同于：var qs = location.search.substring(1);
+    var hostName = hostname; //等同于：var hostName = location.hostname;
+} //with语句，主要为了简化多次编写同一个对象的工作
+
+switch(i){
+    case 10:
+        alert(&apos;10&apos;);
+        break;
+    case 20:
+        alert(&apos;20&apos;);
+        break;
+    default:
+        alert(&apos;other&apos;);
+} //switch语句。case value: statement;break;default:statement;
+</code></pre><p>`</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>ECMAScript中的函数使用function关键字来声明，后跟一组参数以及函数体。</p>
+<ul>
+<li>函数无须指定返回值，可以通过return语句后跟要返回的值来实现返回值。return后的语句就不会再继续执行。</li>
+<li>参数：ECMAScript不介意传递多少个参数，即使定义了接收几个参数。ECMAScript中的参数用arguments数组表示，在函数体内可以通过arguments[]来访问参数数组。</li>
+<li>ECMAScript函数没有重载。即如果定义了两个名字相同的函数，则该名字只属于后定义的函数。<br>`<br>  function doAdd( num1, num2) {//没有传递值的参数被自动赋予undefined<pre><code>arguments[1] = 10; //如果没有传递num2，设置的值不会反应到命名参数中。arguments的长度由传入的参数决定。严格模式下，arguments赋值无效。
+alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
+</code></pre>  }<br>`</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilkytcvp0000pkq9urk2f3u2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilneati90000ykq9a31yps07" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -193,12 +257,18 @@ var num = parseFloat(&quot;0xf&quot;);   //0
 <li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，然后执行赋值函数等。</li>
 <li>在解释器对放在head中的JavaScript所有代码（包含要下载的外部文件）依次解析完毕之前，页面中的其余内容不会被浏览器加载或显示。所以，如果脚本在执行时不会影响页面的构造，把延迟脚本放在页面底部（body的最后）是最佳选择。</li>
 </ul>
+<h4 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h4><p>在ECMAScript中，包含两种不同数据类型的值：基本数据类型和引用数据类型（object）。基本数据类型可以操作保存在变量中的实际的值，而引用类型的值是保存在内存中的对象，不允许直接访问内存中的位置，也就是说不能直接操作引用类型的值。</p>
+<ul>
+<li>将值1复制给值2。如果其为基本类型值，两个变量是独立的；如果是引用数据类型，一个值改变，另外一个也发生改变（因为复制的是指针）。</li>
+<li>每个函数的执行环境都有一个与之相连的变量对象。每个环境都可以向上搜素作用域链，以查询变量和函数名；但是任何环境之间不能通过向下搜索作用域链而进入另一个执行环境。所以，局部环境可以访问全局环境，全局环境不能访问局部环境。但是，if、for等语句是没有局部环境的，即if和for中定义的变量是全局变量。</li>
+<li>垃圾收集。JavaScript有自动垃圾收集机制（固定的时间间隔）。释放离开函数的局部变量；跟踪变量是否有用（标记清除、引用次数）。垃圾收集机制回收工作量相当大，设置合适的间隔很重要，严重影响性能问题。</li>
+</ul>
 <h4 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h4><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
 </script></h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilkytcw40001pkq9x9rlc7rh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilneatig0001ykq9fzhc2ktq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -312,7 +382,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilkytcw40007pkq9ackldezv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilneatio0005ykq99oall9od" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -411,7 +481,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilkytcwk000bpkq9k290ydp3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilneatin0004ykq9r47iwi2q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -503,7 +573,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilkytcxf001cpkq9e4fngt6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilneatje0010ykq96f7ffqbl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -622,7 +692,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilkytcw40004pkq91zy547ni" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilneatkb0015ykq9u3o6uvja" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -708,7 +778,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilkytcw40005pkq9lrgdauo0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilneatkc0016ykq9y4zov8uj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -860,7 +930,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilkytcxv001epkq90xnv925o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilneatkg0018ykq9dq3uxfqr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -944,7 +1014,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilkytcxf001bpkq9i0uuut7o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilneatjb000zykq9qalt7cqf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1035,7 +1105,7 @@ var num = parseFloat(&quot;0xf&quot;);   //0
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilkytcwk0009pkq9na8hjc2c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilneatiq0007ykq9rhv10vcp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
