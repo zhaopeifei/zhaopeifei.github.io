@@ -68,6 +68,92 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/12/JavaScript-4/" class="article-date">
+  <time datetime="2016-03-12T10:14:57.000Z" itemprop="datePublished">2016-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/12/JavaScript-4/">JavaScript-4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilp6cg4r0004c4q9td5p5qa5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/12/JavaScript-3/" class="article-date">
+  <time datetime="2016-03-12T08:30:48.000Z" itemprop="datePublished">2016-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/12/JavaScript-3/">面向对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面向对象的语言有一个标志，那就是他们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。然而，ECMAScript中没有类的概念，所以它的对象也与基于类的语言中的对象有所不同。ECMA-262把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。</p>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>在没有类的情况下，ECMAScript可以采用工厂模式、构造函数模式或者原型模式创建对象。</p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="title">g</span> <span class="title">createPerson</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="number">0</span> = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">	o.name = name;</span><br><span class="line">	o.age = age;</span><br><span class="line">	o.sayName = funciont()&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"liming"</span>, <span class="number">20</span>); <span class="comment">//person1的类型为object</span></span><br></pre></td></tr></table></figure>
+<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题，即怎么知道一个对象的类型。</p>
+<h4 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h4><p>由于工厂模式没有解决对象识别的问题，所以可以采用构造函数模式来做。但是构造函数模式的每个成员无法得到复用，包括函数。不能在多个对象间共享函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">this</span>.sayName = funchion()&#123; <span class="comment">//每次都会创建一个function的新实例</span></span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"liming"</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><p>我们创建的每个函数都有一个prototype（原型）属性，这个属性时一个指针，指向一个对象，而对这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">Person.prototy.name = <span class="string">"liming"</span>;</span><br><span class="line">Person.prototy.age = <span class="number">20</span>;</span><br><span class="line">Person.prototy.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(); <span class="comment">//可以修改person1的属性</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>除此以上三种基本方法外，还有结合几种方法产生的动态原型模式、寄生构造函数模式、稳妥构造函数模式等方法，分别有不同的优缺点。可根据需求选择相应的模式。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>许多OO语言都支持两种继承方式：接口继承和实现继承。由于函数没有签名，在ECMAScript中无法实现接口继承，所以主要依靠原形链来实现。原形链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的，这样子类型就能够访问超类型的所有属性和方法。使用最多的继承模式是组成继承，这种模式使用原形链继承共享的属性和方法，而通过借用构造函数继承实例属性。除此外，还有原形链继承、寄生式继承、寄生组合式继承等方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法实现原型链的一种基本模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	teturn <span class="keyword">this</span>.property;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line">alert(instance.getSuperValue()); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilp6cg4e0001c4q9jw9ztyw6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/11/JavaScript-2/" class="article-date">
@@ -125,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="ciloupx54000930q9m77dr0s8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilp6cg4x0007c4q9g9xxnyhb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -228,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="ciloupx4x000530q9htwd4mf1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilp6cg4t0005c4q9yixywobc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -297,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="ciloupx51000730q996a1syrx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilp6cg5o000tc4q90ejre0lo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -411,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="ciloupx5e000f30q9x3dwmcbw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilp6cg5q000uc4q9v1adlx9m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -510,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="ciloupx55000b30q9pkhjw046" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilp6cg5y0011c4q9goqbckoh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -602,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="ciloupx6k001m30q9zsl0pps5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilp6cg6j001jc4q9dc2yqrv8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -721,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="ciloupx4o000130q9apd0xig1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilp6cg6r001mc4q9d1klvzaa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -807,246 +893,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="ciloupx4v000430q9mqnti7xz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilp6cg430000c4q9a1b4hall" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-C-data" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/01/C-data/" class="article-date">
-  <time datetime="2016-03-01T07:18:09.000Z" itemprop="datePublished">2016-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C-Language/">C-Language</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/C-data/">C语言数据结构相关基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据类型、运算符和表达式"><a href="#数据类型、运算符和表达式" class="headerlink" title="数据类型、运算符和表达式"></a>数据类型、运算符和表达式</h2><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>在C语言中，数据类型可分为基本数据类型、构造数据类型、指针数据类型等。基本数据类型的最主要特点为：其值不可再分解为其他类型，即基本数据类型是自我说明的。</p>
-<p><img src="/img/C-Language/数据类型分类.png" alt="数据类型分类"></p>
-<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><ul>
-<li>整型常量</li>
-</ul>
-<ol>
-<li>十进制：无前缀/后缀，且首字母不为0</li>
-<li>八进制：以0为前缀，如017表示15</li>
-<li>十六进制：以0x/0X为前缀，如0xA0表示十进制160</li>
-<li>整型常量的后缀（后缀加l/L表示长整型，加u/U表示无符号整型常量，同时加必须保证大小写相等）。</li>
-</ol>
-<ul>
-<li>浮点型常量</li>
-</ul>
-<ol>
-<li>十进制小数形式：由数字和小数点组成，必须有小数点。例：0.0、100. 、-3.14</li>
-<li>指数形式（一个浮点数可以无整数部分或小数部分，但是不能二者全无。一个浮点数可以无指数或小数，但是不能二者全无    [±][整数部分][.][小数部分][(e,E)±n][后缀]<br>如：.23e+12 、1. 、25E5 、+1.23e-4f</li>
-</ol>
-<ul>
-<li>字符型常量：字符型常量是用单引号括起来的一个字符。占一个字节，其值就是该字符的ASCII码值。\表示转移</li>
-<li>字符串常量：字符串常量是用双引号括起来的。字符串的最后自动加字符’\0’，表示字符串结束。</li>
-<li>符号常量：如# define 标识符 常量  例：# define PI 3.1415926</li>
-</ul>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>在程序执行过程中，值可以改变的量称为变量。一个变量应该有一个名字，同时在内存中占据着一定的存储单元。命名规则为：</p>
-<ul>
-<li>必须以英文字母或者下划线开头，由字母、数字和下划线组成。</li>
-<li>不能与关键字重名，长度受限制，对大小写敏感。<br><img src="/img/C-Language/数值类型的长度.png" alt="数值类型的长度和值域"></li>
-</ul>
-<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p><img src="/img/C-Language/运算符的优先级.png" alt="C中运算符的优先级"></p>
-<ul>
-<li>算术运算时的自动类型转换</li>
-</ul>
-<ol>
-<li>short,char -&gt; int</li>
-<li>int -&gt; unsigned -&gt; long -&gt; unsigned long -&gt; double</li>
-<li>folat -&gt; double -&gt; long double</li>
-</ol>
-<ul>
-<li>强制类型转换：（类型名）表达式，例如（int）m</li>
-<li>常见问题：数据溢出，浮点变量的舍入误差，忽略变量类型进行不合法的运行等。</li>
-</ul>
-<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><ol>
-<li>基本赋值表达式：左值表达式=右值表达式</li>
-<li>复合赋值表达式： += -= *= /= %= &amp;= |= ^= &lt;&lt;= &gt;&gt;= 左op=右 等价于 左=左op右</li>
-<li>条件运算表达式：表达式1？ 表达式2：表达式3 表达式1成立则运行表达式2，否则执行表达式3。</li>
-<li>逗号表达式：表达式1，表达式2，……表达式n。先求表达式1的值，再求2，依次计算到n，则表达式n的值就是逗号表达式的值。</li>
-</ol>
-<h2 id="变量的存储类型"><a href="#变量的存储类型" class="headerlink" title="变量的存储类型"></a>变量的存储类型</h2><p>变量的数据类型决定了该变量所占内存单元的大小及形式，变量的存储类型决定了变量的存储区域，因而规定了其作用域、生存期及可见性。<br>对于一个正在运行的程序，其内存分为三个区域：程序代码区（程序的指令代码），静态存储区（静态存储变量存放区，包括全局变量），动态存储区（存放局部自动变量、函数的形参以及杉树调用时的小车包含和返回地址）。动态存储区包含数据区和堆栈区。<br>变量定义的一般形式：&lt;存储类型&gt; &lt;数据类型&gt; 变量名表</p>
-<ul>
-<li>自动型变量auto：在函数内或复合语句中可缺省；只能做内部变量，只在定义它的函数或符合语句中有效，}后即释放。</li>
-<li>寄存器型变量register：数据在寄存器中操作比在内存中快得多，把使用率高的少数几个变量定义为register，可以大大加快程序的运行速度。作用域和寿命同auto型。</li>
-<li>外部参照型变量extern：一般用于程序的多个编译单位之间传送数据。</li>
-<li>静态型变量static：static变量是全局寿命。全局static变量全局可见，局部static变量局部可见。</li>
-<li>auto型和register型变量的内存是动态分配的，初始值是不定的，每次都要重新初始化，不一定为0。</li>
-<li>static型和外部参数型变量的内存是全局存在的，分配内存后在整个程序运行完毕后才释放，其初始值为0。</li>
-</ul>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h4 id="数组的定义及初始化"><a href="#数组的定义及初始化" class="headerlink" title="数组的定义及初始化"></a>数组的定义及初始化</h4><p>数组的定义：&lt;存储类型&gt; &lt;数据类型&gt; 数组名 </p>
-<ul>
-<li>数组下标不允许包含变量</li>
-<li>数组名表示数据存储区域的首地址。data和&amp;data[0]表示首地址</li>
-<li>数组作为一个整体不能参加各种运算，只有数组的元素变量可以进行数据处理</li>
-<li>数组可以进行初始化。数组最好进行初始化操作，如下：<code>int a[3][2] = {1,2,3,4,5,6};</code> 或者 <code>int a[3][2] = { {1,2,3},{4,5,6} };</code></li>
-</ul>
-<h4 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h4><ul>
-<li>选择排序法：先找出全部的最小数，再找出除了最小数之前的最小数，最后得到从小到大排序数组。</li>
-<li>冒泡排序法：比较相邻两个数据，冒泡排序，最后可得到最大的数字，最终得到从小到大排序数组。</li>
-</ul>
-<h4 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h4><ul>
-<li>一维字符数组：char string[20]={‘s’,’t’,’r’,’i’,’n’,’g’,’\0’};(‘\0’表示结束)，string则表示”string”</li>
-<li>二维字符数组：<code>char string[3][10]={&quot;how&quot;,&quot;are&quot;,&quot;you?&quot;};</code> string[0]表示”how”……</li>
-<li>字符串处理函数</li>
-</ul>
-<ol>
-<li>gets（字符数组） 该函数的功能是从键盘输入一个字符串到字符数组中</li>
-<li>puts（字符数组） 该函数的功能是将一个字符串输出到终端</li>
-<li>strcpy（字符数组1，字符数组2） 将字符数组2中的字符串复制到字符数组1中</li>
-<li>strcat（字符数组1，字符数组2） 把字符串2中的字符串连接到字符数组1的后面，结果放在字符数组1中</li>
-<li>strcmp（字符串1，字符串2） 把字符串1和2逐个字符进行比较（ASCII），知道出现不同的字符或遇到’\0’。相等返回0；1大于2，返回正整数；1小于2，返回负整数</li>
-<li>strlen（字符数组） 测试字符串的长度，并返回。不包含’\0’</li>
-</ol>
-<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针是C语言的一大特征。利用指针可以直接对内存中各种不同数据结构的数据进行快速处理，并且指针为函数间各类数据的传递提供了简捷便利的方法。</p>
-<h4 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h4><ul>
-<li>计算机的内存是以字节为单位的一片连续的存储空间，每个字节都有一个编号——内存的地址。内存为地址和存放的内容。</li>
-<li>高级语言提供了通过各种每年工资而不是地址的方式来访问内存的方法，即系统给变量名和变量地址间建立了关系表。</li>
-<li>C语言中有一种特殊性质的指针变量，其为存放地址的变量。即指针变量指向了一个地址的内存区域。</li>
-<li>在程序中，参加数据处理的量不是指针本身的量，因为指针本身是个地址量。指针的目标才是要处理的数据。</li>
-</ul>
-<h4 id="指针变量的定义和使用"><a href="#指针变量的定义和使用" class="headerlink" title="指针变量的定义和使用"></a>指针变量的定义和使用</h4><ul>
-<li>指针变量的定义：&lt;存储类型&gt; &lt;数据类型&gt; *指针名 （存储类型指指针的类型，数据类型指指针内容的类型）</li>
-<li>指针变量的初始化：&lt;存储类型&gt; &lt;数据类型&gt; <em>指针名[=初始地址值] （它不是一个运算表达式，地址值是赋给指针的）<br>  例：int </em>pa=&amp;a；等同于 int *pa；pa=&amp;a；</li>
-<li>void指针：定义一个指针变量，不定义指向哪种具体的数据类型，称为“无类型指针”。</li>
-<li>&amp;为取地址运算符，*为取内容运算符。</li>
-<li>使用指针的目的是用指针引用变量，所以必须使指针指向确定的目标对象。<br>  以下为错误：int <em>p； </em>p=5； 要把p指向变量等对象。</li>
-</ul>
-<h4 id="指针运算"><a href="#指针运算" class="headerlink" title="指针运算"></a>指针运算</h4><ul>
-<li>对于不同数据类型的指针p，p+n表示p+n*sizeof（p）（字节）</li>
-<li>指针p1和p2之间的数据个数：指针p1-p2 表示 （p1-p2）/sizeof（p）</li>
-<li>malloc函数获取内存空间，free释放malloc函数获取的空间，成对出现。 </li>
-</ul>
-<h2 id="结构和联合"><a href="#结构和联合" class="headerlink" title="结构和联合"></a>结构和联合</h2><p>结构的作用是将不同数据类型的数据组合成一个有机的整体，不仅为处理复杂的数据结构提供了手段，而且为函数间传递不同类型的数据提供了便利。</p>
-<h4 id="结构的定义以及结构变量的定义和使用"><a href="#结构的定义以及结构变量的定义和使用" class="headerlink" title="结构的定义以及结构变量的定义和使用"></a>结构的定义以及结构变量的定义和使用</h4><ul>
-<li>结构的定义：struct 结构名{ 数据类型 成员名1；数据类型 成员名2；……数据类型成员名n}；</li>
-<li>结构变量的定义：&lt;存储类型&gt; struct 结构名 结构变量名 ={初始数据}；</li>
-<li>结构的使用形式：结构变量名.成员名</li>
-</ul>
-<h4 id="联合"><a href="#联合" class="headerlink" title="联合"></a>联合</h4><ul>
-<li>联合体在定义、说明和使用形式上与结构相似，二者本质上的不同仅在于使用内存的方式上。<h4 id="类型定义语句和枚举类型"><a href="#类型定义语句和枚举类型" class="headerlink" title="类型定义语句和枚举类型"></a>类型定义语句和枚举类型</h4></li>
-<li>C语言为编程者提供了一种新的类型名来代替已有的基本数据类型名和已经定义的类型的功能。例： typeof unsigned char BYTE；</li>
-<li>C语言把一组整型符号常量按顺序集合成一种数据类型，称为枚举类型。如：enum WEEKDAY{sun，mon，tue，wedthu，fri，sat}</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="ciloupx4i000030q9la3s2rpx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-question" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/01/question/" class="article-date">
-  <time datetime="2016-03-01T01:53:09.000Z" itemprop="datePublished">2016-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/question/">知识要点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><ul>
-<li>C语言的优势</li>
-<li>运行一个C程序的全过程</li>
-<li>一个C语言函数的一般板式和内容</li>
-<li>C语言的结构化程序设计（3个结构）</li>
-<li>函数的定义和调用</li>
-<li>C中常见的数据类型及算术运算时的自动类型转换</li>
-<li>变量的存储类型和区别</li>
-<li>数组的定义、初始化和排序方法</li>
-<li>指针的概念、定义、初始化及应用</li>
-<li>结构、联合的概念区别以及定义和使用</li>
-</ul>
-<h2 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h2><ul>
-<li>什么是计算思维？</li>
-<li>三大类科学方法及其对应的三大思维。</li>
-<li>图灵机及可计算性</li>
-<li>什么是算法？算法的基本要素和复杂度</li>
-<li>冯诺依曼结构</li>
-<li>计算机的系统组成（软件和硬件）及工作原理。</li>
-<li>常见的编码方式。</li>
-<li>主板、微机总线、CPU、内存、显卡、声卡等。</li>
-</ul>
-<h2 id="计算机网络及应用基础"><a href="#计算机网络及应用基础" class="headerlink" title="计算机网络及应用基础"></a>计算机网络及应用基础</h2><ul>
-<li>一个计算机网络一般由什么组成？</li>
-<li>数据交换分为哪两类？其基本思想是什么？</li>
-<li>什么是网络协议，其三个基本要素是什么？</li>
-<li>三种最常见的网络协议模型及其分层</li>
-<li>每层的具体功能以及主要内容。</li>
-<li>网络的构成要素（常见硬件及功能）</li>
-<li>网络安全构成要素：防火墙、IDS、反病毒/个人防火墙功能</li>
-</ul>
-<h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><ul>
-<li>TCP/IP的概念以及特点</li>
-<li>TCP/IP分层模型与通信实例：甲主机发给乙主机邮件“早上好”</li>
-<li>IP协议三大作用模块：IP寻址、路由以及IP分包和组包</li>
-<li>IP地址分类、掩码以及广播地址</li>
-<li>DNS、ARP、ICMP、DHCP、IP隧道功能作用</li>
-<li>TCP和UDP的区别和用途</li>
-<li>TCP建立连接过程、重发控制、滑动窗口协议、拥塞控制</li>
-<li>web的三个重要概念</li>
-<li>什么是域名、URL、网站名、服务器</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="ciloupx6i001l30q942onko1l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -1110,6 +960,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/12/JavaScript-4/">JavaScript-4</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/12/JavaScript-3/">面向对象</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/11/JavaScript-2/">JavaScript_2</a>
           </li>
         
@@ -1119,14 +977,6 @@
         
           <li>
             <a href="/2016/03/09/JavaScript_0/">JavaScript概述</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/08/data-structure/">数据结构（C语言版）</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/07/TCP-IP/">TCP/IP</a>
           </li>
         
       </ul>
