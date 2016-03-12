@@ -68,6 +68,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/11/JavaScript-2/" class="article-date">
+  <time datetime="2016-03-11T07:44:56.000Z" itemprop="datePublished">2016-03-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/11/JavaScript-2/">JavaScript_2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用类型的值（对象）是引用类型的一个实例。在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。<code>var person = new Object();</code>，这行代码创建了Object引用类型的一个实例，然后该实例保存在变量person中。</p>
+<h2 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h2><p>很多引用数据类型值都是Object类型的实例。而且，Object也是ECMAScript中使用最多的一个类型。 也可以使用对象字面量表示，省略“new object()”。一般来说，访问对象属性时都是用点表示：person.name，或方括号表示person[“name”]（推荐使用）。</p>
+<h2 id="Array类型"><a href="#Array类型" class="headerlink" title="Array类型"></a>Array类型</h2><p>ECMAScript中的数组与其他多数语言中的数组有着相当大的区别，虽然数组数据的有序列表，但数组的每一项都可以用来表示任何类型的数据。</p>
+<h4 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h4><p>创建数据的基本方法由两种，第一种用Array构造函数，第二用使用数组字面量法。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = new Array(<span class="number">20</span>); <span class="comment">//lenght = 20</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = Array(<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>); <span class="comment">//可以不要new</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = [<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>] </span><br><span class="line"><span class="variable"><span class="keyword">var</span> values</span> = [<span class="number">1</span>,<span class="number">2</span>,];<span class="comment">//不要这样！会创建一个包含2或3项的数组</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> values</span> = [<span class="number">1</span>,<span class="string">"two"</span>]; <span class="comment">//可以类型不同</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors.length</span> = <span class="number">2</span>; <span class="comment">//会导致colors的长度变为2，去掉第三个及后面的数值</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="检测数组及转换方法"><a href="#检测数组及转换方法" class="headerlink" title="检测数组及转换方法"></a>检测数组及转换方法</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="comment">(Array.isArray(value)</span>) &#123;<span class="comment">//检查value是数组的话，执行操作&#125;</span></span><br><span class="line"></span><br><span class="line">alert<span class="comment">(colors)</span>;                <span class="comment">//red,blue,green</span></span><br><span class="line">alert<span class="comment">(colors.toString()</span>);     <span class="comment">//red,blue,green</span></span><br><span class="line">alert<span class="comment">(colors.valueOf()</span>);      <span class="comment">//red,blue,green</span></span><br><span class="line"></span><br><span class="line">alert<span class="comment">(colors.join("||")</span>);      <span class="comment">//red||blue||green</span></span><br></pre></td></tr></table></figure>
+<h4 id="队列方法和栈方法"><a href="#队列方法和栈方法" class="headerlink" title="队列方法和栈方法"></a>队列方法和栈方法</h4><p>栈是先入后出策略，结合push()和pop()方法实现。队列是先入先出策略，结合push()和shift()方法实现。push()、pop()、shift()使用后，都会改变数组长度。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> count</span> = colors.push(<span class="string">"black"</span>,<span class="string">"white"</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> item</span> = colors.pop();  <span class="comment">//pop是突然抛出的意思。弹出最后一项"white"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> item1</span> = colors.shift(); <span class="comment">//shift是移动的意思，取出第一项</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> count</span> = colors.unshift(<span class="string">"yellow"</span>,<span class="string">"o"</span>); <span class="comment">//在数组最前面添加两项</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h2><p>ECMAScript通过RegExp类型支持正则表达式。使用下面类似Perl的语法，就可以创建一个正则表达式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expressions = <span class="regexp">/pattern/</span> flags ; <span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>模式pattern可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。flags有三个标志g i m，分别表示全局模式、不区分大小写、多行模型。一次可以带多个标志。</p>
+<h2 id="Function类型"><a href="#Function类型" class="headerlink" title="Function类型"></a>Function类型</h2><p>在ECMAScript中，函数都是Function类型的实例，与其它类型一样具有属性和方法，函数名实际上也是一个纸箱函数对象的指针，不会和某个函数绑定。函数名为指针，所以没有重载，后面的函数会指向之前定义的函数。另外，函数还可以作为值使用，它的值为返回值，所以可以作为另一个函数的输入参数。</p>
+<h4 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h4><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20.代码执行前，解析器已经将函数声明添加到函数声明中。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1,num2)</span>&#123;</span></span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(sum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//错误！在执行前，变量sum中不会保存对函数的引用。因为函数在初始化语句中。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum1</span><span class="params">(num1,num2)</span>&#123;</span></span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数内部属性"><a href="#函数内部属性" class="headerlink" title="函数内部属性"></a>函数内部属性</h4><p>在函数内部，有两个特殊的对象：arguments和this。arguments是一个类数组对象，包含传入函数中的所有参数（函数可以传入任何数量的参数）。arguments月还有一个名叫callee的属性，它指向拥有这个arguments的函数。还有一个函数对象的属性：caller，保存着调用当前函数的函数的引用，如果实在全局作用域中调用当前函数，它的值是null。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123; <span class="comment">// 使用递归算法求阶乘</span></span><br><span class="line">	<span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> nume*<span class="built_in">arguments</span>.callee(num<span class="number">-1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="函数属性和方法"><a href="#函数属性和方法" class="headerlink" title="函数属性和方法"></a>函数属性和方法</h4><p>在ECMAScript中，函数是对象，因此函数也有属性和方法。每个函数都包含两个属性：length和prototype。length属性表示函数希望接收的命名参数的个数。prototype是保存所有实例方法的真正所在，比如toString()等方法都在prototype名下，只不过通过各自对象的实例访问本罢了。并且prototype属性不可枚举。</p>
+<h2 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h2><p>为了便于操作基本类型值，ECMAScript还提供了3个特殊的引用类型：Boolean、Number、String。每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> falseObjext</span> = new <span class="keyword">Boolean</span>(<span class="literal">false</span>); <span class="comment">//bool形式的false。但是用typeof返回时object</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> falsevalue</span> = <span class="literal">false</span>; <span class="comment">//bool形式的false。使用typeo返boolean</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> numberObject</span> = new Number(<span class="number">10</span>); <span class="comment">// typeof返回object </span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> numberValue</span> = <span class="number">10</span>; <span class="comment">//typeof 返回number 两者的区别还在于对象的生存期。前者一直保存在内存中。后者不然</span></span><br><span class="line">alert(numberValue.toString(<span class="number">16</span>)); <span class="comment">//“a”，转为16进制，再转换成字符串形式</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> stringObject</span> = new String(<span class="string">"hello world"</span>); <span class="comment">//typeof :object。可以添加属性和方法。</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> stringValue</span> = <span class="string">"hello world"</span>; <span class="comment">//typeof: string 。这种方法不能为其添加属性方法，会被立即销毁</span></span><br><span class="line">alert(stringValue.lenght); <span class="comment">//"11"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> result</span> = stringValue.concat(<span class="string">"!!!"</span>); <span class="comment">//result:"hello world!!!"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> str</span> = stringValue.subString(<span class="number">2</span>); <span class="comment">//llo world</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> str</span> = stringValue.slice(<span class="number">3</span>,<span class="number">8</span>); <span class="comment">//lo wo</span></span><br><span class="line">alert(stringValue.indexOf(<span class="string">"o"</span>)); <span class="comment">//4.第一个o的位置。lastIndexOf("o"),最后一个o的位置</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="单体内置对象"><a href="#单体内置对象" class="headerlink" title="单体内置对象"></a>单体内置对象</h2><p>由ECMAScript实现提供的、不依赖于宿主环境的对象，在程序执行前已经存在。内置对象有Object、Array和String等。还有：Global和Math</p>
+<h4 id="Global对象"><a href="#Global对象" class="headerlink" title="Global对象"></a>Global对象</h4><p>所有在全局作用域中定义的属性和函数，都是全局对象的属性。不属于任何其他对象的属性和方法都是Global对象的属性和方法。</p>
+<ul>
+<li>URI编码方法。encodURI()和encodeURIComponent()可以对URI进行编码，以便发给浏览器。前者主要用于整个URI，后者主要用于对URI的某一段进行编码。</li>
+<li>eval()方法：就像一个完整的ECMAScript解析器。只接受一个参数，即要执行那个的代码的字符串。</li>
+<li>window对象：Web浏览器将这个全局对象作为window对象的一部分加以实现。所以全局作用域中声明的所有变量和函数，都成为了window对象的属性。</li>
+</ul>
+<h4 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h4><p>ECMAScript还未保存数学公式和信息提供了一个公共位置，即Math对象。</p>
+<ul>
+<li>Math.E: 自然数对数的底数，及常量E。还有Math.PI等特殊值常量</li>
+<li>min()/max():求输入的number中的最大值或最小值</li>
+<li>Math.round():四舍五入为最接近的整数。</li>
+<li>Math.random(): 返回大于等于0小于1的一个随机数</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="ciloupx54000930q9m77dr0s8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/09/JavaScript-1/" class="article-date">
@@ -109,9 +178,7 @@
 </ul>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>ECMAScript中有5中简单数据类型：Undefined、Null、Boolean、Number、String，一种复杂数据类型：Object，其本质由一组无序的名值对组成。</p>
 <h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p>typeof是一个操作符而不是函数，所以不需要使用圆括号。另外调用typeof null会返回object。typeof返回的有：undefined、boolean、string、number、object、function</p>
-<h4 id="Undefined类型"><a href="#Undefined类型" class="headerlink" title="Undefined类型"></a>Undefined类型</h4><p>这种类型只有一个值，即特殊的undefined。在使用var声明变量但未对其加以初始化时，这个变量的值就是undefined。<br><code>//var age
-    alert(typeof age);//返回undefined，但其实typeof返回undefined时因为知道变量没有声明
-    alert(age);//产生错误，age未定义</code></p>
+<h4 id="Undefined类型"><a href="#Undefined类型" class="headerlink" title="Undefined类型"></a>Undefined类型</h4><p>这种类型只有一个值，即特殊的undefined。在使用var声明变量但未对其加以初始化时，这个变量的值就是undefined。<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var age</span></span><br><span class="line">alert<span class="comment">(typeof age)</span>;<span class="comment">//返回undefined，但其实typeof返回undefined时因为知道变量没有声明</span></span><br><span class="line">alert<span class="comment">(age)</span>;<span class="comment">//产生错误，age未定义</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h4><p>它也是只有一个值的数据类型，这个特殊值是null。如果定义的变量准备在将来用于保存对象，最好初始化为null。</p>
 <h4 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h4><p>该类型只有两个字面值：true、false。与数字值不一样，即true不一定等于1，false也不一定等于0.要将一个值转换为对应的boolean值，可用转型函数Boolean()，至于返回的这个值是true还是false，取决于要转换值的数据类型及其实际值。</p>
 <h4 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h4><p>这种类型使用IEEE754格式来表示整数和浮点数值。为支持各种数值类型，ECMA-262定义了不同的数值字面量格式。</p>
@@ -121,18 +188,11 @@
 <li>由于内存的显示，ECMAScript不能保存所有的数值。如果一个值超出了范围，会被转换为Infinity和-Infinity，表示正无穷和负无穷。</li>
 <li>NaN，即非数值是一个特殊的数值，用来表示一个本来要返回数值的操作数未返回数值的情况（这样就不会抛出错误）。任何涉及NaN的操作都会返回NaN，但NaN不等于任何值，包括其本身.要判断一个参数是不是数值可以用isNaN()函数。</li>
 </ul>
-<p>除此外，还有3个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()，第一个可以用于任何数据类型，另外两个专门用于把字符串转换为数值。如果是Boolean，true和false分别转换为0和1；如果是null，返回0；如果是undefined，返回NaN；如果是对象，先调用对象的valueof()，然后按照规则转换返回的值，如果返回的是NaN，再调用对象的toString()方法，按照规则转换返回的字符串值；如果为字符串，规则如下：<br><code>var num = Number(&quot;123&quot;); //123
-    var num = Number(&quot;0123&quot;);//123，前导的零都会被忽略
-    var num = Number(&quot;0xf&quot;);//15，包含十六进制格式，转换为相同大小的十进制
-    var num = Number(&quot;&quot;);//0，为空字符串，则返回0
-    var num = Number(&quot;hello 123&quot;);//NaN，如果字符串中包含以上之外的字符，转换为NaN。</code></p>
-<p>在将字符串转换为Number时，一般使用parseInt()/patseFloat()<br>`<br>    var num = parseInt(“123blue”);   //123，<br>    var num = parseInt(“”);   //NaN<br>    var num = parseInt(“070”);   //56，八进制<br>    var num = parseInt(“0xf”);   //15，十六进制<br>    var num = parseInt(“22.5”);   //22<br>    var num = parseInt(“AF”,16);   //175，按十六进制解析</p>
-<pre><code>var num = parseFloat(&quot;0908.5&quot;);   //908.5
-var num = parseFloat(&quot;3.15e7&quot;);   //32150000
-var num = parseFloat(&quot;0xf&quot;);   //0
-</code></pre><p>`</p>
+<p>除此外，还有3个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()，第一个可以用于任何数据类型，另外两个专门用于把字符串转换为数值。如果是Boolean，true和false分别转换为0和1；如果是null，返回0；如果是undefined，返回NaN；如果是对象，先调用对象的valueof()，然后按照规则转换返回的值，如果返回的是NaN，再调用对象的toString()方法，按照规则转换返回的字符串值；如果为字符串，规则如下：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"123"</span>); <span class="comment">//123</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"0123"</span>);<span class="comment">//123，前导的零都会被忽略</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"0xf"</span>);<span class="comment">//15，包含十六进制格式，转换为相同大小的十进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">""</span>);<span class="comment">//0，为空字符串，则返回0</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"hello 123"</span>);<span class="comment">//NaN，如果字符串中包含以上之外的字符，转换为NaN。</span></span><br></pre></td></tr></table></figure></p>
+<p>在将字符串转换为Number时，一般使用parseInt()/patseFloat()<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"123blue"</span>);   <span class="comment">//123，</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">""</span>);   <span class="comment">//NaN</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"070"</span>);   <span class="comment">//56，八进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"0xf"</span>);   <span class="comment">//15，十六进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"22.5"</span>);   <span class="comment">//22</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"AF"</span>,<span class="number">16</span>);   <span class="comment">//175，按十六进制解析</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"0908.5"</span>);   <span class="comment">//908.5</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"3.15e7"</span>);   <span class="comment">//32150000</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"0xf"</span>);   <span class="comment">//0</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>表示字符串，可以由双引号或单引号表示，将其他类型的数值转换为字符串可以用.toString()方法（如果有该方法。且可以赋参数，表示按多少进制转换）。还可以使用String()方法，如果值有.toString()则调用；如果值是null，则返回”null”；如果值是undefined，返回”undefined”；</p>
-<h2 id="object类型"><a href="#object类型" class="headerlink" title="object类型"></a>object类型</h2><p>ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过new操作符后跟要常见的对象类型的名称来创建。<br><code>var o = new Object();   //可以省略圆括号，但是不推荐</code><br>在ECMAScript中，Object类型是所有它的实例的基础。但ECMA-262中对象的行为不一定适用于JavaScript中的其他对象，比如宿主对象DOM和BOM都可能自定义对象，而不继承Object。Object的实例都具有以下属性和方法：</p>
+<h2 id="object类型"><a href="#object类型" class="headerlink" title="object类型"></a>object类型</h2><p>ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过new操作符后跟要常见的对象类型的名称来创建。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();   <span class="comment">//可以省略圆括号，但是不推荐</span></span><br></pre></td></tr></table></figure></p>
+<p>在ECMAScript中，Object类型是所有它的实例的基础。但ECMA-262中对象的行为不一定适用于JavaScript中的其他对象，比如宿主对象DOM和BOM都可能自定义对象，而不继承Object。Object的实例都具有以下属性和方法：</p>
 <ul>
 <li>constructor：保存着用于创建当前对象的函数。对于前面的例子而言，构造函数就是Object()</li>
 <li>hasOwnProperty(propertyName)：用于检查给定的属性在当前对象实例中是否存在。prototypeName是字符串形式，比如”name”</li>
@@ -154,52 +214,21 @@ var num = parseFloat(&quot;0xf&quot;);   //0
 <li>赋值操作符：*=、/=、%=、+=、-+、&lt;&lt;=、&gt;&gt;=</li>
 <li>使用逗号可以在一条语句中执行多个操作，如<code>var num1 = 1, num2 = 2;</code></li>
 </ul>
-<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><p><code>if(i &gt; 5){
-        alert(&#39;大于5&#39;);
-    }else if(i &lt; 0){
-        alert(&quot;小于0&quot;);
-    }else{
-        alert(&quot;在0~5之间&quot;);
-    }</code></p>
-<h4 id="do-while语句、while语句"><a href="#do-while语句、while语句" class="headerlink" title="do-while语句、while语句"></a>do-while语句、while语句</h4><p>do-while为后测试循环语句，while为前测试循环语句<br><code>var i = 0;
-    do{
-        i += 2;
-    }while(i &lt; 0); // 最后i等于2，在执行之后才会测试出口条件</code></p>
-<h4 id="for语句、for-in语句"><a href="#for语句、for-in语句" class="headerlink" title="for语句、for-in语句"></a>for语句、for-in语句</h4><p>`<br>    for(var i = 0; i &lt; 10; i++){<br>        if(i % 3 == 0){<br>            continue;        //跳出本次循环，继续执行下次循环<br>        }<br>        if(i % 5 == 0){<br>            break;           //跳出循环。<br>        }<br>    }</p>
-<pre><code>for(var propName in window){
-    document.write(propName);    
-}
-</code></pre><p>`</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>`<br>    start: for(var i = 0; i &lt; 10 ; i++){<br>        alert(i);<br>    } //它是label语句，为代码添加标签。label:statement</p>
-<pre><code>with(location){
-    var qs = search.substring(1); //等同于：var qs = location.search.substring(1);
-    var hostName = hostname; //等同于：var hostName = location.hostname;
-} //with语句，主要为了简化多次编写同一个对象的工作
-
-switch(i){
-    case 10:
-        alert(&apos;10&apos;);
-        break;
-    case 20:
-        alert(&apos;20&apos;);
-        break;
-    default:
-        alert(&apos;other&apos;);
-} //switch语句。case value: statement;break;default:statement;
-</code></pre><p>`</p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i &gt; <span class="number">5</span>)&#123;</span><br><span class="line">	alert(<span class="string">'大于5'</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(i &lt; <span class="number">0</span>)&#123;</span><br><span class="line">	alert(<span class="string">"小于0"</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">"在0~5之间"</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="do-while语句、while语句"><a href="#do-while语句、while语句" class="headerlink" title="do-while语句、while语句"></a>do-while语句、while语句</h4><p>do-while为后测试循环语句，while为前测试循环语句<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span><span class="comment">&#123;</span><br><span class="line">	i += 2;</span><br><span class="line">&#125;</span><span class="keyword">while</span>(i &lt; <span class="number">0</span>); <span class="comment">// 最后i等于2，在执行之后才会测试出口条件</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="for语句、for-in语句"><a href="#for语句、for-in语句" class="headerlink" title="for语句、for-in语句"></a>for语句、for-in语句</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i % <span class="number">3</span> == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">continue</span>;        <span class="comment">//跳出本次循环，继续执行下次循环</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">break</span>;           <span class="comment">//跳出循环。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> propName <span class="keyword">in</span> <span class="built_in">window</span>)&#123;</span><br><span class="line">	<span class="built_in">document</span>.write(propName);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">start: <span class="keyword">for</span>(var i = <span class="number">0</span><span class="comment">; i &lt; 10 ; i++)&#123;</span></span><br><span class="line">	alert(i)<span class="comment">;</span></span><br><span class="line">&#125; <span class="comment">//它是label语句，为代码添加标签。label:statement</span></span><br><span class="line"></span><br><span class="line">with(location)&#123;</span><br><span class="line">	var qs = search.substring(<span class="number">1</span>)<span class="comment">; //等同于：var qs = location.search.substring(1);</span></span><br><span class="line">	var hostName = hostname<span class="comment">; //等同于：var hostName = location.hostname;</span></span><br><span class="line">&#125; <span class="comment">//with语句，主要为了简化多次编写同一个对象的工作</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span>(i)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">		alert(<span class="string">'10'</span>)<span class="comment">;</span></span><br><span class="line">		<span class="keyword">break</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">case</span> <span class="number">20</span>:</span><br><span class="line">		alert(<span class="string">'20'</span>)<span class="comment">;</span></span><br><span class="line">		<span class="keyword">break</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		alert(<span class="string">'other'</span>)<span class="comment">;</span></span><br><span class="line">&#125; <span class="comment">//switch语句。case value: statement;break;default:statement;</span></span><br></pre></td></tr></table></figure>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>ECMAScript中的函数使用function关键字来声明，后跟一组参数以及函数体。</p>
 <ul>
 <li>函数无须指定返回值，可以通过return语句后跟要返回的值来实现返回值。return后的语句就不会再继续执行。</li>
 <li>参数：ECMAScript不介意传递多少个参数，即使定义了接收几个参数。ECMAScript中的参数用arguments数组表示，在函数体内可以通过arguments[]来访问参数数组。</li>
-<li>ECMAScript函数没有重载。即如果定义了两个名字相同的函数，则该名字只属于后定义的函数。<br>`<br>  function doAdd( num1, num2) {//没有传递值的参数被自动赋予undefined<pre><code>arguments[1] = 10; //如果没有传递num2，设置的值不会反应到命名参数中。arguments的长度由传入的参数决定。严格模式下，arguments赋值无效。
-alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
-</code></pre>  }<br>`</li>
+<li>ECMAScript函数没有重载。即如果定义了两个名字相同的函数，则该名字只属于后定义的函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doAdd</span>(<span class="params"> num1, num2</span>) </span>&#123;<span class="comment">//没有传递值的参数被自动赋予undefined</span></span><br><span class="line">	<span class="built_in">arguments</span>[<span class="number">1</span>] = <span class="number">10</span>; <span class="comment">//如果没有传递num2，设置的值不会反应到命名参数中。arguments的长度由传入的参数决定。严格模式下，arguments赋值无效。</span></span><br><span class="line">	alert(num1 + num2); <span class="comment">//传入了num2，num2的值就会被赋值10.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilneati90000ykq9a31yps07" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="ciloupx4x000530q9htwd4mf1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -268,7 +297,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilneatig0001ykq9fzhc2ktq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="ciloupx51000730q996a1syrx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -382,7 +411,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilneatio0005ykq99oall9od" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="ciloupx5e000f30q9x3dwmcbw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -481,7 +510,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilneatin0004ykq9r47iwi2q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="ciloupx55000b30q9pkhjw046" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -573,7 +602,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilneatje0010ykq96f7ffqbl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="ciloupx6k001m30q9zsl0pps5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -692,7 +721,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilneatkb0015ykq9u3o6uvja" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="ciloupx4o000130q9apd0xig1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -778,7 +807,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilneatkc0016ykq9y4zov8uj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="ciloupx4v000430q9mqnti7xz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -930,7 +959,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilneatkg0018ykq9dq3uxfqr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="ciloupx4i000030q9la3s2rpx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1014,7 +1043,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilneatjb000zykq9qalt7cqf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="ciloupx6i001l30q942onko1l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1026,98 +1055,11 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
 
 
   
-    <article id="post-hexo-github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/25/hexo-github/" class="article-date">
-  <time datetime="2016-02-25T11:02:05.000Z" itemprop="datePublished">2016-02-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/25/hexo-github/">hexo+github博客前期实现步骤</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="系列教程链接"><a href="#系列教程链接" class="headerlink" title="系列教程链接"></a>系列教程链接</h2><p>关于博客环境的搭建，网上内容很多，此处先给一个比较全面系列教材的链接(感谢博主zippera)</p>
-<ul>
-<li><a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">hexo系列教程：（一）hexo介绍</a></li>
-<li><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">hexo系列教程：（二）搭建hexo博客</a></li>
-<li><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">hexo系列教程：（三）hexo博客的配置、使用</a></li>
-<li><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">hexo系列教程：（四）hexo博客的优化技巧</a></li>
-<li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">hexo系列教程：（五）hexo博客的优化技巧续</a><br>根据以上教程，一步一步来，基本可以搭建完成你的博客啦~</li>
-</ul>
-<h2 id="我在搭建中出现的问题"><a href="#我在搭建中出现的问题" class="headerlink" title="我在搭建中出现的问题"></a>我在搭建中出现的问题</h2><h4 id="Gitbash使用问题"><a href="#Gitbash使用问题" class="headerlink" title="Gitbash使用问题"></a>Gitbash使用问题</h4><ul>
-<li>在初次使用时，会发现行首有一个$符号，有这个符号时，就代表Gitbash在等待你的指令。</li>
-<li>当你输入指令后，按回车键，Gitbash开始执行命令。但是此时看起来可能没有任何反应，请耐心等待。</li>
-<li>命令执行完成后，你会再次发现$符号。如果执行有错，根据相关提示，google解决方案。</li>
-<li>有些常见问题可在这个博客里面找到解决方案：<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">HEXO+Github,搭建属于自己的博客</a></li>
-</ul>
-<h4 id="注册Github账号问题"><a href="#注册Github账号问题" class="headerlink" title="注册Github账号问题"></a>注册Github账号问题</h4><p>上面的教程中没有详细讲解，可以参考下面这个教程<br> <a href="http://blog.csdn.net/renfufei/article/details/37725057/" target="_blank" rel="external">创建GitHub技术博客全攻略</a><br>根据上面这个教程，完成到第三步（创建页面仓库）即可。如果都完成也没有问题，部署完hexo博客后，会替换成新界面的。</p>
-<h4 id="hexo-服务器问题"><a href="#hexo-服务器问题" class="headerlink" title="hexo 服务器问题"></a>hexo 服务器问题</h4><ul>
-<li>本地查看过程中，请先在Gitbash中执行以下命令，安装hexo服务器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="部署问题"><a href="#部署问题" class="headerlink" title="部署问题"></a>部署问题</h4><ul>
-<li>在部署过程中，错误提示：Deployer not found：git时，在Gitbash中执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后重新deploy即可</p>
-<ul>
-<li><p>deploy格式</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">	<span class="attribute">type</span>: git</span><br><span class="line">	<span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/zhaopeifei/zhaopeifei.github.io.git</span></span><br><span class="line">	<span class="attribute">branch</span>: master</span><br><span class="line">	<span class="attribute">message</span>:</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Gitbash可能提示你输入github账户的用户名和邮箱，根据Gitbash提示的命令格式输入。</p>
-</li>
-<li>在Gitbash中输入用户名和密码后，会弹出openSSH设置，输入你的用户名和密码即可。</li>
-<li>deploy完成后，会显示以下信息，此时，则上传到你的github账号的内存里面，过一小段时间，你的博客信息就会更新。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="主题问题"><a href="#主题问题" class="headerlink" title="主题问题"></a>主题问题</h4><ul>
-<li>在上面的系列教材中，hexo的默认主题是light。但目前（2016.2），hexo的默认主题是landscape。其yml文件内容有所不同，暂时默认，以后再进行修改即可。</li>
-<li>最开始显示的时候，你在右边栏看不到分类，tag，tagcloud这些东西，这是因为你的分类和标签里面没有任何内容，所以没有显示。只需要在你的新建的md文件上面填写tag，categories的内容就会显示了。<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> hexo+github博客前期实现步骤</span><br><span class="line"><span class="attr">date:</span> <span class="number">2016</span><span class="bullet">-02</span><span class="bullet">-25</span> <span class="number">19</span>:<span class="number">02</span>:<span class="number">05</span></span><br><span class="line"><span class="attr">tags:</span> [Hexo,其他]</span><br><span class="line"><span class="attr">categories:</span> Hexo</span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="markdown写法问题"><a href="#markdown写法问题" class="headerlink" title="markdown写法问题"></a>markdown写法问题</h4><ul>
-<li>markdown很简单，基本的书写看这个介绍即可：<a href="http://sspai.com/25137" target="_blank" rel="external">认识与入门 Markdown</a></li>
-<li>markdown编写工具也有很多，网页版的就有很多（左边写markdown，右边显示结果）。我用的sublime。以后发现好的再推荐。</li>
-</ul>
-<h4 id="hexo文件夹结构"><a href="#hexo文件夹结构" class="headerlink" title="hexo文件夹结构"></a>hexo文件夹结构</h4><ol>
-<li>source：资源文件夹是存放用户资源的地方，里面有一个_post文件夹是放你自己的post文件的地方</li>
-<li>themes：主题文件夹，hexo会根据主题来生成静态页面，里面有默认的主题landscape文件夹</li>
-<li>scaffolds：模板文件夹，新建文章时，hexo会根据其建立文件。hexo有三种默认布局：post page 和draft</li>
-<li>_config.yml：全局的配置文件。每个主题下面也有一个这个文件，属于主题的配置文件。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilneatiq0007ykq9rhv10vcp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -1146,7 +1088,7 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Language/" style="font-size: 15px;">C-Language</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 15px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 20px;">计算机基础</a>
+      <a href="/tags/C-Language/" style="font-size: 13.33px;">C-Language</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 16.67px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 20px;">计算机基础</a>
     </div>
   </div>
 
@@ -1168,6 +1110,10 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
       <ul>
         
           <li>
+            <a href="/2016/03/11/JavaScript-2/">JavaScript_2</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/09/JavaScript-1/">JavaScript基本概念</a>
           </li>
         
@@ -1181,10 +1127,6 @@ alert(num1 + num2); //传入了num2，num2的值就会被赋值10.
         
           <li>
             <a href="/2016/03/07/TCP-IP/">TCP/IP</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/03/web-base/">计算机网络基础</a>
           </li>
         
       </ul>
