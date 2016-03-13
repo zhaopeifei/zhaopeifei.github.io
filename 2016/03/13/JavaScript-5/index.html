@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BOM-浏览器对象模型 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。
+window对象BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOM-浏览器对象模型">
+<meta property="og:url" content="http://yoursite.com/2016/03/13/JavaScript-5/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。
+window对象BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。">
+<meta property="og:updated_time" content="2016-03-13T08:40:50.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOM-浏览器对象模型">
+<meta name="twitter:description" content="BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。
+window对象BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/13/JavaScript-5/" class="article-date">
+  <time datetime="2016-03-13T03:02:10.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BOM-浏览器对象模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。</p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</p>
+<ol>
+<li>所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。后面的很多全局JavaScript对象（location和navigator）实际上都是window对象的属性。</li>
+<li>如果页面中包含框架（frame），则每个框架都拥有自己的window对象。在使用框架的情况下，浏览器中会存在多个Global对象，每个框架中定义的全局变量会自动成为框架中window对象的属性。</li>
+<li>IE、Safari、Oprea、Chrome使用screenLeft和screenTop属性表示窗口相对屏幕左边和上边的位置；Firefox则使用screenX和screenY属性，Safari和chrome也支持这个属性。使用moveTo()和moveBy()也可以将窗口精确地移动到一个新位置。这些属性和方法与使用的浏览器有很大的关系。</li>
+<li>使用window.open()方法既可以导航到一个特定的URL，也可以打开一个新的浏览器窗口。这个方法接收4个参数：要加载的URL、窗口目标、一个特性字符串以及一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值。</li>
+<li>JavaScript是单线程语言，但它允许通过设置超时值和间歇时间值（一般不使用）来调度代码在特定的时刻执行。setTimeout(function(){},1000)，延迟一秒</li>
+<li>系统对话框：浏览器通过alert()、confirm()、prompt()来调用警告、确认、提示框。<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"hello world!"</span>); <span class="comment">//一个OK</span></span><br><span class="line"><span class="keyword">confirm</span>(<span class="string">"are you sure?"</span>); <span class="comment">//一个OK，一个Cancel</span></span><br><span class="line">prompt(<span class="string">"what is your name?"</span>,<span class="string">"Michael"</span>); <span class="comment">//OK Cancle 和一个默认为Michael的输入框</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">print</span>(); <span class="comment">//显示“打印”对话框</span></span><br><span class="line"><span class="keyword">window</span>.find(); <span class="comment">//显示“查找”对话框</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location是最有用的BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一个写导航功能。它既是window对象的属性，也是document对象的属性。<br>|属性名  |例子                 |说明                |<br>|:——:|:——————-:|:——————:|<br>|hash    |”#contents”          |返回URL中的hash     |<br>|host    |”www.wrox.com:80”    |返回服务器名和端口号|<br>|hostname|”www.wrox.com”       |不带端口号的服务器名|<br>|href    |”<a href="http://www.wrox.com&quot;|加载页面的完整的URL" target="_blank" rel="external">http://www.wrox.com&quot;|加载页面的完整的URL</a> |<br>|pathname|”/WileCDA/“          |URL中的目录和文件名 |<br>|port    |”8080”               |URL中指定的端口号   |<br>|protocol|”http:”              |页面使用的协议      |<br>|search  |”?q=javascript”      |URL的查询字符串     |</p>
+<ul>
+<li>查询字符串参数：根据location的serch方法获取查询字符串，根据&amp;来分割字符串，再将相应的参数和值放入args数组中，就可以方便对每个参数进行访问了。</li>
+<li>通过location.assign(“<a href="http://www.wrox.com&quot;)可以立即打开新URL。还可以通过修改location的hash、search等属性进而修改location。" target="_blank" rel="external">http://www.wrox.com&quot;)可以立即打开新URL。还可以通过修改location的hash、search等属性进而修改location。</a></li>
+</ul>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>navigator对象现在已经成为识别客户端浏览器的事实标准。navigator对象时所有支持JavaScript的浏览器所共有的，但是每个浏览器的navigator对象也都有一套自己的属性。<br>对于非IE浏览器，可以使用navigator对象的plugins数组来检车插件。navigator.plugins[n]即保存了插件。if(navigator.plugins[i].name.toLowerCase().indexOf(name)&gt;-1)即便是存在名称为name的插件。</p>
+<h1 id="客户端检测"><a href="#客户端检测" class="headerlink" title="客户端检测"></a>客户端检测</h1><p>面对普遍存在的浏览器的不一致性问题，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是最常见的）利用各种客户端检测方法，来突破或者规避种种局限性。检测Web客户端的手段很多，而且各有利弊。但不到万不得已，不要使用客户端检测，应该优先使用更通用的方法。一言以蔽之，先设计最通用的方案，然后再使用特定于浏览器的技术增强方案。</p>
+<h2 id="能力检测"><a href="#能力检测" class="headerlink" title="能力检测"></a>能力检测</h2><p>最常用也最为人们广泛接受的客户端检测形式是能力检测。其目标不是识别特定的浏览器，而是识别浏览器的功能。能力检测不是浏览器检测，所以不能根据能力检测判断浏览器为何种浏览器。在可能的情况下，尽量采用typeof进行能力检测。例如：<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单的能力检测</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElement</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">document</span>.getElementById)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.all)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.all[id];</span><br><span class="line">	&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"no way to retrieve element"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用typeof检测。要检测具体的要使用的属性方法是否存在</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSortable</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> object.sort == <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="怪癖检测"><a href="#怪癖检测" class="headerlink" title="怪癖检测"></a>怪癖检测</h2><p>与能力检测类似，怪癖检测的目标是识别浏览器的特殊行为。通常需要运行一小段代码，一确定某一特性不能正常工作。一般来说，“怪癖”是个别浏览器所独有的，而且通常被归为bug。</p>
+<h2 id="用户代理检测"><a href="#用户代理检测" class="headerlink" title="用户代理检测"></a>用户代理检测</h2><p>用户代理检测通过检测用户代理字符串来确定实际使用的浏览器，包括浏览器、平台、操作系统以及浏览器版本。在每一次HTTP请求过程中，用户代理字符串是作为响应首部发送的，而且该字符串可以通过JavaScript的navigator.userAgent属性访问。在服务器端，通过检测用户代理字符串来确定用户使用的浏览器是一种常见而且广为接受的做法。而在客户端，用户代理检测一般被当做一种万不得才用的做法，其优先级排在能力检测和怪癖检测之后。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilpz85z50007uwq95vwj1s5k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/12/JavaScript-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">闭包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 13.33px;">C-Language</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 16.67px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 20px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/13/JavaScript-5/">BOM-浏览器对象模型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/12/JavaScript-4/">闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/12/JavaScript-3/">面向对象</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/11/JavaScript-2/">引用类型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/09/JavaScript-1/">JavaScript基本概念</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

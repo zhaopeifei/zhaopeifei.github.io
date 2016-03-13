@@ -3,18 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>JavaScript-4 | 步步为营，勇往直前</title>
+  <title>闭包 | 步步为营，勇往直前</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+闭包示例
+在匿名函数从createComparisonFunction()中被返回后，它的作用域链被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象，匿名函数就可以访问其中定义的所有变量。
+createComparisonFunction()函数执行完毕后，其执行环境的作用域链会被销毁，但其活动对象不会被">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript-4">
+<meta property="og:title" content="闭包">
 <meta property="og:url" content="http://yoursite.com/2016/03/12/JavaScript-4/index.html">
 <meta property="og:site_name" content="步步为营，勇往直前">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-03-12T10:14:57.402Z">
+<meta property="og:description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+闭包示例
+在匿名函数从createComparisonFunction()中被返回后，它的作用域链被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象，匿名函数就可以访问其中定义的所有变量。
+createComparisonFunction()函数执行完毕后，其执行环境的作用域链会被销毁，但其活动对象不会被">
+<meta property="og:updated_time" content="2016-03-13T03:01:33.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript-4">
-<meta name="twitter:description">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+闭包示例
+在匿名函数从createComparisonFunction()中被返回后，它的作用域链被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象，匿名函数就可以访问其中定义的所有变量。
+createComparisonFunction()函数执行完毕后，其执行环境的作用域链会被销毁，但其活动对象不会被">
   
     <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
   
@@ -73,6 +82,10 @@
   <time datetime="2016-03-12T10:14:57.000Z" itemprop="datePublished">2016-03-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -81,7 +94,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript-4
+      闭包
     </h1>
   
 
@@ -89,18 +102,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+<h2 id="闭包示例"><a href="#闭包示例" class="headerlink" title="闭包示例"></a>闭包示例</h2><ul>
+<li>在匿名函数从createComparisonFunction()中被返回后，它的作用域链被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象，匿名函数就可以访问其中定义的所有变量。</li>
+<li>createComparisonFunction()函数执行完毕后，其执行环境的作用域链会被销毁，但其活动对象不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。</li>
+<li>直到匿名函数被销毁后，createComparisonFunction()的活动对象才会被销毁。</li>
+</ul>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span>(<span class="params">propertyName</span>)</span>&#123;</span><br><span class="line">	returne <span class="function"><span class="keyword">function</span>(<span class="params"> object1, object2</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">var</span> value1 = boject1[propertyName];</span><br><span class="line">		<span class="built_in">var</span> value1 = boject1[propertyName];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(value1 &lt; value2)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(value1 &gt; value2)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建函数，并调用函数。</span></span><br><span class="line"><span class="built_in">var</span> compareNames = createComparisonFunction(<span class="string">"name"</span>);</span><br><span class="line"><span class="built_in">var</span> result = compareNames(&#123;<span class="attribute">name</span>:<span class="string">'liming'</span>&#125;,&#123;<span class="attribute">name</span>:<span class="string">'zhao'</span>&#125;);</span><br><span class="line"><span class="comment">//接触对匿名函数的引用，以便释放内存</span></span><br><span class="line">compareNames = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意。闭包只能取得包含函数中任何变量的最后一个值，因为闭包所保存的是整个变量对象。</li>
+<li>在闭包中使用this对象很可能会出问题，this可能指向window。</li>
+<li>内存泄露。闭包中不使用包含函数的对象，会造成其占用的内存永远不会被回收。在包含函数中，使用的对象，最后设置为null。收回对象占用的大量内存。</li>
+</ul>
+<h2 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h2><p>创建并立即调用一个函数，这个既可以执行其中的代码，又不会再内存中留下对该函数的引用，这就是模仿块级作用域。一般用于限制向全局作用域中添加过多的变量和函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outputNumbers</span><span class="params">(count)</span></span>&#123;</span><br><span class="line">	(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">			alert(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)();</span><br><span class="line"></span><br><span class="line">	alert(i); <span class="comment">//会导致错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>严格来说，JavaScript中没有私有成员的概念。不过任何在函数中定义的变量，都可以认为是私有变量。利用私有和特权成员，可以隐藏那些不应该被直接修改的数据。例如：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> Person(<span class="keyword">name</span>)&#123;</span><br><span class="line">	this.getName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">name</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	this.setName = <span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span><br><span class="line">		<span class="keyword">name</span> = <span class="keyword">value</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilp6cg4r0004c4q9td5p5qa5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilpz85z50004uwq9hac200g1" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/03/13/JavaScript-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BOM-浏览器对象模型
+        
+      </div>
+    </a>
   
   
     <a href="/2016/03/12/JavaScript-3/" id="article-nav-older" class="article-nav-link-wrap">
@@ -163,7 +201,11 @@
       <ul>
         
           <li>
-            <a href="/2016/03/12/JavaScript-4/">JavaScript-4</a>
+            <a href="/2016/03/13/JavaScript-5/">BOM-浏览器对象模型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/12/JavaScript-4/">闭包</a>
           </li>
         
           <li>
@@ -171,15 +213,11 @@
           </li>
         
           <li>
-            <a href="/2016/03/11/JavaScript-2/">JavaScript_2</a>
+            <a href="/2016/03/11/JavaScript-2/">引用类型</a>
           </li>
         
           <li>
             <a href="/2016/03/09/JavaScript-1/">JavaScript基本概念</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/09/JavaScript_0/">JavaScript概述</a>
           </li>
         
       </ul>
