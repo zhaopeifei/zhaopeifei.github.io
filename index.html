@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilt3y5m90004vcq9ahwwps5h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilt4vln600043wq9yvtcq09y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -141,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilt3y5ny001nvcq93qnlefo3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilt4vlnu000l3wq9rxrne0s1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -190,7 +190,58 @@
 <li>系统对话框：浏览器通过alert()、confirm()、prompt()来调用警告、确认、提示框。<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"hello world!"</span>); <span class="comment">//一个OK</span></span><br><span class="line"><span class="keyword">confirm</span>(<span class="string">"are you sure?"</span>); <span class="comment">//一个OK，一个Cancel</span></span><br><span class="line">prompt(<span class="string">"what is your name?"</span>,<span class="string">"Michael"</span>); <span class="comment">//OK Cancle 和一个默认为Michael的输入框</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">print</span>(); <span class="comment">//显示“打印”对话框</span></span><br><span class="line"><span class="keyword">window</span>.find(); <span class="comment">//显示“查找”对话框</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location是最有用的BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一个写导航功能。它既是window对象的属性，也是document对象的属性。<br>|属性名  |例子                 |说明                |<br>|:——:|:——————-:|:——————:|<br>|hash    |”#contents”          |返回URL中的hash     |<br>|host    |”www.wrox.com:80”    |返回服务器名和端口号|<br>|hostname|”www.wrox.com”       |不带端口号的服务器名|<br>|href    |”<a href="http://www.wrox.com&quot;|加载页面的完整的URL" target="_blank" rel="external">http://www.wrox.com&quot;|加载页面的完整的URL</a> |<br>|pathname|”/WileCDA/“          |URL中的目录和文件名 |<br>|port    |”8080”               |URL中指定的端口号   |<br>|protocol|”http:”              |页面使用的协议      |<br>|search  |”?q=javascript”      |URL的查询字符串     |</p>
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location是最有用的BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一个写导航功能。它既是window对象的属性，也是document对象的属性。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性名</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">hash</td>
+<td style="text-align:center">“#contents”</td>
+<td style="text-align:center">返回URL中的hash</td>
+</tr>
+<tr>
+<td style="text-align:center">host</td>
+<td style="text-align:center">“www.wrox.com:80”</td>
+<td style="text-align:center">返回服务器名和端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">hostname</td>
+<td style="text-align:center">“www.wrox.com”</td>
+<td style="text-align:center">不带端口号的服务器名</td>
+</tr>
+<tr>
+<td style="text-align:center">href</td>
+<td style="text-align:center">“<a href="http://www.wrox.com" target="_blank" rel="external">http://www.wrox.com</a>“</td>
+<td style="text-align:center">加载页面的完整的URL</td>
+</tr>
+<tr>
+<td style="text-align:center">pathname</td>
+<td style="text-align:center">“/WileCDA/“</td>
+<td style="text-align:center">URL中的目录和文件名</td>
+</tr>
+<tr>
+<td style="text-align:center">port</td>
+<td style="text-align:center">“8080”</td>
+<td style="text-align:center">URL中指定的端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">protocol</td>
+<td style="text-align:center">“http:”</td>
+<td style="text-align:center">页面使用的协议</td>
+</tr>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:center">“?q=javascript”</td>
+<td style="text-align:center">URL的查询字符串</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>查询字符串参数：根据location的serch方法获取查询字符串，根据&amp;来分割字符串，再将相应的参数和值放入args数组中，就可以方便对每个参数进行访问了。</li>
 <li>通过location.assign(“<a href="http://www.wrox.com&quot;)可以立即打开新URL。还可以通过修改location的hash、search等属性进而修改location。" target="_blank" rel="external">http://www.wrox.com&quot;)可以立即打开新URL。还可以通过修改location的hash、search等属性进而修改location。</a></li>
@@ -204,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilt3y5nv001jvcq9v0g3zk6g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilt4vlnr000i3wq98w7ipze7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -260,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilt3y5mg000avcq9o4x6cku8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilt4vlnp000f3wq9bex5sboc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -310,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilt3y5mj000cvcq9pyq51z72" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilt4vlnl000b3wq92s2m8n8w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -379,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilt3y5mb0005vcq9dfeuen9h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilt4vlnb00073wq9ctpjcjou" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -482,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilt3y5mn000fvcq9xtbfggvq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilt4vlnf00093wq9ycmbw3tv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -551,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilt3y5nn001gvcq941x6yhs8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilt4vlnw000n3wq9p6srb8q8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -665,7 +716,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilt3y5ns001hvcq9nv8mrzbf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilt4vlo6000v3wq9j0sw66ho" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -764,7 +815,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilt3y5o2001qvcq9xrhx4mhf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilt4vlo1000s3wq9zamavjkn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
