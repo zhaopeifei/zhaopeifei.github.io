@@ -68,6 +68,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/16/CSS-3/" class="article-date">
+  <time datetime="2016-03-16T07:45:54.000Z" itemprop="datePublished">2016-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/16/CSS-3/">CSS-3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。</p>
+<h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><p>CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的CSS样式中。其优先权从高到低为：</p>
+<ol>
+<li>内联样式（在HTML元素内部）</li>
+<li>内部样式表（位于<head>标签内部）</head></li>
+<li>外部样式表（.css文件）</li>
+<li>浏览器缺省设置</li>
+</ol>
+<h2 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h2><p>CSS规则有两个主要部分构成：选择器和声明。每条声明由一个属性和一个值组成。与XHTML不同，css对大小写不敏感。存在其一例外：如果涉及到与HTML文档一起工作的话，class和id名称对大小写是敏感的。例如<br><code>h1 {color:red; font-size:14px; }</code></p>
+<h2 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>backgroud-color: 设置背景颜色，有时简写为bgcolor，如body元素等。</li>
+<li>backgroud-image：设置背景图片。</li>
+<li>backgroud-repeat：设置背景的重复</li>
+<li>backgroud-position：改变图像在背景中的位置。</li>
+</ul>
+<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
+<li>text-align：center 文本行相互之间的对齐方式</li>
+<li>text-indent：5em 文本缩进</li>
+<li>word-spacing：-0.5em 单词间隔</li>
+<li>letter——spacing：5px 字母间隔</li>
+<li>text-transform：uppercase 处理文本的大小写</li>
+</ul>
+<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><ul>
+<li>font-family：Times 字体样式</li>
+<li>font-size：14px 字体大小</li>
+<li>font-style：italic 规定斜体</li>
+</ul>
+<h2 id="CSS框模型及定位"><a href="#CSS框模型及定位" class="headerlink" title="CSS框模型及定位"></a>CSS框模型及定位</h2><h4 id="框模型"><a href="#框模型" class="headerlink" title="框模型"></a>框模型</h4><p>CSS框模型从外向里分别是：border（边框）、margin（外边距）|padding（内边距）、element（height、width）。</p>
+<ul>
+<li>内边距有四个单独属性，分别设置上下左右内边距：padding-top padding-bottom padding-left padding-right</li>
+<li>外边距也有相应的四个属性，分别设置上下左右外边距：略</li>
+<li>边框有3个方面：样式、宽度和颜色。样式：border-style/border-top-style等四个；宽度：border-width/border-top-width等四个；颜色：border-color/border-top-color等四个。</li>
+</ul>
+<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>CSS定位属性允许对元素进行定位。元素定位有相对定位、绝对定位和浮动等三种。一下分别为相对定位、绝对定位和浮动定位。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">box_relative</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box_absolute</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:absolute;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box</span>&#123;</span><br><span class="line">	<span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:blue;<span class="attribute">font-family</span>:sans-serif;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;这个元素的内容会引用上面的样式&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,h4&#123;<span class="attribute">color</span>:bule;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;以上所有元素内容都会应用样式&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[href][title=<span class="string">"123"</span>]&#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> title=<span class="string">"123"</span> href=<span class="string">"http://w3school.com.cn"</span>&gt; 可以应用样式 &lt;/a&gt;</span><br><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"http://w3school.com.cn"</span>&gt;不可以应用样式&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.important</span> &#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> class=<span class="string">"important"</span>&gt;还可以在.前面加元素，则既是相应元素又是相应类则满足&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#intro&#123;<span class="attribute">font-weight</span>:bold;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> id=<span class="string">"intro"</span>&gt;应用样式&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 em&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>只要有<span class="tag">&lt;<span class="name">em</span>&gt;</span>这个后代元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，后代元素就应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">h1&gt;strong&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>必须<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>是子元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，而不能是后代元素。不应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cilunid8c000000q9vghwduh8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTML5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/14/HTML5/" class="article-date">
@@ -94,11 +176,297 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>HTML5可以说是HTML语言+JavaScript+API+CSS的技术集合。如今的HTML标记语言已经特别为构建真正的Web应用做了调整，提供了本地存储、2D绘图、位置感知、离线支持、套接字和线程等诸多特性。</p>
+<p>详细内容请参考<a href="http://www.w3school.com.cn/h.asp" target="_blank" rel="external">W3School</a></p>
+<h2 id="HTML标记语言简介"><a href="#HTML标记语言简介" class="headerlink" title="HTML标记语言简介"></a>HTML标记语言简介</h2><p>HTML指的是超文本标记语言，它不是编程语言，而是一种标记语言。</p>
+<ul>
+<li>HTML标记标签（tag）通常被称为HTML标签，标签通常都是成对出现的，即开始标签和闭合标签。</li>
+<li>HTML文档也被称为网页，包含HTML标签和纯文本，Web浏览器的作用是读取它并以网页的形式显示它们。</li>
+<li>HTML元素指的是从开始标签到结束标签的所有代码。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	meta/外部引用JavaScript/title等</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	h/p/table/img/div等元素</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="HTML常用标签列表"><a href="#HTML常用标签列表" class="headerlink" title="HTML常用标签列表"></a>HTML常用标签列表</h2><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">标签</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">&lt;!DOCTYPE&gt;</td>
+<td style="text-align:right">定义文档类型。</td>
+</tr>
+<tr>
+<td style="text-align:right"><html></html></td>
+<td style="text-align:right">定义 HTML 文档。</td>
+</tr>
+<tr>
+<td style="text-align:right"><title></title></td>
+<td style="text-align:right">定义文档的标题。</td>
+</tr>
+<tr>
+<td style="text-align:right"><body></body></td>
+<td style="text-align:right">定义文档的主体。</td>
+</tr>
+<tr>
+<td style="text-align:right"><h1>to<h6></h6></h1></td>
+<td style="text-align:right">定义HTML标题。</td>
+</tr>
+<tr>
+<td style="text-align:right"><p></p></td>
+<td style="text-align:right">定义段落。</td>
+</tr>
+<tr>
+<td style="text-align:right"><br></td>
+<td style="text-align:right">定义简单的折行。</td>
+</tr>
+<tr>
+<td style="text-align:right"><hr></td>
+<td style="text-align:right">定义水平线。</td>
+</tr>
+<tr>
+<td style="text-align:right"><!--……--></td>
+<td style="text-align:right">定义注释行。</td>
+</tr>
+<tr>
+<td style="text-align:right"><head></head></td>
+<td style="text-align:right">定义关于文档的信息。</td>
+</tr>
+<tr>
+<td style="text-align:right"><meta></td>
+<td style="text-align:right">定义HTML文档的元信息</td>
+</tr>
+<tr>
+<td style="text-align:right"><frame></td>
+<td style="text-align:right">定义框架的窗口或框架</td>
+</tr>
+<tr>
+<td style="text-align:right"><div></div></td>
+<td style="text-align:right">定义文档中的节。大</td>
+</tr>
+<tr>
+<td style="text-align:right"><span></span></td>
+<td style="text-align:right">定义文档中的节。小</td>
+</tr>
+</tbody>
+</table>
+<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">标签</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><bdi> html5</bdi></td>
+<td style="text-align:right">定义文本的文本方向。</td>
+</tr>
+<tr>
+<td style="text-align:right"><b></b></td>
+<td style="text-align:right">定义粗体文字。</td>
+</tr>
+<tr>
+<td style="text-align:right"><i></i></td>
+<td style="text-align:right">定义斜体文字。</td>
+</tr>
+<tr>
+<td style="text-align:right"><code></code></td>
+<td style="text-align:right">定义计算机代码文本。</td>
+</tr>
+<tr>
+<td style="text-align:right"><mark> html5</mark></td>
+<td style="text-align:right">定义有记号的文本。</td>
+</tr>
+<tr>
+<td style="text-align:right"><sup> <sub></sub></sup></td>
+<td style="text-align:right">定义上标、下标文本。</td>
+</tr>
+<tr>
+<td style="text-align:right"><time></time></td>
+<td style="text-align:right">定义日期/时间。</td>
+</tr>
+<tr>
+<td style="text-align:right"><em></em></td>
+<td style="text-align:right">定义强调文本。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">标签</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><from></from></td>
+<td style="text-align:right">定义供用户输入的表单</td>
+</tr>
+<tr>
+<td style="text-align:right"><input></td>
+<td style="text-align:right">定义输入控件。</td>
+</tr>
+<tr>
+<td style="text-align:right"><textarea></textarea></td>
+<td style="text-align:right">定义多行的文本输入控件</td>
+</tr>
+<tr>
+<td style="text-align:right"><button></button></td>
+<td style="text-align:right">定义按钮。</td>
+</tr>
+<tr>
+<td style="text-align:right"><select></select></td>
+<td style="text-align:right">定义下拉列表。</td>
+</tr>
+<tr>
+<td style="text-align:right"><label></label></td>
+<td style="text-align:right">定义input元素的标注。</td>
+</tr>
+<tr>
+<td style="text-align:right"><datalist>html5</datalist></td>
+<td style="text-align:right">定义下拉列表。</td>
+</tr>
+<tr>
+<td style="text-align:right"><keygen>  html5</td>
+<td style="text-align:right">定义生成密匙。</td>
+</tr>
+<tr>
+<td style="text-align:right">&lt;output</td>
+<td style="text-align:right">定义输出的一些类型。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="连接及音频-视频"><a href="#连接及音频-视频" class="headerlink" title="连接及音频/视频"></a>连接及音频/视频</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">标签</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><a></a></td>
+<td style="text-align:right">定义锚。</td>
+</tr>
+<tr>
+<td style="text-align:right"><link></td>
+<td style="text-align:right">定义文档和外部资源的关系</td>
+</tr>
+<tr>
+<td style="text-align:right"><img></td>
+<td style="text-align:right">定义图像。</td>
+</tr>
+<tr>
+<td style="text-align:right"><map></map></td>
+<td style="text-align:right">定义图像映射。</td>
+</tr>
+<tr>
+<td style="text-align:right"><canvas> html5</canvas></td>
+<td style="text-align:right">定义图形。</td>
+</tr>
+<tr>
+<td style="text-align:right"><nav> html5</nav></td>
+<td style="text-align:right">定义导航链接。</td>
+</tr>
+<tr>
+<td style="text-align:right"><audio> html5</audio></td>
+<td style="text-align:right">定义声音内容。</td>
+</tr>
+<tr>
+<td style="text-align:right"><video> html5</video></td>
+<td style="text-align:right">定义视频。</td>
+</tr>
+<tr>
+<td style="text-align:right"><source> html5</td>
+<td style="text-align:right">定义媒介源。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="列表及表格"><a href="#列表及表格" class="headerlink" title="列表及表格"></a>列表及表格</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">标签</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><ul></ul></td>
+<td style="text-align:right">定义无序列表。</td>
+</tr>
+<tr>
+<td style="text-align:right"><ol></ol></td>
+<td style="text-align:right">定义有序列表。</td>
+</tr>
+<tr>
+<td style="text-align:right"><li></li></td>
+<td style="text-align:right">定义列表的项目。</td>
+</tr>
+<tr>
+<td style="text-align:right"><dl></dl></td>
+<td style="text-align:right">定义自定义列表。</td>
+</tr>
+<tr>
+<td style="text-align:right"><dt></dt></td>
+<td style="text-align:right">定义自定义列表的项目</td>
+</tr>
+<tr>
+<td style="text-align:right"><table></table></td>
+<td style="text-align:right">定义表格。</td>
+</tr>
+<tr>
+<td style="text-align:right"><caption></caption></td>
+<td style="text-align:right">定义表格标题。</td>
+</tr>
+<tr>
+<td style="text-align:right"><th></th></td>
+<td style="text-align:right">定义表格中的表头单元格</td>
+</tr>
+<tr>
+<td style="text-align:right"></td></tr><tr>
+<td style="text-align:right">定义表格中的行。</td>
+</tr>
+<tr>
+<td style="text-align:right"></td><td></td>
+<td style="text-align:right">定义表格中的单元。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HTML全局属性"><a href="#HTML全局属性" class="headerlink" title="HTML全局属性"></a>HTML全局属性</h2><table>
+<thead>
+<tr>
+<th style="text-align:right">属性</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">class</td>
+<td style="text-align:right">规定元素的类名</td>
+</tr>
+<tr>
+<td style="text-align:right">id</td>
+<td style="text-align:right">规定元素的唯一id</td>
+</tr>
+<tr>
+<td style="text-align:right">lang</td>
+<td style="text-align:right">规定元素内容的语言</td>
+</tr>
+</tbody>
+</table>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>align=”center” 居中方式，用于标题、段落等</li>
+<li>bgcolor=”yellow” 背景颜色，body等块级元素</li>
+<li>border=”3” 边框大小，用于表格等</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilt4vln600043wq9yvtcq09y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilunid8k000100q936tc5jlt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -137,11 +505,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>DOM是针对HTML和XML文档的一个API（应用程序编程接口）。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。IE中的所有DOM对象都是COM对象的形式实现的，这意味着IE中的DOM对象与原始JavaScript对象的行为或活动特点并不一致。</p>
-<h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2>
+<h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2><p>DOM可以将任何HTML或XML文档描绘成一个由多层结点构成的结构。节点分为几张不同的类型，每种类型分别表示文中的不同的信息及标记。每个结点都拥有各自的特点、数据和方法，另外也与其他结点存在某种关系。结点之间的关系构成了层次，而所有页面标记则表现为一个以特定结点为根节点的树型结构。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilt4vlnu000l3wq9rxrne0s1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilunidae001500q91hl8dcy8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -255,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilt4vlnr000i3wq98w7ipze7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilunidad001200q9wuxdvxhw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -311,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilt4vlnp000f3wq9bex5sboc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilunid8w000500q9qojudpgd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -361,7 +730,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilt4vlnl000b3wq92s2m8n8w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilunida9000w00q969i3akrq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -430,7 +799,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilt4vlnb00073wq9ctpjcjou" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilunida5000u00q9e2ytyvcq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -533,7 +902,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilt4vlnf00093wq9ycmbw3tv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilunidab000z00q929yeal04" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -602,7 +971,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilt4vlnw000n3wq9p6srb8q8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilunidag001800q9gc17p3bt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -716,109 +1085,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilt4vlo6000v3wq9j0sw66ho" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilunidaw001q00q9x54vuu89" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-TCP-IP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/07/TCP-IP/" class="article-date">
-  <time datetime="2016-03-07T12:09:11.000Z" itemprop="datePublished">2016-03-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/07/TCP-IP/">TCP/IP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入<a href="https://www.rfc-editor.org/rfc" target="_blank" rel="external">RFC</a>文档并公布。互联网协议=TCP/IP。</p>
-<h2 id="TCP-IP分层模型与通信示例"><a href="#TCP-IP分层模型与通信示例" class="headerlink" title="TCP/IP分层模型与通信示例"></a>TCP/IP分层模型与通信示例</h2><p>在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首部、以太网包首部，网络中传输的数据包由两部分组成：协议所要用到的首部、上层传过来的数据。另外，每个分层的包首部汇总还含有一个识别位，用来标示上一层协议的种类信息。</p>
-<h4 id="甲给乙发送电子邮件“早上好”"><a href="#甲给乙发送电子邮件“早上好”" class="headerlink" title="甲给乙发送电子邮件“早上好”"></a>甲给乙发送电子邮件“早上好”</h4><ol>
-<li>应用程序处理：进行编码处理（如UTF-8编码），并由应用判断何时发送数据建立TCP连接。</li>
-<li>TCP模块的处理：在应用层数据的前端附加一个TCP首部，包含源端口号、目标端口号、序号以及校验和，再发给IP，提供将应用层发来的数据发送至对端的可靠传输。</li>
-<li>IP模块的处理：IP将TCP传过来的数据包当做数据，并在TCP首都的前端加上自己的IP首部，包含发送端IP地址和接收端IP地址等。参考路由控制表决定接手此IP包的路由或主机，并发给下一节点的驱动程序。此时要知道接收端的MAC地址，以将MAC地址和IP地址交给以太网的驱动程序，可以利用ARP查找。</li>
-<li>网络接口（以太网驱动）的处理： 给从IP传过来的IP包加上以太网包首部（包含接/发端MAC地址、标志以太网类型的以太网数据的协议）并进行发送处理。发送处理中的FCS由硬件计算，添加到包的最后。</li>
-<li>网络接口（以太网驱动）的处理：主机收到以太网包后，从包首部找到MAC地址，判断是否为发给自己的包，不是则丢弃数据。是的话，检查上层的数据类型，传给相应的子程序，如IP程序。</li>
-<li>IP模块的处理：如果是发给自己的IP地址，则可接受数据并查找上一层的协议。在有路由器的情况下，如果不是自己的地址，则借助路由控制表，调查应该送达的主机或路由器后转发数据。</li>
-<li>TCP模块的处理：首先计算校验和，判断数据是否被破坏。然后检查是在安装序号接收数据，最后是检查端口号，确定具体的应用程序。接收完毕后发生一个“确认回执”给发送端。</li>
-<li>应用程序的处理：接收端应用程序接收数据，解析数据。给句解析结果反馈信息，如已接受、被退回等。</li>
-</ol>
-<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP和ICMP两个协议组成，当然还有DNS、ARP等于IP相关的协议。</p>
-<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由以及IP分包和组包。</p>
-<ul>
-<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。</li>
-<li>一个数据包之所以能够成功地到达最终的目标地址，全靠路由控制。一跳（Hop）指利用数据连输层以下分层的功能传输数据帧的一起区间。</li>
-<li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
-</ul>
-<h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
-<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不知检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
-<h4 id="ARP（IPv4、IPv6）"><a href="#ARP（IPv4、IPv6）" class="headerlink" title="ARP（IPv4、IPv6）"></a>ARP（IPv4、IPv6）</h4><p>ARP是一种解决地址问题的协议。以目标IP地址为线索，用来定位下一个应该接收数据分包的网络设备对应的MAC地址。ARP借助ARP请求与ARP响应两种类型的包确定MAC地址，源主机要通过广播发送一个ARP请求包，下一个网络设备确定是自己后，将MAC地址塞入ARP响应返回，进而实现IP通信。</p>
-<ul>
-<li>RARP是ARP反过来，从MAC地址定位IP地址的一种协议。例如通过DHCP自动获取IP地址。</li>
-<li>代理ARP：通常ARP包会被路由器隔离，使用代理ARP的路由器可以将ARP请求转发给相邻的网段。</li>
-</ul>
-<h4 id="ICMP（IPv4、IPv6）"><a href="#ICMP（IPv4、IPv6）" class="headerlink" title="ICMP（IPv4、IPv6）"></a>ICMP（IPv4、IPv6）</h4><p>ICMP的主要功能包括，确认IP包是否成功送达目标地址，通知在发送过程中IP包被废弃的具体原因，改善网络设置等。ICMP的消息大致分为两类：通知出错原因的错误消息、用于诊断的查询消息，主要的ICMP消息有：目标不可达消息、重定向消息、超时消息、返回消息等。ICMP使用IP发送。</p>
-<h4 id="DHCP（IPv4、IPv6）"><a href="#DHCP（IPv4、IPv6）" class="headerlink" title="DHCP（IPv4、IPv6）"></a>DHCP（IPv4、IPv6）</h4><p>DHCP协议可以实现自动设置IP地址、统一管理IP地址分配，实现即插即用。使用DHCP前，要假设DHCP服务器，并将所要分配的IP地址设置到服务器上，还需要相应的子网掩码、路由控制信息以及DNS服务器的地址等。一般的家庭网络都由宽带路由器冲到DHCP的角色。</p>
-<h4 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h4><p>IP隧道可以将IPv6网络发过来的包统和为一个数据，再为之追加一个IPv4首部在IPv4网络中传送（要在下个IPv6网络中，去除追加的IPv4首部），也可以将ipv4网络发过来的包统和为一个数据，再为之追加一个IPv6首部在IPv6网络中传送。</p>
-<h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><p>TCP和UDP是传输层具有代表性的协议。TCP提供可靠的通信传输，而UDP常被用于让广播和细节控制交给应用的不可靠通信传输。传输层要指出具体的程序，使用端口号（有逻辑端口和物理端口，此处指逻辑端口0~65535）这样的一种识别码，通过端口识别，将数据传递给HTTP、FTP等应用层协议。</p>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
-<ul>
-<li>通过序列号与确认应答提高可靠性。发送端如果没有收到接收端发送的确认应答（ACK），进行重发。</li>
-<li>重发超时，发送端等待确认应答时间超时后，重发。</li>
-<li>连接管理：在通信前，通过TCP首部发送一个SNY包作为建立连接的请求并等待应答，收到确认应答，开始发送数据。最后发送FIN请求切断连接，获取确认应答后，断开连接。</li>
-<li>利用窗口控制提高速度，并进行重发控制。</li>
-<li>拥塞控制：在通信一开始时就会通过一个叫慢启动的算法得出的数值，对发送量进行控制。</li>
-</ul>
-<h4 id="TDP"><a href="#TDP" class="headerlink" title="TDP"></a>TDP</h4><p>UDP是不具有可靠性的数据报协议。它不提供复杂的控制机制，细微的处理它会交给上层的应用去完成，它在收到应用程序发来的数据后，立即鸳鸯发送到网络。UDP主要用于那些对高速传输和实时性有较高要求的通信或广播通信，比如DNS、即时通信等。</p>
-<h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><p>利用网络的应用程序很多，包括web浏览器、电子邮件、远程登录、文件传输、网络管理扥个，能够让这些应用程序进行特定通信处理的正是应用协议。</p>
-<h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p>远程登录主要使用TELNET和SSH两种协议，TELNET经常用于登录路由器或高性能交换机等网络设备进行相应的设置。SSH是加密的远程登录系统，可以具有更强的认证机制，可以转发文件，可以使用端口转发功能。OpenSSH是SSH协议的免费开源实现。</p>
-<h4 id="WWW万维网"><a href="#WWW万维网" class="headerlink" title="WWW万维网"></a>WWW万维网</h4><p>万维网（又称web）是将互联网中的信息以超文本形式展现的系统。WWW定义了3个重要的概念：访问信息的手段和位置（URI）、信息的表现形式（HTML）以及信息转发（HTTP）等。</p>
-<ul>
-<li>URI（Uniform Resource Identifier）用来标识资源，是一种可以用于WWW之外的高效的识别码，可用于主页地址、电子邮件、电话号码等各种组合中。URL常被用来标示互联网中所有资源的具体位置。</li>
-<li>HTML：具有纯文本的功能，在页面中可以为文字或图像附加链接。它是WWW通用的数据表现协议，可以认为HTML属于WWW的表示层。另，JavaScript是一种嵌入在HTML中的编程语言。</li>
-<li>HTTP。当用户在浏览器的地址栏里输入所要访问的Web也的URI后，HTTP的处理机会开始，首先客户端向服务器的80端口建立一个TCP链接，然后在这个TCP连接上进行请求和应答以及数据报文的发送。</li>
-<li>HTTPS ：Web中可以通过TLS/SSL对http通信进行加密，这种http通信叫做HTTPS通信。</li>
-</ul>
-<h2 id="域名、URL、网站名"><a href="#域名、URL、网站名" class="headerlink" title="域名、URL、网站名"></a>域名、URL、网站名</h2><p><a href="http://mail.163.com/index.html" target="_blank" rel="external">http://mail.163.com/index.html</a></p>
-<ul>
-<li>http:// 这是个协议，即http超文本传输协议，也就是网页在网上传输的协议。</li>
-<li>mail 这个是服务器名，代表一个邮箱服务器</li>
-<li>163.com 这个是域名，是用来定位网站的独一无二的名字</li>
-<li>mail.163.com 这个是网站名，由服务器名+域名组成</li>
-<li>index.html 这个是根目录下得默认网页</li>
-<li>整体叫做URL，统一资源定位符，定位网上资源。由协议 + 服务器 + 域名 + 网页html组成</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilt4vlo1000s3wq9zamavjkn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -882,6 +1152,10 @@
       <ul>
         
           <li>
+            <a href="/2016/03/16/CSS-3/">CSS-3</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/14/HTML5/">HTML5</a>
           </li>
         
@@ -895,10 +1169,6 @@
         
           <li>
             <a href="/2016/03/12/JavaScript-4/">闭包</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/12/JavaScript-3/">面向对象</a>
           </li>
         
       </ul>
