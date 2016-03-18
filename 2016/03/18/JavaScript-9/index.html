@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>表单脚本 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+
+acceptCharset：服务器能够处理的字符集。
+action：接受请求的URL；等价于HTML中的action特性
+elements：表单中所有控件的集合。
+method：要发送的HTTP请求类型，通常是“get”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表单脚本">
+<meta property="og:url" content="http://yoursite.com/2016/03/18/JavaScript-9/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+
+acceptCharset：服务器能够处理的字符集。
+action：接受请求的URL；等价于HTML中的action特性
+elements：表单中所有控件的集合。
+method：要发送的HTTP请求类型，通常是“get”">
+<meta property="og:updated_time" content="2016-03-18T14:17:13.065Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="表单脚本">
+<meta name="twitter:description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+
+acceptCharset：服务器能够处理的字符集。
+action：接受请求的URL；等价于HTML中的action特性
+elements：表单中所有控件的集合。
+method：要发送的HTTP请求类型，通常是“get”">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/18/JavaScript-9/" class="article-date">
+  <time datetime="2016-03-18T12:04:02.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      表单脚本
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt;\form&gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
+<ul>
+<li>acceptCharset：服务器能够处理的字符集。</li>
+<li>action：接受请求的URL；等价于HTML中的action特性</li>
+<li>elements：表单中所有控件的集合。</li>
+<li>method：要发送的HTTP请求类型，通常是“get”或“post”</li>
+<li>reset()；将所有表单域重置为默认值</li>
+<li>submit()：提交表单</li>
+<li>target：用于发送请求和接受响应的窗口名称。</li>
+</ul>
+<p>取得from元素的方式有多种，常见的方法有document.getElementById(“form1”)和document.forms[“form1”]。</p>
+<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt;\input&gt;和&lt;\button&gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt;\input&gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = document.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form,<span class="string">"submit"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//阻止默认事件</span></span><br><span class="line">	EventUtil.preventDefault(<span class="keyword">event</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">form.submit(); <span class="comment">//以这种方式提交表单是不会触发“submit”事件，因此事先要先验证表单数据</span></span><br></pre></td></tr></table></figure>
+<p>此外，还可能出现用户重复提交表单。解决问题的方法有两个：</p>
+<ol>
+<li>在第一次提交表单后就禁用提交按钮</li>
+<li>利用onsubmit事件处理程序取消后序的表单提交操作。</li>
+</ol>
+<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt;\input&gt;或&lt;\button&gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
+<h4 id="表单字段"><a href="#表单字段" class="headerlink" title="表单字段"></a>表单字段</h4><p>每个表单都有elements属性，该属性是表单中素有表单元素（字段）的集合。每个表单字段在elements集合中的顺序，与它们出现在标记中的顺序相同，可以按照位置和name特性来访问它们。<br>共有的表单字段属性、方法和事件有：</p>
+<ul>
+<li>disabled：布尔值，表示当前字段是否被禁用</li>
+<li>form：指向当前字段所属表单的指针；只读。</li>
+<li>name：当前字段的名称</li>
+<li>readOnly：布尔值，表示当前字段是否只读。</li>
+<li>tabIndex：表示当前字段的切换序号。</li>
+<li>type： 当前字段的类型，如“checkbox”等</li>
+<li>value：当前字段将被提交给服务器的值。对文件字段来说，这个属性是只读的，包含着文件在计算机中的路径。</li>
+<li>focus()：将浏览器的焦点设置到此表单字段。</li>
+<li>blur()：移走焦点。仅仅是将焦点从调用这个方法的元素上面移走而已。</li>
+<li>blur事件：当前字段失去焦点是触发。</li>
+<li>focus事件：当前字段获得焦点时触发。</li>
+<li>change事件：对于&lt;\input&gt;和&lt;\textarea&gt;元素，在他们失去焦点且value值改变时触发；对于&lt;\select&gt;元素，其选项发生改变时触发。</li>
+</ul>
+<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt;\input&gt;元素的单行文本框和使用&lt;\textarea&gt;元素的多行文本框。<br>必须将&lt;\input&gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt;\textarea&gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
+<h4 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h4><p>这两种文本框都支持select()方法，这个方法用于选择文本框中的所有文本。在文本框获得焦点时，选择其所有文本，这是一种常见的做法。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox,<span class="string">"focus"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	target.<span class="keyword">select</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过textbox.value.subString(textbox.selectionStart,textbox.selectionEnd)方法来获得选中的文本。</p>
+<h4 id="过滤输入"><a href="#过滤输入" class="headerlink" title="过滤输入"></a>过滤输入</h4><p>我们经常要求用户在文本框中输入特定的数据，或者输入特定格式的数据。所以必须使用JavaScript来完成此类过滤输入的操作。<br>相应向文本框中插入字符操作的是keypress事件，可以检测其对应的字符编码，再决定如何相应。比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="regexp">/\d/</span>.test(<span class="built_in">String</span>.fromCharCode(charCode)))&#123;</span><br><span class="line">	<span class="comment">//如果不是数值，则……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="自动切换焦点"><a href="#自动切换焦点" class="headerlink" title="自动切换焦点"></a>自动切换焦点</h4><p>在用户填写完当前字段时，自动将焦点切换到下个子弹。通常，在自动切换焦点前，必须知道用户已经输入了既定长度的数据。在keyup事件后，检测当前字符串的长度是否达到了文本框的maxlength，如果达到了，则使用focus()方法，将焦点移到下一个元素。</p>
+<h4 id="HTML5约束验证API"><a href="#HTML5约束验证API" class="headerlink" title="HTML5约束验证API"></a>HTML5约束验证API</h4><p>为了在将表单提交到服务器之前验证数据，HTML5新增了一些功能。有了这些功能，即便JavaScript被禁用或者由于种种原因未能加载，也可以确保基本的验证。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--required表示必填字段，适用于&lt;input&gt;&lt;textarea&gt;&lt;select&gt;等--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--email和url是两个得到支持最多的类型--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--只能输入0到100的值，且必须是5的倍数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">main</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">step</span>=<span class="string">"5"</span> <span class="attr">name</span>=<span class="string">"count"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--pattern属性，一个正则表达式，用于匹配文本框中的值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">pattern</span>=<span class="string">"\d+"</span> <span class="attr">name</span>=<span class="string">"count"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用checkValidity()方法可以检测表单中某个字段是否有效。字段的值是否有效判断的一句是本节前面介绍过的那些约束。</p>
+<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt;\select&gt;和&lt;\option&gt;元素创建。还有以下属性和方法</p>
+<ul>
+<li>add(newOption,relOption)：向空间中插入新的&lt;\option&gt;元素，在相关项之前</li>
+<li>multiple：布尔值，表示是否允许多选；</li>
+<li>selectedIndex：基于0的选中项的索引，如果没有选中项，值为-1</li>
+<li>size：选择框中可见的行数；</li>
+</ul>
+<h2 id="表单序列化"><a href="#表单序列化" class="headerlink" title="表单序列化"></a>表单序列化</h2><p>随着ajax的出现，表单序列化已经成为一种常见需求。在JavaScript中，可以利用表单的type属性，连同name和value属性一起实现对表单的序列化。在表单序列化过程中，一般不包含任何按钮字段，因为结果字符串很可能是通过其他方式提交的。</p>
+<h2 id="富文本编辑"><a href="#富文本编辑" class="headerlink" title="富文本编辑"></a>富文本编辑</h2><p>富文本编辑，又称WYSIWYG（所见即所得）。可以给iframe指定一个非常简单的HTML页面作为其内容来源。这个页面在iframe中可以向其他页面一样被加载。要它可以编辑，必须要将designMode设置为“on”。另一种编辑富文本内容的方式是使用名为contenteditable的特殊属性，而且这种方法更受欢迎，因为它不需要iframe、空白页和JavaScript，值需要将元素设置为contenteditable属性即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cilxsi4bm000zeoq9ckvpk33l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/18/JavaScript-8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">事件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 12.5px;">C-Language</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-9/">表单脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-8/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/16/CSS-3/">CSS-3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/HTML5/">HTML5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
