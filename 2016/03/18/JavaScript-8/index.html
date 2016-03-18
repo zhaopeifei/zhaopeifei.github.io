@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>事件 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。
+事件流事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件">
+<meta property="og:url" content="http://yoursite.com/2016/03/18/JavaScript-8/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。
+事件流事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事">
+<meta property="og:updated_time" content="2016-03-18T11:54:27.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件">
+<meta name="twitter:description" content="JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。
+事件流事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/18/JavaScript-8/" class="article-date">
+  <time datetime="2016-03-18T08:31:34.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      事件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。</p>
+<h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。可以在最后阶段对事件做出响应。</p>
+<h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><p>事件有click/load和mouseover等，事件处理程序的名字以“on”开头。为时间制定处理程序的方式由多种。</p>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;\input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>缺点：1.存在时差问题，可能导致时间处理程序不能执行。2.这样扩展时间处理程序的作用域链在不同浏览器中可能会导致不同结果。3.HTML与JavaScript代码紧密耦合。</p>
+<h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"click"</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.onclick = <span class="literal">null</span>; <span class="comment">//删除时间处理程序</span></span><br></pre></td></tr></table></figure>
+<h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><p>DOM2级事件定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListenter()和removeEventListener()。使用前者添加的事件，必须使用后者删除。一个事件可以引发多个事件处理程序。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="keyword">this</span>.id); &#125;</span><br><span class="line">btn.addEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>); <span class="comment">//false表示冒泡阶段调用事件处理程序，true表示捕获阶段</span></span><br><span class="line"><span class="comment">//其他代码</span></span><br><span class="line">btn.removeEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>); <span class="comment">//可以。但无法移除匿名程序</span></span><br></pre></td></tr></table></figure>
+<h4 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h4><p>IE实现了与DOM中类似的两个方法：attachEvent()和detachEvent()。接收两个参数。事件处理程序添加到冒泡阶段。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="keyword">this</span>.id); &#125;</span><br><span class="line">btn.attachEvent(<span class="string">"onclick"</span>,handler); </span><br><span class="line"><span class="comment">//其他代码</span></span><br><span class="line">btn.detachEvent(<span class="string">"onclick"</span>,handler; <span class="comment">//移除</span></span><br></pre></td></tr></table></figure>
+<h4 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="type">EventUtil</span> = &#123;</span><br><span class="line">	addHandler:functiong(element,<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(element.addEventListener)&#123;</span><br><span class="line">			element.addEventListener(<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>,<span class="title">false</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.attachEvent)&#123;</span><br><span class="line">			element.attachEvent(<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			element[<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>] </span>= handler;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	removeHandler:functiong(element,<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(element.removeEventListener)&#123;</span><br><span class="line">			element.removeEventListener(<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>,<span class="title">false</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.detachEvent)&#123;</span><br><span class="line">			element.detachEvent(<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			element[<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>] </span>= <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">EventUtil</span>.addHandler(btn,<span class="string">"click"</span>,handler);</span><br></pre></td></tr></table></figure>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>在触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含着所有与事件有关的信息。</p>
+<h4 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h4><p>兼容DOM的浏览器会将一个event对象传入到事件处理程序中。无论指定事件处理程序时使用什么方法（DOM0或DOM2级），都会传入event对象。event常用的属性方法有：</p>
+<ul>
+<li>currentTarget：其事件处理程序当前正在处理事件的那个元素，即事件处理程序注册的元素。等同于this。</li>
+<li>target：事件的目标。最小的直接发生事件的元素。</li>
+<li>type：事件的类型，即click、mouseover等。</li>
+<li>prenentDefault()：取消特定事件的默认行为，如点击链接导航到其href特性指定的URL</li>
+<li>stopPropagation()：立即停止事件在DOM层次中的传播，即取消进一步的时间捕获或冒泡。</li>
+</ul>
+<h4 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h4><p>与访问DOM中的event对象不同，要访问IE中的event对象有几种不同的方式，取决于指定事件处理程序的方法。因为事件处理程序的作用域是根据指定它的方式来确定的，所以不能认为this始终等于事件目标，故而，最好使用event.srcElement比较保险。属性有cancelBubble（设为true可以取消事件冒泡）、returnValue（设为false可以取消事件的默认行为）、srcElement（事件的目标，等同于DOM中的target）、type（被触发的事件的类型）。</p>
+<h4 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h4><p>虽然DOM和IE中的event对象不同，但基于他们之间的相似性依旧可以拿出跨浏览器的方案来。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventUtil=&#123;</span><br><span class="line">	addHandler:<span class="comment">//略</span></span><br><span class="line">	getEvent:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">event</span>? <span class="keyword">event</span>:window.<span class="keyword">event</span>;</span><br><span class="line">	&#125;,</span><br><span class="line">	getTarget:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">event</span>.target? <span class="keyword">event</span>.target:<span class="keyword">event</span>.srcElement;</span><br><span class="line">	&#125;,</span><br><span class="line">	preventDefault:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">event</span>.preventDefault)&#123;</span><br><span class="line">			<span class="keyword">event</span>.preventDefault();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">event</span>.returnValue = <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	stopPropagation:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">event</span>.stopPropagation)&#123;</span><br><span class="line">			<span class="keyword">event</span>.stopPropagation();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">event</span>.cancelBubble = <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h2><p>Web浏览器中可能发生的事件有很多类型。DOM3级事件规定了一下几类事件：</p>
+<ul>
+<li>UI事件，当用户与页面上的元素交互时触发。</li>
+<li>焦点事件，当元素获得或失去焦点时触发。</li>
+<li>鼠标事件，当用户通过鼠标在页面上执行操作时触发。</li>
+<li>滚轮事件，当使用鼠标滚轮或类似设备时触发。</li>
+<li>文本事件：当用户在文档中输入文本时触发。</li>
+<li>键盘事件，当用户通过键盘在页面上执行操作时触发。</li>
+<li>合成事件，当为IME（输入法编辑器）输入字符时触发。</li>
+<li>变动事件，当底层DOM结构发生变化时触发。</li>
+</ul>
+<h2 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h2><p>在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体性能。首先，每个函数都是对象，都会占用内存。其次，必须事先指定所有事件处理程序而导致的DOM访问次数，会延迟整个页面的交互就绪时间。</p>
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>对“事件处理程序过多”的解决方案是事件委托。事件委托利用了事件冒泡，只指定了一个事件处理程序，就可以管理某一类型的所有事件。例如，可以将一个列表的点击事件交给其body元素解决，判断发生事件的元素，再执行相应的操作。</p>
+<h4 id="移除事件处理程序"><a href="#移除事件处理程序" class="headerlink" title="移除事件处理程序"></a>移除事件处理程序</h4><p>每当将事件处理程序指定给元素时，运行中的浏览器代码与支持页面交互的JavaScript代码之间就会建立一个连接。在不需要的时候移除事件处理程序，也是解决问题的一种方案。</p>
+<h2 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h2><p>事件经常由用户操作或通过其他浏览器功能来触发，但其实也可以使用JavaScript在任意时刻来触发特定的事件，而此时的事件如同浏览器创建的事件一样。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cilxnepbt000yx4q9fioedoly" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/18/JavaScript-7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DOM扩展及DOM2、DOM3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 13.33px;">C-Language</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-8/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/16/CSS-3/">CSS-3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/HTML5/">HTML5</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/13/JavaScript-6/">DOM-文档对象模型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

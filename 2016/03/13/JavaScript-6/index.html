@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="DOM是针对HTML和XML文档的一个API（应用程序编程接口）。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。IE中的所有DOM对象都是COM对象的形式实现的，这意味着IE中的DOM对象与原始JavaScript对象的行为或活动特点并不一致。
 节点层次DOM可以将任何HTML或XML文档描绘成一个由多层结点构成的结构。节点分为几张不同的类型，每种类型分别表示文中的不">
-<meta property="og:updated_time" content="2016-03-16T06:02:25.283Z">
+<meta property="og:updated_time" content="2016-03-18T07:13:33.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM-文档对象模型">
 <meta name="twitter:description" content="DOM是针对HTML和XML文档的一个API（应用程序编程接口）。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。IE中的所有DOM对象都是COM对象的形式实现的，这意味着IE中的DOM对象与原始JavaScript对象的行为或活动特点并不一致。
@@ -98,11 +98,49 @@
       
         <p>DOM是针对HTML和XML文档的一个API（应用程序编程接口）。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。IE中的所有DOM对象都是COM对象的形式实现的，这意味着IE中的DOM对象与原始JavaScript对象的行为或活动特点并不一致。</p>
 <h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2><p>DOM可以将任何HTML或XML文档描绘成一个由多层结点构成的结构。节点分为几张不同的类型，每种类型分别表示文中的不同的信息及标记。每个结点都拥有各自的特点、数据和方法，另外也与其他结点存在某种关系。结点之间的关系构成了层次，而所有页面标记则表现为一个以特定结点为根节点的树型结构。</p>
+<h4 id="Node类型"><a href="#Node类型" class="headerlink" title="Node类型"></a>Node类型</h4><p>DOM1级定义了一个Node接口，该接口将由DOM中的所有节点类型实现。每个结点都有一个nodeType属性，用于表明节点的类型。节点类型由在Node类型中定义的下列12个数值常量来表示，任何结点类型必然属于其中的一种：</p>
+<ul>
+<li>Node.ELEMENT_NODE(1)</li>
+<li>Node.ATTRIBUTE_NODE(2)</li>
+<li>Node.TEXT_NODE(3)</li>
+<li>Node.CDATA_SECTION_NODE(4)</li>
+<li>Node.ENTITY_PEFERENCE_NODE(5)</li>
+<li>Node.ENTITY_NODE(6)</li>
+<li>Node.PROCESSING_INSTRUCTION_NODE(7)</li>
+<li>Node.COMMENT_NODE(8)</li>
+<li>Node.DOCUMENT_NODE(9)</li>
+<li>Node.DOCUMENT_TYPE_NODE(10)</li>
+<li>Node.DOCUMENT_FRAGMENT_NODE(11)</li>
+<li>Node.NOTATION_NODE(12)</li>
+</ul>
+<p>可以通过节点的nodeType属性判断结点属于哪一种结点。每个结点都有一个childNodes属性，其中保存一个NodeList对象，其为一种类数组对象（并不是Array的实例），用于保存一组有序的节点。可以使用.childNodes[0]或childNodes.item(0)来访问子节点。获取节点可以使用属性：.parentNode .firstChild .lastChild .nextSibling .previousSibling。<br>操作节点的方法有：</p>
+<ul>
+<li>.hasChildNodes():判断是否有子节点，有则返回true，没有则返回false</li>
+<li>.appendChild(newNode):在childNodes列表末尾添加一个新节点，并返回新增的节点。如果插入已存在的结点，则改变节点的位置。</li>
+<li>.insertBefore(newNode,.old):在相应的节点前添加</li>
+<li>.replaceChild(newNode,.old):替换结点</li>
+<li>removeChild(.old):移除节点。</li>
+</ul>
+<h4 id="Document类型"><a href="#Document类型" class="headerlink" title="Document类型"></a>Document类型</h4><p>document对象时HTMLDocument的一个实例，表示整个HTML页面。取得特定的某个或某组元素的引用，是常用的DOM应用，Document类型为此提供了两个方法：getElementById()和getElementByTagName()。TagName指标签名称，如div、p、img等。取得元素集合后，使用.nameItem()可以获取相应name的元素。</p>
+<p>document对象还提供了一些特殊的集合，包括document.anchors()（包含文档中所有带name属性的&lt;\a&gt;元素）、document.forms()（包含文档中所有的&lt;\form&gt;元素）、document.images()（包含文档中所有的&lt;\img&gt;元素）、document.links()（包含文档中所有带href的&lt;\a&gt;元素）。</p>
+<p>document对象有将输入流写入到网页中的能力。有以下四个方法：write()（可以写js代码）、writeln()（在结尾处多一个/n）、open()、close()（打开关闭网页的输出流）。</p>
+<h4 id="Element类型"><a href="#Element类型" class="headerlink" title="Element类型"></a>Element类型</h4><p>Element类型提供了对元素标签名、子节点及特性的访问，要访问元素的标签名可以用nodeName属性或tagName属性。</p>
+<p>所有HTML元素都由HEMLElement类型表示，共有属性为：id、className、title等。操作特性的主要方法有：getAttribute(“title”)、setAttribute(“title”,”test”)、removeAttribute(“title”)。还可以使用.attributes[“id”]等来访问属性。根据HTML5规范，自定义的属性应该加上data-前缀。</p>
+<p>可以使用document.createElement(“&lt;\div&gt;&lt;\/div&gt;”)方法创建新的元素，并返回新元素，然后通过appendChild()等方法添加到文档树中。</p>
+<h4 id="Text类型"><a href="#Text类型" class="headerlink" title="Text类型"></a>Text类型</h4><p>文本节点由Text类型表示，包含的是可以照字面解释的纯文本内容。纯文本中可以包含转义后的HTML字符，但不能包含HTML代码。</p>
+<p>与element相同，可以通过document.createTextNode()创建新文本节点，并返回新文本节点，然后通过appendChild()等方法添加到文档树中。</p>
+<p>使用element.normalize()和element.firstChild.splitText(5)等方法可以合并和分割文本节点。</p>
+<h4 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h4><p>除以上常用类型外，还有Comment类型（注释）、CDATASection类型（显示代码）、DocumentType类型（文档类型声明）、DocumentFragment类型（仓库，可能要添加的节点）、Attr类型（特性节点）</p>
+<h2 id="DOM操作技术"><a href="#DOM操作技术" class="headerlink" title="DOM操作技术"></a>DOM操作技术</h2><h4 id="动态脚本"><a href="#动态脚本" class="headerlink" title="动态脚本"></a>动态脚本</h4><p>使用&lt;\script&gt;元素可以向页面中插入JavaScript代码，一种方式是通过其src特性包含外部文件，另一种方式是通过这个元素本身包含代码。动态创建脚本也有两种：插入外部文件和直接插入JavaScript代码。此时要考虑到兼容性的问题，比如：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function loadScriptString(code)&#123;&#125;</span><br><span class="line">	var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></span><br><span class="line">	<span class="keyword">script.type </span>= <span class="string">"text/javascript"</span><span class="comment">;</span></span><br><span class="line">	try&#123;</span><br><span class="line">		<span class="keyword">script.appendChild(document.createTextNode </span>code)<span class="comment">;</span></span><br><span class="line">	&#125;catch(ex)&#123;</span><br><span class="line">		<span class="keyword">script.text </span>= code<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">	document.<span class="keyword">body.appendChild(script);</span><br><span class="line"></span>&#125;</span><br><span class="line">loadScriptString(<span class="string">"function asyHi()&#123;alert('hi');&#125;"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h4 id="动态样式"><a href="#动态样式" class="headerlink" title="动态样式"></a>动态样式</h4><p>能够把CSS样式包含到HTML页面中的元素由两个，其中，&lt;\link&gt;元素用于包含来自外部的文件，而&lt;\style&gt;元素用于指定嵌入的样式。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyleString</span>(<span class="params">css</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">"style"</span>);</span><br><span class="line">	style.type = <span class="string">"text/CSS"</span>;</span><br><span class="line">	<span class="decorator"><span class="keyword">try</span></span>&#123;</span><br><span class="line">		style.appendChild(<span class="built_in">document</span>.createTextNode(css));</span><br><span class="line">	&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">		style.styleSheet.cssText = css;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">var</span> head = documentl.getElementByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</span><br><span class="line">	head.appendChild(style);</span><br><span class="line">&#125;</span><br><span class="line">loadStyleString(<span class="string">"body&#123;backgroud-color:red&#125;"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="使用NodeList"><a href="#使用NodeList" class="headerlink" title="使用NodeList"></a>使用NodeList</h4><p>理解NodeList及HTMLCollection和NamedNodeMap，是从整体上透彻理解DOM的关键所在。这单个集合都是“动态的”；每当文档结构发生变化，它们都会更新。从本质上说，所有NodeList对象都是在访问DOM文档时实时运行的查询，所以每次访问NodeList对象，都会进行一次查询。所以要尽量减少DOM操作。可以考虑将从NodeList中取得的值缓存起来，从而减少查询的次数。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilunidae001500q91hl8dcy8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilxnepb8000bx4q948dvzb9c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -183,6 +221,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/18/JavaScript-8/">事件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/16/CSS-3/">CSS-3</a>
           </li>
         
@@ -192,14 +238,6 @@
         
           <li>
             <a href="/2016/03/13/JavaScript-6/">DOM-文档对象模型</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/13/JavaScript-5/">BOM-浏览器对象模型</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/12/JavaScript-4/">闭包</a>
           </li>
         
       </ul>
