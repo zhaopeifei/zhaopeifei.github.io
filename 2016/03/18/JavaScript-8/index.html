@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。
 事件流事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事">
-<meta property="og:updated_time" content="2016-03-18T11:54:27.202Z">
+<meta property="og:updated_time" content="2016-03-19T06:33:35.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件">
 <meta name="twitter:description" content="JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。
@@ -99,7 +99,7 @@
         <p>JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。</p>
 <h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。可以在最后阶段对事件做出响应。</p>
 <h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><p>事件有click/load和mouseover等，事件处理程序的名字以“on”开头。为时间制定处理程序的方式由多种。</p>
-<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;\input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>缺点：1.存在时差问题，可能导致时间处理程序不能执行。2.这样扩展时间处理程序的作用域链在不同浏览器中可能会导致不同结果。3.HTML与JavaScript代码紧密耦合。</p>
 <h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"click"</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.onclick = <span class="literal">null</span>; <span class="comment">//删除时间处理程序</span></span><br></pre></td></tr></table></figure>
 <h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><p>DOM2级事件定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListenter()和removeEventListener()。使用前者添加的事件，必须使用后者删除。一个事件可以引发多个事件处理程序。</p>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cilyqpwe0002lgcq9lomuazop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cilyym98p001cu0q9n6coj8nq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -219,6 +219,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
           </li>
         
@@ -228,14 +236,6 @@
         
           <li>
             <a href="/2016/03/18/JavaScript-8/">事件</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/16/CSS-3/">CSS-3</a>
           </li>
         
       </ul>

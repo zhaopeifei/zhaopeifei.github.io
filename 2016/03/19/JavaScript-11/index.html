@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>离线应用于客户端存储 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。
+离线检测HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。
+12345if(navigator.online)&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离线应用于客户端存储">
+<meta property="og:url" content="http://yoursite.com/2016/03/19/JavaScript-11/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。
+离线检测HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。
+12345if(navigator.online)&amp;">
+<meta property="og:updated_time" content="2016-03-19T07:49:03.739Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="离线应用于客户端存储">
+<meta name="twitter:description" content="支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。
+离线检测HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。
+12345if(navigator.online)&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/JavaScript-11/" class="article-date">
+  <time datetime="2016-03-19T06:41:18.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      离线应用于客户端存储
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。</p>
+<h2 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h2><p>HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(navigator.online)</span></span>&#123;</span><br><span class="line">	<span class="comment">//正常工作</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//执行离线状态时的任务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，HTML5还定义了两个事件：onlin和offline。分别在网络离线变在线和在线变离线时触发。</p>
+<h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5的应用缓存可以简称为appcache，是专门为开发离线Web应用而设计的。Appcache是从浏览器的缓存中分出来的一块缓存区。可以使用一个描述文件，列出要下载和缓存的资源，就可以将相应的资源存储到这个区域。<br>要将描述文件与页面关联起来，可以在&lt; html &gt;中的manifest属性中指定这个描述文件的路径。</p>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>随着Web应用程序的出现，也产生了对于能够直接在客户端上存储用户信息能力的要求。一下为几种客户端存储数据的方式。</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP Cookie，最初是在客户端用于存储会话信息的。该标准要求服务器对任意HTTP请求发送Set-Cookie HTTP头最为相应的一部分，其中包含会话信息。<br>cookie有访问者限制，有长度限制，每个域的cookie总数也有限制。cookie由浏览器保存到额以下几块信息构成：名称、值、域、路径、失效时间、安全标志等。<br>在JavaScript中处理cookie有些复杂，因为其蹩脚的接口，即BOM的document.cookie属性。这个属性的独特之处在于它会因为使用它的方式不同而表现不同的行为。基本的cookie操作有三种：读取、写入和删除。</p>
+<h4 id="Web存储机制"><a href="#Web存储机制" class="headerlink" title="Web存储机制"></a>Web存储机制</h4><p>Web Storage成为了HTML5的一部分。其目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。其目标有：提供一种在cookie之外存储会话数据的路径，提供一种存储大量可以跨会话存在的数据的机制。</p>
+<ul>
+<li>Storage类型提供最大的存储空间来存储名值对儿。Storage的实例有以下方法：clear()、getItem(name)、key(index)、removeItem(name)、setItem(name,value)，此外还有length等属性。</li>
+<li>sessionStorage对象。用于存储特定于某个会话的数据，也就是该数据只保持到浏览器关闭。</li>
+<li>globalStorage对象。其目的是跨越会话存储数据，但有特定的访问限制。要使用它，首要啊哟指定哪些域可以访问该数据，可以通过方阔来标记使用属性来实现。globalStorage的每个属性都是Storage的实例。<code>globalStorage[&quot;www.wrox.com&quot;].name=&quot;Nicholas&quot;;</code>它会一直保存在磁盘上，所以非常适合在客户端存储文档或者长期保持用户票号设置。</li>
+<li>localStorage对象<br>localStorage对象在修订过的HTML5规范中作为持久保存客户端数据的方案取代了globalStorage。</li>
+<li>storage事件。对Storage对象进行任何修改，都会在文档上触发storage事件。该event事件有这几个属性：domain（发生变化的存储空间的域名）、key（设置或删除的键名）、newValue、oldValue。</li>
+</ul>
+<h4 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h4><p>Indexed Database API，是在浏览器中保存结构化数据的一种数据库。其思想是创建一套API，方便保存和读取JavaScript对象，同时还支持查询及搜索。IndexedDB设计的操作完全是异步进行的。因此，大多数操作会以请求方式进行，但这些操作会在后期执行。差不多每次IndexedDB操作，都需要注册onerror或onsuccess事件处理程序，以确保适当地处理结果。<br>它是一种类似SQL数据的结构haunted数据存储机制，但它的数据不是保存在表中，而是保存在对象存储空间中。创建对象存储空间时，需要定义一个键，然后就可以添加数据。可以使用游标在对象存储空间中查询特定的对象。而索引则是为了提高查询速度而基于特定的属性创建的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cilyym95r0007u0q9xk5u0laq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/19/JavaScript-12/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          可维护性、性能及部署
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/19/JavaScript-10/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ajax与JSON</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 12.5px;">C-Language</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-9/">表单脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/18/JavaScript-8/">事件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -5,31 +5,31 @@
   
   <title>表单脚本 | 步步为营，勇往直前</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+  <meta name="description" content="表单的基础知识在HTML中，表单由&amp;lt; form &amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
 
 acceptCharset：服务器能够处理的字符集。
 action：接受请求的URL；等价于HTML中的action特性
 elements：表单中所有控件的集合。
-method：要发送的HTTP请求类型，通常是“get”">
+method：要发送的HTTP请求类型，通常是“get">
 <meta property="og:type" content="article">
 <meta property="og:title" content="表单脚本">
 <meta property="og:url" content="http://yoursite.com/2016/03/18/JavaScript-9/index.html">
 <meta property="og:site_name" content="步步为营，勇往直前">
-<meta property="og:description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+<meta property="og:description" content="表单的基础知识在HTML中，表单由&amp;lt; form &amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
 
 acceptCharset：服务器能够处理的字符集。
 action：接受请求的URL；等价于HTML中的action特性
 elements：表单中所有控件的集合。
-method：要发送的HTTP请求类型，通常是“get”">
-<meta property="og:updated_time" content="2016-03-18T14:17:13.065Z">
+method：要发送的HTTP请求类型，通常是“get">
+<meta property="og:updated_time" content="2016-03-19T06:30:32.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="表单脚本">
-<meta name="twitter:description" content="表单的基础知识在HTML中，表单由&amp;lt;\form&amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
+<meta name="twitter:description" content="表单的基础知识在HTML中，表单由&amp;lt; form &amp;gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：
 
 acceptCharset：服务器能够处理的字符集。
 action：接受请求的URL；等价于HTML中的action特性
 elements：表单中所有控件的集合。
-method：要发送的HTTP请求类型，通常是“get”">
+method：要发送的HTTP请求类型，通常是“get">
   
     <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
   
@@ -108,7 +108,7 @@ method：要发送的HTTP请求类型，通常是“get”">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt;\form&gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
+        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt; form &gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
 <ul>
 <li>acceptCharset：服务器能够处理的字符集。</li>
 <li>action：接受请求的URL；等价于HTML中的action特性</li>
@@ -119,14 +119,14 @@ method：要发送的HTTP请求类型，通常是“get”">
 <li>target：用于发送请求和接受响应的窗口名称。</li>
 </ul>
 <p>取得from元素的方式有多种，常见的方法有document.getElementById(“form1”)和document.forms[“form1”]。</p>
-<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt;\input&gt;和&lt;\button&gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt;\input&gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
+<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt; input &gt;和&lt; button &gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt; input &gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = document.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form,<span class="string">"submit"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//阻止默认事件</span></span><br><span class="line">	EventUtil.preventDefault(<span class="keyword">event</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">form.submit(); <span class="comment">//以这种方式提交表单是不会触发“submit”事件，因此事先要先验证表单数据</span></span><br></pre></td></tr></table></figure>
 <p>此外，还可能出现用户重复提交表单。解决问题的方法有两个：</p>
 <ol>
 <li>在第一次提交表单后就禁用提交按钮</li>
 <li>利用onsubmit事件处理程序取消后序的表单提交操作。</li>
 </ol>
-<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt;\input&gt;或&lt;\button&gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
+<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt; input &gt;或&lt; button &gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
 <h4 id="表单字段"><a href="#表单字段" class="headerlink" title="表单字段"></a>表单字段</h4><p>每个表单都有elements属性，该属性是表单中素有表单元素（字段）的集合。每个表单字段在elements集合中的顺序，与它们出现在标记中的顺序相同，可以按照位置和name特性来访问它们。<br>共有的表单字段属性、方法和事件有：</p>
 <ul>
 <li>disabled：布尔值，表示当前字段是否被禁用</li>
@@ -140,9 +140,9 @@ method：要发送的HTTP请求类型，通常是“get”">
 <li>blur()：移走焦点。仅仅是将焦点从调用这个方法的元素上面移走而已。</li>
 <li>blur事件：当前字段失去焦点是触发。</li>
 <li>focus事件：当前字段获得焦点时触发。</li>
-<li>change事件：对于&lt;\input&gt;和&lt;\textarea&gt;元素，在他们失去焦点且value值改变时触发；对于&lt;\select&gt;元素，其选项发生改变时触发。</li>
+<li>change事件：对于&lt; input &gt;和&lt; textarea &gt;元素，在他们失去焦点且value值改变时触发；对于&lt; select &gt;元素，其选项发生改变时触发。</li>
 </ul>
-<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt;\input&gt;元素的单行文本框和使用&lt;\textarea&gt;元素的多行文本框。<br>必须将&lt;\input&gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt;\textarea&gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
+<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt; input &gt;元素的单行文本框和使用&lt; textarea &gt;元素的多行文本框。<br>必须将&lt; input &gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt; textarea &gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
 <h4 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h4><p>这两种文本框都支持select()方法，这个方法用于选择文本框中的所有文本。在文本框获得焦点时，选择其所有文本，这是一种常见的做法。</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox,<span class="string">"focus"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	target.<span class="keyword">select</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>通过textbox.value.subString(textbox.selectionStart,textbox.selectionEnd)方法来获得选中的文本。</p>
@@ -151,9 +151,9 @@ method：要发送的HTTP请求类型，通常是“get”">
 <h4 id="HTML5约束验证API"><a href="#HTML5约束验证API" class="headerlink" title="HTML5约束验证API"></a>HTML5约束验证API</h4><p>为了在将表单提交到服务器之前验证数据，HTML5新增了一些功能。有了这些功能，即便JavaScript被禁用或者由于种种原因未能加载，也可以确保基本的验证。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--required表示必填字段，适用于&lt;input&gt;&lt;textarea&gt;&lt;select&gt;等--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--email和url是两个得到支持最多的类型--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--只能输入0到100的值，且必须是5的倍数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">main</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">step</span>=<span class="string">"5"</span> <span class="attr">name</span>=<span class="string">"count"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--pattern属性，一个正则表达式，用于匹配文本框中的值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">pattern</span>=<span class="string">"\d+"</span> <span class="attr">name</span>=<span class="string">"count"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>使用checkValidity()方法可以检测表单中某个字段是否有效。字段的值是否有效判断的一句是本节前面介绍过的那些约束。</p>
-<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt;\select&gt;和&lt;\option&gt;元素创建。还有以下属性和方法</p>
+<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt; select &gt;和&lt; option &gt;元素创建。还有以下属性和方法</p>
 <ul>
-<li>add(newOption,relOption)：向空间中插入新的&lt;\option&gt;元素，在相关项之前</li>
+<li>add(newOption,relOption)：向空间中插入新的&lt; option &gt;元素，在相关项之前</li>
 <li>multiple：布尔值，表示是否允许多选；</li>
 <li>selectedIndex：基于0的选中项的索引，如果没有选中项，值为-1</li>
 <li>size：选择框中可见的行数；</li>
@@ -164,7 +164,7 @@ method：要发送的HTTP请求类型，通常是“get”">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cilyqpwcf000ygcq9g7tbzqhl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cilyym97v000ru0q9bxhr35ya" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -245,6 +245,14 @@ method：要发送的HTTP请求类型，通常是“get”">
       <ul>
         
           <li>
+            <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
           </li>
         
@@ -254,14 +262,6 @@ method：要发送的HTTP请求类型，通常是“get”">
         
           <li>
             <a href="/2016/03/18/JavaScript-8/">事件</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/16/CSS-3/">CSS-3</a>
           </li>
         
       </ul>

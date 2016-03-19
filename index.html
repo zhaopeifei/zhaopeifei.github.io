@@ -68,6 +68,159 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/JavaScript-12/" class="article-date">
+  <time datetime="2016-03-19T07:49:31.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性"></a>可维护性</h2><p>可维护的代码一般遵循以下特点</p>
+<ul>
+<li>可理解性：其他人可以接受代码并理解它的意图和一般途径</li>
+<li>直观性：代码中的东西一看就能明白，而不管其操作过程多么复杂</li>
+<li>可适应性：代码以一种数据上的变换不要求完全重写的方法撰写</li>
+<li>可扩展性：在damageSumarry结构上已经考虑到在未来允许对核心功能进行扩展</li>
+<li>可调试性：当有地方出错时，代码可以给予你足够的信息来尽可能直接地确定问题所在</li>
+</ul>
+<h4 id="代码约定"><a href="#代码约定" class="headerlink" title="代码约定"></a>代码约定</h4><p>由于JavaScript的可适应性，代码约定对它也很重要。由于和大多数面向对象语言不通，JavaScript并不强制开发人员将所有东西都定义为对象。</p>
+<ul>
+<li>可读性：一部分和代码缩进相关。一部分是注释。比如要在函数和方法、大段代码、复杂的算法和Hack处进行注释。</li>
+<li>变量和函数命名：变量名应该是名词。函数名应该以动词开始。变量和函数都应使用合乎逻辑的名字，长度问题可以通过后处理和压缩来缓解。一般第一个词为小写，以后的词都是大写。</li>
+<li>变量类型透明：一种是定义的时候初始化，则知道它是什么类型。一种是在变量名前加一个标记，比如bFound（布尔型）、iCount（整数）。最后一种是使用类型注释。</li>
+</ul>
+<h4 id="松解耦合"><a href="#松解耦合" class="headerlink" title="松解耦合"></a>松解耦合</h4><p>只要应用的某个部分过于依赖另一部分，代码就是耦合过紧，难于维护。典型的问题如：对象直接引用另一个对象，并且修改其中一个的同时需要修改另外一个。显示问题的唯一来源应该是CSS，行为问题的唯一来源应该是JavaScript。</p>
+<ul>
+<li>解耦HTML/JavaScript：HTML是数据，JavaScript是行为。当JavaScript用于插入数据时，尽量不要直接插入标记。一般可以在页面中直接包含并隐藏标记，然后等到整个页面渲染好之后，就可以用JavaScript显示该编辑，而非生成它。更改行为只需要在JavaScript中进行，而更改标记则只要在渲染文件中。</li>
+<li>解耦CSS/JavaScript：要更改样式时，不应该直接更改属性，应该更改元素的类名，达到改变样式的目的，可实现CSS对JavaScript的松散耦合。还要避免在CSS中使用表达式。</li>
+<li>解耦应用逻辑/事件处理程序：这两者分别处理各自的东西，一个事件处理程序应该从事件对象中提取相关信息，并将这些信息传送到处理应用逻辑的某个方法中。不能讲event对象传给其他方法，只传来自event对象所需的数据；任何可以在应用层面的动作都应该可以再不执行任何事件处理程序的情况下进行；任何事件处理程序都应该处理事件，然后将处理转交给应用逻辑。</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>尊重对象所有权。不修改不属于自己的对象。</li>
+<li>避免全局变量。最多创建一个全局变量，让其他对象和函数都存在其中。</li>
+<li>避免与null进行比较，容易出错。而应该使用instanceof、typeof等。</li>
+<li>使用常量。关键在于将数据和使用它的逻辑进行分离。</li>
+</ul>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h4 id="注意作用域"><a href="#注意作用域" class="headerlink" title="注意作用域"></a>注意作用域</h4><p>随着作用域链中的作用域数量的增加，访问当前作用域以外的变量的时间也在增加。访问全局变量总是比访问局部变量蛮，因为需要遍历作用域链。只要能减少花费在作用域链上的时间，就能增加脚本的整体性能。总的来说，就是使用局部变量代替全局变量，减少全局变量使用次数。</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function updateUI()&#123;  <span class="comment">//要避免全局查找</span></span><br><span class="line">	var doc = document<span class="comment">; //将document对象存在本地的doc变量中，所以只有一次全局查找</span></span><br><span class="line">	var imgs = doc.getElementByTagName(<span class="string">"img"</span>)<span class="comment">;</span></span><br><span class="line">	<span class="keyword">for</span>(var i=<span class="number">0</span>,len=imgs.<span class="keyword">length</span><span class="comment">;i &lt; len; i++)&#123;</span></span><br><span class="line">		imgs[i].<span class="keyword">title</span> = doc.<span class="keyword">title</span> + <span class="string">"image"</span> + i<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">	var msg = doc.getElementById(<span class="string">"msg"</span>)<span class="comment">;</span></span><br><span class="line">	msg.innerHTML = <span class="string">"update complete"</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//此外，还要避免with语句。因为with语句会创建自己的作用域。</span></span><br></pre></td></tr></table></figure>
+<h4 id="选择正确的方法"><a href="#选择正确的方法" class="headerlink" title="选择正确的方法"></a>选择正确的方法</h4><p>在计算机科学中，算法的复杂度使用O符号来表示。要选择最简单、最快捷的算法。使用变量和数组要比访问对象上的属性更有效率，前者是O(1)，后者为O(n)。所以，属性查找越多，执行时间越长。</p>
+<p>对于循环来说，如果循环的次数是确定的，消除循环并使用多次函数调用往往更快。</p>
+<p>性能优化过程中很重要的一部分还有优化循环。一个循环的基本优化步骤如下：</p>
+<ul>
+<li>减值迭代：在很多情况下，从最大值（特定值）开始，在循环中不断减值的迭代器更加高效</li>
+<li>简化终止条件：由于每次循环都要计算终止条件，所以要避免属性查找和其他复杂度高的操作。</li>
+<li>简化循环体：确保没有某些可以被很容易移除循环的密集计算。</li>
+<li>使用后测试循环：使用do-while这种后测试循环，可以避免最初终止条件的计算。</li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">query</span> = <span class="keyword">window</span>.location.href.substring(<span class="keyword">window</span>.location.href.indexof("?)); <span class="comment">//6次属性查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url = <span class="keyword">window</span>.location.href;</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">query</span> = url.substring(url.indexof(<span class="string">"?"</span>)); <span class="comment">//4次属性查找</span></span><br></pre></td></tr></table></figure>
+<h2 id="最小化语句数"><a href="#最小化语句数" class="headerlink" title="最小化语句数"></a>最小化语句数</h2><p>多个变量声明可以写成一个语句。在插入迭代值的时候，尽可能合并语句。尽量使用字面量而不是构造函数来创建数组和对象。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> count = <span class="number">5</span>,</span><br><span class="line">	<span class="built_in">color</span> = <span class="string">"blue"</span>,</span><br><span class="line">	now = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">//合并变量声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> name = values[i++]; <span class="comment">//插入迭代值时，合并语句</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> person = &#123;</span><br><span class="line">	<span class="attribute">name</span>:<span class="string">"liming"</span>,</span><br><span class="line">	<span class="attribute">age</span>:<span class="number">20</span></span><br><span class="line">&#125;; <span class="comment">//应该使用这种字面量的方式创建对象或数组</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">//这种方式不好。这种问题要重点关注</span></span><br><span class="line">person.name = <span class="string">"liming"</span>;</span><br><span class="line">person.age = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="优化DOM交互"><a href="#优化DOM交互" class="headerlink" title="优化DOM交互"></a>优化DOM交互</h2><p>在JavaScript各个方面中，DOM毫无疑问是最慢的一部分。DOM操作与交互要消耗大量时间。</p>
+<h4 id="最小化现场更新"><a href="#最小化现场更新" class="headerlink" title="最小化现场更新"></a>最小化现场更新</h4><p>一旦需要访问的DOM部分是已经显示的页面的额一部分，那么就是在进行一个现场更新。每一个修改，都有一个性能惩罚，因为浏览器要重新计算无数尺寸已进行更新。所以要进行减少现场更新次数。<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var list = document.getElementById(<span class="string">"myList"</span>),</span><br><span class="line">	fragment = document.createDocumentFragment(),</span><br><span class="line">	item,</span><br><span class="line">	i<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span><span class="comment">;i&lt;10;i++)&#123;</span></span><br><span class="line">	item = document.createElement(<span class="string">"li"</span>)<span class="comment">;</span></span><br><span class="line">	fragment.appendChild(item)<span class="comment">;</span></span><br><span class="line">	item.appendChild(document.createTextNode(<span class="string">"Item"</span> + i))<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">list.appendChild(fragment)<span class="comment">; //只有一次现场更新，而不是10次。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法2 使用innerHTML，速度更快</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span><span class="comment">;i&lt;10;i++)&#123;</span></span><br><span class="line">	html += <span class="string">"&lt;li&gt;Item"</span> +i+ <span class="string">"&lt;/li&gt;"</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">list.innerHTML = html<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="使用innerHTML"><a href="#使用innerHTML" class="headerlink" title="使用innerHTML"></a>使用innerHTML</h4><p>对于小的DOM更改而言，使用createElement()和appendChild()，以及innerTHML来说效率差不多。然而，对于大的DOM更改，使用innerHTML要比使用标准的DOM方法创建同样的DOM结构快得多。当把innerHTML设置为某个值时，后台会创建一个HTML解析器，然后使用内部的DOM调用来创建DOM结构，而非基于JavaScript的DOM调用。由于内部方法是编译好的而非解释执行的，所以执行快得多。</p>
+<h4 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h4><p>大多数Web应用在用户交互上大量用到事件处理程序。页面上的时间处理程序的数量和页面相应用户交互的速度之间负相关。为了减轻这种惩罚，最好使用事件代理。</p>
+<h4 id="注意HTMLCollection"><a href="#注意HTMLCollection" class="headerlink" title="注意HTMLCollection"></a>注意HTMLCollection</h4><p>HTMLCollection对于Web应用的性能而言是巨大的损害。也许优化HTMLCollection访问最重要的地方就是循环了。编写JavaScript的时候，一定要知道何时返回HTMLCollection对象，这样你就可以最小化对他们的访问。发生以下情况时会返回HTMLCollection对象：</p>
+<ul>
+<li>进行了对getElementsByTagName()的调用；</li>
+<li>获取了元素的childNodes属性；</li>
+<li>获取了元素的attributes属性；</li>
+<li>访问了特殊的集合，如document.forms、document.images等。</li>
+</ul>
+<h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2><p>避免解析包含了JavaScript代码的字符串，因为要解析字符串还需要再启动一个解析器，这就是JavaScript代码想解析JavaScript的时候的双重解释乘法。所以要避免出现需要按照JavaScript解释的字符串，比如<code>eval(&quot;alert(&#39;hello&#39;)&quot;);</code><br>原生方法比较快，所以尽量使用原生方法。因为原生方法是用诸如c/c++之类的编译型语言写出来的。</p>
+<p>switch语句较快，如果有一系列复杂的if-else语句，可以转换成单给switch语句。</p>
+<p>位运算符比较快，比如取模、逻辑与和逻辑或都可以考虑用位运算来替换。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cilyym95w000au0q9cyde9k93" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/JavaScript-11/" class="article-date">
+  <time datetime="2016-03-19T06:41:18.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。</p>
+<h2 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h2><p>HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(navigator.online)</span></span>&#123;</span><br><span class="line">	<span class="comment">//正常工作</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//执行离线状态时的任务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，HTML5还定义了两个事件：onlin和offline。分别在网络离线变在线和在线变离线时触发。</p>
+<h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5的应用缓存可以简称为appcache，是专门为开发离线Web应用而设计的。Appcache是从浏览器的缓存中分出来的一块缓存区。可以使用一个描述文件，列出要下载和缓存的资源，就可以将相应的资源存储到这个区域。<br>要将描述文件与页面关联起来，可以在&lt; html &gt;中的manifest属性中指定这个描述文件的路径。</p>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>随着Web应用程序的出现，也产生了对于能够直接在客户端上存储用户信息能力的要求。一下为几种客户端存储数据的方式。</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP Cookie，最初是在客户端用于存储会话信息的。该标准要求服务器对任意HTTP请求发送Set-Cookie HTTP头最为相应的一部分，其中包含会话信息。<br>cookie有访问者限制，有长度限制，每个域的cookie总数也有限制。cookie由浏览器保存到额以下几块信息构成：名称、值、域、路径、失效时间、安全标志等。<br>在JavaScript中处理cookie有些复杂，因为其蹩脚的接口，即BOM的document.cookie属性。这个属性的独特之处在于它会因为使用它的方式不同而表现不同的行为。基本的cookie操作有三种：读取、写入和删除。</p>
+<h4 id="Web存储机制"><a href="#Web存储机制" class="headerlink" title="Web存储机制"></a>Web存储机制</h4><p>Web Storage成为了HTML5的一部分。其目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。其目标有：提供一种在cookie之外存储会话数据的路径，提供一种存储大量可以跨会话存在的数据的机制。</p>
+<ul>
+<li>Storage类型提供最大的存储空间来存储名值对儿。Storage的实例有以下方法：clear()、getItem(name)、key(index)、removeItem(name)、setItem(name,value)，此外还有length等属性。</li>
+<li>sessionStorage对象。用于存储特定于某个会话的数据，也就是该数据只保持到浏览器关闭。</li>
+<li>globalStorage对象。其目的是跨越会话存储数据，但有特定的访问限制。要使用它，首要啊哟指定哪些域可以访问该数据，可以通过方阔来标记使用属性来实现。globalStorage的每个属性都是Storage的实例。<code>globalStorage[&quot;www.wrox.com&quot;].name=&quot;Nicholas&quot;;</code>它会一直保存在磁盘上，所以非常适合在客户端存储文档或者长期保持用户票号设置。</li>
+<li>localStorage对象<br>localStorage对象在修订过的HTML5规范中作为持久保存客户端数据的方案取代了globalStorage。</li>
+<li>storage事件。对Storage对象进行任何修改，都会在文档上触发storage事件。该event事件有这几个属性：domain（发生变化的存储空间的域名）、key（设置或删除的键名）、newValue、oldValue。</li>
+</ul>
+<h4 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h4><p>Indexed Database API，是在浏览器中保存结构化数据的一种数据库。其思想是创建一套API，方便保存和读取JavaScript对象，同时还支持查询及搜索。IndexedDB设计的操作完全是异步进行的。因此，大多数操作会以请求方式进行，但这些操作会在后期执行。差不多每次IndexedDB操作，都需要注册onerror或onsuccess事件处理程序，以确保适当地处理结果。<br>它是一种类似SQL数据的结构haunted数据存储机制，但它的数据不是保存在表中，而是保存在对象存储空间中。创建对象存储空间时，需要定义一个键，然后就可以添加数据。可以使用游标在对象存储空间中查询特定的对象。而索引则是为了提高查询速度而基于特定的属性创建的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cilyym95r0007u0q9xk5u0laq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/19/JavaScript-10/" class="article-date">
@@ -149,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cilyqpwbs000bgcq9ewixekzi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cilyym95l0005u0q9claufrk1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -187,7 +340,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt;\form&gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
+        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt; form &gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
 <ul>
 <li>acceptCharset：服务器能够处理的字符集。</li>
 <li>action：接受请求的URL；等价于HTML中的action特性</li>
@@ -198,14 +351,14 @@
 <li>target：用于发送请求和接受响应的窗口名称。</li>
 </ul>
 <p>取得from元素的方式有多种，常见的方法有document.getElementById(“form1”)和document.forms[“form1”]。</p>
-<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt;\input&gt;和&lt;\button&gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt;\input&gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
+<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt; input &gt;和&lt; button &gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt; input &gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = document.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form,<span class="string">"submit"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//阻止默认事件</span></span><br><span class="line">	EventUtil.preventDefault(<span class="keyword">event</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">form.submit(); <span class="comment">//以这种方式提交表单是不会触发“submit”事件，因此事先要先验证表单数据</span></span><br></pre></td></tr></table></figure>
 <p>此外，还可能出现用户重复提交表单。解决问题的方法有两个：</p>
 <ol>
 <li>在第一次提交表单后就禁用提交按钮</li>
 <li>利用onsubmit事件处理程序取消后序的表单提交操作。</li>
 </ol>
-<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt;\input&gt;或&lt;\button&gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
+<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt; input &gt;或&lt; button &gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
 <h4 id="表单字段"><a href="#表单字段" class="headerlink" title="表单字段"></a>表单字段</h4><p>每个表单都有elements属性，该属性是表单中素有表单元素（字段）的集合。每个表单字段在elements集合中的顺序，与它们出现在标记中的顺序相同，可以按照位置和name特性来访问它们。<br>共有的表单字段属性、方法和事件有：</p>
 <ul>
 <li>disabled：布尔值，表示当前字段是否被禁用</li>
@@ -219,9 +372,9 @@
 <li>blur()：移走焦点。仅仅是将焦点从调用这个方法的元素上面移走而已。</li>
 <li>blur事件：当前字段失去焦点是触发。</li>
 <li>focus事件：当前字段获得焦点时触发。</li>
-<li>change事件：对于&lt;\input&gt;和&lt;\textarea&gt;元素，在他们失去焦点且value值改变时触发；对于&lt;\select&gt;元素，其选项发生改变时触发。</li>
+<li>change事件：对于&lt; input &gt;和&lt; textarea &gt;元素，在他们失去焦点且value值改变时触发；对于&lt; select &gt;元素，其选项发生改变时触发。</li>
 </ul>
-<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt;\input&gt;元素的单行文本框和使用&lt;\textarea&gt;元素的多行文本框。<br>必须将&lt;\input&gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt;\textarea&gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
+<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt; input &gt;元素的单行文本框和使用&lt; textarea &gt;元素的多行文本框。<br>必须将&lt; input &gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt; textarea &gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
 <h4 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h4><p>这两种文本框都支持select()方法，这个方法用于选择文本框中的所有文本。在文本框获得焦点时，选择其所有文本，这是一种常见的做法。</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox,<span class="string">"focus"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	target.<span class="keyword">select</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>通过textbox.value.subString(textbox.selectionStart,textbox.selectionEnd)方法来获得选中的文本。</p>
@@ -230,9 +383,9 @@
 <h4 id="HTML5约束验证API"><a href="#HTML5约束验证API" class="headerlink" title="HTML5约束验证API"></a>HTML5约束验证API</h4><p>为了在将表单提交到服务器之前验证数据，HTML5新增了一些功能。有了这些功能，即便JavaScript被禁用或者由于种种原因未能加载，也可以确保基本的验证。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--required表示必填字段，适用于&lt;input&gt;&lt;textarea&gt;&lt;select&gt;等--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--email和url是两个得到支持最多的类型--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--只能输入0到100的值，且必须是5的倍数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">main</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">step</span>=<span class="string">"5"</span> <span class="attr">name</span>=<span class="string">"count"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--pattern属性，一个正则表达式，用于匹配文本框中的值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">pattern</span>=<span class="string">"\d+"</span> <span class="attr">name</span>=<span class="string">"count"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>使用checkValidity()方法可以检测表单中某个字段是否有效。字段的值是否有效判断的一句是本节前面介绍过的那些约束。</p>
-<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt;\select&gt;和&lt;\option&gt;元素创建。还有以下属性和方法</p>
+<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt; select &gt;和&lt; option &gt;元素创建。还有以下属性和方法</p>
 <ul>
-<li>add(newOption,relOption)：向空间中插入新的&lt;\option&gt;元素，在相关项之前</li>
+<li>add(newOption,relOption)：向空间中插入新的&lt; option &gt;元素，在相关项之前</li>
 <li>multiple：布尔值，表示是否允许多选；</li>
 <li>selectedIndex：基于0的选中项的索引，如果没有选中项，值为-1</li>
 <li>size：选择框中可见的行数；</li>
@@ -243,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cilyqpwcf000ygcq9g7tbzqhl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cilyym97v000ru0q9bxhr35ya" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -284,7 +437,7 @@
         <p>JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。</p>
 <h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。可以在最后阶段对事件做出响应。</p>
 <h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><p>事件有click/load和mouseover等，事件处理程序的名字以“on”开头。为时间制定处理程序的方式由多种。</p>
-<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;\input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>缺点：1.存在时差问题，可能导致时间处理程序不能执行。2.这样扩展时间处理程序的作用域链在不同浏览器中可能会导致不同结果。3.HTML与JavaScript代码紧密耦合。</p>
 <h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"click"</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.onclick = <span class="literal">null</span>; <span class="comment">//删除时间处理程序</span></span><br></pre></td></tr></table></figure>
 <h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><p>DOM2级事件定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListenter()和removeEventListener()。使用前者添加的事件，必须使用后者删除。一个事件可以引发多个事件处理程序。</p>
@@ -323,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cilyqpwe0002lgcq9lomuazop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cilyym98p001cu0q9n6coj8nq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -402,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cilyqpwcm0015gcq904ukhrrt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cilyym9870011u0q90b6giy8j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -484,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cilyqpwbn0007gcq9540g6fb8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cilyym96b000gu0q94z8vrv5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -812,7 +965,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilyqpwbu000dgcq9g2ili6h6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cilyym9bm003gu0q96xg8erpp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -894,7 +1047,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilyqpwca000rgcq92as7t53u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cilyym984000yu0q909b3e1f7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1008,113 +1161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilyqpwck0012gcq9ek00wb3o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/12/JavaScript-4/" class="article-date">
-  <time datetime="2016-03-12T10:14:57.000Z" itemprop="datePublished">2016-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/12/JavaScript-4/">闭包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
-<h2 id="闭包示例"><a href="#闭包示例" class="headerlink" title="闭包示例"></a>闭包示例</h2><ul>
-<li>在匿名函数从createComparisonFunction()中被返回后，它的作用域链被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象，匿名函数就可以访问其中定义的所有变量。</li>
-<li>createComparisonFunction()函数执行完毕后，其执行环境的作用域链会被销毁，但其活动对象不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。</li>
-<li>直到匿名函数被销毁后，createComparisonFunction()的活动对象才会被销毁。</li>
-</ul>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span>(<span class="params">propertyName</span>)</span>&#123;</span><br><span class="line">	returne <span class="function"><span class="keyword">function</span>(<span class="params"> object1, object2</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">var</span> value1 = boject1[propertyName];</span><br><span class="line">		<span class="built_in">var</span> value1 = boject1[propertyName];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(value1 &lt; value2)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(value1 &gt; value2)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建函数，并调用函数。</span></span><br><span class="line"><span class="built_in">var</span> compareNames = createComparisonFunction(<span class="string">"name"</span>);</span><br><span class="line"><span class="built_in">var</span> result = compareNames(&#123;<span class="attribute">name</span>:<span class="string">'liming'</span>&#125;,&#123;<span class="attribute">name</span>:<span class="string">'zhao'</span>&#125;);</span><br><span class="line"><span class="comment">//接触对匿名函数的引用，以便释放内存</span></span><br><span class="line">compareNames = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意。闭包只能取得包含函数中任何变量的最后一个值，因为闭包所保存的是整个变量对象。</li>
-<li>在闭包中使用this对象很可能会出问题，this可能指向window。</li>
-<li>内存泄露。闭包中不使用包含函数的对象，会造成其占用的内存永远不会被回收。在包含函数中，使用的对象，最后设置为null。收回对象占用的大量内存。</li>
-</ul>
-<h2 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h2><p>创建并立即调用一个函数，这个既可以执行其中的代码，又不会再内存中留下对该函数的引用，这就是模仿块级作用域。一般用于限制向全局作用域中添加过多的变量和函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outputNumbers</span><span class="params">(count)</span></span>&#123;</span><br><span class="line">	(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">			alert(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)();</span><br><span class="line"></span><br><span class="line">	alert(i); <span class="comment">//会导致错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>严格来说，JavaScript中没有私有成员的概念。不过任何在函数中定义的变量，都可以认为是私有变量。利用私有和特权成员，可以隐藏那些不应该被直接修改的数据。例如：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> Person(<span class="keyword">name</span>)&#123;</span><br><span class="line">	this.getName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">name</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	this.setName = <span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span><br><span class="line">		<span class="keyword">name</span> = <span class="keyword">value</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cilyqpwc3000jgcq918c81uhe" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/12/JavaScript-3/" class="article-date">
-  <time datetime="2016-03-12T08:30:48.000Z" itemprop="datePublished">2016-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/12/JavaScript-3/">面向对象</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>面向对象的语言有一个标志，那就是他们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。然而，ECMAScript中没有类的概念，所以它的对象也与基于类的语言中的对象有所不同。ECMA-262把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。</p>
-<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>在没有类的情况下，ECMAScript可以采用工厂模式、构造函数模式或者原型模式创建对象。</p>
-<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="title">g</span> <span class="title">createPerson</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="number">0</span> = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">	o.name = name;</span><br><span class="line">	o.age = age;</span><br><span class="line">	o.sayName = funciont()&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"liming"</span>, <span class="number">20</span>); <span class="comment">//person1的类型为object</span></span><br></pre></td></tr></table></figure>
-<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题，即怎么知道一个对象的类型。</p>
-<h4 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h4><p>由于工厂模式没有解决对象识别的问题，所以可以采用构造函数模式来做。但是构造函数模式的每个成员无法得到复用，包括函数。不能在多个对象间共享函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">this</span>.sayName = funchion()&#123; <span class="comment">//每次都会创建一个function的新实例</span></span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"liming"</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure></p>
-<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><p>我们创建的每个函数都有一个prototype（原型）属性，这个属性时一个指针，指向一个对象，而对这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">Person.prototy.name = <span class="string">"liming"</span>;</span><br><span class="line">Person.prototy.age = <span class="number">20</span>;</span><br><span class="line">Person.prototy.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(); <span class="comment">//可以修改person1的属性</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>除此以上三种基本方法外，还有结合几种方法产生的动态原型模式、寄生构造函数模式、稳妥构造函数模式等方法，分别有不同的优缺点。可根据需求选择相应的模式。</p>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>许多OO语言都支持两种继承方式：接口继承和实现继承。由于函数没有签名，在ECMAScript中无法实现接口继承，所以主要依靠原形链来实现。原形链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的，这样子类型就能够访问超类型的所有属性和方法。使用最多的继承模式是组成继承，这种模式使用原形链继承共享的属性和方法，而通过借用构造函数继承实例属性。除此外，还有原形链继承、寄生式继承、寄生组合式继承等方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法实现原型链的一种基本模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	teturn <span class="keyword">this</span>.property;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line">alert(instance.getSuperValue()); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cilyqpwcd000vgcq9xrgelpwt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cilyym97w000tu0q9ih6kstsv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1181,6 +1228,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
           </li>
         
@@ -1190,14 +1245,6 @@
         
           <li>
             <a href="/2016/03/18/JavaScript-8/">事件</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/16/CSS-3/">CSS-3</a>
           </li>
         
       </ul>
