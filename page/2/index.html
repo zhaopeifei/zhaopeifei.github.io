@@ -68,6 +68,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/11/JavaScript-2/" class="article-date">
+  <time datetime="2016-03-11T07:44:56.000Z" itemprop="datePublished">2016-03-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/11/JavaScript-2/">引用类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>引用类型的值（对象）是引用类型的一个实例。在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。<code>var person = new Object();</code>，这行代码创建了Object引用类型的一个实例，然后该实例保存在变量person中。</p>
+<h2 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h2><p>很多引用数据类型值都是Object类型的实例。而且，Object也是ECMAScript中使用最多的一个类型。 也可以使用对象字面量表示，省略“new object()”。一般来说，访问对象属性时都是用点表示：person.name，或方括号表示person[“name”]（推荐使用）。</p>
+<h2 id="Array类型"><a href="#Array类型" class="headerlink" title="Array类型"></a>Array类型</h2><p>ECMAScript中的数组与其他多数语言中的数组有着相当大的区别，虽然数组数据的有序列表，但数组的每一项都可以用来表示任何类型的数据。</p>
+<h4 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h4><p>创建数据的基本方法由两种，第一种用Array构造函数，第二用使用数组字面量法。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = new Array(<span class="number">20</span>); <span class="comment">//lenght = 20</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = Array(<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>); <span class="comment">//可以不要new</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors</span> = [<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>] </span><br><span class="line"><span class="variable"><span class="keyword">var</span> values</span> = [<span class="number">1</span>,<span class="number">2</span>,];<span class="comment">//不要这样！会创建一个包含2或3项的数组</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> values</span> = [<span class="number">1</span>,<span class="string">"two"</span>]; <span class="comment">//可以类型不同</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> colors.length</span> = <span class="number">2</span>; <span class="comment">//会导致colors的长度变为2，去掉第三个及后面的数值</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="检测数组及转换方法"><a href="#检测数组及转换方法" class="headerlink" title="检测数组及转换方法"></a>检测数组及转换方法</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="comment">(Array.isArray(value)</span>) &#123;<span class="comment">//检查value是数组的话，执行操作&#125;</span></span><br><span class="line"></span><br><span class="line">alert<span class="comment">(colors)</span>;                <span class="comment">//red,blue,green</span></span><br><span class="line">alert<span class="comment">(colors.toString()</span>);     <span class="comment">//red,blue,green</span></span><br><span class="line">alert<span class="comment">(colors.valueOf()</span>);      <span class="comment">//red,blue,green</span></span><br><span class="line"></span><br><span class="line">alert<span class="comment">(colors.join("||")</span>);      <span class="comment">//red||blue||green</span></span><br></pre></td></tr></table></figure>
+<h4 id="队列方法和栈方法"><a href="#队列方法和栈方法" class="headerlink" title="队列方法和栈方法"></a>队列方法和栈方法</h4><p>栈是先入后出策略，结合push()和pop()方法实现。队列是先入先出策略，结合push()和shift()方法实现。push()、pop()、shift()使用后，都会改变数组长度。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> count</span> = colors.push(<span class="string">"black"</span>,<span class="string">"white"</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> item</span> = colors.pop();  <span class="comment">//pop是突然抛出的意思。弹出最后一项"white"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> item1</span> = colors.shift(); <span class="comment">//shift是移动的意思，取出第一项</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> count</span> = colors.unshift(<span class="string">"yellow"</span>,<span class="string">"o"</span>); <span class="comment">//在数组最前面添加两项</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h2><p>ECMAScript通过RegExp类型支持正则表达式。使用下面类似Perl的语法，就可以创建一个正则表达式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expressions = <span class="regexp">/pattern/</span> flags ; <span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>模式pattern可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。flags有三个标志g i m，分别表示全局模式、不区分大小写、多行模型。一次可以带多个标志。</p>
+<h2 id="Function类型"><a href="#Function类型" class="headerlink" title="Function类型"></a>Function类型</h2><p>在ECMAScript中，函数都是Function类型的实例，与其它类型一样具有属性和方法，函数名实际上也是一个纸箱函数对象的指针，不会和某个函数绑定。函数名为指针，所以没有重载，后面的函数会指向之前定义的函数。另外，函数还可以作为值使用，它的值为返回值，所以可以作为另一个函数的输入参数。</p>
+<h4 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h4><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20.代码执行前，解析器已经将函数声明添加到函数声明中。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1,num2)</span>&#123;</span></span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(sum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//错误！在执行前，变量sum中不会保存对函数的引用。因为函数在初始化语句中。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum1</span><span class="params">(num1,num2)</span>&#123;</span></span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数内部属性"><a href="#函数内部属性" class="headerlink" title="函数内部属性"></a>函数内部属性</h4><p>在函数内部，有两个特殊的对象：arguments和this。arguments是一个类数组对象，包含传入函数中的所有参数（函数可以传入任何数量的参数）。arguments月还有一个名叫callee的属性，它指向拥有这个arguments的函数。还有一个函数对象的属性：caller，保存着调用当前函数的函数的引用，如果实在全局作用域中调用当前函数，它的值是null。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123; <span class="comment">// 使用递归算法求阶乘</span></span><br><span class="line">	<span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> nume*<span class="built_in">arguments</span>.callee(num<span class="number">-1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="函数属性和方法"><a href="#函数属性和方法" class="headerlink" title="函数属性和方法"></a>函数属性和方法</h4><p>在ECMAScript中，函数是对象，因此函数也有属性和方法。每个函数都包含两个属性：length和prototype。length属性表示函数希望接收的命名参数的个数。prototype是保存所有实例方法的真正所在，比如toString()等方法都在prototype名下，只不过通过各自对象的实例访问本罢了。并且prototype属性不可枚举。</p>
+<h2 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h2><p>为了便于操作基本类型值，ECMAScript还提供了3个特殊的引用类型：Boolean、Number、String。每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> falseObjext</span> = new <span class="keyword">Boolean</span>(<span class="literal">false</span>); <span class="comment">//bool形式的false。但是用typeof返回时object</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> falsevalue</span> = <span class="literal">false</span>; <span class="comment">//bool形式的false。使用typeo返boolean</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> numberObject</span> = new Number(<span class="number">10</span>); <span class="comment">// typeof返回object </span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> numberValue</span> = <span class="number">10</span>; <span class="comment">//typeof 返回number 两者的区别还在于对象的生存期。前者一直保存在内存中。后者不然</span></span><br><span class="line">alert(numberValue.toString(<span class="number">16</span>)); <span class="comment">//“a”，转为16进制，再转换成字符串形式</span></span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> stringObject</span> = new String(<span class="string">"hello world"</span>); <span class="comment">//typeof :object。可以添加属性和方法。</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> stringValue</span> = <span class="string">"hello world"</span>; <span class="comment">//typeof: string 。这种方法不能为其添加属性方法，会被立即销毁</span></span><br><span class="line">alert(stringValue.lenght); <span class="comment">//"11"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> result</span> = stringValue.concat(<span class="string">"!!!"</span>); <span class="comment">//result:"hello world!!!"</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> str</span> = stringValue.subString(<span class="number">2</span>); <span class="comment">//llo world</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> str</span> = stringValue.slice(<span class="number">3</span>,<span class="number">8</span>); <span class="comment">//lo wo</span></span><br><span class="line">alert(stringValue.indexOf(<span class="string">"o"</span>)); <span class="comment">//4.第一个o的位置。lastIndexOf("o"),最后一个o的位置</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="单体内置对象"><a href="#单体内置对象" class="headerlink" title="单体内置对象"></a>单体内置对象</h2><p>由ECMAScript实现提供的、不依赖于宿主环境的对象，在程序执行前已经存在。内置对象有Object、Array和String等。还有：Global和Math</p>
+<h4 id="Global对象"><a href="#Global对象" class="headerlink" title="Global对象"></a>Global对象</h4><p>所有在全局作用域中定义的属性和函数，都是全局对象的属性。不属于任何其他对象的属性和方法都是Global对象的属性和方法。</p>
+<ul>
+<li>URI编码方法。encodURI()和encodeURIComponent()可以对URI进行编码，以便发给浏览器。前者主要用于整个URI，后者主要用于对URI的某一段进行编码。</li>
+<li>eval()方法：就像一个完整的ECMAScript解析器。只接受一个参数，即要执行那个的代码的字符串。</li>
+<li>window对象：Web浏览器将这个全局对象作为window对象的一部分加以实现。所以全局作用域中声明的所有变量和函数，都成为了window对象的属性。</li>
+</ul>
+<h4 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h4><p>ECMAScript还未保存数学公式和信息提供了一个公共位置，即Math对象。</p>
+<ul>
+<li>Math.E: 自然数对数的底数，及常量E。还有Math.PI等特殊值常量</li>
+<li>min()/max():求输入的number中的最大值或最小值</li>
+<li>Math.round():四舍五入为最接近的整数。</li>
+<li>Math.random(): 返回大于等于0小于1的一个随机数</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cilyqpwc8000ogcq9z7kdnfka" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/09/JavaScript-1/" class="article-date">
@@ -159,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilxsi4ay0009eoq96wvqcouh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cilyqpwbx000fgcq90xj9iwr6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -228,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilxsi4bp0011eoq9ir5nxgw9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cilyqpwdv002igcq9xs9sxe6k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -342,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilxsi4bt0017eoq9w24d8i80" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cilyqpwco0019gcq9n65wwezj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -441,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilxsi4bs0014eoq9w9v9wir1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cilyqpwcx001ggcq9kx7hs69j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -533,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilxsi4c3001ieoq9unplyi19" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cilyqpwdt002ggcq96lemydiv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -652,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilxsi4at0005eoq9br1vd4ij" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cilyqpwbp0008gcq9smuqalat" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -738,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilxsi4as0004eoq9y3gdayxf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cilyqpwb50000gcq9fa5xzvzl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -890,7 +959,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilxsi4ag0000eoq97qmr70if" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cilyqpwc1000hgcq9k5tbjf7v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -974,7 +1043,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilxsi4bz001eeoq90xdi834f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cilyqpwdq002fgcq9px4uok7o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -986,101 +1055,10 @@
 
 
   
-    <article id="post-hexo-github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/25/hexo-github/" class="article-date">
-  <time datetime="2016-02-25T11:02:05.000Z" itemprop="datePublished">2016-02-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/25/hexo-github/">hexo+github博客前期实现步骤</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="系列教程链接"><a href="#系列教程链接" class="headerlink" title="系列教程链接"></a>系列教程链接</h2><p>关于博客环境的搭建，网上内容很多，此处先给一个比较全面系列教材的链接(感谢博主zippera)</p>
-<ul>
-<li><a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">hexo系列教程：（一）hexo介绍</a></li>
-<li><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">hexo系列教程：（二）搭建hexo博客</a></li>
-<li><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">hexo系列教程：（三）hexo博客的配置、使用</a></li>
-<li><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">hexo系列教程：（四）hexo博客的优化技巧</a></li>
-<li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">hexo系列教程：（五）hexo博客的优化技巧续</a><br>根据以上教程，一步一步来，基本可以搭建完成你的博客啦~</li>
-</ul>
-<h2 id="我在搭建中出现的问题"><a href="#我在搭建中出现的问题" class="headerlink" title="我在搭建中出现的问题"></a>我在搭建中出现的问题</h2><h4 id="Gitbash使用问题"><a href="#Gitbash使用问题" class="headerlink" title="Gitbash使用问题"></a>Gitbash使用问题</h4><ul>
-<li>在初次使用时，会发现行首有一个$符号，有这个符号时，就代表Gitbash在等待你的指令。</li>
-<li>当你输入指令后，按回车键，Gitbash开始执行命令。但是此时看起来可能没有任何反应，请耐心等待。</li>
-<li>命令执行完成后，你会再次发现$符号。如果执行有错，根据相关提示，google解决方案。</li>
-<li>有些常见问题可在这个博客里面找到解决方案：<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">HEXO+Github,搭建属于自己的博客</a></li>
-</ul>
-<h4 id="注册Github账号问题"><a href="#注册Github账号问题" class="headerlink" title="注册Github账号问题"></a>注册Github账号问题</h4><p>上面的教程中没有详细讲解，可以参考下面这个教程<br> <a href="http://blog.csdn.net/renfufei/article/details/37725057/" target="_blank" rel="external">创建GitHub技术博客全攻略</a><br>根据上面这个教程，完成到第三步（创建页面仓库）即可。如果都完成也没有问题，部署完hexo博客后，会替换成新界面的。</p>
-<h4 id="hexo-服务器问题"><a href="#hexo-服务器问题" class="headerlink" title="hexo 服务器问题"></a>hexo 服务器问题</h4><ul>
-<li>本地查看过程中，请先在Gitbash中执行以下命令，安装hexo服务器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="部署问题"><a href="#部署问题" class="headerlink" title="部署问题"></a>部署问题</h4><ul>
-<li>在部署过程中，错误提示：Deployer not found：git时，在Gitbash中执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后重新deploy即可</p>
-<ul>
-<li><p>deploy格式</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">	<span class="attribute">type</span>: git</span><br><span class="line">	<span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/zhaopeifei/zhaopeifei.github.io.git</span></span><br><span class="line">	<span class="attribute">branch</span>: master</span><br><span class="line">	<span class="attribute">message</span>:</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Gitbash可能提示你输入github账户的用户名和邮箱，根据Gitbash提示的命令格式输入。</p>
-</li>
-<li>在Gitbash中输入用户名和密码后，会弹出openSSH设置，输入你的用户名和密码即可。</li>
-<li>deploy完成后，会显示以下信息，此时，则上传到你的github账号的内存里面，过一小段时间，你的博客信息就会更新。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="主题问题"><a href="#主题问题" class="headerlink" title="主题问题"></a>主题问题</h4><ul>
-<li>在上面的系列教材中，hexo的默认主题是light。但目前（2016.2），hexo的默认主题是landscape。其yml文件内容有所不同，暂时默认，以后再进行修改即可。</li>
-<li>最开始显示的时候，你在右边栏看不到分类，tag，tagcloud这些东西，这是因为你的分类和标签里面没有任何内容，所以没有显示。只需要在你的新建的md文件上面填写tag，categories的内容就会显示了。<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> hexo+github博客前期实现步骤</span><br><span class="line"><span class="attr">date:</span> <span class="number">2016</span><span class="bullet">-02</span><span class="bullet">-25</span> <span class="number">19</span>:<span class="number">02</span>:<span class="number">05</span></span><br><span class="line"><span class="attr">tags:</span> [Hexo,其他]</span><br><span class="line"><span class="attr">categories:</span> Hexo</span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="markdown写法问题"><a href="#markdown写法问题" class="headerlink" title="markdown写法问题"></a>markdown写法问题</h4><ul>
-<li>markdown很简单，基本的书写看这个介绍即可：<a href="http://sspai.com/25137" target="_blank" rel="external">认识与入门 Markdown</a></li>
-<li>markdown编写工具也有很多，网页版的就有很多（左边写markdown，右边显示结果）。我用的sublime。以后发现好的再推荐。</li>
-</ul>
-<h4 id="hexo文件夹结构"><a href="#hexo文件夹结构" class="headerlink" title="hexo文件夹结构"></a>hexo文件夹结构</h4><ol>
-<li>source：资源文件夹是存放用户资源的地方，里面有一个_post文件夹是放你自己的post文件的地方</li>
-<li>themes：主题文件夹，hexo会根据主题来生成静态页面，里面有默认的主题landscape文件夹</li>
-<li>scaffolds：模板文件夹，新建文章时，hexo会根据其建立文件。hexo有三种默认布局：post page 和draft</li>
-<li>_config.yml：全局的配置文件。每个主题下面也有一个这个文件，属于主题的配置文件。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cilxsi4bx001beoq9pxi745k8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -1132,6 +1110,10 @@
       <ul>
         
           <li>
+            <a href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/18/JavaScript-9/">表单脚本</a>
           </li>
         
@@ -1145,10 +1127,6 @@
         
           <li>
             <a href="/2016/03/16/CSS-3/">CSS-3</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/14/HTML5/">HTML5</a>
           </li>
         
       </ul>
