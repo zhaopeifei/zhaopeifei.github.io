@@ -15,7 +15,7 @@
 <meta property="og:description" content="支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。
 离线检测HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。
 12345if(navigator.online)&amp;">
-<meta property="og:updated_time" content="2016-03-19T07:49:03.739Z">
+<meta property="og:updated_time" content="2016-03-23T08:13:35.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="离线应用于客户端存储">
 <meta name="twitter:description" content="支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。
@@ -106,6 +106,7 @@
 <h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5的应用缓存可以简称为appcache，是专门为开发离线Web应用而设计的。Appcache是从浏览器的缓存中分出来的一块缓存区。可以使用一个描述文件，列出要下载和缓存的资源，就可以将相应的资源存储到这个区域。<br>要将描述文件与页面关联起来，可以在&lt; html &gt;中的manifest属性中指定这个描述文件的路径。</p>
 <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>随着Web应用程序的出现，也产生了对于能够直接在客户端上存储用户信息能力的要求。一下为几种客户端存储数据的方式。</p>
 <h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP Cookie，最初是在客户端用于存储会话信息的。该标准要求服务器对任意HTTP请求发送Set-Cookie HTTP头最为相应的一部分，其中包含会话信息。<br>cookie有访问者限制，有长度限制，每个域的cookie总数也有限制。cookie由浏览器保存到额以下几块信息构成：名称、值、域、路径、失效时间、安全标志等。<br>在JavaScript中处理cookie有些复杂，因为其蹩脚的接口，即BOM的document.cookie属性。这个属性的独特之处在于它会因为使用它的方式不同而表现不同的行为。基本的cookie操作有三种：读取、写入和删除。</p>
+<h4 id="IE用户数据"><a href="#IE用户数据" class="headerlink" title="IE用户数据"></a>IE用户数据</h4><p>在IE5.0中，微软通过一个自定义行为引入了持久化用户数据的概念。要使用持久化用户数据，就必须使用CSS在某个元素上指定userData行为，该元素即可使用setAttribute()方法在上面保存数据了。为了将数据提交到浏览器缓存中，还必须调用save()方法并告诉它要保存到的数据空间的名字。如下：<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> style=<span class="string">"behavior:url(#default#userData)"</span> id=<span class="string">"dataStore"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">dataStore = setAttribute(<span class="string">"name"</span>,<span class="string">"liming"</span>);</span><br><span class="line">dataStore = setAttribute(<span class="string">"sex"</span>,<span class="string">"men"</span>);</span><br><span class="line">dataStore.save(<span class="string">"staffInfo"</span>); <span class="comment">//存储</span></span><br><span class="line"></span><br><span class="line">dataStore1.load(<span class="string">"staffInfo"</span>); <span class="comment">//调用，加载。staffInfo的信息就会加载到dataStore1中</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="Web存储机制"><a href="#Web存储机制" class="headerlink" title="Web存储机制"></a>Web存储机制</h4><p>Web Storage成为了HTML5的一部分。其目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。其目标有：提供一种在cookie之外存储会话数据的路径，提供一种存储大量可以跨会话存在的数据的机制。</p>
 <ul>
 <li>Storage类型提供最大的存储空间来存储名值对儿。Storage的实例有以下方法：clear()、getItem(name)、key(index)、removeItem(name)、setItem(name,value)，此外还有length等属性。</li>
@@ -119,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cilyym95r0007u0q9xk5u0laq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cim4kr7nn000hm0q9lfy19d1v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
