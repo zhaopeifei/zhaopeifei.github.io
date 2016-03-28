@@ -68,6 +68,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-TCP-IP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/07/TCP-IP/" class="article-date">
+  <time datetime="2016-03-07T12:09:11.000Z" itemprop="datePublished">2016-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/07/TCP-IP/">TCP/IP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入<a href="https://www.rfc-editor.org/rfc" target="_blank" rel="external">RFC</a>文档并公布。互联网协议=TCP/IP。</p>
+<h2 id="TCP-IP分层模型与通信示例"><a href="#TCP-IP分层模型与通信示例" class="headerlink" title="TCP/IP分层模型与通信示例"></a>TCP/IP分层模型与通信示例</h2><p>在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首部、以太网包首部，网络中传输的数据包由两部分组成：协议所要用到的首部、上层传过来的数据。另外，每个分层的包首部汇总还含有一个识别位，用来标示上一层协议的种类信息。</p>
+<h4 id="甲给乙发送电子邮件“早上好”"><a href="#甲给乙发送电子邮件“早上好”" class="headerlink" title="甲给乙发送电子邮件“早上好”"></a>甲给乙发送电子邮件“早上好”</h4><ol>
+<li>应用程序处理：进行编码处理（如UTF-8编码），并由应用判断何时发送数据建立TCP连接。</li>
+<li>TCP模块的处理：在应用层数据的前端附加一个TCP首部，包含源端口号、目标端口号、序号以及校验和，再发给IP，提供将应用层发来的数据发送至对端的可靠传输。</li>
+<li>IP模块的处理：IP将TCP传过来的数据包当做数据，并在TCP首都的前端加上自己的IP首部，包含发送端IP地址和接收端IP地址等。参考路由控制表决定接手此IP包的路由或主机，并发给下一节点的驱动程序。此时要知道接收端的MAC地址，以将MAC地址和IP地址交给以太网的驱动程序，可以利用ARP查找。</li>
+<li>网络接口（以太网驱动）的处理： 给从IP传过来的IP包加上以太网包首部（包含接/发端MAC地址、标志以太网类型的以太网数据的协议）并进行发送处理。发送处理中的FCS由硬件计算，添加到包的最后。</li>
+<li>网络接口（以太网驱动）的处理：主机收到以太网包后，从包首部找到MAC地址，判断是否为发给自己的包，不是则丢弃数据。是的话，检查上层的数据类型，传给相应的子程序，如IP程序。</li>
+<li>IP模块的处理：如果是发给自己的IP地址，则可接受数据并查找上一层的协议。在有路由器的情况下，如果不是自己的地址，则借助路由控制表，调查应该送达的主机或路由器后转发数据。</li>
+<li>TCP模块的处理：首先计算校验和，判断数据是否被破坏。然后检查是在安装序号接收数据，最后是检查端口号，确定具体的应用程序。接收完毕后发生一个“确认回执”给发送端。</li>
+<li>应用程序的处理：接收端应用程序接收数据，解析数据。给句解析结果反馈信息，如已接受、被退回等。</li>
+</ol>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP和ICMP两个协议组成，当然还有DNS、ARP等于IP相关的协议。</p>
+<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由以及IP分包和组包。</p>
+<ul>
+<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。</li>
+<li>一个数据包之所以能够成功地到达最终的目标地址，全靠路由控制。一跳（Hop）指利用数据连输层以下分层的功能传输数据帧的一起区间。</li>
+<li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
+</ul>
+<h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
+<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不知检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
+<h4 id="ARP（IPv4、IPv6）"><a href="#ARP（IPv4、IPv6）" class="headerlink" title="ARP（IPv4、IPv6）"></a>ARP（IPv4、IPv6）</h4><p>ARP是一种解决地址问题的协议。以目标IP地址为线索，用来定位下一个应该接收数据分包的网络设备对应的MAC地址。ARP借助ARP请求与ARP响应两种类型的包确定MAC地址，源主机要通过广播发送一个ARP请求包，下一个网络设备确定是自己后，将MAC地址塞入ARP响应返回，进而实现IP通信。</p>
+<ul>
+<li>RARP是ARP反过来，从MAC地址定位IP地址的一种协议。例如通过DHCP自动获取IP地址。</li>
+<li>代理ARP：通常ARP包会被路由器隔离，使用代理ARP的路由器可以将ARP请求转发给相邻的网段。</li>
+</ul>
+<h4 id="ICMP（IPv4、IPv6）"><a href="#ICMP（IPv4、IPv6）" class="headerlink" title="ICMP（IPv4、IPv6）"></a>ICMP（IPv4、IPv6）</h4><p>ICMP的主要功能包括，确认IP包是否成功送达目标地址，通知在发送过程中IP包被废弃的具体原因，改善网络设置等。ICMP的消息大致分为两类：通知出错原因的错误消息、用于诊断的查询消息，主要的ICMP消息有：目标不可达消息、重定向消息、超时消息、返回消息等。ICMP使用IP发送。</p>
+<h4 id="DHCP（IPv4、IPv6）"><a href="#DHCP（IPv4、IPv6）" class="headerlink" title="DHCP（IPv4、IPv6）"></a>DHCP（IPv4、IPv6）</h4><p>DHCP协议可以实现自动设置IP地址、统一管理IP地址分配，实现即插即用。使用DHCP前，要假设DHCP服务器，并将所要分配的IP地址设置到服务器上，还需要相应的子网掩码、路由控制信息以及DNS服务器的地址等。一般的家庭网络都由宽带路由器冲到DHCP的角色。</p>
+<h4 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h4><p>IP隧道可以将IPv6网络发过来的包统和为一个数据，再为之追加一个IPv4首部在IPv4网络中传送（要在下个IPv6网络中，去除追加的IPv4首部），也可以将ipv4网络发过来的包统和为一个数据，再为之追加一个IPv6首部在IPv6网络中传送。</p>
+<h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><p>TCP和UDP是传输层具有代表性的协议。TCP提供可靠的通信传输，而UDP常被用于让广播和细节控制交给应用的不可靠通信传输。传输层要指出具体的程序，使用端口号（有逻辑端口和物理端口，此处指逻辑端口0~65535）这样的一种识别码，通过端口识别，将数据传递给HTTP、FTP等应用层协议。</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
+<ul>
+<li>通过序列号与确认应答提高可靠性。发送端如果没有收到接收端发送的确认应答（ACK），进行重发。</li>
+<li>重发超时，发送端等待确认应答时间超时后，重发。</li>
+<li>连接管理：在通信前，通过TCP首部发送一个SNY包作为建立连接的请求并等待应答，收到确认应答，开始发送数据。最后发送FIN请求切断连接，获取确认应答后，断开连接。</li>
+<li>利用窗口控制提高速度，并进行重发控制。</li>
+<li>拥塞控制：在通信一开始时就会通过一个叫慢启动的算法得出的数值，对发送量进行控制。</li>
+</ul>
+<h4 id="TDP"><a href="#TDP" class="headerlink" title="TDP"></a>TDP</h4><p>UDP是不具有可靠性的数据报协议。它不提供复杂的控制机制，细微的处理它会交给上层的应用去完成，它在收到应用程序发来的数据后，立即鸳鸯发送到网络。UDP主要用于那些对高速传输和实时性有较高要求的通信或广播通信，比如DNS、即时通信等。</p>
+<h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><p>利用网络的应用程序很多，包括web浏览器、电子邮件、远程登录、文件传输、网络管理扥个，能够让这些应用程序进行特定通信处理的正是应用协议。</p>
+<h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p>远程登录主要使用TELNET和SSH两种协议，TELNET经常用于登录路由器或高性能交换机等网络设备进行相应的设置。SSH是加密的远程登录系统，可以具有更强的认证机制，可以转发文件，可以使用端口转发功能。OpenSSH是SSH协议的免费开源实现。</p>
+<h4 id="WWW万维网"><a href="#WWW万维网" class="headerlink" title="WWW万维网"></a>WWW万维网</h4><p>万维网（又称web）是将互联网中的信息以超文本形式展现的系统。WWW定义了3个重要的概念：访问信息的手段和位置（URI）、信息的表现形式（HTML）以及信息转发（HTTP）等。</p>
+<ul>
+<li>URI（Uniform Resource Identifier）用来标识资源，是一种可以用于WWW之外的高效的识别码，可用于主页地址、电子邮件、电话号码等各种组合中。URL常被用来标示互联网中所有资源的具体位置。</li>
+<li>HTML：具有纯文本的功能，在页面中可以为文字或图像附加链接。它是WWW通用的数据表现协议，可以认为HTML属于WWW的表示层。另，JavaScript是一种嵌入在HTML中的编程语言。</li>
+<li>HTTP。当用户在浏览器的地址栏里输入所要访问的Web也的URI后，HTTP的处理机会开始，首先客户端向服务器的80端口建立一个TCP链接，然后在这个TCP连接上进行请求和应答以及数据报文的发送。</li>
+<li>HTTPS ：Web中可以通过TLS/SSL对http通信进行加密，这种http通信叫做HTTPS通信。</li>
+</ul>
+<h2 id="域名、URL、网站名"><a href="#域名、URL、网站名" class="headerlink" title="域名、URL、网站名"></a>域名、URL、网站名</h2><p><a href="http://mail.163.com/index.html" target="_blank" rel="external">http://mail.163.com/index.html</a></p>
+<ul>
+<li>http:// 这是个协议，即http超文本传输协议，也就是网页在网上传输的协议。</li>
+<li>mail 这个是服务器名，代表一个邮箱服务器</li>
+<li>163.com 这个是域名，是用来定位网站的独一无二的名字</li>
+<li>mail.163.com 这个是网站名，由服务器名+域名组成</li>
+<li>index.html 这个是根目录下得默认网页</li>
+<li>整体叫做URL，统一资源定位符，定位网上资源。由协议 + 服务器 + 域名 + 网页html组成</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cimc305xc001vuoq9p5yqn6e2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-web-base" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/03/web-base/" class="article-date">
@@ -148,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cimalatci001wkgq9eyqr5inq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cimc305y8003fuoq9kz4gc472" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -267,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cimalatau0007kgq9bh0etner" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cimc305y2003cuoq9y04q460x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -353,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cimalatak0001kgq9ks1oxnl8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cimc305u10000uoq9f93i1t9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -505,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimalatak0000kgq9358gg4ce" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimc305vo000buoq9xbe5y2j3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -589,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimalatci001skgq9subc0d2p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimc305xm0025uoq99wxmm8z1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -680,7 +779,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cimalatcs0023kgq9uit7mf2p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cimc305wo0019uoq9f51xyw6v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -747,6 +846,10 @@
       <ul>
         
           <li>
+            <a href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/27/nodejs-project/">Node.js初试</a>
           </li>
         
@@ -760,10 +863,6 @@
         
           <li>
             <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
           </li>
         
       </ul>
