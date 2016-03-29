@@ -68,6 +68,85 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/18/JavaScript-7/" class="article-date">
+  <time datetime="2016-03-18T07:14:51.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>尽管DOM作为API已经非常完善了，但为了实现更多的功能，仍然会有一些标准或专有的扩展。W3C着手将一些已经称为事实标准的专有扩展标准化并写入规范当中。</p>
+<h2 id="选择符API"><a href="#选择符API" class="headerlink" title="选择符API"></a>选择符API</h2><p>众多JavaScript库中最常用的一项功能，就是根据CSS选择符选择与某个模式匹配的DOM元素。jquery的核心就是通过选择符查询DOM文档取得元素的引用，从而抛开了getElementById()和getElementByTagName()。Selectors API致力于让浏览器原生支持CSS查询，这样一来，解析和树查询操作可以在浏览器内部通过编译后的代码来完成，极大地改善了性能。其核心方法有querySelector(“img.button”)和querySelectorAll(“#myDiv”),分别返回匹配的第一个元素和全部元素。<br>Selectors API Level2规范为Element类型新增了一个方法matchesSelector()。这个方法接收了一个参数，即CSS选择符，匹配则返回true。</p>
+<h2 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h2><p>对于元素间的空格，IE9及之前的版本不会返回文本节点，而其他浏览器都会返回文本节点。为了弥补此差异，Element Traversal API为DOM添加了5个属性：childElementCount、firstElementChild、lastElementChild、previousElementSibling、nextElementSibling。利用这些元素就不必担心空白文本节点。</p>
+<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h4 id="与类相关的扩充"><a href="#与类相关的扩充" class="headerlink" title="与类相关的扩充"></a>与类相关的扩充</h4><ul>
+<li>getElementByClassName()方法。接收一个参数，包含一个或多个类名的字符串，类名的先后顺序不重要。返回带有指定类的所有元素的NodeList。</li>
+<li>classList属性。是新集合类型DOMTokenList的实例。包含一个元素的类名列表。有方法：add() contains() remove() toggle()（如果已经存在，删除，如果没有，添加）。</li>
+</ul>
+<h4 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h4><p>document.activeElement属性，始终引用DOM中当前获得了焦点的元素。元素获得焦点的方式有页面加载、用户输入和在代码中调用focus()方法。</p>
+<h4 id="HTMLDocument的变化"><a href="#HTMLDocument的变化" class="headerlink" title="HTMLDocument的变化"></a>HTMLDocument的变化</h4><ul>
+<li>document.readyState属性，有两个可能值：loading和complete，分别表示正在加载文档和已经加载完文档。</li>
+<li>head属性。HTML5新增了document.head属性，引用文档的&lt;\head&gt;元素。</li>
+</ul>
+<h4 id="自定义数据属性"><a href="#自定义数据属性" class="headerlink" title="自定义数据属性"></a>自定义数据属性</h4><p>HTML5规定可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息。</p>
+<h4 id="innerHTML属性和outerHTML属性"><a href="#innerHTML属性和outerHTML属性" class="headerlink" title="innerHTML属性和outerHTML属性"></a>innerHTML属性和outerHTML属性</h4><ul>
+<li>innerHTML属性：在读模式下，innerHTML属性返回与调用元素的所有子节点对应的HTML标记。</li>
+<li>outerHTML属性：在读模式下，outerHTML属性返回调用它的元素及所有子节点的HTML标记。</li>
+<li>insertAdjacentHTML()方法。在特定的位置插入HTML文本。</li>
+<li>使用以上方法替换子节点可能会导致浏览器的内存占用问题。所以要避免频繁使用以上方法。</li>
+</ul>
+<h2 id="专有扩展"><a href="#专有扩展" class="headerlink" title="专有扩展"></a>专有扩展</h2><h4 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h4><p>页面的文档模式决定了可以使用什么功能。即，文档模式决定了可以使用哪个级别的CSS，可以在JavaScript中使用那些API，以及如何对待文档类型（doctype）。</p>
+<h4 id="children属性和contains-方法"><a href="#children属性和contains-方法" class="headerlink" title="children属性和contains()方法"></a>children属性和contains()方法</h4><ul>
+<li>children属性，是HTMLCollection的实例，只包含元素中同样还是元素的子节点。除此外，children属性与childNodes没有什么区别。</li>
+<li>contains()方法：用于检测某个节点是不是另一个节点的后代，是则返回true</li>
+</ul>
+<h4 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h4><ul>
+<li>innerText属性。操作元素中包含的所有文本内容，包括子文档书中的文本。会去掉元素内容</li>
+<li>outerText属性。作用范围扩大到调用它的节点。在写模式喜爱，outerText会替换掉整个元素，包括子节点。</li>
+</ul>
+<h2 id="DOM2和DOM3"><a href="#DOM2和DOM3" class="headerlink" title="DOM2和DOM3"></a>DOM2和DOM3</h2><p>DOM1级主要定义的是HTML和XML文档的底层结构。DOM2和DOM3级则在这个结构的基础上引入了更多的交互能力，也支持了更高级的XML特性。DOM2和DOM3分为了许多模块，分别描述了DOM的某个非常具体的子集。</p>
+<ul>
+<li>DOM2级核心：在1级核心基础上构建，为节点添加了更多方法和属性。</li>
+<li>DOM2级视图：为文档定义了基于样式信息的不同视图。</li>
+<li>DOM2级事件：说明了如何使用事件与DOM文档交换。</li>
+<li>DOM2级样式：定义了如何以编程方式来访问和改变CSS样式信息。</li>
+<li>DOM2级遍历和范围：引入了遍历DOM文档和选择其特定部分的新接口。</li>
+<li>DOM2级HTML：在1级HTML基础上构建，添加了更多属性、方法和新接口。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cimdim1jx000omoq94qvrhtfk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS-3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/16/CSS-3/" class="article-date">
@@ -138,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cimc305w1000luoq910kmp53o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cimdim1j90007moq98n51ff1q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -466,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cimc305vi0007uoq9gz46vaxa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cimdim1ka0014moq9iscagdm1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -548,7 +627,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cimc305wm0015uoq96p3zg7mm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cimdim1jp000hmoq9xfuz0sry" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -662,7 +741,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cimc305wi0012uoq92rff0ily" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cimdim1k70011moq9674d0pxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -718,7 +797,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cimc305x4001ouoq9oq6xkewt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cimdim1jn000fmoq9zvjd1u7b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -768,7 +847,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cimc305wg000xuoq9ic3xjp4p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cimdim1jg000bmoq9hfmmj222" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -837,7 +916,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cimc305wc000suoq9ezrh4au1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cimdim1jt000mmoq9mrkp0a9m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -940,7 +1019,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cimc305vk0008uoq9vz42gq14" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cimdim1iu0001moq9je100klq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1009,149 +1088,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cimc305x7001ruoq9hjnzud6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cimdim1kg0018moq949qyx7mx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-data-structure" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/08/data-structure/" class="article-date">
-  <time datetime="2016-03-08T11:37:16.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/08/data-structure/">数据结构（C语言版）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据结构概述"><a href="#数据结构概述" class="headerlink" title="数据结构概述"></a>数据结构概述</h2><p>数据结构是一门研究非数值运算的程序设计问题中计算机的操作对象以及它们之间的关系和操作等等的学科。抽象数据类型由数据对象，数据对象关系集和基本操作集。</p>
-<ul>
-<li>数据：在计算机科学中指所有能输入计算机中并被计算机程序处理的符号的总称。</li>
-<li>数据元素：数据的基本单位，在计算机程序中通常作为一个整体进行考虑和处理。如一本书的数目信息为一个数据元素，而一个数据元素又有许多数据项组成。数据项是不可分割的最小单位。</li>
-<li>数据对象：性质相同的数据元素的集合，是数据的一个子集。</li>
-<li>数据结构：是相互之间存在一种或多种特定关系的数据元素的结合。通常有四种基本结构：集合、线性结构、树形结构、图状结构或网状结构。</li>
-</ul>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>算法有5个重要特性：有穷性、确定性、可行性、输入、输出。<br>算法设计的要求有：正确性、可读性、健壮性、效率与低存储需求。<br>算法效率的度量：</p>
-<ul>
-<li>时间复杂度：一般情况下，算法中基本操作重复执行的次数是问题规模n的某个函数f(n)，算法的时间度量记做T(n) = O(f(n)</li>
-<li>空间复杂度，本书空间复杂度作为算法所需存储空间的度量，记做S(n) = O(f(n))</li>
-</ul>
-<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p>线性表是最常用且最简单的一种数据结构。一个线性表是N个数据元素的有限序列。</p>
-<h4 id="线性表的顺序表示和实现"><a href="#线性表的顺序表示和实现" class="headerlink" title="线性表的顺序表示和实现"></a>线性表的顺序表示和实现</h4><p>线性表的顺序表示指用一组地址连续的存储单元依次存储线性表的数据元素(如数组等)。假设有a1~an个元素顺序组成线性表，要在ai处添加/删除一个元素，则必须移动n-i个元素。则该算法移动元素次数的期望为（n-1）/2和n/2，则算法的时间复杂度是O（n）。</p>
-<h4 id="线性链表"><a href="#线性链表" class="headerlink" title="线性链表"></a>线性链表</h4><ul>
-<li>线性表的链式存储结构的特点是用一组任意的存储单元存储线性表的数据元素。每个数据元素称为一个结点，包含两个域：数据域、指针域。整个链表的存取必须从头指针开始，且最后一个结点的指针域为null</li>
-<li>循环链表是另一种形式的链式存储，其特点是表总最后一个结点指向第一个结点。</li>
-<li>双向链表，为克服单链表单向性的缺点，可利用双向链表，一个结点有两个指针域。</li>
-</ul>
-<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><p>从数据结构看，栈和队列也是线性表，其特殊性在于栈和队列的基本操作是线性表操作的子集，是操作受限的线性表。</p>
-<h4 id="栈（注意递归问题）"><a href="#栈（注意递归问题）" class="headerlink" title="栈（注意递归问题）"></a>栈（注意递归问题）</h4><p>栈是限定仅在表尾进行插入或删除操作的线性表。即后进先出。表尾端有其特殊含义，称为栈顶，表头端称为栈底。插入元素叫入栈，删除栈底元素叫做出栈。栈的应用为迷宫求解问题、表达式求值（寄存运算符栈、寄存操作数栈）、实现递归（如求二叉树深度、N!）等。</p>
-<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>队列是一种先进先出的线性表。允许插入的一端叫做队尾，允许删除的一端称为队首。常用于排队的情况。</p>
-<ul>
-<li>链队列，即用链表表示的队列，一个队列需要两个分别指向队头和队尾的指针。</li>
-<li>循环对列。在循环链表的基础上，加上队首指针和队尾指针。</li>
-</ul>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串是由零个或多个字符组成的有限序列，一般即为<code>s = &#39;a1a2a3……an&#39;</code><br>字符串在机内有三种表示方法：</p>
-<ul>
-<li>定长顺序存储表示，对字符串长度有限制。类似于线性表的顺序存储结构，用一组地址连续的存储单元存储字符串的字符序列。</li>
-<li>堆分配存储表示，对字符串长度没有限制。特点是以一组地址连续的存储单元存放字符串序列，但其存储空间是程序执行过程中动态分配的。</li>
-<li>串的块链存储表示。</li>
-</ul>
-<h2 id="数组和广义表"><a href="#数组和广义表" class="headerlink" title="数组和广义表"></a>数组和广义表</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>数组一旦被定义，它的维数和维界就不再改变，即结构中的数据元素个数和元素间的关系不再变动。除了结构初始化和销毁外，只能存取元素和修改元素值。</p>
-<h4 id="矩阵的压缩存储"><a href="#矩阵的压缩存储" class="headerlink" title="矩阵的压缩存储"></a>矩阵的压缩存储</h4><p>在数值分析中，常出现一些阶数很高的矩阵，同时矩阵中有很多相同的元素或者零元素（即稀疏矩阵），为了节省存储空间，可以对这类矩阵进行压缩存储。即：为多个值相同的元只分配一个存储空间（0元不分配空间）。采用三元组（x,y,value）顺序表对矩阵进行压缩。</p>
-<h4 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h4><p>广义表是线性表的推广。广义表LS的定义是一个递归的定义，如：LS=(a1(a2(a3,a4,a5)))<br>广义表非空时，称第一个元素a1为LS的表头，称其余元素组成的表是LS的表尾。表头可能是原子，也可能是列表。由于广义表中的数据元素可以具有不同的结构，因此难以用顺序存储结构表示，通常采用链式存储结构，每个数据元素可以由一个结点表示。广义表需要两种结构的结点，原子结点和表结点。一个表结点可由三个域组成：标志域、指示表头的指针域和知识表尾的指针域。一个原子结点需要：标志域和值域。</p>
-<h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>树型结构是一类重要的非线性数据结构。其中以树和二叉树最为常用。</p>
-<h4 id="树"><a href="#树" class="headerlink" title="树"></a>树</h4><p>树是n个结点的有限集，在任意一颗非空树中：1.有且仅有一个特定的称为根的结点。2.当n&gt;1时，其余几点可分为m个互不相交的有限集，其中每个集合本身又是一棵树，并且被称为子树。结点拥有的子树数称为结点的度，度为0的根节点称为叶子或终端结点，不为0的结点称为非终端节点或分支结点。结点的子树的根称为该结点的孩子（child），该结点称为孩子的双亲（parent），同一个双亲的孩子之间称为兄弟（sibling）。树中结点的最大层次称为树的深度。根节点为第一层。<br>森林是m颗互不相交的树的集合。对树中每个结点而言，其子树的集合即为森林。</p>
-<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>二叉树是另一种树型结构，其特点是每个结点至多只有两颗子树，且二叉树的子树有左右之分，其次序不能任意颠倒。<br>一颗深度为k且有2的k次方减一个结点的二叉树称为满二叉树。从上到下，从左到右为满二叉树所有结点编号的称为完全二叉树。二叉树存储结构如下：</p>
-<ul>
-<li>顺序存储结构：仅适用于完全二叉树</li>
-<li>链式存储结构：二叉树的链表中的结点至少包含三个域：数据域和左右指针域，有时还要有双亲域。</li>
-</ul>
-<h4 id="遍历二叉树和线索二叉树"><a href="#遍历二叉树和线索二叉树" class="headerlink" title="遍历二叉树和线索二叉树"></a>遍历二叉树和线索二叉树</h4><ul>
-<li>遍历二叉树：按某条搜索路径巡访每个结点，且只访问一次。有先（根）序遍历、中序遍历和后序遍历。</li>
-<li>线索二叉树：对一个非线性结构进行线性化操作。一般链表存储结构为：左孩子指针域、数据、右孩子指针域。添加两个标志域：ltag、rtag。若结点有左子树，则ltag为0，lchild指示左孩子，否则，ltag为1，lchild指示前驱，若结点有右子树，则ltag为0，lchild指示右孩子，否则，ltag为1，lchild指示后继。</li>
-</ul>
-<h4 id="树和森林"><a href="#树和森林" class="headerlink" title="树和森林"></a>树和森林</h4><p>树常用的存储结构：</p>
-<ul>
-<li>双亲表示法：每个结点中包含两项：数据和双亲结点指示。</li>
-<li>孩子表示法：每个结点可能有多棵树，则可用多重链表，即每个结点有多个指针域指向孩子。</li>
-<li>孩子兄弟表示法：又称二叉树表示法。链表中结点的两个链域分别指向该结点的每第一个孩子结点和下一个兄弟结点。</li>
-</ul>
-<h4 id="赫夫曼树及其应用"><a href="#赫夫曼树及其应用" class="headerlink" title="赫夫曼树及其应用"></a>赫夫曼树及其应用</h4><p>赫夫曼（Huffman）树，又称最优树，是一类带权路径长度最短的树，有着广泛的应用。带权路径长度可用wi*深度。</p>
-<ul>
-<li>构造赫夫曼树的方法为：选取两颗根节点的权值最小的树作为左右子树构造一颗新的二叉树。新的二叉树的根节点的权值为左右子树上根节点的权值之和。</li>
-<li>赫夫曼编码：利用以上方法构造二叉树，并对其编码。如A(0) B(10) C(110) D(111)</li>
-</ul>
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>图中的数据元素称为顶点，两个顶点之间的关系称为弧，弧有方向就称图为有向图，否则称无向图。顶点的度是和此顶点关联的顶点的个数。图的存储结构有：</p>
-<ul>
-<li>数组表示法：n个顶点，则为n*n维数组，0表示无关系，1表示有关系。</li>
-<li>邻接表：对图中每个顶点建立一个单链表，指向该顶点指向的所有的其他顶点。</li>
-<li>十字链表和邻接多重表。</li>
-</ul>
-<p>图的遍历分为：深度优先搜素、广度优先搜素</p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>查找表是由同一类型的数据元素构成的集合。查找表分为静态查找表（查找是否存在、检索特定元素的属性）、动态查找表（查找并添加/删除）。<br>关键字：可唯一标识一个记录。次关键字可识别若干记录。</p>
-<h4 id="静态查找表"><a href="#静态查找表" class="headerlink" title="静态查找表"></a>静态查找表</h4><ol>
-<li>顺序表的查找。顺序表指顺序表或线性链表。顺序查找为从表中最后一个记录开始，逐个进行查找。O(n)</li>
-<li>有序表的查找。折半查找，类似于二叉树。O(logn)</li>
-<li>静态树表的查找。每条记录的查找概率不相等，根据权重选择折半记录。</li>
-<li>索引顺序表的查找。记录是分块存储的，通过索引记录表可到达相应的块，再通过顺序查找进行查找。</li>
-</ol>
-<h4 id="动态查找表"><a href="#动态查找表" class="headerlink" title="动态查找表"></a>动态查找表</h4><ol>
-<li>二叉排序树。左子树&lt;根节点&lt;右子树。可能出现二叉树左右严重不平衡。平均二叉树的平均查找长度和logn是等数量级的。</li>
-<li>平衡二叉树。平衡因子为左子树的深度减去右子树的深度。所有结结点的平衡因子都应该是-1、0、1。保持平衡可以通过更改根节点来实现。O(logn)</li>
-<li>B-树和B+树</li>
-<li>键树，又称数字查找树。</li>
-</ol>
-<h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>在查找时，如果可以根据一个对应关系，找到给定值K的像f(K)，则不需要进行比较便可以直接取得所查记录。这个关系f称为哈希函数，这种表称为哈希表。</p>
-<p>哈希函数的构造方法有：直接定址法、数字分析法、平方取中法、折叠法、除留余数法、随机数法等。</p>
-<h2 id="内部排序"><a href="#内部排序" class="headerlink" title="内部排序"></a>内部排序</h2><h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><ol>
-<li>直接插入排序：第i趟直接插入排序的操作为：在还有i-1个记录的有序子序列r[1……i-1]中插入一个记录r[i]以后，编程含有i个记录的有序子序列，插入位置查找的方法为从最大值/最小值开始进行依次判断。移动次数约为四分之n的平方。O(n2)</li>
-<li>折半插入排序。仅减少了关键字间的比较次数，而记录的移动次数不变。O(n2)</li>
-<li>2-路插入排序。是在折半插入的基础上再改进，即从两边排序。移动次数约为八分之n的平方。</li>
-<li><p>表插入排序。使用链表，仅改变存储结构，不移动记录。O(n2)</p>
-</li>
-<li><p>希尔排序。先将整个待排记录分割为若干个子序列分别进行直接插入排序，待整个序列中的记录基本有序时，再对整体记录进行一次直接插入排序。它的时间是所取增量序列的函数，可以降低时间复杂度。</p>
-</li>
-</ol>
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><ol>
-<li>起泡排序：左右比较，大的放后面，一轮下来，最大值排最后。依次可得次大值，最终得到排序序列。需进行n(n-1)/2次移动，并做等数量级的记录移动。O(n2)</li>
-<li>快速排序是对起泡排序的一种改进。通过一趟排序，将待排数据分割成独立的两部分，在进行排序。分割方法可以为比第一个大的放右边，否则放左边。o(nlogn)，并且被认为是在同数量级排序方法中，平均性能最好。</li>
-</ol>
-<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><ol>
-<li>简单选择排序法：把第一个数与其他所有数比较，获取最小值。然后排第二个……</li>
-<li>树型选择排序、堆排序、归并排序等。</li>
-</ol>
-<h4 id="其他排序"><a href="#其他排序" class="headerlink" title="其他排序"></a>其他排序</h4><p>归并排序、基数排序等</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cimc305x1001kuoq9uvdbfmcj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -1173,7 +1113,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/前端开发/">前端开发</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -1183,7 +1123,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -1193,7 +1133,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Language/" style="font-size: 14px;">C-Language</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a>
+      <a href="/tags/C-Language/" style="font-size: 14px;">C-Language</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -1215,6 +1155,10 @@
       <ul>
         
           <li>
+            <a href="/2016/03/29/links/">链接</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
           </li>
         
@@ -1228,10 +1172,6 @@
         
           <li>
             <a href="/2016/03/23/heap-stack/">堆&amp;栈</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
           </li>
         
       </ul>
