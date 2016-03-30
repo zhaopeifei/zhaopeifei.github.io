@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>c语言编程 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="头文件12345#include&amp;lt;stdio.h&amp;gt;  //普遍需要的，支持scanf、printf等#include&amp;lt;string.h&amp;gt;  //说明一些字符串串和内存操作函数#include&amp;lt;graphics.h&amp;gt;  //画图#include&amp;lt;alloc.h&amp;gt;  //说明内存管理函数#include&amp;lt;io.h&amp;gt;  //包含低级I/O子程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c语言编程">
+<meta property="og:url" content="http://yoursite.com/2016/03/30/C-program/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="头文件12345#include&amp;lt;stdio.h&amp;gt;  //普遍需要的，支持scanf、printf等#include&amp;lt;string.h&amp;gt;  //说明一些字符串串和内存操作函数#include&amp;lt;graphics.h&amp;gt;  //画图#include&amp;lt;alloc.h&amp;gt;  //说明内存管理函数#include&amp;lt;io.h&amp;gt;  //包含低级I/O子程序">
+<meta property="og:updated_time" content="2016-03-30T12:52:56.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c语言编程">
+<meta name="twitter:description" content="头文件12345#include&amp;lt;stdio.h&amp;gt;  //普遍需要的，支持scanf、printf等#include&amp;lt;string.h&amp;gt;  //说明一些字符串串和内存操作函数#include&amp;lt;graphics.h&amp;gt;  //画图#include&amp;lt;alloc.h&amp;gt;  //说明内存管理函数#include&amp;lt;io.h&amp;gt;  //包含低级I/O子程序">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-program" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/30/C-program/" class="article-date">
+  <time datetime="2016-03-30T08:15:13.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      c语言编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span>  //普遍需要的，支持scanf、printf等</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span>  //说明一些字符串串和内存操作函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;graphics.h&gt;</span>  //画图</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;alloc.h&gt;</span>  //说明内存管理函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;io.h&gt;</span>  //包含低级I/O子程序的结构和说明</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数定义以及调用等"><a href="#函数定义以及调用等" class="headerlink" title="函数定义以及调用等"></a>函数定义以及调用等</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> <span class="comment">//主函数，入口函数</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,comp(x,y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">comp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> <span class="comment">//必须指明形参类型，并且要匹配</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &gt; y)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(x &lt; y)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="变量的定义及初始化"><a href="#变量的定义及初始化" class="headerlink" title="变量的定义及初始化"></a>变量的定义及初始化</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//也可以在子函数中定义，但是要注意在前面定义</span><br><span class="line">double dx,sy;</span><br><span class="line">int a=5; </span><br><span class="line">char c='a';</span><br><span class="line"></span><br><span class="line">char string[20]=&#123;'s','t','r','i','n','g','\0'&#125;;</span><br><span class="line">char str[20] = "string"; //c有没有string类型。str第七位为'\0'</span><br><span class="line">char str[<span class="string">3</span>][<span class="symbol">10</span>]=&#123;"string","is","it"&#125;; //多个字符串</span><br><span class="line"></span><br><span class="line">int a[<span class="string">3</span>][<span class="symbol">3</span>]=&#123;&#123;1,2,3&#125;,&#123;1,2,3&#125;,&#123;1,2,3&#125;&#125;;  //二维数组方式1</span><br><span class="line">int a[<span class="string">3</span>][<span class="symbol">3</span>]=&#123;1,2,3,4,5,6,7,8,9&#125;;   //二维数组，方式2</span><br></pre></td></tr></table></figure>
+<h2 id="输入输出函数"><a href="#输入输出函数" class="headerlink" title="输入输出函数"></a>输入输出函数</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scanf(<span class="string">"%c%3d"</span>,<span class="symbol">&amp;x</span>,<span class="symbol">&amp;y</span>)<span class="comment">; //%f浮点小数，%c字符，%s字符串。%3d表示3位整数</span></span><br><span class="line">printf(<span class="string">"%c asicii is %d"</span>,x,x)<span class="comment">;  //输出，可以类型转换</span></span><br><span class="line"></span><br><span class="line">c=getchar()<span class="comment">; //输入字符</span></span><br><span class="line">putchar(<span class="name">c</span>)<span class="comment">; //</span></span><br><span class="line"></span><br><span class="line">gets(<span class="name">str</span>)<span class="comment">; //输入字符串，并给str</span></span><br><span class="line">puts(<span class="name">str</span>)<span class="comment">; //显示字符串</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用函数以及方法"><a href="#常用函数以及方法" class="headerlink" title="常用函数以及方法"></a>常用函数以及方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str[<span class="number">0</span>]&gt;=<span class="string">'a'</span>)&#123;&#125; <span class="comment">//字符比较，也可以用来检测数字还是其他</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(str1,str2); <span class="comment">//不可以用=直接赋值。将字符串2赋值给字符串1，不只是给指针</span></span><br><span class="line"><span class="built_in">strcat</span>(str1,str2); <span class="comment">//将str2加到str1后面</span></span><br><span class="line"><span class="built_in">strcmp</span>(str1,str2); <span class="comment">//比较，str1大于str2则返回正整数</span></span><br><span class="line"><span class="built_in">strlen</span>(str1); <span class="comment">//获得字符串str1的长度，不算'\0'</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimexwk4m0008tgq9ubno0szm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/30/C-add-add/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/29/links/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">链接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 14px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/30/C-add-add/">C++</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-program/">c语言编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/29/links/">链接</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/nodejs-project/">Node.js初试</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

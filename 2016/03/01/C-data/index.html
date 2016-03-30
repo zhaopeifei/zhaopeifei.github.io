@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/img/C-Language/数据类型分类.png">
 <meta property="og:image" content="http://yoursite.com/img/C-Language/数值类型的长度.png">
 <meta property="og:image" content="http://yoursite.com/img/C-Language/运算符的优先级.png">
-<meta property="og:updated_time" content="2016-03-23T11:35:16.045Z">
+<meta property="og:updated_time" content="2016-03-30T14:24:50.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言数据结构相关基础">
 <meta name="twitter:description" content="数据类型、运算符和表达式数据类型在C语言中，数据类型可分为基本数据类型、构造数据类型、指针数据类型等。基本数据类型的最主要特点为：其值不可再分解为其他类型，即基本数据类型是自我说明的。
@@ -105,7 +105,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/C-Language/">C-Language</a>
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
   </div>
 
   </div>
@@ -234,14 +234,82 @@
 <li>C语言为编程者提供了一种新的类型名来代替已有的基本数据类型名和已经定义的类型的功能。例： typeof unsigned char BYTE；</li>
 <li>C语言把一组整型符号常量按顺序集合成一种数据类型，称为枚举类型。如：enum WEEKDAY{sun，mon，tue，wedthu，fri，sat}</li>
 </ul>
+<h2 id="各种类型的数值占的内存"><a href="#各种类型的数值占的内存" class="headerlink" title="各种类型的数值占的内存"></a>各种类型的数值占的内存</h2><p>8bit为一个字节，32位一个字长为4字节，64位一个字长为8字节</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">C语言</th>
+<th style="text-align:left">C++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">char</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">wchar_t</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2/4(34/64bits)</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">2/4/4(16/32/64bits)</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td style="text-align:left">4/4/8(16/32/64bits)</td>
+<td style="text-align:left">4/8</td>
+</tr>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">long double</td>
+<td style="text-align:left">12/16(32/64bits)</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">point *</td>
+<td style="text-align:left">4/8(32/64bits)</td>
+<td style="text-align:left">4/8</td>
+</tr>
+<tr>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+<p>一般，short为半个机器厂，int为一个机器长(64位，4个字节长)，long为一个或两个机器厂。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimdim1j40004moq9nlzi4srj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimexwk4j0007tgq9rsvy99db" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -277,7 +345,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-Language/">C-Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -287,7 +355,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -297,7 +365,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Language/" style="font-size: 14px;">C-Language</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 14px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -319,6 +387,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/30/C-add-add/">C++</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-program/">c语言编程</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/29/links/">链接</a>
           </li>
         
@@ -328,14 +404,6 @@
         
           <li>
             <a href="/2016/03/27/nodejs-project/">Node.js初试</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/24/operating-system/">operating-system</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/23/heap-stack/">堆&amp;栈</a>
           </li>
         
       </ul>
