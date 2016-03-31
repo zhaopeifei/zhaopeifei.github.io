@@ -74,6 +74,10 @@
   <time datetime="2016-03-31T05:56:12.000Z" itemprop="datePublished">2016-03-31</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -82,7 +86,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/dataBase-system/">dataBase-system</a>
+      <a class="article-title" href="/2016/03/31/dataBase-system/">数据库概论</a>
     </h1>
   
 
@@ -90,13 +94,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>数据模型是对现实世界数据特征的抽象，也就是说数据模型是用来描述数据、组织数据和对数据进行操作的。现有的数据库系统均是基于某种数据模型的。</p>
+<p>根据模型应用的不同目的，数据模型分为两类：概念模型、逻辑模型和物理模型。概念模型是按用户的观点来对数据和信息建模，主要用于数据库设计。第二类逻辑模型主要包括关系模型、层次模型、网状模型、层次模型、面向对象数据模型和对象关系模型、半结构化模型等。其中关系模型是最重要的一种数据模型。</p>
+<p>从数据库应用开发人员角度看，数据库系统通常采用三级模式结构（外模式、模式、内模式）。从最终用户角度看，数据库系统的结构分为单用户结构、主从式结构、分布式结构、客户-服务器、浏览器-应用服务器/数据库服务器多层结构等。这是数据库外部的体系结构。</p>
+<h2 id="常用数据库以及模型"><a href="#常用数据库以及模型" class="headerlink" title="常用数据库以及模型"></a>常用数据库以及模型</h2><ul>
+<li>MySQL 小型关系型数据库管理系统，适用于中小型网站</li>
+<li>Oracle 一种大型关系数据库系统，一般用于商业、政府机关等。能处理大批量的数据。</li>
+<li>SQL Server 关系数据库管理系统。有微软和Sybase两家</li>
+<li>DB2 IBM的一系列关系型数据库管理系统，主要应用于大型应用系统。对大型分布式应用系统尤为适用。</li>
+<li>Informix IBM出品的关系数据库管理系统家族。</li>
+<li>Sybase 关系型数据库，是一种典型的UNIX或WindowsNT平台上客户机/服务器环境下的代行数据库系统。</li>
+<li>PostgreSQL 一种特性非常齐全的自由软件的对象-关系型数据库。</li>
+<li>MongoDB 跨平台、高性能、开源、无模式的文档型数据库。</li>
+<li>NoSQL 泛指非关系型数据库，如Redis、HBase、MongoDB、CouchDB等。</li>
+</ul>
+<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><p>关系模型的数据结构非常简单，只包含单一的数据结构——关系。关系的每一个分类必须是一个不可分的数据项，即不允许表中有表，一列只能有一个head。行和列的顺序无所谓，可以任意交换。</p>
+<h4 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h4><p>R(D1，D2，……Dn)</p>
+<ul>
+<li>R表示关系的名字，n是关系的目或度（degree），即列长度</li>
+<li>表的每行对应一个元组，表的每列对应一个域。</li>
+<li>候选码：若关系中的某一属性组可以唯一表示一个元祖而其子集不能，则称该属性组为候选码。</li>
+<li>主码/主键（Primary Key）：选定一个候选码作为唯一标识。</li>
+</ul>
+<h2 id="关系数据库标准语言SQL"><a href="#关系数据库标准语言SQL" class="headerlink" title="关系数据库标准语言SQL"></a>关系数据库标准语言SQL</h2><p>结构化查询语言是关系数据库的标准语言，也是一个通用的、功能极强的关系数据库语言，可以实现数据库模式创建、数据库数据的增删改查、数据库安全性完整性定义与控制等一系列功能。</p>
+<h4 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">操作对象</th>
+<th style="text-align:left">创建</th>
+<th style="text-align:left">删除</th>
+<th style="text-align:left">修改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模式</td>
+<td style="text-align:left">CREATE SCHEMA</td>
+<td style="text-align:left">DROP SCHEMA</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">表</td>
+<td style="text-align:left">CREATE TABLE</td>
+<td style="text-align:left">DROP TABLE</td>
+<td style="text-align:left">ALTER TABLE</td>
+</tr>
+<tr>
+<td style="text-align:center">视图</td>
+<td style="text-align:left">CREATE VIEW</td>
+<td style="text-align:left">DROP VIEW</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">索引</td>
+<td style="text-align:left">CREATE INDEX</td>
+<td style="text-align:left">DROP INDEX</td>
+<td style="text-align:left">ALTER INDEX</td>
+</tr>
+</tbody>
+</table>
+<p>一个关系数据库管理系统的实例中可以创建多个数据库，一个数据库中可以建立多个模式，一个模式下通常包含多个表、视图和索引等数据库对象。当表的数据量比较大时，查询操作会比较耗时，建立索引是加快查询速度的有效手段。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt; //也可以在后面继续创建表、视图等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">TEST</span> AUTHORIZATION ZHANG //为用户ZHANG创建一个模式<span class="keyword">TEST</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; &lt;<span class="keyword">CASCADE</span>|RESTRICT&gt; //删除模式，<span class="keyword">cascade</span>表示删除模式下所有数据库对象，restrict表示如果存在下属数据库，则不执行</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; (&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件下]) //如设置主码等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> StudentCourse (</span><br><span class="line">	Sno <span class="built_in">CHAR</span>(<span class="number">9</span>),  //也可以在其后面直接加PRIMARY <span class="keyword">KEY</span>，表示其为主键。这样称为列级完整性</span><br><span class="line">	Cpo <span class="built_in">CHAR</span>(<span class="number">4</span>),</span><br><span class="line">	Grade <span class="built_in">SMALLINT</span>,</span><br><span class="line">	PRIMARY <span class="keyword">KEY</span>(Sno,Cno), //主码由两个属性构成，必须作为表级完整性进行定义</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Sno) <span class="keyword">REFERENCES</span> Student(Sno), //表级完整性定义，Sno是外码，被参照表示Student</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Cno) <span class="keyword">REFERENCES</span> Course(Cno),  //表级完整性定义，Cno是外码，被参照表示Course</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;&gt;</span><br><span class="line">[<span class="keyword">ADD</span> &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]] //<span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Student <span class="keyword">ADD</span> S_entrance <span class="built_in">DATE</span>;</span><br><span class="line">[<span class="keyword">DROP</span> &lt;列名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt; &lt;数据类型&gt;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]; //删除基本表</span><br></pre></td></tr></table></figure>
+<h4 id="数据查询与操作SQL"><a href="#数据查询与操作SQL" class="headerlink" title="数据查询与操作SQL"></a>数据查询与操作SQL</h4><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表的查询</span></span><br><span class="line"><span class="keyword">SELECT</span> [ALL|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;]…… <span class="comment">//指明选择要获取的列</span></span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt; [,&lt;表名或视图名&gt;……]   <span class="comment">//指明从什么表格里面取，可以多个表格</span></span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件表达式&gt;]   <span class="comment">//Sage&lt;20，指明条件</span></span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [HAVING &lt;条件表达式&gt;]] </span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">By</span> &lt;列名<span class="number">2</span>&gt; [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]];  <span class="comment">//按某列排序，ASC表示升序，DESC表示降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Student.Sno,Sname <span class="comment">//*表示全部取出来</span></span><br><span class="line"><span class="keyword">FROM</span> Student,SC,Course</span><br><span class="line"><span class="keyword">WHERE</span> Student.Sno=SC.Sno <span class="keyword">AND</span></span><br><span class="line">	  SC.Cno=Course.Cno <span class="keyword">AND</span></span><br><span class="line">	  Course.Cname=<span class="string">'信息系统'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Sno <span class="keyword">ASC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入新项</span></span><br><span class="line">INSERT <span class="keyword">INTO</span> &lt;表名&gt; [(&lt;属性列<span class="number">1</span>&gt;[,&lt;属性列<span class="number">2</span>&gt;]……)]</span><br><span class="line">VALUES (&lt;常量<span class="number">1</span>&gt;[,&lt;常量<span class="number">2</span>&gt;]……);</span><br><span class="line"></span><br><span class="line">INSERT <span class="keyword">INTO</span> Student(Sno,Sname) <span class="comment">//如果新元组与属性列一一对应，则可以省略属性</span></span><br><span class="line">VALUES(<span class="string">'20121515'</span>,<span class="string">'黎明'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//更新表格内容</span></span><br><span class="line">UPDATE &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span> &lt;列名&gt;=&lt;表达式&gt; [,&lt;列名&gt;=&lt;表达式&gt;]</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br><span class="line"></span><br><span class="line">UPDATE Student</span><br><span class="line"><span class="keyword">SET</span> Sage=<span class="number">22</span></span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除数据</span></span><br><span class="line">DELETE <span class="keyword">FROM</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;]</span><br><span class="line"></span><br><span class="line">DELETE <span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cimfvc3ty001iqoq9ji9q2sa2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cimg0nr8i001z44q9kf63m1h2" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
     </footer>
   </div>
   
@@ -156,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimfvc3u1001lqoq9kfosw5wq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimg0nr85001p44q9rm8rtex9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -200,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimfvc3sf0004qoq92cztldse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimg0nr5w000044q9yfjacvgn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -246,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimfvc3s80001qoq9moieh335" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimg0nr67000144q9vpom3d0t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -293,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimfvc3ub001zqoq956exc7vj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimg0nr9x004244q9ylc59lzs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
@@ -360,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimfvc3u5001sqoq9bvh90svh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimg0nr87001s44q9zsd1ow5f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -403,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimfvc3uf0027qoq91xlm6s58" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimg0nra1004644q9gs9hnaq9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -461,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cimfvc3ud0022qoq99a2zox4p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cimg0nra3004744q9ch9g9gam" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -515,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cimfvc3ul002bqoq93c2bi1l2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cimg0nr8c001w44q9cwfm4v4e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -610,7 +678,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cimfvc3t1000iqoq9w95z7udj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cimg0nr77000n44q96kgspsph" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -645,7 +713,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -655,7 +723,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 17.5px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 17.5px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -677,7 +745,7 @@
       <ul>
         
           <li>
-            <a href="/2016/03/31/dataBase-system/">dataBase-system</a>
+            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
           </li>
         
           <li>
