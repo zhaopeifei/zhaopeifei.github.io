@@ -68,6 +68,106 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-dataBase-system" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/31/dataBase-system/" class="article-date">
+  <time datetime="2016-03-31T05:56:12.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/dataBase-system/">dataBase-system</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cimfvc3ty001iqoq9ji9q2sa2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-compiler-theroy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/31/compiler-theroy/" class="article-date">
+  <time datetime="2016-03-31T03:59:37.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/compiler-theroy/">编译原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h2><p>从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。</p>
+<p>编译程序完成从源程序到目标程序的翻译工作，按过程可以分为：词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成6个阶段。这只是典型的编译过程，有的编译程序没有代码优化等过程。</p>
+<h2 id="运行时存储组织"><a href="#运行时存储组织" class="headerlink" title="运行时存储组织"></a>运行时存储组织</h2><p>通常，在有操作系统的情况下，目标程序将在自己的逻辑地址空间内存储和运行。编译程序所产生的目标程序的大小通常是确定的，一般存放在指定的专用存储区域，即代码区。相应的，目标程序运行过程中需要创建或访问的数据对象将存放在数据区。</p>
+<h4 id="程序运行时存储空间的布局"><a href="#程序运行时存储空间的布局" class="headerlink" title="程序运行时存储空间的布局"></a>程序运行时存储空间的布局</h4><p>一般来说，程序运行时的存储空间从逻辑上可分为“代码区”和“数据区”，但为了方便存储组织和管理，往往需要将存储空间划分为更多的逻辑区域。具体的划分方法会依赖于目标机体系结构，但一般情况下至少含有保留地址区、代码区、静态数据区及动态数据区等逻辑区域。</p>
+<ul>
+<li>保留地址去。专门为目标机体系结构和操作系统保留的内存地址区。通常，该区域不允许普通的用户程序存取，只允许操作系统的某些特权操作进行读写。</li>
+<li>代码区。静态存放编译程序产生的目标代码。</li>
+<li>静态数据区。存放全局数据，是普通程序可读可写的区域。存放程序中用到的所有常量和数据对象，以及各类全局变量和静态变量所对应的数据对象。</li>
+<li>动态数据区。运行时动态变化的堆区和栈区。</li>
+<li>共享库和分别编译模块区。静态存放共享库模块和分别编译模块的代码和全局数据。</li>
+</ul>
+<h4 id="存储分配策略"><a href="#存储分配策略" class="headerlink" title="存储分配策略"></a>存储分配策略</h4><p>数据区分为静态数据区和动态数据区（堆区、栈区），分别对应了3种规则：静态存储分配、栈式存储分配和堆式存储分配。</p>
+<ul>
+<li>静态存储分配，即在编译期间为数据对象分配存储空间。要求在编译期间就可以确定数据对象的大小，同时还可以确定数据对象的数目。如可全程访问的全局变量、静态变量、程序中的常量以及class的虚函数表等。</li>
+<li>栈式存储分配，将数据对象的运行时存储按照栈的方式来管理。栈式存储分配是动态的，也就说必须是运行的时候才能确定数据对象的分配结果。运行时每当进入一个过程/函数，就在栈顶为该过程/函数分配存放活动记录的数据空间，当一个过程/函数工作完毕返回时，它在栈顶的活动记录数据空间也随即释放。在编译过程中，过程、函数以及嵌套程序块的活动记录大小（最小值）应该是可以确定的，这是进行栈式存储分配的必要条件，如果不满足应该使用堆式存储管理。</li>
+<li>堆式存储分配，当数据对象的生产期与创建它的过程/函数的执行期无关时，例如某些数据对象可能在该过程/函数结束之后仍然长期存在，就不适合使用栈式存储分配。堆式存储分配和释放数据对象的操作是应用程序通过向操作系统提出申请实现的，因此要占用相当的时间。堆式存储空间的释放分为：不释放、显示释放（如malloc和free、new和delete）、隐式释放（垃圾回收）。</li>
+</ul>
+<h4 id="面向对象语言存储分配策略"><a href="#面向对象语言存储分配策略" class="headerlink" title="面向对象语言存储分配策略"></a>面向对象语言存储分配策略</h4><p>面向对象语言中，与存储组织关系密切的概念是类和对象。类扮演的角色是程序的静态定义，对象扮演的角色是程序运行时的动态结构。</p>
+<ul>
+<li>类是一组运行时对象的共同性质的静态描述，包含变量和方法。存储在静态存储区。</li>
+<li>对象时类的一个实例，在堆区为对象申请空间并创建对象，同时在栈区保存引用对象的存储单元。在堆区的对象包含局部变量，但并不包含方法，而是有一个指向该方法的引用。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimfvc3u1001lqoq9kfosw5wq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-C-add-add" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/30/C-add-add/" class="article-date">
@@ -100,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimexwk3w0000tgq9o05w4we0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimfvc3sf0004qoq92cztldse" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -146,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimexwk4m0008tgq9ubno0szm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimfvc3s80001qoq9moieh335" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -193,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimexwk7l001ytgq91imo0f7f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimfvc3ub001zqoq956exc7vj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
@@ -260,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimexwk7a001rtgq981poot41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimfvc3u5001sqoq9bvh90svh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -303,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimexwk7o0021tgq95liojo6i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimfvc3uf0027qoq91xlm6s58" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -361,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cimexwk7v0029tgq90hsru8bx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cimfvc3ud0022qoq99a2zox4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -415,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cimexwk82002gtgq90pqfxcbi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cimfvc3ul002bqoq93c2bi1l2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -510,159 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cimexwk5y000ktgq9g8jdzm2e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-11" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/19/JavaScript-11/" class="article-date">
-  <time datetime="2016-03-19T06:41:18.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。</p>
-<h2 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h2><p>HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(navigator.online)</span></span>&#123;</span><br><span class="line">	<span class="comment">//正常工作</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//执行离线状态时的任务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此外，HTML5还定义了两个事件：onlin和offline。分别在网络离线变在线和在线变离线时触发。</p>
-<h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5的应用缓存可以简称为appcache，是专门为开发离线Web应用而设计的。Appcache是从浏览器的缓存中分出来的一块缓存区。可以使用一个描述文件，列出要下载和缓存的资源，就可以将相应的资源存储到这个区域。<br>要将描述文件与页面关联起来，可以在&lt; html &gt;中的manifest属性中指定这个描述文件的路径。</p>
-<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>随着Web应用程序的出现，也产生了对于能够直接在客户端上存储用户信息能力的要求。一下为几种客户端存储数据的方式。</p>
-<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP Cookie，最初是在客户端用于存储会话信息的。该标准要求服务器对任意HTTP请求发送Set-Cookie HTTP头最为相应的一部分，其中包含会话信息。<br>cookie有访问者限制，有长度限制，每个域的cookie总数也有限制。cookie由浏览器保存到额以下几块信息构成：名称、值、域、路径、失效时间、安全标志等。<br>在JavaScript中处理cookie有些复杂，因为其蹩脚的接口，即BOM的document.cookie属性。这个属性的独特之处在于它会因为使用它的方式不同而表现不同的行为。基本的cookie操作有三种：读取、写入和删除。</p>
-<h4 id="IE用户数据"><a href="#IE用户数据" class="headerlink" title="IE用户数据"></a>IE用户数据</h4><p>在IE5.0中，微软通过一个自定义行为引入了持久化用户数据的概念。要使用持久化用户数据，就必须使用CSS在某个元素上指定userData行为，该元素即可使用setAttribute()方法在上面保存数据了。为了将数据提交到浏览器缓存中，还必须调用save()方法并告诉它要保存到的数据空间的名字。如下：<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> style=<span class="string">"behavior:url(#default#userData)"</span> id=<span class="string">"dataStore"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">dataStore = setAttribute(<span class="string">"name"</span>,<span class="string">"liming"</span>);</span><br><span class="line">dataStore = setAttribute(<span class="string">"sex"</span>,<span class="string">"men"</span>);</span><br><span class="line">dataStore.save(<span class="string">"staffInfo"</span>); <span class="comment">//存储</span></span><br><span class="line"></span><br><span class="line">dataStore1.load(<span class="string">"staffInfo"</span>); <span class="comment">//调用，加载。staffInfo的信息就会加载到dataStore1中</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="Web存储机制"><a href="#Web存储机制" class="headerlink" title="Web存储机制"></a>Web存储机制</h4><p>Web Storage成为了HTML5的一部分。其目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。其目标有：提供一种在cookie之外存储会话数据的路径，提供一种存储大量可以跨会话存在的数据的机制。</p>
-<ul>
-<li>Storage类型提供最大的存储空间来存储名值对儿。Storage的实例有以下方法：clear()、getItem(name)、key(index)、removeItem(name)、setItem(name,value)，此外还有length等属性。</li>
-<li>sessionStorage对象。用于存储特定于某个会话的数据，也就是该数据只保持到浏览器关闭。</li>
-<li>globalStorage对象。其目的是跨越会话存储数据，但有特定的访问限制。要使用它，首要啊哟指定哪些域可以访问该数据，可以通过方阔来标记使用属性来实现。globalStorage的每个属性都是Storage的实例。<code>globalStorage[&quot;www.wrox.com&quot;].name=&quot;Nicholas&quot;;</code>它会一直保存在磁盘上，所以非常适合在客户端存储文档或者长期保持用户票号设置。</li>
-<li>localStorage对象<br>localStorage对象在修订过的HTML5规范中作为持久保存客户端数据的方案取代了globalStorage。</li>
-<li>storage事件。对Storage对象进行任何修改，都会在文档上触发storage事件。该event事件有这几个属性：domain（发生变化的存储空间的域名）、key（设置或删除的键名）、newValue、oldValue。</li>
-</ul>
-<h4 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h4><p>Indexed Database API，是在浏览器中保存结构化数据的一种数据库。其思想是创建一套API，方便保存和读取JavaScript对象，同时还支持查询及搜索。IndexedDB设计的操作完全是异步进行的。因此，大多数操作会以请求方式进行，但这些操作会在后期执行。差不多每次IndexedDB操作，都需要注册onerror或onsuccess事件处理程序，以确保适当地处理结果。<br>它是一种类似SQL数据的结构haunted数据存储机制，但它的数据不是保存在表中，而是保存在对象存储空间中。创建对象存储空间时，需要定义一个键，然后就可以添加数据。可以使用游标在对象存储空间中查询特定的对象。而索引则是为了提高查询速度而基于特定的属性创建的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cimexwk69000qtgq9dbqz4tsr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/19/JavaScript-10/" class="article-date">
-  <time datetime="2016-03-19T03:42:55.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON是一种数据格式，而不是一种编程语言。JSON并不从属于JavaScript，并不是只有JavaScript才可以用JSON，但JSON在JavaScript中读写结构化数据的更好的方式。JSON作为一个轻量级的数据格式，可以简化表示复杂数据结构的工作量。</p>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>JSON使用JavaScript语法的子集表示对象、数组、字符串、数值、布尔值和null，但不能表示特殊值undefined。JSON字符串必须使用双引号，而不能使用单引号。JSON的书写格式为：名称/值对,键值对之间用“，”分开。名称需要使用双引号。数组则使用“[]”包含子元素。实例如下：</p>
-<p><code>{
-    &quot;name&quot;:[&quot;liming&quot;,&quot;papa&quot;],
-    &quot;qita&quot;:&quot;不能为undefined。可以为字符串、数值、null或布尔值&quot;,
-    &quot;children&quot;:[{
-        &quot;name&quot;:&quot;laoda&quot;,
-        &quot;qita&quot;:null
-    },{
-        &quot;name&quot;:&quot;laoer&quot;,
-        &quot;qita&quot;:true
-    }]
-}</code></p>
-<h4 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h4><p>JSON字符串与原生JavaScript值的主要区别在于名称，JSON名称需要使用双引号，而JavaScript的属性则不需要。还有JavaScript支持undefined，而JSON不支持。ECMAScript5对解析JSON的行为进行规范，定义了全局对象JSON，JSON对象有两个方法：stringify()和parse()，分别将JavaScript对象序列化为JSON字符串和将JSON字符串解析为JavaScript值。<br>对于JSON.stringify()方法，除了第一个为对象外，还可以接收两个参数：过滤器（可以为数组或函数）和是否保留缩进。如果需要将对象的名字也加入JSON字符串，可以在对象中使用toJSON():functiong(){……}方法。<br>JSON.parse()方法也可以接收另一个参数，该参数是一个函数，将在每个键值对上调用。</p>
-<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax技术的核心是XMLHttpRequest对象。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多消息，意味着用户点击后，可以不必刷新页面也能取得新数据。Ajax通信与数据格式无关。</p>
-<h4 id="XMLHttpRequest对象使用方法"><a href="#XMLHttpRequest对象使用方法" class="headerlink" title="XMLHttpRequest对象使用方法"></a>XMLHttpRequest对象使用方法</h4><p>使用XHR对象要先获得，此处假设已经获得xhr。</p>
-<ol>
-<li>首要使用open()方法，它接收3个参数：请求类型、请求的URL、是否异步发送请求的布尔值，如：<code>xhr.open(&quot;get&quot;,&quot;example.php&quot;,false)</code>，open()方法只是启动一个请求准备发送。</li>
-<li>使用send()方法发送特定的请求。参数为请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null。</li>
-<li>false表示同步，所以JavaScript代码会等到服务器响应之后再继续执行。接收到相应后，响应的数据会自动填充XHR对象的属性，相关的属性有：responseText（响应主体返回的文本）、status（相应的HTTP状态）、statusText（HTTP状态的说明）。</li>
-<li>接收响应后，第一步是检查status属性，以确定响应已经成功返回。一般HTTP状态代码为200表示成功，此时responseText属性内容已经准备就绪。</li>
-</ol>
-<p>多数情况下，我们还要发送异步请求，才能让JavaScript继续执行而不必等待响应。此时，可以检测xhr对象的readyState属性，该属性表示请求/响应过程的当前活动阶段。0表示未初始化；1表示启动，调用了open()方法；2表示发送，已经调用了send()方法；3表示接收，已经接收部分响应数据。4.完成，已经接收全部数据，可以使用。只要readyState属性的改变，就会茶法一次readystatechange事件。</p>
-<h4 id="GET请求和POST请求"><a href="#GET请求和POST请求" class="headerlink" title="GET请求和POST请求"></a>GET请求和POST请求</h4><p>GET是最常见的请求类型，最常用于向服务器查询某些信息。必要时，可以将查询字符串参数值追加到URL的末尾。使用GET请求经常会发生的一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码。<br>使用频率仅次于GET的是POST请求，通常用于向服务器发送应该被保存的数据。POST请求应该把数据作为请求的主体提交，而GET请求传统上不是这样。POST请求的主体可以包含非常多的数据，而且格式不限。发送POST请求的第二步是向send()方法中传入某些数据。</p>
-<h2 id="XMLHttpRequest-2级"><a href="#XMLHttpRequest-2级" class="headerlink" title="XMLHttpRequest 2级"></a>XMLHttpRequest 2级</h2><h4 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">//方法1，先新建，再使用append方法添加</span></span><br><span class="line">data.append(<span class="string">"name"</span>,<span class="string">"liming"</span>); <span class="comment">//append()方法接收两个参数，属性和值</span></span><br><span class="line"></span><br><span class="line">data = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.form[<span class="number">0</span>]); <span class="comment">//方法2，直接传入表单，自动转换</span></span><br><span class="line"></span><br><span class="line">xhr.send(data); <span class="comment">//可以直接将formdata实例作为请求传入后台</span></span><br></pre></td></tr></table></figure>
-<h4 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h4><p>通过xhr.timeout=1000（1秒）属性设置超时。再通过xhr.ontimeout:function(){}设置超时响应事件。</p>
-<h2 id="进度事件"><a href="#进度事件" class="headerlink" title="进度事件"></a>进度事件</h2><p>W3C定义了与客户服务器通信有关的事件（这些事件目前也被其他API借鉴）。有以下6个进度事件：</p>
-<ol>
-<li>loadstart：在接收到响应数据的第一个字节时触发</li>
-<li>progress：在接收响应期间持续不断地触发。可以动态地更新HTML元素的内容。如何相应头部有Content-Length字段，可以计算接收到的数据的百分比。</li>
-<li>error：在请求发生错误时触发</li>
-<li>abort: 在因为调用abort()方法时而终止连接时触发</li>
-<li>load：在接收到完整的响应数据时触发。不管状态如何，所以要检查status属性，确定数据可用性</li>
-<li>loadend：在通信完成或者触发error、abort、load事件后触发</li>
-</ol>
-<h2 id="跨域资源共享"><a href="#跨域资源共享" class="headerlink" title="跨域资源共享"></a>跨域资源共享</h2><p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略。默认情况下，XHR对象只能访问与包含它的页面位于同一个域中的资源。CORS是W3C的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通，其基本思想是：利用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。除此外，还有其他跨域方法：</p>
-<ol>
-<li>图像Ping，还有一种跨域请求技术是使用&lt;\img&gt;标签。一个网页可以从任何网页中加载图像，不用担心是否跨域。</li>
-<li>JSONP。是应用JSON的一种新方法，它由两部分组成：回调函数和数据，它非常简单易用。</li>
-<li>Comet。是一种更高级的Ajax技术。Ajax是一种从页面向服务器请求数据的技术，而Comet则是一种服务器向页面推送数据的技术。由于其实时性，非常适合处理体育比赛的分数和股票报价。</li>
-<li>SSE（服务器发送事件）：围绕只读Comet交互推出的API或者模式。SSE API用于创建到服务器的单向连接，服务器可以通过连接发送任意数量的数据。</li>
-<li>Web Sockets：最令人津津乐道的新浏览器API，目标是在一个单独的持久连接上提供全双工、双向通信。它非常适合移动应用。</li>
-</ol>
-<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>为确保通过XHR访问的URL安全，通行的做法就是验证发送请求者是否有权限访问相应的资源。有以下几种方式可供选择：</p>
-<ul>
-<li>要求以SSL连接来访问可以通过XHR请求的资源</li>
-<li>要求每一次请求都要附带经过相应算法计算得到的验证码</li>
-<li>要求发送POST而不是GET请求——容易改变</li>
-<li>检查来源URL以确定是否可信——来源记录容易伪造</li>
-<li>基于cookie信息进行验证——容易伪造</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cimexwk6b000ttgq9t2ks7be1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cimfvc3t1000iqoq9w95z7udj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -677,7 +625,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -707,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 14px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 16px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 17.5px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -729,6 +677,14 @@
       <ul>
         
           <li>
+            <a href="/2016/03/31/dataBase-system/">dataBase-system</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
+          </li>
+        
+          <li>
             <a href="/2016/03/30/C-add-add/">C++</a>
           </li>
         
@@ -738,14 +694,6 @@
         
           <li>
             <a href="/2016/03/29/links/">链接</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/27/nodejs-project/">Node.js初试</a>
           </li>
         
       </ul>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>编译原理 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编译程序从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。
+编译程序完成从源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理">
+<meta property="og:url" content="http://yoursite.com/2016/03/31/compiler-theroy/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="编译程序从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。
+编译程序完成从源">
+<meta property="og:updated_time" content="2016-03-31T05:54:43.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译原理">
+<meta name="twitter:description" content="编译程序从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。
+编译程序完成从源">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-compiler-theroy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/31/compiler-theroy/" class="article-date">
+  <time datetime="2016-03-31T03:59:37.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      编译原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h2><p>从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。</p>
+<p>编译程序完成从源程序到目标程序的翻译工作，按过程可以分为：词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成6个阶段。这只是典型的编译过程，有的编译程序没有代码优化等过程。</p>
+<h2 id="运行时存储组织"><a href="#运行时存储组织" class="headerlink" title="运行时存储组织"></a>运行时存储组织</h2><p>通常，在有操作系统的情况下，目标程序将在自己的逻辑地址空间内存储和运行。编译程序所产生的目标程序的大小通常是确定的，一般存放在指定的专用存储区域，即代码区。相应的，目标程序运行过程中需要创建或访问的数据对象将存放在数据区。</p>
+<h4 id="程序运行时存储空间的布局"><a href="#程序运行时存储空间的布局" class="headerlink" title="程序运行时存储空间的布局"></a>程序运行时存储空间的布局</h4><p>一般来说，程序运行时的存储空间从逻辑上可分为“代码区”和“数据区”，但为了方便存储组织和管理，往往需要将存储空间划分为更多的逻辑区域。具体的划分方法会依赖于目标机体系结构，但一般情况下至少含有保留地址区、代码区、静态数据区及动态数据区等逻辑区域。</p>
+<ul>
+<li>保留地址去。专门为目标机体系结构和操作系统保留的内存地址区。通常，该区域不允许普通的用户程序存取，只允许操作系统的某些特权操作进行读写。</li>
+<li>代码区。静态存放编译程序产生的目标代码。</li>
+<li>静态数据区。存放全局数据，是普通程序可读可写的区域。存放程序中用到的所有常量和数据对象，以及各类全局变量和静态变量所对应的数据对象。</li>
+<li>动态数据区。运行时动态变化的堆区和栈区。</li>
+<li>共享库和分别编译模块区。静态存放共享库模块和分别编译模块的代码和全局数据。</li>
+</ul>
+<h4 id="存储分配策略"><a href="#存储分配策略" class="headerlink" title="存储分配策略"></a>存储分配策略</h4><p>数据区分为静态数据区和动态数据区（堆区、栈区），分别对应了3种规则：静态存储分配、栈式存储分配和堆式存储分配。</p>
+<ul>
+<li>静态存储分配，即在编译期间为数据对象分配存储空间。要求在编译期间就可以确定数据对象的大小，同时还可以确定数据对象的数目。如可全程访问的全局变量、静态变量、程序中的常量以及class的虚函数表等。</li>
+<li>栈式存储分配，将数据对象的运行时存储按照栈的方式来管理。栈式存储分配是动态的，也就说必须是运行的时候才能确定数据对象的分配结果。运行时每当进入一个过程/函数，就在栈顶为该过程/函数分配存放活动记录的数据空间，当一个过程/函数工作完毕返回时，它在栈顶的活动记录数据空间也随即释放。在编译过程中，过程、函数以及嵌套程序块的活动记录大小（最小值）应该是可以确定的，这是进行栈式存储分配的必要条件，如果不满足应该使用堆式存储管理。</li>
+<li>堆式存储分配，当数据对象的生产期与创建它的过程/函数的执行期无关时，例如某些数据对象可能在该过程/函数结束之后仍然长期存在，就不适合使用栈式存储分配。堆式存储分配和释放数据对象的操作是应用程序通过向操作系统提出申请实现的，因此要占用相当的时间。堆式存储空间的释放分为：不释放、显示释放（如malloc和free、new和delete）、隐式释放（垃圾回收）。</li>
+</ul>
+<h4 id="面向对象语言存储分配策略"><a href="#面向对象语言存储分配策略" class="headerlink" title="面向对象语言存储分配策略"></a>面向对象语言存储分配策略</h4><p>面向对象语言中，与存储组织关系密切的概念是类和对象。类扮演的角色是程序的静态定义，对象扮演的角色是程序运行时的动态结构。</p>
+<ul>
+<li>类是一组运行时对象的共同性质的静态描述，包含变量和方法。存储在静态存储区。</li>
+<li>对象时类的一个实例，在堆区为对象申请空间并创建对象，同时在栈区保存引用对象的存储单元。在堆区的对象包含局部变量，但并不包含方法，而是有一个指向该方法的引用。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimfvc3u1001lqoq9kfosw5wq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/31/dataBase-system/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          dataBase-system
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/30/C-add-add/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/计算机基础/" style="font-size: 17.5px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/31/dataBase-system/">dataBase-system</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-add-add/">C++</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-program/">c语言编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/29/links/">链接</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
