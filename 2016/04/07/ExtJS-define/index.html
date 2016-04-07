@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ExtJS定义类 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。
+定义一个类定义一个新的基本类12345678910111213Ext.define(&apos;My.awesome.Class&apos;, &amp;#123;    someProperty: &apos;something&apos;,    someMethod: function(s) &amp;#123;        alert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ExtJS定义类">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/ExtJS-define/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。
+定义一个类定义一个新的基本类12345678910111213Ext.define(&apos;My.awesome.Class&apos;, &amp;#123;    someProperty: &apos;something&apos;,    someMethod: function(s) &amp;#123;        alert">
+<meta property="og:updated_time" content="2016-04-07T06:29:27.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ExtJS定义类">
+<meta name="twitter:description" content="在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。
+定义一个类定义一个新的基本类12345678910111213Ext.define(&apos;My.awesome.Class&apos;, &amp;#123;    someProperty: &apos;something&apos;,    someMethod: function(s) &amp;#123;        alert">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ExtJS-define" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/ExtJS-define/" class="article-date">
+  <time datetime="2016-04-07T03:22:20.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ExtJS定义类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。</p>
+<h2 id="定义一个类"><a href="#定义一个类" class="headerlink" title="定义一个类"></a>定义一个类</h2><h4 id="定义一个新的基本类"><a href="#定义一个新的基本类" class="headerlink" title="定义一个新的基本类"></a>定义一个新的基本类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'My.awesome.Class'</span>, &#123;</span><br><span class="line">    <span class="attribute">someProperty</span>: <span class="string">'something'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attribute">someMethod</span>: <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">        alert(s + <span class="keyword">this</span>.someProperty);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> obj = <span class="keyword">new</span> My.awesome.Class();</span><br><span class="line"></span><br><span class="line">obj.someMethod(<span class="string">'Say '</span>); <span class="comment">// alerts 'Say something'</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建一个匿名类"><a href="#创建一个匿名类" class="headerlink" title="创建一个匿名类"></a>创建一个匿名类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="literal">null</span>, &#123;</span><br><span class="line">  <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="创建一个包含私有类型的嵌套域"><a href="#创建一个包含私有类型的嵌套域" class="headerlink" title="创建一个包含私有类型的嵌套域"></a>创建一个包含私有类型的嵌套域</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.foo.Bar'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> id = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">nextId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ++id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> bar=Ext.create(<span class="string">'MyApp.foo.Bar'</span>);</span><br><span class="line">alert(bar.nextId()); <span class="comment">//1</span></span><br><span class="line">alert(bar.nextId()); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h4 id="Ext实现"><a href="#Ext实现" class="headerlink" title="Ext实现"></a>Ext实现</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">define</span>: <span class="title">function</span> </span>(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">            <span class="comment">//如果是重载，则应用Manager.createOverride方法，否则应用Manager.create</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">data</span>.override) &#123;</span><br><span class="line">                <span class="keyword">return</span> Manager.createOverride.apply(Manager, arguments);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Manager.create.apply(Manager, arguments);</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个新的类</span></span><br><span class="line">create: function(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">			</span><br><span class="line">            <span class="built_in">var</span> ctor = makeCtor();<span class="comment">//建立构造器</span></span><br><span class="line">            <span class="keyword">if</span> (typeof <span class="built_in">data</span> == <span class="string">'function'</span>) &#123;</span><br><span class="line">                <span class="built_in">data</span> = <span class="built_in">data</span>(ctor);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">data</span>.$className = className; <span class="comment">//更改类名</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//返回创建好的类，创建类的过程中，不仅要将自定义的类的属性和方法添加到类中，</span></span><br><span class="line">            <span class="comment">//还需要将ext基本类的属性和方法添加到新建的类中。</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">new</span> Class(ctor, <span class="built_in">data</span>, function() &#123;<span class="comment">//……&#125;);</span></span><br><span class="line"></span><br><span class="line">Ext.Class = ExtClass = function(Class, <span class="built_in">data</span>, onCreated) &#123;</span><br><span class="line">        <span class="keyword">if</span> (typeof Class != <span class="string">'function'</span>) &#123;</span><br><span class="line">            onCreated = <span class="built_in">data</span>;</span><br><span class="line">            <span class="built_in">data</span> = Class;</span><br><span class="line">            Class = <span class="built_in">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">data</span>) &#123;</span><br><span class="line">            <span class="built_in">data</span> = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Class = ExtClass.create(Class, <span class="built_in">data</span>); <span class="comment">//先创建基于ExtClass的类的实例，添加应有的属性和方法</span></span><br><span class="line"></span><br><span class="line">        ExtClass.process(Class, <span class="built_in">data</span>, onCreated); <span class="comment">//将添加的属性和方法放至正确的位置</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Class; <span class="comment">//返回创建好的类</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="重载类"><a href="#重载类" class="headerlink" title="重载类"></a>重载类</h2><h4 id="定义基于EXT组件的重载"><a href="#定义基于EXT组件的重载" class="headerlink" title="定义基于EXT组件的重载"></a>定义基于EXT组件的重载</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.override.BaseOverride'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">override</span>: <span class="string">'Ext.Component'</span>,</span><br><span class="line">        <span class="attribute">logId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(++counter, <span class="keyword">this</span>.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<h4 id="分解类"><a href="#分解类" class="headerlink" title="分解类"></a>分解类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: /src/app/Panel.js</span></span><br><span class="line"></span><br><span class="line"> Ext.define(<span class="string">'My.app.Panel'</span>, &#123;</span><br><span class="line">     <span class="attribute">extend</span>: <span class="string">'Ext.panel.Panel'</span>,</span><br><span class="line">     <span class="attribute">requires</span>: [</span><br><span class="line">         <span class="string">'My.app.PanelPart2'</span>,</span><br><span class="line">         <span class="string">'My.app.PanelPart3'</span></span><br><span class="line">     ]</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls Ext.panel.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">statics</span>: &#123;</span><br><span class="line">         <span class="attribute">method</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// File: /src/app/PanelPart2.js</span></span><br><span class="line"> Ext.define(<span class="string">'My.app.PanelPart2'</span>, &#123;</span><br><span class="line">     <span class="attribute">override</span>: <span class="string">'My.app.Panel'</span>,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls My.app.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Ext重载类的实现"><a href="#Ext重载类的实现" class="headerlink" title="Ext重载类的实现"></a>Ext重载类的实现</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">createOverride: function (className, data, createdFn) &#123;</span><br><span class="line">            var me = this,</span><br><span class="line">                overriddenClassName = data.override,</span><br><span class="line">                requires = data.requires,</span><br><span class="line">                uses = data.uses,</span><br><span class="line">                compat = data.compatibility,</span><br><span class="line">                classReady = function () &#123;</span><br><span class="line">                    var <span class="keyword">cls</span>, temp<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">               		<span class="comment">//requires加载需要的类时机是：当前类初始化之前被加载。</span></span><br><span class="line">                    <span class="keyword">if</span> (requires) &#123;</span><br><span class="line">                        temp = requires<span class="comment">;</span></span><br><span class="line">                        requires = null<span class="comment">; </span></span><br><span class="line"></span><br><span class="line">                        Ext.Loader.require(temp, classReady)<span class="comment">;</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">cls</span> = me.get(overriddenClassName)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">delete</span> data.override<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.compatibility<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.requires<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.uses<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        Ext.override(<span class="keyword">cls</span>, data)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        me.triggerCreated(className)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">						<span class="comment">//uses记载需要的类的时机是，当前类初始化之后被加载。</span></span><br><span class="line">                        <span class="keyword">if</span> (uses) &#123;</span><br><span class="line">                            Ext.Loader.addUsedClasses(uses)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> (createdFn) &#123;</span><br><span class="line">                            createdFn.call(<span class="keyword">cls</span>)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            me.existCache[className] = true<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!compat || Ext.checkVersion(compat)) &#123;</span><br><span class="line">                </span><br><span class="line">                me.onCreated(classReady, me, overriddenClassName)<span class="comment">;</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> me<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="cimpwm9ag0008e8q9hpaw7xrd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/31/dataBase-system/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据库概论</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 10px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 17.5px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-add-add/">C++</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/C-program/">c语言编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
