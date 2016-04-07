@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ext中Ajax技术详解 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ajax技术的核心是XMLHttpRequest对象。原生JavaScript实现Ajax的流程为：创建XHR对象实例，实例使用open()方法（设定发送请求类型、URL以及是否异步），然后使用send()方法传送相应数据，即完成请求。接下来，通过检查xhr实例的状态，判断是否返回所需值，并对response进行解析，执行相应操作即完成了Ajax通信过程。ExtJS以及jQuery等库都对Ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ext中Ajax技术详解">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/Ext-Ajax/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="Ajax技术的核心是XMLHttpRequest对象。原生JavaScript实现Ajax的流程为：创建XHR对象实例，实例使用open()方法（设定发送请求类型、URL以及是否异步），然后使用send()方法传送相应数据，即完成请求。接下来，通过检查xhr实例的状态，判断是否返回所需值，并对response进行解析，执行相应操作即完成了Ajax通信过程。ExtJS以及jQuery等库都对Ajax">
+<meta property="og:updated_time" content="2016-04-07T14:55:42.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ext中Ajax技术详解">
+<meta name="twitter:description" content="Ajax技术的核心是XMLHttpRequest对象。原生JavaScript实现Ajax的流程为：创建XHR对象实例，实例使用open()方法（设定发送请求类型、URL以及是否异步），然后使用send()方法传送相应数据，即完成请求。接下来，通过检查xhr实例的状态，判断是否返回所需值，并对response进行解析，执行相应操作即完成了Ajax通信过程。ExtJS以及jQuery等库都对Ajax">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ext-Ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/Ext-Ajax/" class="article-date">
+  <time datetime="2016-04-07T13:36:29.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ext中Ajax技术详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ajax技术的核心是XMLHttpRequest对象。原生JavaScript实现Ajax的流程为：创建XHR对象实例，实例使用open()方法（设定发送请求类型、URL以及是否异步），然后使用send()方法传送相应数据，即完成请求。接下来，通过检查xhr实例的状态，判断是否返回所需值，并对response进行解析，执行相应操作即完成了Ajax通信过程。ExtJS以及jQuery等库都对Ajax过程进行了不同程度的封装，以简化异步请求过程。</p>
+<h2 id="ExtJS的Ajax使用方法简介"><a href="#ExtJS的Ajax使用方法简介" class="headerlink" title="ExtJS的Ajax使用方法简介"></a>ExtJS的Ajax使用方法简介</h2><p>ExtJS的封装比较完全，目前ExtJS进行异步通信的常规手段都是采用Model+Store的方式，对组件内容进行动态更新，已经比较少使用Ext.Ajax的方法了。但前一种方式只是对Ext.Ajax方法的进一步封装，其实现原理类似，故此处仍然先对Ext.Ajax进行说明。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下是主要的属性和方法，此外还有failure等</span></span><br><span class="line">Ext.Ajax.request(&#123;</span><br><span class="line">    <span class="attribute">url</span>: <span class="string">'page.php'</span>,  <span class="comment">//设置url，可以带请求参数</span></span><br><span class="line">    <span class="attribute">method</span>: <span class="string">"get"</span>, <span class="comment">//设置请求方法</span></span><br><span class="line">    <span class="attribute">params</span>: &#123; <span class="comment">//设置要发送的参数，可发送多个参数</span></span><br><span class="line">        <span class="attribute">id:</span><span class="emphasis"> 1</span><br><span class="line">    &#125;,</span><br><span class="line">    success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>)</span>&#123; <span class="comment">//请求的数据返回成功则执行</span></span><br><span class="line">        <span class="built_in">var</span> text = response.responseText;</span><br><span class="line">        <span class="comment">// process server response here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="ExtJS的Ext-Ajax-request底层实现"><a href="#ExtJS的Ext-Ajax-request底层实现" class="headerlink" title="ExtJS的Ext.Ajax.request底层实现"></a>ExtJS的Ext.Ajax.request底层实现</h2><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">request</span> : <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//初始化</span></span><br><span class="line">        options = options || &#123;&#125;;</span><br><span class="line">        <span class="built_in">var</span> me = <span class="keyword">this</span>,</span><br><span class="line">            scope = options.scope || <span class="built_in">window</span>,</span><br><span class="line">            username = options.username || me.username,</span><br><span class="line">            password = options.password || me.password || <span class="string">''</span>,</span><br><span class="line">            <span class="keyword">async</span>,</span><br><span class="line">            requestOptions,</span><br><span class="line">            request,</span><br><span class="line">            headers,</span><br><span class="line">            xhr;</span><br><span class="line">        <span class="keyword">if</span> (me.fireEvent(<span class="string">'beforerequest'</span>, me, options) !== <span class="literal">false</span>) &#123;</span><br><span class="line"></span><br><span class="line">            requestOptions = me.setOptions(options, scope);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (me.isFormUpload(options)) &#123;</span><br><span class="line">                me.upload(options.form, requestOptions.url, requestOptions.data, options);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 如果设置了自动取消异步，则调用abort()方法，取消异步请求</span></span><br><span class="line">            <span class="keyword">if</span> (options.autoAbort || me.autoAbort) &#123;</span><br><span class="line">                me.abort();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">async</span> = options.async !== <span class="literal">false</span> ? (options.async || me.async) : <span class="literal">false</span>;</span><br><span class="line">            <span class="comment">// 创建一个XHR对象实例，此处多了用户名和密码两个参数</span></span><br><span class="line">            <span class="comment">// 函数进行性能检测，ie返回的是xdr实例，存在xhr返回xhr实例</span></span><br><span class="line">            xhr = me.openRequest(options, requestOptions, <span class="keyword">async</span>, username, password);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 如果不是XDR，则设置相应头部</span></span><br><span class="line">            <span class="keyword">if</span> (!me.isXdr) &#123;</span><br><span class="line">                headers = me.setupHeaders(xhr, options, requestOptions.data, requestOptions.params);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建请求实例</span></span><br><span class="line">            request = &#123;</span><br><span class="line">                <span class="attribute">id:</span><span class="emphasis"> ++Ext.data.Connection.requestId</span>, <span class="comment">//自动设置id以进行区分</span></span><br><span class="line">                <span class="attribute">xhr</span>: xhr,</span><br><span class="line">                <span class="attribute">headers</span>: headers,</span><br><span class="line">                <span class="attribute">options</span>: options,</span><br><span class="line">                <span class="attribute">async</span>: <span class="keyword">async</span>,</span><br><span class="line">                <span class="attribute">binary</span>: options.binary || me.binary,</span><br><span class="line">                <span class="attribute">timeout</span>: setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                    request.timedout = <span class="literal">true</span>;</span><br><span class="line">                    me.abort(request);</span><br><span class="line">                &#125;, options.timeout || me.timeout)</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            me.requests[request.id] = request;</span><br><span class="line">            me.latestId = request.id;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 绑定statechange事件函数,状态发生改变则发生相应事件</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">async</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!me.isXdr) &#123;</span><br><span class="line">                    xhr.onreadystatechange = Ext.Function.bind(me.onStateChange, me, [request]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//如果是XDR，则使用一下方法绑定request</span></span><br><span class="line">            <span class="keyword">if</span> (me.isXdr) &#123;</span><br><span class="line">                me.processXdrRequest(request, xhr);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 开始进行请求</span></span><br><span class="line">            xhr.send(requestOptions.data);</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">async</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> me.onComplete(request);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> request;</span><br><span class="line">        &#125; <span class="decorator"><span class="keyword">else</span></span> &#123;</span><br><span class="line">            Ext.callback(options.callback, options.scope, [options, <span class="literal">undefined</span>, <span class="literal">undefined</span>]);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cimqeosx10005f8q98ujxtfqq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/07/ExtJS-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ExtJS中Store与TreeStore</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ExtJS中Store与TreeStore | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ExtJS中将后台数据交由前端显示的一般过程为：将数据库中数据通过交互文件和AJAX技术传到前端，根据前端定义的相应的model，将数据加载到相应的store中，将创建的store赋给相应的前端组件即可显示。采取这样的方式，就避免了原生JavaScript等要先将json数据解析，再分析数据，然后根据结果进行显示的耦合性比较高的问题。
+Model与TreeModelModel类型指定了解析json">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ExtJS中Store与TreeStore">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/ExtJS-model/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="ExtJS中将后台数据交由前端显示的一般过程为：将数据库中数据通过交互文件和AJAX技术传到前端，根据前端定义的相应的model，将数据加载到相应的store中，将创建的store赋给相应的前端组件即可显示。采取这样的方式，就避免了原生JavaScript等要先将json数据解析，再分析数据，然后根据结果进行显示的耦合性比较高的问题。
+Model与TreeModelModel类型指定了解析json">
+<meta property="og:updated_time" content="2016-04-07T11:58:36.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ExtJS中Store与TreeStore">
+<meta name="twitter:description" content="ExtJS中将后台数据交由前端显示的一般过程为：将数据库中数据通过交互文件和AJAX技术传到前端，根据前端定义的相应的model，将数据加载到相应的store中，将创建的store赋给相应的前端组件即可显示。采取这样的方式，就避免了原生JavaScript等要先将json数据解析，再分析数据，然后根据结果进行显示的耦合性比较高的问题。
+Model与TreeModelModel类型指定了解析json">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ExtJS-model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/ExtJS-model/" class="article-date">
+  <time datetime="2016-04-07T11:05:26.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ExtJS中Store与TreeStore
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ExtJS中将后台数据交由前端显示的一般过程为：将数据库中数据通过交互文件和AJAX技术传到前端，根据前端定义的相应的model，将数据加载到相应的store中，将创建的store赋给相应的前端组件即可显示。采取这样的方式，就避免了原生JavaScript等要先将json数据解析，再分析数据，然后根据结果进行显示的耦合性比较高的问题。</p>
+<h2 id="Model与TreeModel"><a href="#Model与TreeModel" class="headerlink" title="Model与TreeModel"></a>Model与TreeModel</h2><p>Model类型指定了解析json等数据的格式。store可以根据model直接将json等数据解析为model定义的格式。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'treeModel'</span>, &#123; <span class="comment">//定义Model类</span></span><br><span class="line">    <span class="attribute">extend</span>: <span class="string">'Ext.data.Model'</span>, <span class="comment">//从Ext.data.Model扩展，此外还有treeModel</span></span><br><span class="line">    <span class="attribute">fields</span>: [ <span class="comment">//其域的名称以及类型要和传递的json数据的格式对应</span></span><br><span class="line">        &#123; <span class="attribute">name</span>: <span class="string">'id'</span>, <span class="attribute">type</span>: <span class="string">'string'</span> &#125;, </span><br><span class="line">        &#123; <span class="attribute">name</span>: <span class="string">'text'</span>, <span class="attribute">type</span>: <span class="string">'string'</span> &#125;, <span class="comment">//还可以定义默认值等属性</span></span><br><span class="line">        &#123; <span class="attribute">name</span>:<span class="string">'name'</span>,<span class="attribute">type</span>:<span class="string">'string'</span>&#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="TreeStore"><a href="#TreeStore" class="headerlink" title="TreeStore"></a>TreeStore</h2><p>本文以TreeStore为例分析，此外还有JsonPStore、JsonStore、XmlStore等store类。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.创建store</span></span><br><span class="line"><span class="built_in">var</span> treeStore = Ext.create(<span class="string">'Ext.data.TreeStore'</span>, &#123; </span><br><span class="line">    <span class="attribute">model</span>: <span class="string">'treeModel'</span>, <span class="comment">//按照treeModel格式解析</span></span><br><span class="line">    <span class="attribute">proxy</span>: &#123;</span><br><span class="line">        <span class="attribute">type</span>: <span class="string">'ajax'</span>,</span><br><span class="line">        <span class="attribute">url</span>: <span class="string">'..'</span>, <span class="comment">//指向请求的相应的处理文件的位置。可以通过更改url，使store加载不同的值</span></span><br><span class="line">        <span class="attribute">reader</span>: &#123; <span class="comment">//定义reader，即对数据进行解码的方式。可采用默认值</span></span><br><span class="line">            <span class="attribute">type</span>: <span class="string">'json'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.给相应的组件赋值</span></span><br><span class="line">Ext.create(<span class="string">"Ext.tree.Panel"</span>,&#123;</span><br><span class="line">		<span class="comment">//其他属性</span></span><br><span class="line">		<span class="attribute">store</span>:<span class="attribute">treeStore //将store赋给某个组件的store</span><br><span class="line">	&#125;); </span><br><span class="line"></span><br><span class="line">//3.加载数据及重加载数据</span><br><span class="line">treeStore.load(); //加载，将数据加载到treeStore中。执行这个方法后，控件就会显示数据</span><br><span class="line"></span><br><span class="line">treeStore.reload(); //再次加载。当数据更新后，调用此方法重新加载以显示新数据。</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cimqeosx10009f8q99c9b00bd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/07/Ext-Ajax/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ext中Ajax技术详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/07/ExtJS-define/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ExtJS定义类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
