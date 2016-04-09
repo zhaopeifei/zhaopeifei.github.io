@@ -175,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cimrrnyka000538q9q1mzkual" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cimt8at1y000lewq93v3uerm0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -261,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cimrrnyk9000438q944p6u5qr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cimt8at0y0001ewq9n3xx18ji" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -481,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimrrnylg001338q9vtbrpf5l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cimt8at180004ewq92nm7etjp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -568,6 +568,8 @@
 <li>get post区别</li>
 </ul>
 <h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><ul>
+<li>文档类型、模式（混杂、标准）及其设置</li>
+<li>HTML中使用JavaScript的方法及有关属性（async、defer、src、type）</li>
 <li><a href="http://www.w3school.com.cn/h.asp" target="_blank" rel="external">入门</a> <a href="https://www.w3.org/TR/html5/single-page.html" target="_blank" rel="external">HTML5 API文档</a> <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" target="_blank" rel="external">MDN例子</a></li>
 <li>都有哪些标签（基本、格式、布局、链接、表单、表格、音视频、图像等）（行内/行外、display）</li>
 <li>新标签（视频、音频、画布、SVG、表单输入类型、表单元素/属性）</li>
@@ -583,21 +585,38 @@
 <li>CSS新特性：边框、背景、文本效果、字体、2d3d、动画、多列、过渡、用户界面</li>
 <li>hack</li>
 </ul>
-<h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><ul>
-<li>变量（基本类型和引用类型）、初始化及类型检测；执行环境、作用域链、变量对象；垃圾收集及内存管理；</li>
-<li>引用类型（Object、Array、Date、RegExp、Function、基本包装类型、Global、Math）实例化、方法；</li>
-<li></li>
+<h2 id="JavaScript基础（ECMAScript）"><a href="#JavaScript基础（ECMAScript）" class="headerlink" title="JavaScript基础（ECMAScript）"></a>JavaScript基础（ECMAScript）</h2><ul>
+<li>JavaScript解析顺序（预编译、执行），所有的var定义变量在预编译阶段的值为undefined，而function定义在预编译阶段则为实际值。var定义的函数在定义前调用会返回语法错误。</li>
+<li>变量的类型（基本类型、引用类型）区别。数值转换（Number/parseInt/parseFloat方法、toString/String方法）。初始化及类型检测（typeof、isPrototypeOf、instanceof）</li>
+<li>变量复制、参数传递。执行环境、作用域链、变量对象；没有块级作用域</li>
+<li>垃圾收集—标记清除（进入/离开环境）、手动内存管理接触变量的引用null；</li>
+<li>引用类型实例化、方法；</li>
+</ul>
+<ol>
+<li>Object（字面量、属性/方法、通过.或者[“”]访问）</li>
+<li>Array：初始化（new 和[]）、检测（instanceof Attay、Array.idArray()）、转换（valueOf()/toString()/join(“”)）、队栈（push/pop/shift/unshift）、排序（reverse()/sort()比较字符串/sort(compare)）</li>
+<li>Function:this（函数据以执行的环境对象）和arguments（有callee属性）、apply和call（设置this、扩充作用域）</li>
+<li>RegExp：元字符：[] ^ $ ?=n n{x,} 标志：g、i、m string对象的方法：match、replace等</li>
+<li>Date、Function、基本包装类型。以上为本地对象，即可使用new实例化</li>
+<li>单体内置对象Global、Math等不可实例化。宿主为浏览器自带的document、window等</li>
+</ol>
+<ul>
+<li>创建对象模式：工厂模式、构造函数模式、原型模式、组合使用构造函数和原型模式，实现方法及其优缺点。用字面量赋值原型对象时，还需要指明constructor对象。包含引用类型的属性值统一。</li>
+<li>继承：原型链（构造函数、原型对象、实例指针）、借用构造函数（call/apply）、组合继承</li>
+<li>函数表达式：递归（混合模式下可使用arguments.callee()，var fac=(function f(num){reutrn num*f(num-1)})）、闭包（有权访问另一个函数作用域中的变量的函数）实现与避免、模仿块级作用域(function(){//块级作用域})()</li>
+</ul>
+<h2 id="BOM与DOM"><a href="#BOM与DOM" class="headerlink" title="BOM与DOM"></a>BOM与DOM</h2><ul>
+<li>主流浏览器内核：IE(Trident)、火狐(Gecko)、safari(Webkit)、chrome(Blink)</li>
+<li>核心对象window，新建window.open()，window.location,navigator,navigator.plugins(插件)</li>
+<li>客户端检测：能力检测、怪癖检测、用户代理检测(navigator.userAgent)</li>
+<li>节点获取someNode.childNodes[0] nextSibling previousSibling firstChild lastChild parentChild 节点操作someNode.appendChild(new) insertBefore(new,null) replaceChild(new,old) removeChild(old)</li>
+<li>元素特性：div.getAttribute(“id”) div.setAttribute(“id”,”my”) div.removeAttribute(“id”) div.attributes[“id”]</li>
 </ul>
 <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ul>
 <li>性能优化：页面级优化（减少HTTP请求[jscss合、css sprite]、预加载、改变加载顺序）、代码级优化（JS优化、CSS选择符、HTML、Image等），还有CDN、无cookie服务器、多域名等</li>
-<li>DOM（节点层次、）、BOM</li>
-<li>闭包、原型链、作用域链、变量域</li>
-<li>几种继承方式，优缺点及相互关系。</li>
-<li>兼容性（性能检测、怪癖检测、浏览器检测）</li>
-<li>基本数据类型和引用数据类型区别，以及类型检测</li>
-<li>事件流（事件绑定以及对象）</li>
-<li>实现动画（html，css，js）</li>
-<li>跨域、正则表达式。</li>
+<li>事件流（冒泡、捕获、DOM2事件流）、事件处理程序（HTML onclick、DOM0 btn.onclick、DOM2 btn.addEventListenter(“click”,,false)、IE btn.attachEvent(“onclick”,)，跨浏览器）、获取事件（DOM event输入参数、IE window.event）、事件对象（DOM this currentTarget Target、IE srcElement）、取消冒泡（DOM stopPropagation()、IE cancelBubble）、取消事件默认事件（DOM preventDefault()、ID returnValue）、事件类型（点击/焦点/文本事件等）、事件委托</li>
+<li>实现动画（HTML5 canvas，css3 @keyframes，js 切换数据源、属性等）</li>
+<li>跨域</li>
 <li>HTTP缓存、缓存等。</li>
 </ul>
 <h2 id="AJAX-Asynchronous-Javascript-And-XML"><a href="#AJAX-Asynchronous-Javascript-And-XML" class="headerlink" title="AJAX(Asynchronous Javascript And XML)"></a>AJAX(Asynchronous Javascript And XML)</h2><ul>
@@ -608,7 +627,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimrrnyo3005938q9bibh7rz9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimt8at49002kewq9dnyl4fyk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -699,7 +718,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cimrrnyms002i38q9202gjt7n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cimt8at4h002uewq9cvwovwvi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>

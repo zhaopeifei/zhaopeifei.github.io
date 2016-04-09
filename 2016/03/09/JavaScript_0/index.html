@@ -13,7 +13,7 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
 JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对">
-<meta property="og:updated_time" content="2016-03-11T07:41:35.002Z">
+<meta property="og:updated_time" content="2016-04-09T04:10:54.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript概述">
 <meta name="twitter:description" content="JavaScript简史JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。
@@ -99,7 +99,7 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
         <h2 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h2><p>JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。</p>
 <h2 id="JavaScript实现"><a href="#JavaScript实现" class="headerlink" title="JavaScript实现"></a>JavaScript实现</h2><p>JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对象模型。这三个主要部分，在当前主流浏览器中都得到了不同程度的支持。所有浏览器对ECMAScript的支持都还不错，但对DOM的支持彼此相差比较多，对于纳入HTML5标准的BOM来说，都实现了某些众所周知的共同特性，但其他特性还是会因浏览器而异。</p>
 <ul>
-<li>ECMAScript提供核心语言功能。这门语言本身并不包含输入和输出定义，Web浏览器知识其实现可能的宿主环境之一。</li>
+<li>ECMAScript提供核心语言功能。这门语言本身并不包含输入和输出定义，Web浏览器只是其实现可能的宿主环境之一。</li>
 <li>DOM，提供访问和操作页面内容的方法和接口。是负责制定web通信标准的W3C（万维网联盟）着手规划的，目前有DOM1级、DOM2级、DOM3级。不同的浏览器对DOM的支持程度不同，但是目前，支持DOM已经成为浏览器开发商的首要目标。</li>
 <li>BOM，提供与浏览器交互的方法和接口。由于没有BOM标准可以遵循，因此每个浏览器都有自己的实现。现在HTML5致力于把很多BOM功能写入正式规范，BOM实现的细节有望朝着兼容性越来越高的方向发展。</li>
 </ul>
@@ -113,7 +113,7 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
 <h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><ul>
 <li>按照HTML文档流从上至下顺序解析JavaScript代码，包含外部文件。</li>
 <li>一个<code>&lt;script&gt;</code>中的JavaScript代码称为一个代码块。先解析一个代码块再解析下一个代码块，代码块间相互独立，但共享变量和方法。</li>
-<li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，然后执行赋值函数等。</li>
+<li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，即会定义所有的var定义的变量，值为undefined，而使用function关键字定义的话，其值则为定义的内容。var定义的函数在定义前调用会返回语法错误，因为调用函数时，其还是一个undefined的变量，不知道它是函数。在执行期则会执行赋值函数等。</li>
 <li>在解释器对放在head中的JavaScript所有代码（包含要下载的外部文件）依次解析完毕之前，页面中的其余内容不会被浏览器加载或显示。所以，如果脚本在执行时不会影响页面的构造，把延迟脚本放在页面底部（body的最后）是最佳选择。</li>
 </ul>
 <h4 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h4><p>在ECMAScript中，包含两种不同数据类型的值：基本数据类型和引用数据类型（object）。基本数据类型可以操作保存在变量中的实际的值，而引用类型的值是保存在内存中的对象，不允许直接访问内存中的位置，也就是说不能直接操作引用类型的值。</p>
@@ -122,12 +122,13 @@ JavaScript实现JavaScript由一下三个不同的部分组成：核心（ECMASc
 <li>每个函数的执行环境都有一个与之相连的变量对象。每个环境都可以向上搜素作用域链，以查询变量和函数名；但是任何环境之间不能通过向下搜索作用域链而进入另一个执行环境。所以，局部环境可以访问全局环境，全局环境不能访问局部环境。但是，if、for等语句是没有局部环境的，即if和for中定义的变量是全局变量。</li>
 <li>垃圾收集。JavaScript有自动垃圾收集机制（固定的时间间隔）。释放离开函数的局部变量；跟踪变量是否有用（标记清除、引用次数）。垃圾收集机制回收工作量相当大，设置合适的间隔很重要，严重影响性能问题。</li>
 </ul>
-<h4 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h4><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
+<h2 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h2><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 文档类型及模式设置（标准模式、混杂模式） --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- HTML 4.01 严格型 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"</span><br><span class="line">"http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- XHTML 1.0 严格型 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC </span><br><span class="line">"-//W3C//DTD XHTML 1.0//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml-strict.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- HTML 5 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br></pre></td></tr></table></figure>
 </script></h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cimrrnym5001r38q9gg1en0tk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cimt8at43002dewq9gahcbzgv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
