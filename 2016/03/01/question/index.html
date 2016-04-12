@@ -43,7 +43,7 @@ C中常见的数据类型及算术运算时的自动类型转换
 三大类科学方法及其对应的三大思维。
 图灵机及可计算性
 什么是算法？算法">
-<meta property="og:updated_time" content="2016-04-09T14:19:46.525Z">
+<meta property="og:updated_time" content="2016-04-12T10:44:22.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识要点">
 <meta name="twitter:description" content="C语言
@@ -186,26 +186,30 @@ C中常见的数据类型及算术运算时的自动类型转换
 <h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><ul>
 <li><a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="external">RFC2616</a></li>
 <li>有哪几种和哪几类HTTP状态信息（5类）</li>
-<li>抓包200 304 302</li>
-<li>get post区别</li>
+<li>继续100continue</li>
+<li>成功200 204no content</li>
+<li>重定向301move permanently 302move temporarily 304not modified </li>
+<li>请求错误400bad request 403forbidden 404 410 </li>
+<li>服务器端错误500internal server error 503service unavailable</li>
+<li>get post区别（请求主体、目的、安全性、大小限制）</li>
 </ul>
 <h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><ul>
-<li>文档类型、模式（混杂、标准）及其设置</li>
+<li>文档类型、模式（混杂、标准、准标准）及其设置</li>
 <li>HTML中使用JavaScript的方法及有关属性（async、defer、src、type）</li>
 <li><a href="http://www.w3school.com.cn/h.asp" target="_blank" rel="external">入门</a> <a href="https://www.w3.org/TR/html5/single-page.html" target="_blank" rel="external">HTML5 API文档</a> <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" target="_blank" rel="external">MDN例子</a></li>
-<li>都有哪些标签（基本、格式、布局、链接、表单、表格、音视频、图像等）（行内/行外、display）</li>
-<li>新标签（视频、音频、画布、SVG、表单输入类型、表单元素/属性）</li>
-<li>新功能特性及实现（地理定位、localStorage、应用缓存、拖放、Web Workers、服务器发送事件）</li>
+<li>都有哪些标签（基本html head body h1 p br、格式b i strong、布局div、链接a href link、表单：form input(text radio checkbox) button textarea select option、表格tabel tr th td、列表ol ul li、音视频audio video source、图像img canvas等）（行内a img b td span input/行外h1 form p ul、display）</li>
+<li>新标签audio video output keygen datalist（视频、音频、画布、SVG、表单输入类型、表单元素/属性）</li>
+<li>新功能特性及实现（地理定位、localStorage、应用缓存、拖放、Web Workers Worker、服务器发送事件EventSorce）</li>
 <li>哪些属性及使用（display、事件）</li>
 </ul>
 <h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><ul>
 <li><a href="http://www.w3school.com.cn/h.asp" target="_blank" rel="external">入门</a> <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started" target="_blank" rel="external">MDN CSS</a> <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/" target="_blank" rel="external">CSS官方文档</a></li>
-<li>盒子模型（IE6）</li>
-<li>position分为四种。浮动。</li>
-<li>CSS选择器四类以及优先级</li>
-<li>CSS样式（text tables color lists）</li>
-<li>CSS新特性：边框、背景、文本效果、字体、2d3d、动画、多列、过渡、用户界面</li>
-<li>hack</li>
+<li>盒子模型（IE6及以前的版本宽度算border、以后的IE有标准兼容模式）</li>
+<li>position分为四种（static、relative、absolute、fixed left）。浮动（float:left）。</li>
+<li>CSS选择器四类以及优先级(id100 class10 标签1)</li>
+<li>CSS样式（text font background）(-align -left -color -size)</li>
+<li>CSS新特性：边框(、阴影)、文本效果（text-shadow、text-overflow）、字体、2d3d旋转、动画(@keyframes form{} to{})、多列、过渡(transition)、用户界面</li>
+<li>hack:属性hack、选择符hack、IE条件注释hack</li>
 </ul>
 <h2 id="JavaScript基础（ECMAScript）"><a href="#JavaScript基础（ECMAScript）" class="headerlink" title="JavaScript基础（ECMAScript）"></a>JavaScript基础（ECMAScript）</h2><ul>
 <li>JavaScript解析顺序（预编译、执行），所有的var定义变量在预编译阶段的值为undefined，而function定义在预编译阶段则为实际值。var定义的函数在定义前调用会返回语法错误。</li>
@@ -216,7 +220,7 @@ C中常见的数据类型及算术运算时的自动类型转换
 </ul>
 <ol>
 <li>Object（字面量、属性/方法、通过.或者[“”]访问）</li>
-<li>Array：初始化（new 和[]）、检测（instanceof Attay、Array.idArray()）、转换（valueOf()/toString()/join(“”)）、队栈（push/pop/shift/unshift）、排序（reverse()/sort()比较字符串/sort(compare)）</li>
+<li>Array：初始化（new 和[]）、检测（instanceof Array、Array.isArray()）、转换（valueOf()/toString()/join(“”)）、队栈（push/pop/shift/unshift）、排序（reverse()/sort()比较字符串/sort(compare)）</li>
 <li>Function:this（函数据以执行的环境对象）和arguments（有callee属性）、apply和call（设置this、扩充作用域）</li>
 <li>RegExp：元字符：[] ^ $ ?=n n{x,} 标志：g、i、m string对象的方法：match、replace等</li>
 <li>Date、Function、基本包装类型。以上为本地对象，即可使用new实例化</li>
@@ -234,22 +238,23 @@ C中常见的数据类型及算术运算时的自动类型转换
 <li>节点获取someNode.childNodes[0] nextSibling previousSibling firstChild lastChild parentChild 节点操作someNode.appendChild(new) insertBefore(new,null) replaceChild(new,old) removeChild(old)</li>
 <li>元素特性：div.getAttribute(“id”) div.setAttribute(“id”,”my”) div.removeAttribute(“id”) div.attributes[“id”]</li>
 </ul>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ul>
-<li>性能优化：页面级优化（减少HTTP请求[jscss合、css sprite]、预加载、改变加载顺序）、代码级优化（JS优化、CSS选择符、HTML、Image等），还有CDN、无cookie服务器、多域名等</li>
+<h2 id="前端综合"><a href="#前端综合" class="headerlink" title="前端综合"></a>前端综合</h2><ul>
+<li>性能优化：页面级优化（减少HTTP请求[jscss合、css sprite]、预加载、改变加载顺序、）、代码级优化（JS优化、CSS选择符、HTML、Image等），还有CDN、无cookie服务器、多域名等</li>
 <li>事件流（冒泡、捕获、DOM2事件流）、事件处理程序（HTML onclick、DOM0 btn.onclick、DOM2 btn.addEventListenter(“click”,,false)、IE btn.attachEvent(“onclick”,)，跨浏览器）、获取事件（DOM event输入参数、IE window.event）、事件对象（DOM this currentTarget Target、IE srcElement）、取消冒泡（DOM stopPropagation()、IE cancelBubble）、取消事件默认事件（DOM preventDefault()、ID returnValue）、事件类型（点击/焦点/文本事件等）、事件委托</li>
 <li>实现动画（HTML5 canvas，css3 @keyframes，js 切换数据源、属性等）</li>
-<li>跨域</li>
+<li>跨域、同源策略、JSONP、CORS、document.domain</li>
 <li>HTTP缓存、缓存等。</li>
 </ul>
 <h2 id="AJAX-Asynchronous-Javascript-And-XML"><a href="#AJAX-Asynchronous-Javascript-And-XML" class="headerlink" title="AJAX(Asynchronous Javascript And XML)"></a>AJAX(Asynchronous Javascript And XML)</h2><ul>
 <li>AJAX的实现机制</li>
 <li>AJAX实现方法</li>
+<li>Ext的ajax实现方法</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimt8at49002kewq9dnyl4fyk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimxaxr90003qooq9jy9oqukt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -298,7 +303,7 @@ C中常见的数据类型及算术运算时的自动类型转换
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -308,7 +313,7 @@ C中常见的数据类型及算术运算时的自动类型转换
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -330,6 +335,10 @@ C中常见的数据类型及算术运算时的自动类型转换
       <ul>
         
           <li>
+            <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
           </li>
         
@@ -343,10 +352,6 @@ C中常见的数据类型及算术运算时的自动类型转换
         
           <li>
             <a href="/2016/03/31/dataBase-system/">数据库概论</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
           </li>
         
       </ul>

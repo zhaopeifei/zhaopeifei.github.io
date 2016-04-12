@@ -68,6 +68,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-crossOrigin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/11/JavaScript-crossOrigin/" class="article-date">
+  <time datetime="2016-04-11T04:38:02.000Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>跨域是JavaScript开发中的重要的概念，跨域是打破同源策略的限制实现跨域资源访问的技术手段。</p>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略是一种约定，它是浏览器最核心也是最基本的安全功能。所谓同源是指协议、域名、端口相同，同源策略即为JavaScript文件只能访问包含它的页面所在的域的资源。此外，通过&lt; script&gt;标签等引入的JavaScript、CSS、图像等静态资源也被认为是与包含它们的界面所在的域同源。</p>
+<p>在页面中，&lt; script&gt;&lt; img&gt;&lt; link&gt;&lt; iframe&gt;标签不受同源策略的影响，可以访问其他域的内容。</p>
+<h2 id="CORS跨域资源共享"><a href="#CORS跨域资源共享" class="headerlink" title="CORS跨域资源共享"></a>CORS跨域资源共享</h2><p>跨域资源共享是一种网络浏览器的技术规范，它为Web服务器定义了一种方式，允许网页从不同域访问其资源。而这种访问是同源策略所禁止的。它定义了一种浏览器和服务器交互的方式来确定是否允许跨域请求。跨域资源共享的基本思想，是通过自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是否应该成功。<br>默认情况下，XHR对象只能访问与包含它的页面位于同一域中的资源，所以通过xhr.open()打开的是相对路径的url，如果浏览器支持CORS，则可以将url设置为指向其他域资源的绝对路径的url。将请求发送给服务器后，服务器会根据这个头部信息决定是否给予响应，可以接受的话，就在Access-Control-Allow-Origin头部中回发相同的源信息（如果是公共资源，可以回*），如果没有这个头部或者有这个头部但源信息不匹配，浏览器就会驳回请求。<br>与JSONP相比，CORS无疑更加先进：</p>
+<ol>
+<li>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求。</li>
+<li>使用CORS，开发者可以使用普通的xhr对象发起请求和获得数据，比起JSONP有更好的错误处理。</li>
+</ol>
+<h4 id="xhr与xdr"><a href="#xhr与xdr" class="headerlink" title="xhr与xdr"></a>xhr与xdr</h4><p>微软在IE8中引入了XDR类型，这个对象与XHR类似，但能实现安全可靠的跨域通信。XDR对象的安全机制部分实现了W3C的CORS规范。XHR实现Ajax通信的一个主要限制，则来源于跨域安全策略，通过CORS，则可以突破其同源策略限制。xdr与xhr的不同之处有：</p>
+<ul>
+<li>cookie不会随请求发送，也不会随响应返回。</li>
+<li>只能设置请求头部信息中的Content-Type字段</li>
+<li>不能访问相应头部信息。</li>
+<li>只支持GET和POST请求。</li>
+</ul>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>JSONP是JSON with padding的简写，是应有JSON的一种方法。JSONP由两部分组成：回调函数和数据。回调函数是当相应到来时应该在页面中调用的函数。回调函数的名字一般是在请求中指定的。而数据就是传入回调函数中的JSON数据。JSONP是通过动态&lt; script&gt;元素来使用的，使用时可以为src属性指定一个跨域URL。如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//客户端</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"divCustomers"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">callbackFunction</span>(<span class="params">result, methodName</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> html = <span class="string">'&lt;ul&gt;'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; result.length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                html += <span class="string">'&lt;li&gt;'</span> + result[i] + <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            html += <span class="string">'&lt;/ul&gt;'</span>;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">'divCustomers'</span>).innerHTML = html;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//服务器端</span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">'Content-type: application/json'</span>);</span><br><span class="line"><span class="comment">//获取回调函数名</span></span><br><span class="line">$jsoncallback = htmlspecialchars($_REQUEST [<span class="string">'jsoncallback'</span>]);</span><br><span class="line"><span class="comment">//json数据</span></span><br><span class="line">$json_data = <span class="string">'["customername1","customername2"]'</span>;</span><br><span class="line"><span class="comment">//输出jsonp格式的数据</span></span><br><span class="line"><span class="keyword">echo</span> $jsoncallback . <span class="string">"("</span> . $json_data . <span class="string">")"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="document-domain设置跨子域"><a href="#document-domain设置跨子域" class="headerlink" title="document.domain设置跨子域"></a>document.domain设置跨子域</h2><p>主域相同而子域不同的情况下，可以通过设置document.domain来实现跨域。但是使用document.domain来设置域名是有限制的，比如a.b.example.com某个文档中的域名可以设成a.b.example.com/b.example.com/example.com。使用方法如下：</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//www.a.com上的a.html</span></span><br><span class="line">document.domain = <span class="string">'a.com'</span><span class="comment">;</span></span><br><span class="line">var ifr = document.createElement(<span class="string">'iframe'</span>)<span class="comment">;</span></span><br><span class="line">ifr.src = <span class="string">'http://script.a.com/b.html'</span><span class="comment">;</span></span><br><span class="line">ifr.style.display = <span class="string">'none'</span><span class="comment">;</span></span><br><span class="line">document.body.appendChild(ifr)<span class="comment">;</span></span><br><span class="line">ifr.onload = function()&#123;</span><br><span class="line">    var doc = ifr.contentDocument || ifr.contentWindow.document<span class="comment">;</span></span><br><span class="line">    <span class="comment">// 在这里操纵b.html</span></span><br><span class="line">    alert(doc.getElementsByTagName(<span class="string">"h1"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)<span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//script.a.com上的b.html</span></span><br><span class="line">document.domain = <span class="string">"a.com"</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Web-Sockets"><a href="#Web-Sockets" class="headerlink" title="Web Sockets"></a>Web Sockets</h2><p>Web Sockets的目标是在一个单独的持久连接上提供双工、双向通信。使用标准的HTTP服务器无法实现Web Sockets，只要支持这种协议的专门服务器才能正常工作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket=<span class="keyword">new</span> WebSocket(<span class="string">"ws://www.example.com/server.php"</span>);</span><br><span class="line">socket.send(<span class="built_in">JSON</span>.stringify(message));</span><br><span class="line">socket.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> data = event.data;</span><br><span class="line">	<span class="comment">//处理数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他跨域技术"><a href="#其他跨域技术" class="headerlink" title="其他跨域技术"></a>其他跨域技术</h2><ul>
+<li>Commet：指一种更高级的Ajax技术，也被称为服务器推送技术。是一种服务器向页面推送数据的技术，能够让信息近乎实时地被推送到页面上，非常适合处理体育比赛的分数和股票报价等。</li>
+<li>图像Ping，利用&lt; img&gt;标签不受同源限制的性质。通过它，浏览器得不到任何具体的数据，但通过监听load和error事件，它能知道响应是什么时候收到的。常用于跟踪用户点击页面或动态广告曝光次数。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cimxaxr76001looq94hlvcs7y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Ext-Ajax" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/07/Ext-Ajax/" class="article-date">
@@ -103,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cimt8at2z0017ewq9av8x3how" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cimxaxr5u0009ooq9dkh8sdgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -149,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cimt8at2e000sewq9lohi92dy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cimxaxr6e000mooq95undo2va" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -198,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="cimt8at33001dewq9iw05a7ag" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="cimxaxr68000iooq9muzjgzm7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -302,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cimt8at5m004kewq9wf9x1k3i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cimxaxr8t003jooq9pfgv241y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
@@ -366,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimt8at3k001wewq9s8iozoj6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cimxaxr8g0035ooq9vxfn2co2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -410,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimt8at0j0000ewq9jf37nnj4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cimxaxr6m000uooq9tv497sx1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -456,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimt8at4l002yewq95bwfrheh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cimxaxr5p0004ooq9u7k14la7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -503,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimt8at5h004dewq9m6hndm29" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cimxaxr94003uooq9sxw2tmd9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
@@ -570,53 +637,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimt8at3q0023ewq9zz532jl7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cimxaxr8a0034ooq9q4ootfd2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nodejs-project" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/27/nodejs-project/" class="article-date">
-  <time datetime="2016-03-27T13:12:53.000Z" itemprop="datePublished">2016-03-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/27/nodejs-project/">Node.js初试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天太忙，先贴一个<a href="http://blog.fens.me/series-nodejs/" target="_blank" rel="external">node.js学习的连接</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimt8at4e002oewq9ptxi9yng" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
 
     </footer>
   </div>
@@ -648,7 +672,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -658,7 +682,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -680,6 +704,10 @@
       <ul>
         
           <li>
+            <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
           </li>
         
@@ -693,10 +721,6 @@
         
           <li>
             <a href="/2016/03/31/dataBase-system/">数据库概论</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/31/compiler-theroy/">编译原理</a>
           </li>
         
       </ul>
