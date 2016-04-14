@@ -68,6 +68,180 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/09/JavaScript-1/" class="article-date">
+  <time datetime="2016-03-09T13:24:36.000Z" itemprop="datePublished">2016-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/09/JavaScript-1/">JavaScript基本概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>ECMAScript的语法大量借鉴了C及其他类C语言的语法。</p>
+<ul>
+<li>区分大小写</li>
+<li>标识符，指变量、函数、属性的名字，或者函数的参数。第一个字符必须是字母、下划线或美元符号。其他字符可以为字母、下划线、美元符号和数字。按照惯例，第一个字母小写，其他每个单词的首字母大写。</li>
+<li>注释。//单行注释。/<em>多行注释</em>/</li>
+<li>严格模式。在脚本顶部添加“use strict”</li>
+<li>语句。每个语句以“；”结束，可以省略，但是一般不省略，以避免出错和增进代码的性能。使用花括号将多条语句组合到一个代码块中。</li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>ECMAScript的变量是松散类型的，即可以用来保存任何类型的数据。每个变量仅仅是一个用于保存值的占位符而已。</li>
+<li>定义变量时使用var操作符，后跟变量名。可以给一个变量先符值一个字符串，再赋值一个数字，但是不推荐。</li>
+<li>在函数中，用var操作符定义的变量是局部变量，在函数退出后会被销毁。然而如果省略var，定义的变量会成为全局变量（但是不推荐这种方法，很难维护，且在严格模式下回抛出错误）。</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>ECMAScript中有5中简单数据类型：Undefined、Null、Boolean、Number、String，一种复杂数据类型：Object，其本质由一组无序的名值对组成。</p>
+<h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p>typeof是一个操作符而不是函数，所以不需要使用圆括号。另外调用typeof null会返回object。typeof返回的有：undefined、boolean、string、number、object、function</p>
+<h4 id="Undefined类型"><a href="#Undefined类型" class="headerlink" title="Undefined类型"></a>Undefined类型</h4><p>这种类型只有一个值，即特殊的undefined。在使用var声明变量但未对其加以初始化时，这个变量的值就是undefined。使用typeof操作符时，对于未定义的变量也会返回undefined。</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var age</span></span><br><span class="line">alert<span class="comment">(typeof age)</span>;<span class="comment">//返回undefined，因为知道变量没有声明（定义而未初始化时也会返回undefined）</span></span><br><span class="line">alert<span class="comment">(age)</span>;<span class="comment">//产生错误，age未定义</span></span><br></pre></td></tr></table></figure>
+<h4 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h4><p>它也是只有一个值的数据类型，这个特殊值是null。如果定义的变量准备在将来用于保存对象，最好初始化为null。</p>
+<h4 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h4><p>该类型只有两个字面值：true、false。与数字值不一样，即true不一定等于1，false也不一定等于0.要将一个值转换为对应的boolean值，可用转型函数Boolean()，至于返回的这个值是true还是false，取决于要转换值的数据类型及其实际值。</p>
+<h4 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h4><p>这种类型使用IEEE754格式来表示整数和浮点数值。为支持各种数值类型，ECMA-262定义了不同的数值字面量格式。</p>
+<ul>
+<li>整数：基本的为十进制整数，数字前为0表示八进制，为0x表示十六进制整数。</li>
+<li>浮点数值。可以用小数点表示，也可以用e表示，即科学表示法。</li>
+<li>由于内存的显示，ECMAScript不能保存所有的数值。如果一个值超出了范围，会被转换为Infinity和-Infinity，表示正无穷和负无穷。</li>
+<li>NaN，即非数值是一个特殊的数值，用来表示一个本来要返回数值的操作数未返回数值的情况（这样就不会抛出错误）。任何涉及NaN的操作都会返回NaN，但NaN不等于任何值，包括其本身.要判断一个参数是不是数值可以用isNaN()函数。</li>
+</ul>
+<p>除此外，还有3个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()，第一个可以用于任何数据类型，另外两个专门用于把字符串转换为数值。如果是Boolean，true和false分别转换为0和1；如果是null，返回0；如果是undefined，返回NaN；如果是对象，先调用对象的valueof()，然后按照规则转换返回的值，如果返回的是NaN，再调用对象的toString()方法，按照规则转换返回的字符串值；如果为字符串，规则如下：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"123"</span>); <span class="comment">//123</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"0123"</span>);<span class="comment">//123，前导的零都会被忽略</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"0xf"</span>);<span class="comment">//15，包含十六进制格式，转换为相同大小的十进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">""</span>);<span class="comment">//0，为空字符串，则返回0</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = Number(<span class="string">"hello 123"</span>);<span class="comment">//NaN，如果字符串中包含以上之外的字符，转换为NaN。</span></span><br></pre></td></tr></table></figure></p>
+<p>在将字符串转换为Number时，一般使用parseInt()/patseFloat()<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"123blue"</span>);   <span class="comment">//123，</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">""</span>);   <span class="comment">//NaN</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"070"</span>);   <span class="comment">//56，八进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"0xf"</span>);   <span class="comment">//15，十六进制</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"22.5"</span>);   <span class="comment">//22</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseInt(<span class="string">"AF"</span>,<span class="number">16</span>);   <span class="comment">//175，按十六进制解析</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"0908.5"</span>);   <span class="comment">//908.5</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"3.15e7"</span>);   <span class="comment">//32150000</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span> = parseFloat(<span class="string">"0xf"</span>);   <span class="comment">//0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>表示字符串，可以由双引号或单引号表示，将其他类型的数值转换为字符串可以用.toString()方法（如果有该方法。且可以赋参数，表示按多少进制转换）。还可以使用String()方法，如果值有.toString()则调用；如果值是null，则返回”null”；如果值是undefined，返回”undefined”；</p>
+<h2 id="object类型"><a href="#object类型" class="headerlink" title="object类型"></a>object类型</h2><p>ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过new操作符后跟要常见的对象类型的名称来创建。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();   <span class="comment">//可以省略圆括号，但是不推荐</span></span><br></pre></td></tr></table></figure></p>
+<p>在ECMAScript中，Object类型是所有它的实例的基础。但ECMA-262中对象的行为不一定适用于JavaScript中的其他对象，比如宿主对象DOM和BOM都可能自定义对象，而不继承Object。Object的实例都具有以下属性和方法：</p>
+<ul>
+<li>constructor：保存着用于创建当前对象的函数。对于前面的例子而言，构造函数就是Object()</li>
+<li>hasOwnProperty(propertyName)：用于检查给定的属性在当前对象实例中是否存在。prototypeName是字符串形式，比如”name”</li>
+<li>isPrototypeOf(object)：用于检查传入的对象是否是当前对象的原型</li>
+<li>propertyIsEnumerable(propertyName)：用于检查给定的属性是否能够使用for-in语句来枚举。</li>
+<li>toLocaleString()：返回对象的字符串表示，该字符串与执行环境的地区对应。</li>
+<li>toString()：返回对象的字符串表示</li>
+<li>valueOf()：返回对象的字符串、数值或布尔值表示。通常与toString()方法返回值相同。</li>
+</ul>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>ECMAScript操作符的与众不同之处在于，它们能够适用于很多值，例如字符串、数字值、布尔值，甚至对象。不过，在应用于对象时，相应的操作符通常会调用对象的valueOf()或toString()方法，以便取得可以操作的值。</p>
+<ul>
+<li>一元操作符：递增递减（++、–前置后置）、一元加和减（将非数值转换为数值，减则转换为负值）</li>
+<li>位操作符：NOT（按位非）、AND（按位与）、OR（按位或）、XOR（按位异或）、&lt;&lt;（左移）、&gt;&gt;（有符号右移）、&gt;&gt;&gt;（无符号右移）</li>
+<li>布尔操作符：!（逻辑非）、 &amp;&amp;（逻辑与）、 ||（逻辑或）</li>
+<li>乘性操作符：*（乘法）、/（除法）、%（求模）</li>
+<li>加性操作符：+（加法，负无穷加正无穷等于NaN，有一个为字符串，则另一个也转换为字符串拼接）- （一个为NaN，则返回NaN；把字符串等操作数转换为数值）</li>
+<li>关系操作符：&lt;、&gt;、&lt;=、&gt;=、==、!=、===（全等，在比较之前不转换操作符）、!==（不全等。不转换）</li>
+<li>条件操作符：条件？操作1：操作2（条件成立，操作1；不成立，操作2）</li>
+<li>赋值操作符：*=、/=、%=、+=、-+、&lt;&lt;=、&gt;&gt;=</li>
+<li>使用逗号可以在一条语句中执行多个操作，如<code>var num1 = 1, num2 = 2;</code></li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i &gt; <span class="number">5</span>)&#123;</span><br><span class="line">	alert(<span class="string">'大于5'</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(i &lt; <span class="number">0</span>)&#123;</span><br><span class="line">	alert(<span class="string">"小于0"</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">"在0~5之间"</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="do-while语句、while语句"><a href="#do-while语句、while语句" class="headerlink" title="do-while语句、while语句"></a>do-while语句、while语句</h4><p>do-while为后测试循环语句，while为前测试循环语句<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span><span class="comment">&#123;</span><br><span class="line">	i += 2;</span><br><span class="line">&#125;</span><span class="keyword">while</span>(i &lt; <span class="number">0</span>); <span class="comment">// 最后i等于2，在执行之后才会测试出口条件</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="for语句、for-in语句"><a href="#for语句、for-in语句" class="headerlink" title="for语句、for-in语句"></a>for语句、for-in语句</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i % <span class="number">3</span> == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">continue</span>;        <span class="comment">//跳出本次循环，继续执行下次循环</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">break</span>;           <span class="comment">//跳出循环。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> propName <span class="keyword">in</span> <span class="built_in">window</span>)&#123;</span><br><span class="line">	<span class="built_in">document</span>.write(propName);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">start: <span class="keyword">for</span>(var i = <span class="number">0</span><span class="comment">; i &lt; 10 ; i++)&#123;</span></span><br><span class="line">	alert(i)<span class="comment">;</span></span><br><span class="line">&#125; <span class="comment">//它是label语句，为代码添加标签。label:statement</span></span><br><span class="line"></span><br><span class="line">with(location)&#123;</span><br><span class="line">	var qs = search.substring(<span class="number">1</span>)<span class="comment">; //等同于：var qs = location.search.substring(1);</span></span><br><span class="line">	var hostName = hostname<span class="comment">; //等同于：var hostName = location.hostname;</span></span><br><span class="line">&#125; <span class="comment">//with语句，主要为了简化多次编写同一个对象的工作</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span>(i)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">		alert(<span class="string">'10'</span>)<span class="comment">;</span></span><br><span class="line">		<span class="keyword">break</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">case</span> <span class="number">20</span>:</span><br><span class="line">		alert(<span class="string">'20'</span>)<span class="comment">;</span></span><br><span class="line">		<span class="keyword">break</span><span class="comment">;</span></span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		alert(<span class="string">'other'</span>)<span class="comment">;</span></span><br><span class="line">&#125; <span class="comment">//switch语句。case value: statement;break;default:statement;</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>ECMAScript中的函数使用function关键字来声明，后跟一组参数以及函数体。</p>
+<ul>
+<li>函数无须指定返回值，可以通过return语句后跟要返回的值来实现返回值。return后的语句就不会再继续执行。</li>
+<li>参数：ECMAScript不介意传递多少个参数，即使定义了接收几个参数。ECMAScript中的参数用arguments数组表示，在函数体内可以通过arguments[]来访问参数数组。</li>
+<li>ECMAScript函数没有重载。即如果定义了两个名字相同的函数，则该名字只属于后定义的函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doAdd</span>(<span class="params"> num1, num2</span>) </span>&#123;<span class="comment">//没有传递值的参数被自动赋予undefined</span></span><br><span class="line">	<span class="built_in">arguments</span>[<span class="number">1</span>] = <span class="number">10</span>; <span class="comment">//如果没有传递num2，设置的值不会反应到命名参数中。arguments的长度由传入的参数决定。严格模式下，arguments赋值无效。</span></span><br><span class="line">	alert(num1 + num2); <span class="comment">//传入了num2，num2的值就会被赋值10.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cin0oonu2001nekq9m8qkvgma" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript_0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/09/JavaScript_0/" class="article-date">
+  <time datetime="2016-03-09T11:28:58.000Z" itemprop="datePublished">2016-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/09/JavaScript_0/">JavaScript概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript简史"><a href="#JavaScript简史" class="headerlink" title="JavaScript简史"></a>JavaScript简史</h2><p>JavaScript诞生于1995年，当时它的主要目的是在客户端做一些基本的输入验证操作。如今，JavaScript具备了域浏览器窗口及其内容等几乎所有方面交互的能力，能够处理复杂的额计算和交互，拥有了闭包、匿名（lambda）函数，甚至元编程等特性。</p>
+<h2 id="JavaScript实现"><a href="#JavaScript实现" class="headerlink" title="JavaScript实现"></a>JavaScript实现</h2><p>JavaScript由一下三个不同的部分组成：核心（ECMAScript）、文档对象模型、浏览器对象模型。这三个主要部分，在当前主流浏览器中都得到了不同程度的支持。所有浏览器对ECMAScript的支持都还不错，但对DOM的支持彼此相差比较多，对于纳入HTML5标准的BOM来说，都实现了某些众所周知的共同特性，但其他特性还是会因浏览器而异。</p>
+<ul>
+<li>ECMAScript提供核心语言功能。这门语言本身并不包含输入和输出定义，Web浏览器只是其实现可能的宿主环境之一。</li>
+<li>DOM，提供访问和操作页面内容的方法和接口。是负责制定web通信标准的W3C（万维网联盟）着手规划的，目前有DOM1级、DOM2级、DOM3级。不同的浏览器对DOM的支持程度不同，但是目前，支持DOM已经成为浏览器开发商的首要目标。</li>
+<li>BOM，提供与浏览器交互的方法和接口。由于没有BOM标准可以遵循，因此每个浏览器都有自己的实现。现在HTML5致力于把很多BOM功能写入正式规范，BOM实现的细节有望朝着兼容性越来越高的方向发展。</li>
+</ul>
+<h2 id="在HTML中使用JavaScript"><a href="#在HTML中使用JavaScript" class="headerlink" title="在HTML中使用JavaScript"></a>在HTML中使用JavaScript</h2><h4 id="元素"><a href="#元素" class="headerlink" title="元素"></a><script>元素</h4><p>向HTML页面中插入JavaScript的主要方法就是使用 <code>&lt;script&gt;</code> 元素。常用的有以下几个属性：</p>
+<ul>
+<li>async：表示应该立即下载脚本，但不应该妨碍页面中的其他操作。只对外部脚本有效。标记问async的多个脚本不保证按照他们放置的先后顺序执行。</li>
+<li>defer：表示脚本可以延迟到文档完全被解析和显示后再执行。但有的浏览器会忽略这个属性。</li>
+<li>src：表示包含要执行代码的外部文件。外部文件既可以是同一个服务器上的，也可以是其他任何域的。引用了外部文件，就不能在再嵌入额外的JavaScript代码了，否则会被忽略。</li>
+<li>type：表示编写代码使用的脚本语言的内容类型。默认为text/javacript（一般要标明），其他值有application/javascript等。</li>
+</ul>
+<h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><ul>
+<li>按照HTML文档流从上至下顺序解析JavaScript代码，包含外部文件。</li>
+<li>一个<code>&lt;script&gt;</code>中的JavaScript代码称为一个代码块。先解析一个代码块再解析下一个代码块，代码块间相互独立，但共享变量和方法。</li>
+<li>JavaScript的解析过程分为两个阶段：预编译期（预处理）和执行期。预编译期会对所有声明的变量（var）和函数（不处理赋值函数）进行处理，即会定义所有的var定义的变量，值为undefined，而使用function关键字定义的话，其值则为定义的内容。var定义的函数在定义前调用会返回语法错误，因为调用函数时，其还是一个undefined的变量，不知道它是函数。在执行期则会执行赋值函数等。</li>
+<li>在解释器对放在head中的JavaScript所有代码（包含要下载的外部文件）依次解析完毕之前，页面中的其余内容不会被浏览器加载或显示。所以，如果脚本在执行时不会影响页面的构造，把延迟脚本放在页面底部（body的最后）是最佳选择。</li>
+</ul>
+<h4 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h4><p>在ECMAScript中，包含两种不同数据类型的值：基本数据类型和引用数据类型（object）。基本数据类型可以操作保存在变量中的实际的值，而引用类型的值是保存在内存中的对象，不允许直接访问内存中的位置，也就是说不能直接操作引用类型的值。</p>
+<ul>
+<li>将值1复制给值2。如果其为基本类型值，两个变量是独立的；如果是引用数据类型，一个值改变，另外一个也发生改变（因为复制的是指针）。</li>
+<li>每个函数的执行环境都有一个与之相连的变量对象。每个环境都可以向上搜素作用域链，以查询变量和函数名；但是任何环境之间不能通过向下搜索作用域链而进入另一个执行环境。所以，局部环境可以访问全局环境，全局环境不能访问局部环境。但是，if、for等语句是没有局部环境的，即if和for中定义的变量是全局变量。</li>
+<li>垃圾收集。JavaScript有自动垃圾收集机制（固定的时间间隔）。释放离开函数的局部变量；跟踪变量是否有用（标记清除、引用次数）。垃圾收集机制回收工作量相当大，设置合适的间隔很重要，严重影响性能问题。</li>
+</ul>
+<h2 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h2><p>使用外部文件的优点有：可维护性，开发人员可以在不触及HTML标记的情况下，集中精力编辑JavaScript代码；可缓存，如果有两个页面都使用同一个文件，那么这个文件只需要下载一次，可以加快页面加载速度；实行未来，无须使用XHTML或注释hack。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 文档类型及模式设置（标准模式、混杂模式） --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- HTML 4.01 严格型 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"</span><br><span class="line">"http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- XHTML 1.0 严格型 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC </span><br><span class="line">"-//W3C//DTD XHTML 1.0//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml-strict.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- HTML 5 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br></pre></td></tr></table></figure>
+</script></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cin0oonvd002xekq9lfl09ifw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-data-structure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/08/data-structure/" class="article-date">
@@ -265,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cin0c7lwn002jxsq95ya5xzzi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cin0oonvh0033ekq9api27on2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -378,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cin0c7lwn0025xsq948npv9op" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cin0oonv9002qekq9br9mj4wi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -470,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cin0c7lxi003bxsq9ufcxra7f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cin0oonw1003vekq9ro1dyry5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -589,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cin0c7lu1000axsq9ofkun8u5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cin0oonsi000mekq9fxidpku2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -675,7 +849,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cin0c7lu10008xsq95gwpj04f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="cin0oonru0004ekq9r6v968jg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -895,7 +1069,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cin0c7lvc000txsq9g689655w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/C-data/" data-id="cin0oontp0018ekq9fdpoexwa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1050,7 +1224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cin0c7lxi0038xsq92c7jid3o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cin0oonw50040ekq9mta8lofc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1141,7 +1315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cin0c7lxy004nxsq98b9rcvc7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/25/hexo-github/" data-id="cin0oonvm003aekq9xqz6nztl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -1208,7 +1382,15 @@
       <ul>
         
           <li>
-            <a href="/2016/04/14/ECMAScript6-new/">ECMAScript6-new</a>
+            <a href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/15/ECMAScript6-class/">ECMAScript6中的Class</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6-iterator/">ECMAScript6新属性方法等</a>
           </li>
         
           <li>
@@ -1217,14 +1399,6 @@
         
           <li>
             <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
           </li>
         
       </ul>

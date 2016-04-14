@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ECMAScript6新属性方法等 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ECMAScript6中添加了一些新的结构、属性、方法等，下面将进行简单的说明。
+SymbolES5的对昂属性名都是字符串，容易造成属性名的冲突。ES6引入了一种新的原始数据类型Symbol，表示独一无二的值，它是JavaScript的第七种数据类型，通过Symbol函数生成。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。如下：
+12345678var myS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript6新属性方法等">
+<meta property="og:url" content="http://yoursite.com/2016/04/14/ECMAScript6-iterator/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="ECMAScript6中添加了一些新的结构、属性、方法等，下面将进行简单的说明。
+SymbolES5的对昂属性名都是字符串，容易造成属性名的冲突。ES6引入了一种新的原始数据类型Symbol，表示独一无二的值，它是JavaScript的第七种数据类型，通过Symbol函数生成。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。如下：
+12345678var myS">
+<meta property="og:updated_time" content="2016-04-14T19:29:52.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript6新属性方法等">
+<meta name="twitter:description" content="ECMAScript6中添加了一些新的结构、属性、方法等，下面将进行简单的说明。
+SymbolES5的对昂属性名都是字符串，容易造成属性名的冲突。ES6引入了一种新的原始数据类型Symbol，表示独一无二的值，它是JavaScript的第七种数据类型，通过Symbol函数生成。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。如下：
+12345678var myS">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ECMAScript6-iterator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/14/ECMAScript6-iterator/" class="article-date">
+  <time datetime="2016-04-14T13:28:33.000Z" itemprop="datePublished">2016-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ECMAScript6新属性方法等
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript6中添加了一些新的结构、属性、方法等，下面将进行简单的说明。</p>
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>ES5的对昂属性名都是字符串，容易造成属性名的冲突。ES6引入了一种新的原始数据类型Symbol，表示独一无二的值，它是JavaScript的第七种数据类型，通过Symbol函数生成。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">var</span> a = &#123;[mySymbol]: <span class="string">'Hello!'</span>&#125;; <span class="comment">//symbol属性不能使用.运算符</span></span><br><span class="line">a[mySymbol] <span class="comment">//"Hello!" symbol属性不能使用.运算符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>.<span class="keyword">for</span>(<span class="string">'foo'</span>); <span class="comment">//必须都是用for，且输入值相同，才相等</span></span><br><span class="line"><span class="keyword">var</span> s2 = <span class="built_in">Symbol</span>.<span class="keyword">for</span>(<span class="string">'foo'</span>);</span><br><span class="line">s1 == s2  <span class="comment">//true 使用symbol.for可以实现两个symbol相同</span></span><br><span class="line"><span class="built_in">Symbol</span>.keyFor(s2) <span class="comment">//"foo" sysmol.for()有登记制，symbol()没有，登记的会返回字符串参数</span></span><br></pre></td></tr></table></figure>
+<h2 id="Set和Map数据结构"><a href="#Set和Map数据结构" class="headerlink" title="Set和Map数据结构"></a>Set和Map数据结构</h2><h4 id="Set结构"><a href="#Set结构" class="headerlink" title="Set结构"></a>Set结构</h4><p>ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。Set的方法有四个：set.add(value)、set.delete(value)、set.has(value)、set.clear()清除所有成员。如果要读取或者遍历可以将set通过Array.from(set)转换为数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="string">"4"</span>,<span class="literal">NaN</span>,<span class="literal">NaN</span>]);</span><br><span class="line">alert(set.size); <span class="comment">//6 在set内部，4不等于“4”（不会发生类型转换），NaN等于NaN，对象总是不等于对象&#123;&#125;不等于&#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dedupe</span>(<span class="params">array</span>)</span>&#123; <span class="comment">//数组去重的方法</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h4><p>WeakSet与Set类似，也是不重复的值的集合，但是它与Set有两个区别。一、WeakSet的成员只能是对象。二、WeakSet中的对象都是弱引用，即垃圾回收机制不考虑WeakSet对该对象的引用。无法引用WeakSet的成员，因此WeakSet是不可遍历的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]]; <span class="comment">//数组的成员只能是对象，不能是变量</span></span><br><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> <span class="built_in">WeakSet</span>(a);</span><br></pre></td></tr></table></figure>
+<h4 id="Map结构"><a href="#Map结构" class="headerlink" title="Map结构"></a>Map结构</h4><p>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是只能用字符串当作键。ES6提供了Map数据结构，类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当做键，是一种更完善的Hash结构实现。<br>Map原生提供三个遍历器生成函数和一个遍历方法。entries()、keys()、values()、forEach()。<br>Map可以与数组、对象、Json相互转换。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">m</span> = new Map();</span><br><span class="line"><span class="keyword">var</span> o = &#123;p:<span class="string">"hello tecent"</span>&#125;;</span><br><span class="line"><span class="keyword">m</span>.<span class="keyword">set</span>(o,<span class="string">"content"</span>);</span><br><span class="line"><span class="keyword">m</span>.<span class="built_in">get</span>(o); <span class="comment">//"content"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">m</span>.size <span class="comment">//1</span></span><br><span class="line"><span class="keyword">m</span>.has(o); <span class="comment">//true</span></span><br><span class="line"><span class="keyword">m</span>.delete(o); <span class="comment">//true</span></span><br><span class="line"><span class="keyword">m</span>.has(o); <span class="comment">//false</span></span><br><span class="line"><span class="keyword">m</span>.<span class="keyword">clear</span>(); <span class="comment">//全部清空</span></span><br></pre></td></tr></table></figure>
+<h4 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h4><p>WeakMap与Map结构基本类似，唯一的区别是它只接受对象做为键名(null除外)，而且键名所指向的对象，不计入垃圾回收机制。其设计目的在于，键名是对象的弱引用。</p>
+<h2 id="Iterator遍历器与for…of循环"><a href="#Iterator遍历器与for…of循环" class="headerlink" title="Iterator遍历器与for…of循环"></a>Iterator遍历器与for…of循环</h2><p>JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。Iterator的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是ES6创造了一种新的遍历命令for…of循环，Iterator接口主要供for…of消费。其遍历过程如下：</p>
+<ol>
+<li>创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。</li>
+<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员。</li>
+<li>第二次调用指针对象的next方法，指针就指向数据结构的第二个成员。</li>
+<li>不断调用指针对象的next方法，直到它指向数据结构的结束位置。</li>
+</ol>
+<p>Iterator接口的目的，就是为所有数据结构，提供了一种统一的访问机制，即for…of循环。当使用for…of循环遍历某种数据结构时，该循环会自动去寻找Iterator接口。在ES6中，有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象（字符串等）、Set和Map结构。另外，也可以手动为对象等添加Iterator接口。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = ['a', 'b'];</span><br><span class="line"><span class="keyword">let</span> iter = arr[<span class="type">Symbol</span>.<span class="keyword">iterator</span>](); //默认的<span class="type">Iterator</span>接口部署在数据结构的<span class="type">Symbol</span>.<span class="keyword">iterator</span>属性</span><br><span class="line">iter.next() // &#123; value: 'a', done: <span class="literal">false</span> &#125;</span><br><span class="line">iter.next() // &#123; value: 'b', done: <span class="literal">false</span> &#125;</span><br><span class="line">iter.next() // &#123; value: undefined, done: <span class="literal">true</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr =['b','c'];</span><br><span class="line">['a',…arr,'d'] //['a','b','c','d'] 扩展运算符会调用默认的<span class="keyword">iterator</span>接口</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = ['a', 'b', 'c', 'd'];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">in</span> arr) &#123;  //<span class="keyword">for</span> <span class="keyword">in</span>循环，只获得对象的键名</span><br><span class="line">  console.log(a); // <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">of</span> arr) &#123;  //<span class="keyword">for</span> <span class="keyword">of</span>循环，获得对象的键值，只返回具有数字索引的属性</span><br><span class="line">  console.log(a); // a b c d</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> map = new <span class="type">Map</span>(); </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> [name,value] <span class="keyword">of</span> map)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cin0oonsv000rekq9lbyl2tk9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/15/ECMAScript6-class/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ECMAScript6中的Class
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/14/ECMAScript6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ECMAScript6为数据类型添加的新方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/15/ECMAScript6-class/">ECMAScript6中的Class</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6-iterator/">ECMAScript6新属性方法等</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6/">ECMAScript6为数据类型添加的新方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
