@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ECMAScript6为数据类型添加的新方法 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ECMAScript6在2015年6月正式发布。它的目标，是是的JavaScript语言可以用来编写复杂的大型应用陈旭，称为企业级开发语言。ECMAScript是JavaScript的规格，后者有时前者的一种实现。
+let和const命令let命令ES6新增let命令，用来声明变量，用法类似于var。区别为：
+
+let所声明的变量，只在let命令所在的代码块内有效。
+let不存在“变量提升”现象，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript6为数据类型添加的新方法">
+<meta property="og:url" content="http://yoursite.com/2016/04/14/ECMAScript6/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="ECMAScript6在2015年6月正式发布。它的目标，是是的JavaScript语言可以用来编写复杂的大型应用陈旭，称为企业级开发语言。ECMAScript是JavaScript的规格，后者有时前者的一种实现。
+let和const命令let命令ES6新增let命令，用来声明变量，用法类似于var。区别为：
+
+let所声明的变量，只在let命令所在的代码块内有效。
+let不存在“变量提升”现象，">
+<meta property="og:updated_time" content="2016-04-14T13:27:33.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript6为数据类型添加的新方法">
+<meta name="twitter:description" content="ECMAScript6在2015年6月正式发布。它的目标，是是的JavaScript语言可以用来编写复杂的大型应用陈旭，称为企业级开发语言。ECMAScript是JavaScript的规格，后者有时前者的一种实现。
+let和const命令let命令ES6新增let命令，用来声明变量，用法类似于var。区别为：
+
+let所声明的变量，只在let命令所在的代码块内有效。
+let不存在“变量提升”现象，">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ECMAScript6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/14/ECMAScript6/" class="article-date">
+  <time datetime="2016-04-14T07:35:01.000Z" itemprop="datePublished">2016-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ECMAScript6为数据类型添加的新方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript6在2015年6月正式发布。它的目标，是是的JavaScript语言可以用来编写复杂的大型应用陈旭，称为企业级开发语言。ECMAScript是JavaScript的规格，后者有时前者的一种实现。</p>
+<h2 id="let和const命令"><a href="#let和const命令" class="headerlink" title="let和const命令"></a>let和const命令</h2><h4 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h4><p>ES6新增let命令，用来声明变量，用法类似于var。区别为：</p>
+<ul>
+<li>let所声明的变量，只在let命令所在的代码块内有效。</li>
+<li>let不存在“变量提升”现象，即其变量的定义是在JavaScript的代码执行阶段。</li>
+<li>let存在暂时性死区，即又要块级作用域内存在let命令，它所声明的变量就“绑定”这个区域，不再受外部的影响。</li>
+<li>let实际上为JavaScript新增了块级作用域；</li>
+<li>如此便解决了块级局部变量以及for循环中局部变量的问题。解决了如下一个大问题：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">	a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">		<span class="built_in">console</span>.log(i); <span class="comment">//i为局部变量，</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>](); <span class="comment">//5，每次的i都是一个新的变量</span></span><br></pre></td></tr></table></figure>
+<h4 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h4><p>const用来定义常量，一旦声明，常量的值就不能改变。</p>
+<ul>
+<li>严格模式下，重新赋值会报错，常规模式下，赋值无效不报错；</li>
+<li>const声明时不赋值则不能赋值，常量为undefind。严格模式下，const声明时必须赋值，否则报错；</li>
+<li>const存在块级作用域。</li>
+</ul>
+<h2 id="变量的结构赋值"><a href="#变量的结构赋值" class="headerlink" title="变量的结构赋值"></a>变量的结构赋值</h2><p>只要等号两边的模式相同，左边的变量就会被赋予对应的值。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [foo,[[bar],baz]] = [<span class="number">1</span>,[[<span class="number">2</span>],<span class="number">3</span>]]; </span><br><span class="line">bar <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> [a,b] = [<span class="number">1</span>]; <span class="comment">//a=1,b=undefined</span></span><br><span class="line"><span class="keyword">var</span> [a,b] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; <span class="comment">//解构不完全，但可以成功</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置默认值</span></span><br><span class="line"><span class="keyword">var</span> [c=<span class="number">1</span>,d=<span class="number">2</span>,e=<span class="number">3</span>] = [<span class="literal">undefined</span>,<span class="literal">null</span>,<span class="number">5</span>]; <span class="comment">//1,null,5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//用途</span></span><br><span class="line">[x,y] = [y,x]; <span class="comment">//交换变量的值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span>&#123; </span><br><span class="line">	<span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> [a,b,c] = example(); <span class="comment">//从函数返回多个值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">([x,y,z])</span></span>&#123;……&#125;</span><br><span class="line">f([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment">//函数参数定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//解析jsondata等</span></span><br></pre></td></tr></table></figure>
+<h2 id="引用数据类型的扩展"><a href="#引用数据类型的扩展" class="headerlink" title="引用数据类型的扩展"></a>引用数据类型的扩展</h2><h4 id="字符串的扩展"><a href="#字符串的扩展" class="headerlink" title="字符串的扩展"></a>字符串的扩展</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> codePoint <span class="keyword">of</span> <span class="string">'foo'</span>)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(codePoint); <span class="comment">//分别显示 f o o ，遍历字符</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s=<span class="string">'Hello world'</span>;</span><br><span class="line">s.startWith(<span class="string">'Hello'</span>); <span class="comment">//true</span></span><br><span class="line">s.endWith(<span class="string">'Hello'</span>,<span class="number">5</span>); <span class="comment">//true,可以添加第二个参数，表示搜索的位置。</span></span><br><span class="line">s.includes(<span class="string">'Hello'</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="string">'hello'</span>.repeat(<span class="number">2</span>); <span class="comment">//"hellohello"</span></span><br></pre></td></tr></table></figure>
+<h4 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b111110111</span> === <span class="number">503</span> // <span class="number">0b</span>二进制 <span class="literal">true</span></span><br><span class="line"><span class="number">0o767</span> === <span class="number">503</span> // <span class="number">0o</span>八进制 <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">Number.isFinite(<span class="number">0.8</span>); //<span class="literal">true</span> 是否为非无穷,检查Infinate特殊值</span><br><span class="line">Number.isNaN(NaN); //<span class="literal">true</span> 是否为NaN，检查NaN特殊值</span><br><span class="line"></span><br><span class="line">Number.parseInt('<span class="number">12.34</span>'); //<span class="number">12</span> 将全局方法parseInt()、parseFloat()，移植到Number对象上</span><br><span class="line">Number.parseFloat('<span class="number">12.45</span>#'); //<span class="number">12.45</span></span><br><span class="line"></span><br><span class="line">Number.isInteger(<span class="number">3.0</span>); //<span class="literal">true</span> 是否为整数，JavaScript中，整数和浮点数使用同样的存储方法，所以<span class="number">3</span>和<span class="number">3.0</span>视为一个值</span><br><span class="line">Number.isSafeInteger(Math(<span class="number">2</span>,<span class="number">53</span>)-<span class="number">1</span>); /<span class="literal">true</span>，JavaScript能够精确表示-<span class="number">2</span>^<span class="number">53</span>到-<span class="number">2</span>^<span class="number">53</span>间的整数（不含端点），超过则无法精确表示这个值</span><br><span class="line"></span><br><span class="line">Math.<span class="built_in">trunc</span>(<span class="number">4.1</span>); //<span class="number">4</span> 用于取出一个数的小数部分，返回整数部分</span><br><span class="line">Math.<span class="built_in">sign</span>(-<span class="number">5</span>); //-<span class="number">1</span> 参数为正数返回+<span class="number">1</span> 其他返回+<span class="number">0</span>、<span class="number">0</span>、+<span class="number">0</span>、-<span class="number">1</span>和NaN</span><br><span class="line">Math.cbrt(<span class="number">2</span>); //<span class="number">1.2599210498948734</span> 返回一个数的立方根</span><br><span class="line"></span><br><span class="line">//还要对数方法、关于<span class="number">32</span>位无符号数的方法等</span><br></pre></td></tr></table></figure>
+<h4 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h4><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">let arrayLike=&#123;<span class="string">'0'</span>:<span class="string">'a'</span>,<span class="string">'1'</span>:<span class="string">'b'</span>,<span class="string">'2'</span>:<span class="string">'c'</span>,length:<span class="number">3</span>&#125;;</span><br><span class="line">var arr1 = [].slice.call(arrayLike); //[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>] <span class="symbol">ES5</span>的方法</span><br><span class="line">let arr2 = <span class="symbol">Array</span>.from(arrayLike); //[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>] <span class="symbol">ES6</span>的方法</span><br><span class="line"><span class="symbol">Array</span>.from(<span class="string">'abcde'</span>); //[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>]</span><br><span class="line"><span class="symbol">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], (x) =&gt; x * x); //[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>] 接收第二个参数，对每个元素进行处理</span><br><span class="line"></span><br><span class="line"><span class="symbol">Array</span>.of(<span class="number">3</span>,<span class="number">11</span>,<span class="number">8</span>); //[<span class="number">3</span>,<span class="number">11</span>,<span class="number">8</span>] 将一组值，转换为数组，主要目的是弥补数组构造函数<span class="symbol">Array</span>()的不足</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">4</span>,<span class="number">-5</span>,<span class="number">10</span>].find((n) =&gt; n&lt;<span class="number">0</span>); //<span class="number">-5</span> 用于找出第一个符合条件的数组成员</span><br><span class="line"></span><br><span class="line">[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>].fill(<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>); //[<span class="string">'a'</span>,<span class="number">7</span>,<span class="string">'c'</span>] 第一个参数表示填充值，剩下两个表示填充起始位置和结束位置</span><br><span class="line"></span><br><span class="line">//entries() keys() values()用于遍历数组，分别表示遍历键值对、键、值</span><br><span class="line">for(let [index,elem] of [<span class="string">'a'</span>,<span class="string">'b'</span>].entries())&#123;</span><br><span class="line">	console.log(index,elem);</span><br><span class="line">&#125; //<span class="number">0</span> <span class="string">"a"</span>   <span class="number">1</span>  <span class="string">"b"</span> </span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">2</span>); //true 是否包含给定数值</span><br></pre></td></tr></table></figure>
+<h4 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = 0, y = 0</span>) </span>&#123; <span class="comment">//设置参数默认值</span></span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">5</span>); <span class="comment">//p.x=5,p.y=0 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通常定义了默认值的参数，应该是函数的尾参数，因为输入f(,)这种没有赋值的函数会出错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x,y=1</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> [x,y];</span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">2</span>); <span class="comment">//[2,1] 这样就可以省略尾部的有默认值的参数</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a,b,c=1</span>)</span>&#123;&#125;&#125;).length <span class="comment">//2 返回没有指定默认值的参数个数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//指定参数是否可以省略</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throwIfMissing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Missing parameter'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">mustBeProvided = throwIfMissing(</span>)) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mustBeProvided;</span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">//会抛出错误，因为mustBeProvided默认值为抛出错误</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//变量数量不定，rest参数。values变量表示一个数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//箭头函数</span></span><br><span class="line"><span class="keyword">var</span> f = v =&gt; v*v; <span class="comment">//f(2)等于4</span></span><br><span class="line"><span class="keyword">var</span> sum = (num1,num2) =&gt; num1+num2 <span class="comment">//等同于下面</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params">num1,num2</span>)</span>&#123; <span class="keyword">return</span> num1+num2; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾递归，只保留一个调用记录（严格模式下开启），复杂度O(1)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line">factorial(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<h4 id="对象的扩展"><a href="#对象的扩展" class="headerlink" title="对象的扩展"></a>对象的扩展</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.is(<span class="literal">NaN</span>,<span class="literal">NaN</span>) <span class="comment">//true 只要两个值一样，就相等，不同于===</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="string">"12"</span>,<span class="number">12</span>) <span class="comment">//false 不进行自动转换类型，不同于==</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象合并，常用于为对象添加属性和方法以及克隆对象等</span></span><br><span class="line"><span class="built_in">var</span> target = &#123; <span class="attribute">a</span>: <span class="number">1</span>, <span class="attribute">b</span>: <span class="number">1</span> &#125;; <span class="comment">//合并对象，只是浅复制</span></span><br><span class="line"><span class="built_in">var</span> source1 = &#123; <span class="attribute">b</span>: <span class="number">2</span>, <span class="attribute">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(target, source1); <span class="comment">//&#123; a:1, b: 2, c: 2&#125;将后面的对象都复制到第一个对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//属性的遍历</span></span><br><span class="line"><span class="keyword">for</span>……<span class="keyword">in</span> <span class="comment">//遍历对象自身和继承的可枚举属性</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj)  <span class="comment">//返回一个数组，包含对象自身（不含继承的）所有可枚举属性</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj)  <span class="comment">//返回一个数组，包含对象自身的所有属性（不含Symbol属性，但是包括不可枚举属性）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//返回对象的键值对数组、键数组和值数组</span></span><br><span class="line"><span class="built_in">Object</span>.values(obj); <span class="comment">//返回obj对象的值数组</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj); <span class="comment">//返回obj对象的键数组</span></span><br><span class="line"><span class="built_in">Object</span>.entries(obj); <span class="comment">//[["a","1"],["b",2]] 返回obj对象的值数组</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cin0c7lux000hxsq91h0qo6yv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/14/ECMAScript6-new/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ECMAScript6-new
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/11/JavaScript-crossOrigin/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">跨域</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6-new/">ECMAScript6-new</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6/">ECMAScript6为数据类型添加的新方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/Ext-Ajax/">Ext中Ajax技术详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

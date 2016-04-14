@@ -43,7 +43,7 @@ C中常见的数据类型及算术运算时的自动类型转换
 三大类科学方法及其对应的三大思维。
 图灵机及可计算性
 什么是算法？算法">
-<meta property="og:updated_time" content="2016-04-12T10:44:22.706Z">
+<meta property="og:updated_time" content="2016-04-14T03:04:35.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识要点">
 <meta name="twitter:description" content="C语言
@@ -176,9 +176,13 @@ C中常见的数据类型及算术运算时的自动类型转换
 <li>TCP/IP的概念以及特点</li>
 <li>TCP/IP分层模型与通信实例：甲主机发给乙主机邮件“早上好”</li>
 <li>IP协议三大作用模块：IP寻址、路由以及IP分包和组包</li>
+<li>路由算法：最短路径算法、扩散法、距离向量算法等</li>
 <li>IP地址分类、掩码以及广播地址</li>
+<li>IPv4首部：版本、首部长度、总长度、标识、标志、片偏移、生存时间、协议、首部校验和、源地址、目的地址等</li>
 <li>DNS、ARP、ICMP、DHCP、IP隧道功能作用</li>
 <li>TCP和UDP的区别和用途</li>
+<li>TCP首部：源端口、目的端口、序列号、应答、数据偏移、控制位、窗口大小、校验和等</li>
+<li>TCP（seq ack len）三次握手（SYN SYNACK ACK）、信息发送（ack=seq+len）、四次挥手（fin ack fin ack）</li>
 <li>TCP建立连接过程、重发控制、滑动窗口协议、拥塞控制</li>
 <li>web的三个重要概念</li>
 <li>什么是域名、URL、网站名、服务器</li>
@@ -243,18 +247,18 @@ C中常见的数据类型及算术运算时的自动类型转换
 <li>事件流（冒泡、捕获、DOM2事件流）、事件处理程序（HTML onclick、DOM0 btn.onclick、DOM2 btn.addEventListenter(“click”,,false)、IE btn.attachEvent(“onclick”,)，跨浏览器）、获取事件（DOM event输入参数、IE window.event）、事件对象（DOM this currentTarget Target、IE srcElement）、取消冒泡（DOM stopPropagation()、IE cancelBubble）、取消事件默认事件（DOM preventDefault()、ID returnValue）、事件类型（点击/焦点/文本事件等）、事件委托</li>
 <li>实现动画（HTML5 canvas，css3 @keyframes，js 切换数据源、属性等）</li>
 <li>跨域、同源策略、JSONP、CORS、document.domain</li>
-<li>HTTP缓存、缓存等。</li>
+<li>cookie/localstorage/sessionstorage（同源、目的、大小、数据有效期、网络负担、安全性、作用域）</li>
 </ul>
 <h2 id="AJAX-Asynchronous-Javascript-And-XML"><a href="#AJAX-Asynchronous-Javascript-And-XML" class="headerlink" title="AJAX(Asynchronous Javascript And XML)"></a>AJAX(Asynchronous Javascript And XML)</h2><ul>
-<li>AJAX的实现机制</li>
-<li>AJAX实现方法</li>
+<li>AJAX的实现机制（Ajax引擎、动态脚本）</li>
+<li>AJAX实现方法（new open send onreadystatechange、status、responseText）</li>
 <li>Ext的ajax实现方法</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cimyinwky0054p0q96sy8o5me" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/01/question/" data-id="cin0c7lxi0038xsq92c7jid3o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -313,7 +317,7 @@ C中常见的数据类型及算术运算时的自动类型转换
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -335,6 +339,14 @@ C中常见的数据类型及算术运算时的自动类型转换
       <ul>
         
           <li>
+            <a href="/2016/04/14/ECMAScript6-new/">ECMAScript6-new</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6/">ECMAScript6为数据类型添加的新方法</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
           </li>
         
@@ -344,14 +356,6 @@ C中常见的数据类型及算术运算时的自动类型转换
         
           <li>
             <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
           </li>
         
       </ul>

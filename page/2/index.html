@@ -68,6 +68,120 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-links" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/29/links/" class="article-date">
+  <time datetime="2016-03-29T05:11:59.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/链接集/">链接集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/links/">链接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端方面"><a href="#前端方面" class="headerlink" title="前端方面"></a>前端方面</h2><ul>
+<li>入门型：<a href="http://www.w3school.com.cn/" target="_blank" rel="external">W3schol在线教程</a></li>
+<li>学习型：<a href="https://developer.mozilla.org/en-US/docs/Web/Guide" target="_blank" rel="external">MDN Web开发指导</a></li>
+<li>工具型：<a href="https://www.w3.org/TR/html5/" target="_blank" rel="external">HTML5</a> <a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="external">HTTP RFC2616</a> <a href="https://www.w3.org/TR/" target="_blank" rel="external">W3C标准</a> </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cin0c7lx3002wxsq9buoa5xr4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-computer-theory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/28/computer-theory/" class="article-date">
+  <time datetime="2016-03-28T02:30:27.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h2><p>数据在计算机中以0 1表示，计算机领域中使用二进制、八进制、十进制和十六进制表示，常用的二进制编码有</p>
+<h4 id="8421BCD编码"><a href="#8421BCD编码" class="headerlink" title="8421BCD编码"></a>8421BCD编码</h4><p>0000表示数字0，1001分别表示数字9,0001 0101表示十进制15</p>
+<h4 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h4><p>0~9:0011 0000(48) ~ 0011 1001 (57)<br>A~Z:0100 0001(65) ~ 0101 1010 (90)<br>a~z:0110 0001(97) ~ 0111 1010 (122)</p>
+<h4 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h4><p>0~15:<br>0000 0001 0011 0010<br>0110 0111 0101 0100<br>1100 1101 1111 1110<br>1111 1110 1010 1000</p>
+<p>某二进制数为Bn-1 Bn-2 ……B0，其对应的格雷码为Gn-1 Gn-2 …… G0<br>则：Gn-1=Bn-1  其他 Gi=Bi+1异或Bi</p>
+<h4 id="机器码"><a href="#机器码" class="headerlink" title="机器码"></a>机器码</h4><ul>
+<li>原码：第一位0，表示正，第一位1表示负，其他位不变</li>
+<li>补码：正数不变，负数为2的n+1加上x</li>
+<li>反码：正数不变，负数则符号位不变，其他相反。</li>
+<li>正数的原码、反码、补码都一样</li>
+<li>负数符号位固定为1.原码其他位求反得反码，反码最低位加1得补码。</li>
+</ul>
+<h4 id="汉字表示方式"><a href="#汉字表示方式" class="headerlink" title="汉字表示方式"></a>汉字表示方式</h4><ul>
+<li>汉字输入编码：数字编码（用数字串代表一个汉字输入） 拼音码（用拼音代码汉字，但重码率高，还要进行同音字选择） 字形编码（比如五笔）</li>
+<li>汉字内码：是用于汉字信息的存储、交换、检索扥各操作的机内代码，一般采用两个字节表示，类似七位ASCII码，但最高位为1</li>
+<li>汉字字模码：用点阵表示的汉字字形代码。</li>
+</ul>
+<h2 id="内部存储器"><a href="#内部存储器" class="headerlink" title="内部存储器"></a>内部存储器</h2><p>主存储器和中央处理器一样是计算机系统的重要资源，它为操作系统、各种系统程序和用户程序所共享。现代操作系统区分两类主存：物理主存和逻辑主存。主存中分片的方式分为两种：</p>
+<ul>
+<li>划分为大小不等的区域，这些区域根据用户程序实际需要而被分割。</li>
+<li>划分为大小相等的块，以快为单位进行分配，操作系统和用户程序根据需要占用若干主存块。</li>
+</ul>
+<h4 id="主存管理的功能"><a href="#主存管理的功能" class="headerlink" title="主存管理的功能"></a>主存管理的功能</h4><ul>
+<li>为了支持多道程序运行，每个应用程序必须为每个用户提供0~n-1的一组逻辑地址。程序执行时，必须将逻辑地址正确地转换为物理地址，此即为地址映射。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cin0c7lwn002cxsq9dxrliyf3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-nodejs-project" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/27/nodejs-project/" class="article-date">
@@ -99,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cimyinwjm002mp0q9isk02s5v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cin0c7lx30030xsq9kqa8c841" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -157,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cimyinwk00034p0q9jhs0328e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cin0c7lxy004mxsq9m32k3lyt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -211,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cimyinwjf002fp0q9tpz0gx8r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cin0c7lx3002txsq95bzxwr55" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -306,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cimyinwie001cp0q9zloo0apo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cin0c7lvs001dxsq9hsn2f4od" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -383,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cimyinwi1000xp0q99x54i4jl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cin0c7lvs0011xsq9z2w9odx2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -476,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cimyinwhn000rp0q9sksakmdt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cin0c7lvc000xxsq9jp9qizxl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -570,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cimyinwio001pp0q9ttbo5i6i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cin0c7lw7001uxsq9wz17yyao" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -650,171 +764,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cimyinwji002ip0q9r6zsra3r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cin0c7lx3002pxsq9qalw56nu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-7" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/18/JavaScript-7/" class="article-date">
-  <time datetime="2016-03-18T07:14:51.000Z" itemprop="datePublished">2016-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>尽管DOM作为API已经非常完善了，但为了实现更多的功能，仍然会有一些标准或专有的扩展。W3C着手将一些已经称为事实标准的专有扩展标准化并写入规范当中。</p>
-<h2 id="选择符API"><a href="#选择符API" class="headerlink" title="选择符API"></a>选择符API</h2><p>众多JavaScript库中最常用的一项功能，就是根据CSS选择符选择与某个模式匹配的DOM元素。jquery的核心就是通过选择符查询DOM文档取得元素的引用，从而抛开了getElementById()和getElementByTagName()。Selectors API致力于让浏览器原生支持CSS查询，这样一来，解析和树查询操作可以在浏览器内部通过编译后的代码来完成，极大地改善了性能。其核心方法有querySelector(“img.button”)和querySelectorAll(“#myDiv”),分别返回匹配的第一个元素和全部元素。<br>Selectors API Level2规范为Element类型新增了一个方法matchesSelector()。这个方法接收了一个参数，即CSS选择符，匹配则返回true。</p>
-<h2 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h2><p>对于元素间的空格，IE9及之前的版本不会返回文本节点，而其他浏览器都会返回文本节点。为了弥补此差异，Element Traversal API为DOM添加了5个属性：childElementCount、firstElementChild、lastElementChild、previousElementSibling、nextElementSibling。利用这些元素就不必担心空白文本节点。</p>
-<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h4 id="与类相关的扩充"><a href="#与类相关的扩充" class="headerlink" title="与类相关的扩充"></a>与类相关的扩充</h4><ul>
-<li>getElementByClassName()方法。接收一个参数，包含一个或多个类名的字符串，类名的先后顺序不重要。返回带有指定类的所有元素的NodeList。</li>
-<li>classList属性。是新集合类型DOMTokenList的实例。包含一个元素的类名列表。有方法：add() contains() remove() toggle()（如果已经存在，删除，如果没有，添加）。</li>
-</ul>
-<h4 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h4><p>document.activeElement属性，始终引用DOM中当前获得了焦点的元素。元素获得焦点的方式有页面加载、用户输入和在代码中调用focus()方法。</p>
-<h4 id="HTMLDocument的变化"><a href="#HTMLDocument的变化" class="headerlink" title="HTMLDocument的变化"></a>HTMLDocument的变化</h4><ul>
-<li>document.readyState属性，有两个可能值：loading和complete，分别表示正在加载文档和已经加载完文档。</li>
-<li>head属性。HTML5新增了document.head属性，引用文档的&lt;\head&gt;元素。</li>
-</ul>
-<h4 id="自定义数据属性"><a href="#自定义数据属性" class="headerlink" title="自定义数据属性"></a>自定义数据属性</h4><p>HTML5规定可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息。</p>
-<h4 id="innerHTML属性和outerHTML属性"><a href="#innerHTML属性和outerHTML属性" class="headerlink" title="innerHTML属性和outerHTML属性"></a>innerHTML属性和outerHTML属性</h4><ul>
-<li>innerHTML属性：在读模式下，innerHTML属性返回与调用元素的所有子节点对应的HTML标记。</li>
-<li>outerHTML属性：在读模式下，outerHTML属性返回调用它的元素及所有子节点的HTML标记。</li>
-<li>insertAdjacentHTML()方法。在特定的位置插入HTML文本。</li>
-<li>使用以上方法替换子节点可能会导致浏览器的内存占用问题。所以要避免频繁使用以上方法。</li>
-</ul>
-<h2 id="专有扩展"><a href="#专有扩展" class="headerlink" title="专有扩展"></a>专有扩展</h2><h4 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h4><p>页面的文档模式决定了可以使用什么功能。即，文档模式决定了可以使用哪个级别的CSS，可以在JavaScript中使用那些API，以及如何对待文档类型（doctype）。</p>
-<h4 id="children属性和contains-方法"><a href="#children属性和contains-方法" class="headerlink" title="children属性和contains()方法"></a>children属性和contains()方法</h4><ul>
-<li>children属性，是HTMLCollection的实例，只包含元素中同样还是元素的子节点。除此外，children属性与childNodes没有什么区别。</li>
-<li>contains()方法：用于检测某个节点是不是另一个节点的后代，是则返回true</li>
-</ul>
-<h4 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h4><ul>
-<li>innerText属性。操作元素中包含的所有文本内容，包括子文档书中的文本。会去掉元素内容</li>
-<li>outerText属性。作用范围扩大到调用它的节点。在写模式喜爱，outerText会替换掉整个元素，包括子节点。</li>
-</ul>
-<h2 id="DOM2和DOM3"><a href="#DOM2和DOM3" class="headerlink" title="DOM2和DOM3"></a>DOM2和DOM3</h2><p>DOM1级主要定义的是HTML和XML文档的底层结构。DOM2和DOM3级则在这个结构的基础上引入了更多的交互能力，也支持了更高级的XML特性。DOM2和DOM3分为了许多模块，分别描述了DOM的某个非常具体的子集。</p>
-<ul>
-<li>DOM2级核心：在1级核心基础上构建，为节点添加了更多方法和属性。</li>
-<li>DOM2级视图：为文档定义了基于样式信息的不同视图。</li>
-<li>DOM2级事件：说明了如何使用事件与DOM文档交换。</li>
-<li>DOM2级样式：定义了如何以编程方式来访问和改变CSS样式信息。</li>
-<li>DOM2级遍历和范围：引入了遍历DOM文档和选择其特定部分的新接口。</li>
-<li>DOM2级HTML：在1级HTML基础上构建，添加了更多属性、方法和新接口。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cimyinwim001lp0q9exzvmqmc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/16/CSS-3/" class="article-date">
-  <time datetime="2016-03-16T07:45:54.000Z" itemprop="datePublished">2016-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/16/CSS-3/">CSS-3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。</p>
-<h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><p>CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的CSS样式中。其优先权从高到低为：</p>
-<ol>
-<li>内联样式（在HTML元素内部）</li>
-<li>内部样式表（位于<head>标签内部）</head></li>
-<li>外部样式表（.css文件）</li>
-<li>浏览器缺省设置</li>
-</ol>
-<h2 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h2><p>CSS规则有两个主要部分构成：选择器和声明。每条声明由一个属性和一个值组成。与XHTML不同，css对大小写不敏感。存在其一例外：如果涉及到与HTML文档一起工作的话，class和id名称对大小写是敏感的。例如<br><code>h1 {color:red; font-size:14px; }</code></p>
-<h2 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
-<li>backgroud-color: 设置背景颜色，有时简写为bgcolor，如body元素等。</li>
-<li>backgroud-image：设置背景图片。</li>
-<li>backgroud-repeat：设置背景的重复</li>
-<li>backgroud-position：改变图像在背景中的位置。</li>
-</ul>
-<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
-<li>text-align：center 文本行相互之间的对齐方式</li>
-<li>text-indent：5em 文本缩进</li>
-<li>word-spacing：-0.5em 单词间隔</li>
-<li>letter——spacing：5px 字母间隔</li>
-<li>text-transform：uppercase 处理文本的大小写</li>
-</ul>
-<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><ul>
-<li>font-family：Times 字体样式</li>
-<li>font-size：14px 字体大小</li>
-<li>font-style：italic 规定斜体</li>
-</ul>
-<h2 id="CSS框模型及定位"><a href="#CSS框模型及定位" class="headerlink" title="CSS框模型及定位"></a>CSS框模型及定位</h2><h4 id="框模型"><a href="#框模型" class="headerlink" title="框模型"></a>框模型</h4><p>CSS框模型从外向里分别是：border（边框）、margin（外边距）|padding（内边距）、element（height、width）。</p>
-<ul>
-<li>内边距有四个单独属性，分别设置上下左右内边距：padding-top padding-bottom padding-left padding-right</li>
-<li>外边距也有相应的四个属性，分别设置上下左右外边距：略</li>
-<li>边框有3个方面：样式、宽度和颜色。样式：border-style/border-top-style等四个；宽度：border-width/border-top-width等四个；颜色：border-color/border-top-color等四个。</li>
-</ul>
-<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>CSS定位属性允许对元素进行定位。元素定位有相对定位、绝对定位和浮动等三种。一下分别为相对定位、绝对定位和浮动定位。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">box_relative</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box_absolute</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:absolute;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box</span>&#123;</span><br><span class="line">	<span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:blue;<span class="attribute">font-family</span>:sans-serif;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;这个元素的内容会引用上面的样式&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,h4&#123;<span class="attribute">color</span>:bule;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;以上所有元素内容都会应用样式&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[href][title=<span class="string">"123"</span>]&#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> title=<span class="string">"123"</span> href=<span class="string">"http://w3school.com.cn"</span>&gt; 可以应用样式 &lt;/a&gt;</span><br><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"http://w3school.com.cn"</span>&gt;不可以应用样式&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.important</span> &#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> class=<span class="string">"important"</span>&gt;还可以在.前面加元素，则既是相应元素又是相应类则满足&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#intro&#123;<span class="attribute">font-weight</span>:bold;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> id=<span class="string">"intro"</span>&gt;应用样式&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 em&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>只要有<span class="tag">&lt;<span class="name">em</span>&gt;</span>这个后代元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，后代元素就应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">h1&gt;strong&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>必须<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>是子元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，而不能是后代元素。不应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cimyinwi3000zp0q9sj17532k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
 
     </footer>
   </div>
@@ -856,7 +809,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 18.33px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -878,6 +831,14 @@
       <ul>
         
           <li>
+            <a href="/2016/04/14/ECMAScript6-new/">ECMAScript6-new</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/14/ECMAScript6/">ECMAScript6为数据类型添加的新方法</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
           </li>
         
@@ -887,14 +848,6 @@
         
           <li>
             <a href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/31/dataBase-system/">数据库概论</a>
           </li>
         
       </ul>
