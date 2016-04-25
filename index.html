@@ -68,6 +68,198 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-WebApp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/WebApp/" class="article-date">
+  <time datetime="2016-04-23T08:46:13.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端框架/">前端框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/WebApp/">Web应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>所谓Web应用，指的是使用web技术构建的业务繁杂、逻辑较多、交互频繁的单页Web应用，它在一个界面上集成多种功能，甚至整个系统就只有一个页面，所有的业务功能都是它的子模块，通过特定的方式挂接到主界面。它是Ajax技术的进一步升华，把Ajax的无刷新机制发挥到极致，因此能早就与桌面程序媲美的流畅用户体验。</p>
+<h2 id="Web应用需要解决的问题"><a href="#Web应用需要解决的问题" class="headerlink" title="Web应用需要解决的问题"></a>Web应用需要解决的问题</h2><p>根据徐飞前辈的分类，Web应用中要解决的问题分为三类：状态、组织、效率。<a href="http://www.zhihu.com/question/39943474" target="_blank" rel="external">原文</a></p>
+<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><p>在一个业务界面中，我们可能会根据某些数据去生成一块界面，然后根据界面上的某些操作，改变一些数据，进而影响界面另外一部分。所以抽象出来就有两种关系：数据改变造成界面改变、界面改变造成数据改变。能够描述界面当前状态的数据，就称为状态。如果不对状态进行抽象，则可能造成逻辑的混乱，所以，不同的框架采用不同的方式进行了处理。</p>
+<h4 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h4><p>所谓组织，指两个方面，一方面是模块关系，一方面是业务模型。<br>目前解决模块关系的问题的共识是组件化。整个应用形成倒置的组件树，每个组件提供对外接口，然后内部只关注自己的实现。最原始的组件，其功能可以单独开发测试，然后逐级拼装成更复杂的组件，直到整个应用。每一级都是易装配，可追踪，可管控的。组件化的目标有分治和复用，其中分治的价值更大。由于组件设计需要更高的成本和更高的难度，所以对web应用“全组件化”是有一定的难度的，可综合考虑。<br>所谓业务模型指的是所处领域中的业务数据、规则、流程的集合。目前解决业务模型的方法有flux、redux之类的架构。</p>
+<h4 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h4><p>效率分为开发效率和运行效率。开发效率与选用的框架、技术以及组件化等都有很大的关系。运行效率主要因素有数据变更检测方式和创建、修改DOM。数据变更检测方式和框架有很大的关系，创建DOM的过程中，各个框架之间没有太大差异，而在修改DOM的时候，React的虚拟DOM有很大的优秀，其他框架内部实现也在逐渐借鉴。</p>
+<h2 id="常见的架构"><a href="#常见的架构" class="headerlink" title="常见的架构"></a>常见的架构</h2><p>目前在Web应用中，常用的架构有MVC、MVP、MVVM三种。下面这两篇文章讲的很好。<br><a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/" target="_blank" rel="external">Scaling Isomorphic Javascript Code</a><br><a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="external">MVC，MVP 和 MVVM 的图示</a></p>
+<h2 id="开发框架与类库"><a href="#开发框架与类库" class="headerlink" title="开发框架与类库"></a>开发框架与类库</h2><p>通常，我们会开始用类库和框架来解决构建动态应用的问题。类库是一些函数的集合，它可以帮助我们写Web应用，但起主导作用的是我们的代码，如jQuery。而框架是一种特殊的、已经实现了的Web应用，它只需要填充具体的业务逻辑，其主导作用的是框架。</p>
+<ul>
+<li>ExtJS可以称为第一代单页应用框架的典型，它封装了各种UI组件，用户主要使用JavaScript来完成前端的开发以及布局。然而，随着功能的逐渐增加，ExtJS的体积变得日益庞大，性能也变得越来越差。</li>
+<li>React可以认为是MVC中的V视图，其产生的意义是：解决构建随时间数据不断变化的大规模应用程序的问题。其主要特点是组件化（也可以使用其独有的jsx）和虚拟DOM树（只会更新需要更新的DOM，节省大量的DOM修改的时间）。React推崇的是单向数据流：给定原始界面，施加一个变化，就可以推导出顶一个状态（界面或数据的更新）</li>
+<li>Angular是为了克服HTML在构建应用上的不足而设计的。它采用了MVVM的架构，采用了数据与界面的双向数据绑定，当界面发生变化时，按照配置规则去更新相应的数据，然后，在根据配置好的规则，把数据更新到界面状态。</li>
+<li>Vue是一个构建数据驱动的web界面的库。Vue.js的目标是通过尽可能简单的API实现相应的数据绑定和组合的视图组件。它只聚焦于视图层，非常容易与其他库或已有项目整合。其核心是一个响应的数据绑定系统，它让数据与DOM保持同步变得非常简单。<a href="http://cn.vuejs.org/guide/comparison.html" target="_blank" rel="external">与其他框架的对比</a></li>
+<li>jQuery是一个优秀的JavaScript库，它是轻量级的js库，兼容CSS3以及各种浏览器。jQuery是用户能更方便地处理HTML、events、实现动画效果和AJAX交互。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cinfnlash002kwcq9prn2e51e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/flexbox/" class="article-date">
+  <time datetime="2016-04-23T05:26:23.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/flexbox/">flexbox</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文大量参考了Helen Emerson的<a href="http://helephant.com/2013/03/23/css3-flexbox-layout/" target="_blank" rel="external">《Using the CSS3 flexbox layout》</a>，如有需要，请移步此文。</p>
+<h2 id="Flexbox简述"><a href="#Flexbox简述" class="headerlink" title="Flexbox简述"></a>Flexbox简述</h2><p>Flexbox的布局是一个用于页面布局的CSS3模块，目前为止，大部分的浏览器都支持或部分支持此功能，支持情况请参考<a href="http://caniuse.com/#search=flexbox" target="_blank" rel="external">caniuse网站</a>。Flexbox可以简单快速的创建一个具有弹性功能的布局，当在一个小屏幕上显示的时候，Flexbox可以让元素在伸缩容器中进行自由扩展和收缩，从而调整整个布局。</p>
+<h2 id="伸缩容器和伸缩项目"><a href="#伸缩容器和伸缩项目" class="headerlink" title="伸缩容器和伸缩项目"></a>伸缩容器和伸缩项目</h2><p>一个flexbox布局由伸缩容器和其中的伸缩项目组成。伸缩容器是一个HTML标签元素，并且“display”属性显示设置“flex”属性值，伸缩容器中的所有子元素都会自动变成伸缩项目（flex items）。</p>
+<h2 id="伸缩方向与换行（flex-flow）"><a href="#伸缩方向与换行（flex-flow）" class="headerlink" title="伸缩方向与换行（flex-flow）"></a>伸缩方向与换行（flex-flow）</h2><p>伸缩容器有一个CSS属性“flex-flow”用来决定伸缩项目的布局方式。常见的flex-flow的值有row、column、row wrap等，其伸缩项目排列方式如下：</p>
+<p><img src="/img/CSS3/flexflow-row.png" alt="flex-flow:row"><br><img src="/img/CSS3/flex-flow-column.png" alt="flex-flow:column"><br><img src="img/CSS3/flexbox-rowwrap.png" alt="flex-flow:row wrap"></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row; <span class="comment">//还有columen、warp、row warp等</span></span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">1000px</span>; <span class="comment">//还可以使用max-widht等属性设置最大/最小宽度/高度等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="伸缩项目设置"><a href="#伸缩项目设置" class="headerlink" title="伸缩项目设置"></a>伸缩项目设置</h2><p>伸缩容器中的所有子元素都将自动变成伸缩项目，仅需要设置伸缩项目的尺寸即可。设置其尺寸可以使用widht、height等固定伸缩项目的宽和高，也可以使用flex属性（还可以结合min-widht等属性）动态改变伸缩项目的尺寸。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row wrap；</span><br><span class="line">	max-width: <span class="number">1500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-widht</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">2</span>;</span><br><span class="line">	<span class="attribute">min-widht</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/img/CSS3/flex-item-width.png" alt=""><br>在以上容器中，为left right都设置flex，最小/最大宽度，而mian设置了固定宽600px。其排列规则如下（在chrome中验证）：</p>
+<ol>
+<li>当宽度足够宽时，先去除main的600px固定宽，left和right宽度比为1:2（超过max-widht，长度自动设为max-width的值）。</li>
+<li>当宽度不足时，优先满足left的min-widht和mian的widht。如果无法满足right的min-widht，right转到第二行。一次类推。</li>
+<li>所以，可以结合min-widht、max-widht和flex动态调整元素大小，并使元素不至于过大或者过小。</li>
+<li>计算规则为先按照flex分配元素尺寸（如果只有一个flex，则其填充剩余空白），然后参考最大最小尺寸，确定元素尺寸。每个元素都自动有一个隐式的最小尺寸，这里需要注意一下。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cinfnlasy0032wcq9zhlr35mk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-learn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/17/react-learn/" class="article-date">
+  <time datetime="2016-04-17T13:13:55.000Z" itemprop="datePublished">2016-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端框架/">前端框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/17/react-learn/">react初步认识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>React起源于Facebook的内部项目，其设计思想及其独特，属于革命性创新，性能出众，代码逻辑简单。其主要优点有：</p>
+<ol>
+<li>虚拟DOM，在必要的时候才将组件渲染到真正的DOM上，减少频繁的DOM操作造成的性能问题。</li>
+<li>组件化，React都是关于构建可复用的组件。事实上，通过React唯一要做的事情就是构建组件。得益于其良好的封装性，组件使代码复用、测试和关注分离更加简单。</li>
+</ol>
+<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello React&lt;/title&gt;
+    &lt;script src=&quot;http://fb.me/react-0.13.0.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;http://fb.me/JSXTransformer-0.13.0.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/jsx&quot;&gt;
+      var HelloWorld = React.createClass({
+          render: function() {
+            return (
+                  &lt;p&gt;
+                    Hello, &lt;input type=&quot;text&quot; placeholder=&quot;Your name here&quot; /&gt;!
+                    It is {this.props.date.toTimeString()}
+                  &lt;/p&gt;
+            );
+          }
+        });
+
+        setInterval(function() {
+              React.render(
+                &lt;HelloWorld date={new Date()} /&gt;,
+                document.getElementById(&apos;example&apos;)
+              );
+        }, 500);
+
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="官方例子"><a href="#官方例子" class="headerlink" title="官方例子"></a>官方例子</h2><p>React提供了一个官方例子<a href="http://reactjs.cn/react/blog/2013/11/05/thinking-in-react.html" target="_blank" rel="external">英文</a><a href="http://reactjs.cn/react/docs/thinking-in-react.html" target="_blank" rel="external">中文</a>，从如何拆分组件树、如何利用React创建静态版本、如何识别最小的state、如何确认state的声明周期到添加方向数据流，较完整的展现了react的应用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cinfnlauh005wwcq9p5w1on2x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ECMAScript6-async" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/15/ECMAScript6-async/" class="article-date">
@@ -103,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cin0oonsf000lekq9z5bm9gvo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cinfnlaqb0005wcq9jctwg2bo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -153,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cin0oonst000pekq916ca10yb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cinfnlaqg0009wcq9utjl3ii8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -214,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cin0oonsv000rekq9lbyl2tk9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cinfnlaqi000bwcq9ac66hzdo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -282,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cin0oonu0001jekq92rv12k4w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cinfnlar1000twcq9e88h6hbu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -349,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cin0oonvq003dekq9esso7h7d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cinfnlas30022wcq9pihexwht" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -396,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cin0oontu001bekq9x6gzadhx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cinfnlar5000zwcq9uxyqgw5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -442,227 +634,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cin0oonve0030ekq96ujs1wfb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cinfnlaqw000nwcq9d4q3eca6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ExtJS-define" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/07/ExtJS-define/" class="article-date">
-  <time datetime="2016-04-07T03:22:20.000Z" itemprop="datePublished">2016-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。</p>
-<h2 id="定义一个类"><a href="#定义一个类" class="headerlink" title="定义一个类"></a>定义一个类</h2><h4 id="定义一个新的基本类"><a href="#定义一个新的基本类" class="headerlink" title="定义一个新的基本类"></a>定义一个新的基本类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'My.awesome.Class'</span>, &#123;</span><br><span class="line">    <span class="attribute">someProperty</span>: <span class="string">'something'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attribute">someMethod</span>: <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">        alert(s + <span class="keyword">this</span>.someProperty);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> obj = <span class="keyword">new</span> My.awesome.Class();</span><br><span class="line"></span><br><span class="line">obj.someMethod(<span class="string">'Say '</span>); <span class="comment">// alerts 'Say something'</span></span><br></pre></td></tr></table></figure>
-<h4 id="创建一个匿名类"><a href="#创建一个匿名类" class="headerlink" title="创建一个匿名类"></a>创建一个匿名类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="literal">null</span>, &#123;</span><br><span class="line">  <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="创建一个包含私有类型的嵌套域"><a href="#创建一个包含私有类型的嵌套域" class="headerlink" title="创建一个包含私有类型的嵌套域"></a>创建一个包含私有类型的嵌套域</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.foo.Bar'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> id = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">nextId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ++id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> bar=Ext.create(<span class="string">'MyApp.foo.Bar'</span>);</span><br><span class="line">alert(bar.nextId()); <span class="comment">//1</span></span><br><span class="line">alert(bar.nextId()); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<h4 id="Ext实现"><a href="#Ext实现" class="headerlink" title="Ext实现"></a>Ext实现</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">define</span>: <span class="title">function</span> </span>(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">            <span class="comment">//如果是重载，则应用Manager.createOverride方法，否则应用Manager.create</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">data</span>.override) &#123;</span><br><span class="line">                <span class="keyword">return</span> Manager.createOverride.apply(Manager, arguments);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Manager.create.apply(Manager, arguments);</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个新的类</span></span><br><span class="line">create: function(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">			</span><br><span class="line">            <span class="built_in">var</span> ctor = makeCtor();<span class="comment">//建立构造器</span></span><br><span class="line">            <span class="keyword">if</span> (typeof <span class="built_in">data</span> == <span class="string">'function'</span>) &#123;</span><br><span class="line">                <span class="built_in">data</span> = <span class="built_in">data</span>(ctor);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">data</span>.$className = className; <span class="comment">//更改类名</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//返回创建好的类，创建类的过程中，不仅要将自定义的类的属性和方法添加到类中，</span></span><br><span class="line">            <span class="comment">//还需要将ext基本类的属性和方法添加到新建的类中。</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">new</span> Class(ctor, <span class="built_in">data</span>, function() &#123;<span class="comment">//……&#125;);</span></span><br><span class="line"></span><br><span class="line">Ext.Class = ExtClass = function(Class, <span class="built_in">data</span>, onCreated) &#123;</span><br><span class="line">        <span class="keyword">if</span> (typeof Class != <span class="string">'function'</span>) &#123;</span><br><span class="line">            onCreated = <span class="built_in">data</span>;</span><br><span class="line">            <span class="built_in">data</span> = Class;</span><br><span class="line">            Class = <span class="built_in">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">data</span>) &#123;</span><br><span class="line">            <span class="built_in">data</span> = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Class = ExtClass.create(Class, <span class="built_in">data</span>); <span class="comment">//先创建基于ExtClass的类的实例，添加应有的属性和方法</span></span><br><span class="line"></span><br><span class="line">        ExtClass.process(Class, <span class="built_in">data</span>, onCreated); <span class="comment">//将添加的属性和方法放至正确的位置</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Class; <span class="comment">//返回创建好的类</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="重载类"><a href="#重载类" class="headerlink" title="重载类"></a>重载类</h2><h4 id="定义基于EXT组件的重载"><a href="#定义基于EXT组件的重载" class="headerlink" title="定义基于EXT组件的重载"></a>定义基于EXT组件的重载</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.override.BaseOverride'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">override</span>: <span class="string">'Ext.Component'</span>,</span><br><span class="line">        <span class="attribute">logId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(++counter, <span class="keyword">this</span>.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
-<h4 id="分解类"><a href="#分解类" class="headerlink" title="分解类"></a>分解类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: /src/app/Panel.js</span></span><br><span class="line"></span><br><span class="line"> Ext.define(<span class="string">'My.app.Panel'</span>, &#123;</span><br><span class="line">     <span class="attribute">extend</span>: <span class="string">'Ext.panel.Panel'</span>,</span><br><span class="line">     <span class="attribute">requires</span>: [</span><br><span class="line">         <span class="string">'My.app.PanelPart2'</span>,</span><br><span class="line">         <span class="string">'My.app.PanelPart3'</span></span><br><span class="line">     ]</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls Ext.panel.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">statics</span>: &#123;</span><br><span class="line">         <span class="attribute">method</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// File: /src/app/PanelPart2.js</span></span><br><span class="line"> Ext.define(<span class="string">'My.app.PanelPart2'</span>, &#123;</span><br><span class="line">     <span class="attribute">override</span>: <span class="string">'My.app.Panel'</span>,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls My.app.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="Ext重载类的实现"><a href="#Ext重载类的实现" class="headerlink" title="Ext重载类的实现"></a>Ext重载类的实现</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">createOverride: function (className, data, createdFn) &#123;</span><br><span class="line">            var me = this,</span><br><span class="line">                overriddenClassName = data.override,</span><br><span class="line">                requires = data.requires,</span><br><span class="line">                uses = data.uses,</span><br><span class="line">                compat = data.compatibility,</span><br><span class="line">                classReady = function () &#123;</span><br><span class="line">                    var <span class="keyword">cls</span>, temp<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">               		<span class="comment">//requires加载需要的类时机是：当前类初始化之前被加载。</span></span><br><span class="line">                    <span class="keyword">if</span> (requires) &#123;</span><br><span class="line">                        temp = requires<span class="comment">;</span></span><br><span class="line">                        requires = null<span class="comment">; </span></span><br><span class="line"></span><br><span class="line">                        Ext.Loader.require(temp, classReady)<span class="comment">;</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">cls</span> = me.get(overriddenClassName)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">delete</span> data.override<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.compatibility<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.requires<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.uses<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        Ext.override(<span class="keyword">cls</span>, data)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        me.triggerCreated(className)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">						<span class="comment">//uses记载需要的类的时机是，当前类初始化之后被加载。</span></span><br><span class="line">                        <span class="keyword">if</span> (uses) &#123;</span><br><span class="line">                            Ext.Loader.addUsedClasses(uses)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> (createdFn) &#123;</span><br><span class="line">                            createdFn.call(<span class="keyword">cls</span>)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            me.existCache[className] = true<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!compat || Ext.checkVersion(compat)) &#123;</span><br><span class="line">                </span><br><span class="line">                me.onCreated(classReady, me, overriddenClassName)<span class="comment">;</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> me<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="cin0oonts0019ekq99saxazgs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dataBase-system" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/31/dataBase-system/" class="article-date">
-  <time datetime="2016-03-31T05:56:12.000Z" itemprop="datePublished">2016-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/dataBase-system/">数据库概论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>数据模型是对现实世界数据特征的抽象，也就是说数据模型是用来描述数据、组织数据和对数据进行操作的。现有的数据库系统均是基于某种数据模型的。</p>
-<p>根据模型应用的不同目的，数据模型分为两类：概念模型、逻辑模型和物理模型。概念模型是按用户的观点来对数据和信息建模，主要用于数据库设计。第二类逻辑模型主要包括关系模型、层次模型、网状模型、层次模型、面向对象数据模型和对象关系模型、半结构化模型等。其中关系模型是最重要的一种数据模型。</p>
-<p>从数据库应用开发人员角度看，数据库系统通常采用三级模式结构（外模式、模式、内模式）。从最终用户角度看，数据库系统的结构分为单用户结构、主从式结构、分布式结构、客户-服务器、浏览器-应用服务器/数据库服务器多层结构等。这是数据库外部的体系结构。</p>
-<h2 id="常用数据库以及模型"><a href="#常用数据库以及模型" class="headerlink" title="常用数据库以及模型"></a>常用数据库以及模型</h2><ul>
-<li>MySQL 小型关系型数据库管理系统，适用于中小型网站</li>
-<li>Oracle 一种大型关系数据库系统，一般用于商业、政府机关等。能处理大批量的数据。</li>
-<li>SQL Server 关系数据库管理系统。有微软和Sybase两家</li>
-<li>DB2 IBM的一系列关系型数据库管理系统，主要应用于大型应用系统。对大型分布式应用系统尤为适用。</li>
-<li>Informix IBM出品的关系数据库管理系统家族。</li>
-<li>Sybase 关系型数据库，是一种典型的UNIX或WindowsNT平台上客户机/服务器环境下的代行数据库系统。</li>
-<li>PostgreSQL 一种特性非常齐全的自由软件的对象-关系型数据库。</li>
-<li>MongoDB 跨平台、高性能、开源、无模式的文档型数据库。</li>
-<li>NoSQL 泛指非关系型数据库，如Redis、HBase、MongoDB、CouchDB等。</li>
-</ul>
-<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><p>关系模型的数据结构非常简单，只包含单一的数据结构——关系。关系的每一个分类必须是一个不可分的数据项，即不允许表中有表，一列只能有一个head。行和列的顺序无所谓，可以任意交换。</p>
-<h4 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h4><p>R(D1，D2，……Dn)</p>
-<ul>
-<li>R表示关系的名字，n是关系的目或度（degree），即列长度</li>
-<li>表的每行对应一个元组，表的每列对应一个域。</li>
-<li>候选码：若关系中的某一属性组可以唯一表示一个元祖而其子集不能，则称该属性组为候选码。</li>
-<li>主码/主键（Primary Key）：选定一个候选码作为唯一标识。</li>
-</ul>
-<h2 id="关系数据库标准语言SQL"><a href="#关系数据库标准语言SQL" class="headerlink" title="关系数据库标准语言SQL"></a>关系数据库标准语言SQL</h2><p>结构化查询语言是关系数据库的标准语言，也是一个通用的、功能极强的关系数据库语言，可以实现数据库模式创建、数据库数据的增删改查、数据库安全性完整性定义与控制等一系列功能。</p>
-<h4 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">操作对象</th>
-<th style="text-align:left">创建</th>
-<th style="text-align:left">删除</th>
-<th style="text-align:left">修改</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">模式</td>
-<td style="text-align:left">CREATE SCHEMA</td>
-<td style="text-align:left">DROP SCHEMA</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">表</td>
-<td style="text-align:left">CREATE TABLE</td>
-<td style="text-align:left">DROP TABLE</td>
-<td style="text-align:left">ALTER TABLE</td>
-</tr>
-<tr>
-<td style="text-align:center">视图</td>
-<td style="text-align:left">CREATE VIEW</td>
-<td style="text-align:left">DROP VIEW</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">索引</td>
-<td style="text-align:left">CREATE INDEX</td>
-<td style="text-align:left">DROP INDEX</td>
-<td style="text-align:left">ALTER INDEX</td>
-</tr>
-</tbody>
-</table>
-<p>一个关系数据库管理系统的实例中可以创建多个数据库，一个数据库中可以建立多个模式，一个模式下通常包含多个表、视图和索引等数据库对象。当表的数据量比较大时，查询操作会比较耗时，建立索引是加快查询速度的有效手段。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt; //也可以在后面继续创建表、视图等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">TEST</span> AUTHORIZATION ZHANG //为用户ZHANG创建一个模式<span class="keyword">TEST</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; &lt;<span class="keyword">CASCADE</span>|RESTRICT&gt; //删除模式，<span class="keyword">cascade</span>表示删除模式下所有数据库对象，restrict表示如果存在下属数据库，则不执行</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; (&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件下]) //如设置主码等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> StudentCourse (</span><br><span class="line">	Sno <span class="built_in">CHAR</span>(<span class="number">9</span>),  //也可以在其后面直接加PRIMARY <span class="keyword">KEY</span>，表示其为主键。这样称为列级完整性</span><br><span class="line">	Cpo <span class="built_in">CHAR</span>(<span class="number">4</span>),</span><br><span class="line">	Grade <span class="built_in">SMALLINT</span>,</span><br><span class="line">	PRIMARY <span class="keyword">KEY</span>(Sno,Cno), //主码由两个属性构成，必须作为表级完整性进行定义</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Sno) <span class="keyword">REFERENCES</span> Student(Sno), //表级完整性定义，Sno是外码，被参照表示Student</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Cno) <span class="keyword">REFERENCES</span> Course(Cno),  //表级完整性定义，Cno是外码，被参照表示Course</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;&gt;</span><br><span class="line">[<span class="keyword">ADD</span> &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]] //<span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Student <span class="keyword">ADD</span> S_entrance <span class="built_in">DATE</span>;</span><br><span class="line">[<span class="keyword">DROP</span> &lt;列名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt; &lt;数据类型&gt;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]; //删除基本表</span><br></pre></td></tr></table></figure>
-<h4 id="数据查询与操作SQL"><a href="#数据查询与操作SQL" class="headerlink" title="数据查询与操作SQL"></a>数据查询与操作SQL</h4><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表的查询</span></span><br><span class="line"><span class="keyword">SELECT</span> [ALL|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;]…… <span class="comment">//指明选择要获取的列</span></span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt; [,&lt;表名或视图名&gt;……]   <span class="comment">//指明从什么表格里面取，可以多个表格</span></span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件表达式&gt;]   <span class="comment">//Sage&lt;20，指明条件</span></span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [HAVING &lt;条件表达式&gt;]] </span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">By</span> &lt;列名<span class="number">2</span>&gt; [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]];  <span class="comment">//按某列排序，ASC表示升序，DESC表示降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Student.Sno,Sname <span class="comment">//*表示全部取出来</span></span><br><span class="line"><span class="keyword">FROM</span> Student,SC,Course</span><br><span class="line"><span class="keyword">WHERE</span> Student.Sno=SC.Sno <span class="keyword">AND</span></span><br><span class="line">	  SC.Cno=Course.Cno <span class="keyword">AND</span></span><br><span class="line">	  Course.Cname=<span class="string">'信息系统'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Sno <span class="keyword">ASC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入新项</span></span><br><span class="line">INSERT <span class="keyword">INTO</span> &lt;表名&gt; [(&lt;属性列<span class="number">1</span>&gt;[,&lt;属性列<span class="number">2</span>&gt;]……)]</span><br><span class="line">VALUES (&lt;常量<span class="number">1</span>&gt;[,&lt;常量<span class="number">2</span>&gt;]……);</span><br><span class="line"></span><br><span class="line">INSERT <span class="keyword">INTO</span> Student(Sno,Sname) <span class="comment">//如果新元组与属性列一一对应，则可以省略属性</span></span><br><span class="line">VALUES(<span class="string">'20121515'</span>,<span class="string">'黎明'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//更新表格内容</span></span><br><span class="line">UPDATE &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span> &lt;列名&gt;=&lt;表达式&gt; [,&lt;列名&gt;=&lt;表达式&gt;]</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br><span class="line"></span><br><span class="line">UPDATE Student</span><br><span class="line"><span class="keyword">SET</span> Sage=<span class="number">22</span></span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除数据</span></span><br><span class="line">DELETE <span class="keyword">FROM</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;]</span><br><span class="line"></span><br><span class="line">DELETE <span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cin0oonvk0036ekq9qc8n0xlk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-compiler-theroy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/31/compiler-theroy/" class="article-date">
-  <time datetime="2016-03-31T03:59:37.000Z" itemprop="datePublished">2016-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/compiler-theroy/">编译原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h2><p>从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。</p>
-<p>编译程序完成从源程序到目标程序的翻译工作，按过程可以分为：词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成6个阶段。这只是典型的编译过程，有的编译程序没有代码优化等过程。</p>
-<h2 id="运行时存储组织"><a href="#运行时存储组织" class="headerlink" title="运行时存储组织"></a>运行时存储组织</h2><p>通常，在有操作系统的情况下，目标程序将在自己的逻辑地址空间内存储和运行。编译程序所产生的目标程序的大小通常是确定的，一般存放在指定的专用存储区域，即代码区。相应的，目标程序运行过程中需要创建或访问的数据对象将存放在数据区。</p>
-<h4 id="程序运行时存储空间的布局"><a href="#程序运行时存储空间的布局" class="headerlink" title="程序运行时存储空间的布局"></a>程序运行时存储空间的布局</h4><p>一般来说，程序运行时的存储空间从逻辑上可分为“代码区”和“数据区”，但为了方便存储组织和管理，往往需要将存储空间划分为更多的逻辑区域。具体的划分方法会依赖于目标机体系结构，但一般情况下至少含有保留地址区、代码区、静态数据区及动态数据区等逻辑区域。</p>
-<ul>
-<li>保留地址去。专门为目标机体系结构和操作系统保留的内存地址区。通常，该区域不允许普通的用户程序存取，只允许操作系统的某些特权操作进行读写。</li>
-<li>代码区。静态存放编译程序产生的目标代码。</li>
-<li>静态数据区。存放全局数据，是普通程序可读可写的区域。存放程序中用到的所有常量和数据对象，以及各类全局变量和静态变量所对应的数据对象。</li>
-<li>动态数据区。运行时动态变化的堆区和栈区。</li>
-<li>共享库和分别编译模块区。静态存放共享库模块和分别编译模块的代码和全局数据。</li>
-</ul>
-<h4 id="存储分配策略"><a href="#存储分配策略" class="headerlink" title="存储分配策略"></a>存储分配策略</h4><p>数据区分为静态数据区和动态数据区（堆区、栈区），分别对应了3种规则：静态存储分配、栈式存储分配和堆式存储分配。</p>
-<ul>
-<li>静态存储分配，即在编译期间为数据对象分配存储空间。要求在编译期间就可以确定数据对象的大小，同时还可以确定数据对象的数目。如可全程访问的全局变量、静态变量、程序中的常量以及class的虚函数表等。</li>
-<li>栈式存储分配，将数据对象的运行时存储按照栈的方式来管理。栈式存储分配是动态的，也就说必须是运行的时候才能确定数据对象的分配结果。运行时每当进入一个过程/函数，就在栈顶为该过程/函数分配存放活动记录的数据空间，当一个过程/函数工作完毕返回时，它在栈顶的活动记录数据空间也随即释放。在编译过程中，过程、函数以及嵌套程序块的活动记录大小（最小值）应该是可以确定的，这是进行栈式存储分配的必要条件，如果不满足应该使用堆式存储管理。</li>
-<li>堆式存储分配，当数据对象的生产期与创建它的过程/函数的执行期无关时，例如某些数据对象可能在该过程/函数结束之后仍然长期存在，就不适合使用栈式存储分配。堆式存储分配和释放数据对象的操作是应用程序通过向操作系统提出申请实现的，因此要占用相当的时间。堆式存储空间的释放分为：不释放、显示释放（如malloc和free、new和delete）、隐式释放（垃圾回收）。</li>
-</ul>
-<h4 id="面向对象语言存储分配策略"><a href="#面向对象语言存储分配策略" class="headerlink" title="面向对象语言存储分配策略"></a>面向对象语言存储分配策略</h4><p>面向对象语言中，与存储组织关系密切的概念是类和对象。类扮演的角色是程序的静态定义，对象扮演的角色是程序运行时的动态结构。</p>
-<ul>
-<li>类是一组运行时对象的共同性质的静态描述，包含变量和方法。存储在静态存储区。</li>
-<li>对象时类的一个实例，在堆区为对象申请空间并创建对象，同时在栈区保存引用对象的存储单元。在堆区的对象包含局部变量，但并不包含方法，而是有一个指向该方法的引用。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cin0oonv4002kekq9n1zauqrr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -674,7 +649,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -684,7 +659,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -694,7 +669,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -704,7 +679,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -726,23 +701,23 @@
       <ul>
         
           <li>
+            <a href="/2016/04/23/WebApp/">Web应用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/flexbox/">flexbox</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/17/react-learn/">react初步认识</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
           </li>
         
           <li>
             <a href="/2016/04/15/ECMAScript6-class/">ECMAScript6中的Class</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/14/ECMAScript6-iterator/">ECMAScript6新属性方法等</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/14/ECMAScript6/">ECMAScript6为数据类型添加的新方法</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
           </li>
         
       </ul>
