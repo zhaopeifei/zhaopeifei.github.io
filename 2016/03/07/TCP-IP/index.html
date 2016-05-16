@@ -13,11 +13,14 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入RFC文档并公布。互联网协议=TCP/IP。
 TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首">
-<meta property="og:updated_time" content="2016-04-01T04:28:36.801Z">
+<meta property="og:image" content="http://yoursite.com/img/计算机基础/IPv4报头.png">
+<meta property="og:image" content="http://yoursite.com/img/计算机基础/TCP报头.png">
+<meta property="og:updated_time" content="2016-05-16T09:36:43.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP/IP">
 <meta name="twitter:description" content="TCP/IP是利用IP进行通信是所必须用到的协议群的统称，包括IP、ICMP、DNS、ARP、TCP、UDP、FTP、HTTP等，他们与TCP、IP关系紧密，故有时也称为TCP/IP网际协议族。其具有两大特点：具有开放性、注重实用性。其标准化的协议，被列入RFC文档并公布。互联网协议=TCP/IP。
 TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数据附加一个首部，TCP包首部、IP包首">
+<meta name="twitter:image" content="http://yoursite.com/img/计算机基础/IPv4报头.png">
   
     <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
   
@@ -108,15 +111,20 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
 <li>TCP模块的处理：首先计算校验和，判断数据是否被破坏。然后检查是在安装序号接收数据，最后是检查端口号，确定具体的应用程序。接收完毕后发生一个“确认回执”给发送端。</li>
 <li>应用程序的处理：接收端应用程序接收数据，解析数据。给句解析结果反馈信息，如已接受、被退回等。</li>
 </ol>
-<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP和ICMP两个协议组成，当然还有DNS、ARP等于IP相关的协议。</p>
-<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由以及IP分包和组包。</p>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP、ICMP、ARP、RARP协议组成。</p>
+<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由控制以及IP分包和组包。</p>
 <ul>
-<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。</li>
+<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。主机地址全部为0表示对应的网络地址不可获知，全部为1表示广播地址。</li>
 <li>一个数据包之所以能够成功地到达最终的目标地址，全靠路由控制。一跳（Hop）指利用数据连输层以下分层的功能传输数据帧的一起区间。</li>
 <li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
 </ul>
 <h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
-<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不知检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
+<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><ol>
+<li>IP地址：172.20.100.52 子网掩码：255.255.255.192 （前26位是网络地址）</li>
+<li>IP地址：172.20.100.50 /26 （前26位是网络地址，后面6位是主机地址）</li>
+</ol>
+<h4 id="IPv4报头"><a href="#IPv4报头" class="headerlink" title="IPv4报头"></a>IPv4报头</h4><p><img src="/img/计算机基础/IPv4报头.png" alt="计算机网络的组成"></p>
+<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不止检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
 <h4 id="ARP（IPv4、IPv6）"><a href="#ARP（IPv4、IPv6）" class="headerlink" title="ARP（IPv4、IPv6）"></a>ARP（IPv4、IPv6）</h4><p>ARP是一种解决地址问题的协议。以目标IP地址为线索，用来定位下一个应该接收数据分包的网络设备对应的MAC地址。ARP借助ARP请求与ARP响应两种类型的包确定MAC地址，源主机要通过广播发送一个ARP请求包，下一个网络设备确定是自己后，将MAC地址塞入ARP响应返回，进而实现IP通信。</p>
 <ul>
 <li>RARP是ARP反过来，从MAC地址定位IP地址的一种协议。例如通过DHCP自动获取IP地址。</li>
@@ -126,15 +134,19 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
 <h4 id="DHCP（IPv4、IPv6）"><a href="#DHCP（IPv4、IPv6）" class="headerlink" title="DHCP（IPv4、IPv6）"></a>DHCP（IPv4、IPv6）</h4><p>DHCP协议可以实现自动设置IP地址、统一管理IP地址分配，实现即插即用。使用DHCP前，要假设DHCP服务器，并将所要分配的IP地址设置到服务器上，还需要相应的子网掩码、路由控制信息以及DNS服务器的地址等。一般的家庭网络都由宽带路由器冲到DHCP的角色。</p>
 <h4 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h4><p>IP隧道可以将IPv6网络发过来的包统和为一个数据，再为之追加一个IPv4首部在IPv4网络中传送（要在下个IPv6网络中，去除追加的IPv4首部），也可以将ipv4网络发过来的包统和为一个数据，再为之追加一个IPv6首部在IPv6网络中传送。</p>
 <h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><p>TCP和UDP是传输层具有代表性的协议。TCP提供可靠的通信传输，而UDP常被用于让广播和细节控制交给应用的不可靠通信传输。传输层要指出具体的程序，使用端口号（有逻辑端口和物理端口，此处指逻辑端口0~65535）这样的一种识别码，通过端口识别，将数据传递给HTTP、FTP等应用层协议。</p>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
-<ul>
-<li>通过序列号与确认应答提高可靠性。发送端如果没有收到接收端发送的确认应答（ACK），进行重发。</li>
-<li>重发超时，发送端等待确认应答时间超时后，重发。</li>
-<li>连接管理：在通信前，通过TCP首部发送一个SNY包作为建立连接的请求并等待应答，收到确认应答，开始发送数据。最后发送FIN请求切断连接，获取确认应答后，断开连接。</li>
-<li>利用窗口控制提高速度，并进行重发控制。</li>
-<li>拥塞控制：在通信一开始时就会通过一个叫慢启动的算法得出的数值，对发送量进行控制。</li>
-</ul>
 <h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>UDP是不具有可靠性的数据报协议。它不提供复杂的控制机制，细微的处理它会交给上层的应用去完成，它在收到应用程序发来的数据后，立即鸳鸯发送到网络。UDP主要用于那些对高速传输和实时性有较高要求的通信或广播通信，比如DNS、即时通信等。</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
+<h4 id="TCP报头"><a href="#TCP报头" class="headerlink" title="TCP报头"></a>TCP报头</h4><p><img src="/img/计算机基础/TCP报头.png" alt="计算机网络的组成"></p>
+<h2 id="TCP功能"><a href="#TCP功能" class="headerlink" title="TCP功能"></a>TCP功能</h2><h4 id="滑动窗口控制"><a href="#滑动窗口控制" class="headerlink" title="滑动窗口控制"></a>滑动窗口控制</h4><p>TCP利用滑动窗口控制提高速度。窗口大小指无须等待确认应答而可以继续发送数据的最大值。利用滑动窗口可以顺序地将多个端同时发送，而不需要等待上一个段的应答，从而提高通信性能。</p>
+<h4 id="可靠性（seq-ack）"><a href="#可靠性（seq-ack）" class="headerlink" title="可靠性（seq ack）"></a>可靠性（seq ack）</h4><p>TCP通过肯定的确认应答（ACK）实现可靠的数据传输。在TCP三次握手连接时，主机收到SYN请求，则ACK+1，并返回ACK。在传递数据期间，如果收到的数据的seq等于上次ACK的值，则ACK=seq+len，不等于则返回上次发送的ACK，并返回ACK请求。每次主机收到一个数据或者SYN请求等，都会返回一个ACK数据。ACK的值表示下一个数据的序列号。另外，主机在发送ACK应答时，seq不会加1，但发送SYN请求时，seq会加1。</p>
+<h4 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h4><p>在建立TCP连接的同时，可以确定发送数据包的单位，称为最大消息长度（MSS:Maximum Segment Size）。最理想的情况时，最大消息长度正好是IP中不会被分片处理的最大数据长度。在三次握手时，两端的主机会在TCP首部的可选项中写入MSS选项，最终的MSS是两个MSS的较小值。</p>
+<h4 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h4><ol>
+<li>三次握手：主机A向主机B发送SYN请求（TCP数据报，seq=0，ack=0），主机B收到后返回SYN请求&amp;ACK应答（同一个TCP数据报，seq=0，ack=1），主机A收到后返回ACK应答（seq=1，ack=1），则建立连接。在此过程中，同样会携带窗口大小等数据，从而进行流控制。</li>
+<li>发送数据，主机a发送数据包（seq=1，ack=1，上次发送的ack应答并不计数），可以发送多个。主机B每收到一个非ACK数据包就会返回一个ack请求。</li>
+<li>A向B发送完数据后，可以发送FIN请求，B向A发送完数据后，也可以发送FIN请求，当双发发送FIN请求并收到ACK应答后，则会切断连接。</li>
+</ol>
+<h4 id="窗口控制与重发控制"><a href="#窗口控制与重发控制" class="headerlink" title="窗口控制与重发控制"></a>窗口控制与重发控制</h4><p>接收端在收到非自己期望序号的数据时，会将数据保存，并对之前收到的数据进行确认应答。发送端收到三次重复的确认应答后，会进行该数据重新发送。由于可能存在ACK应答丢失情况，发送端收到一个确认应答后，则会判断该应答之前的所有数据都发送成功。</p>
+<p>####　流控制与拥塞控制<br>接收端主机向发送端主机通知自己可以接收数据的大小（会变换），于是发送端会发送不超过这个限度的数据。TCP首都中有个字段来通知窗口大小。接收端的缓冲区一旦面临数据溢出时，窗口大小的值随之减小并通知发送端，从而进行流量控制。<br>计算机网络都处在一个共享的环境，在网络出现拥堵时，如果突然发送一个较大量的数据，极有可能导致整个网络的瘫痪。为避免这个问题，通信一开始，就会通过一个慢启动的算法，对发送数据量进行控制。</p>
 <h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><p>利用网络的应用程序很多，包括web浏览器、电子邮件、远程登录、文件传输、网络管理扥个，能够让这些应用程序进行特定通信处理的正是应用协议。</p>
 <h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p>远程登录主要使用TELNET和SSH两种协议，TELNET经常用于登录路由器或高性能交换机等网络设备进行相应的设置。SSH是加密的远程登录系统，可以具有更强的认证机制，可以转发文件，可以使用端口转发功能。OpenSSH是SSH协议的免费开源实现。</p>
 <h4 id="WWW万维网"><a href="#WWW万维网" class="headerlink" title="WWW万维网"></a>WWW万维网</h4><p>万维网（又称web）是将互联网中的信息以超文本形式展现的系统。WWW定义了3个重要的概念：访问信息的手段和位置（URI）、信息的表现形式（HTML）以及信息转发（HTTP）等。</p>
@@ -144,34 +156,11 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
 <li>HTTP。当用户在浏览器的地址栏里输入所要访问的Web也的URI后，HTTP的处理机会开始，首先客户端向服务器的80端口建立一个TCP链接，然后在这个TCP连接上进行请求和应答以及数据报文的发送。</li>
 <li>HTTPS ：Web中可以通过TLS/SSL对http通信进行加密，这种http通信叫做HTTPS通信。</li>
 </ul>
-<h2 id="常用TTTP码"><a href="#常用TTTP码" class="headerlink" title="常用TTTP码"></a>常用TTTP码</h2><h4 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h4><ul>
-<li>200：服务器已成功处理了请求并提供了请求的网页。</li>
-<li>204：服务器成功处理了请求，但没有返回任何内容。<h4 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h4></li>
-<li>301：请求的网页已永久移动到新位置。当URLs发生变化时，使用301代码。搜索引擎索引中保存新的URL。</li>
-<li>302：请求的网页临时移动到新位置。搜索引擎索引中保存原来的URL</li>
-<li>304：如果网页自请求者上次请求后没有更新，则用304代码告诉搜索引擎机器人，可节省带宽和开销。<h4 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h4></li>
-<li>400：服务器不理解请求的语法。</li>
-<li>403：服务器拒绝请求。</li>
-<li>404：服务器找不到请求的网页。服务器上不存在的网页经常会返回此代码。</li>
-<li>410：请求的资源永久删除后，服务器返回此响应。该代码与404（未找到）代码相似，但在资源以前存在而现在不存在的情况下，有时用来替代404页面代码。如果资源已永久删除，应当使用301指定资源的新位置。<h4 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h4></li>
-<li>500：服务器遇到错误，无法完成请求。</li>
-<li>503：服务器目前无法使用（由于超载或停机维护）。</li>
-<li>505：HTTP版本不受支持。</li>
-</ul>
-<h2 id="域名、URL、网站名"><a href="#域名、URL、网站名" class="headerlink" title="域名、URL、网站名"></a>域名、URL、网站名</h2><p><a href="http://mail.163.com/index.html" target="_blank" rel="external">http://mail.163.com/index.html</a></p>
-<ul>
-<li>http:// 这是个协议，即http超文本传输协议，也就是网页在网上传输的协议。</li>
-<li>mail 这个是服务器名，代表一个邮箱服务器</li>
-<li>163.com 这个是域名，是用来定位网站的独一无二的名字</li>
-<li>mail.163.com 这个是网站名，由服务器名+域名组成</li>
-<li>index.html 这个是根目录下得默认网页</li>
-<li>整体叫做URL，统一资源定位符，定位网上资源。由协议 + 服务器 + 域名 + 网页html组成</li>
-</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cinriqldp002sewq9tdnl1pby" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cioa3rml9003dxkq936niwjrc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -230,7 +219,7 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -252,6 +241,10 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
       <ul>
         
           <li>
+            <a href="/2016/05/16/HTTP/">HTTP协议</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/03/OOP/">面向对象基础概念</a>
           </li>
         
@@ -265,10 +258,6 @@ TCP/IP分层模型与通信示例在每个分层中，都会对所发送的数�
         
           <li>
             <a href="/2016/04/17/react-learn/">react初步认识</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
           </li>
         
       </ul>

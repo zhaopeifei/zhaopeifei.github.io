@@ -68,6 +68,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/13/JavaScript-6/" class="article-date">
+  <time datetime="2016-03-13T08:42:11.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/13/JavaScript-6/">DOM-文档对象模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DOM是针对HTML和XML文档的一个API（应用程序编程接口）。DOM描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。IE中的所有DOM对象都是COM对象的形式实现的，这意味着IE中的DOM对象与原始JavaScript对象的行为或活动特点并不一致。</p>
+<h2 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h2><p>DOM可以将任何HTML或XML文档描绘成一个由多层结点构成的结构。节点分为几张不同的类型，每种类型分别表示文中的不同的信息及标记。每个结点都拥有各自的特点、数据和方法，另外也与其他结点存在某种关系。结点之间的关系构成了层次，而所有页面标记则表现为一个以特定结点为根节点的树型结构。</p>
+<h4 id="Node类型"><a href="#Node类型" class="headerlink" title="Node类型"></a>Node类型</h4><p>DOM1级定义了一个Node接口，该接口将由DOM中的所有节点类型实现。每个结点都有一个nodeType属性，用于表明节点的类型。节点类型由在Node类型中定义的下列12个数值常量来表示，任何结点类型必然属于其中的一种：</p>
+<ul>
+<li>Node.ELEMENT_NODE(1)</li>
+<li>Node.ATTRIBUTE_NODE(2)</li>
+<li>Node.TEXT_NODE(3)</li>
+<li>Node.CDATA_SECTION_NODE(4)</li>
+<li>Node.ENTITY_PEFERENCE_NODE(5)</li>
+<li>Node.ENTITY_NODE(6)</li>
+<li>Node.PROCESSING_INSTRUCTION_NODE(7)</li>
+<li>Node.COMMENT_NODE(8)</li>
+<li>Node.DOCUMENT_NODE(9)</li>
+<li>Node.DOCUMENT_TYPE_NODE(10)</li>
+<li>Node.DOCUMENT_FRAGMENT_NODE(11)</li>
+<li>Node.NOTATION_NODE(12)</li>
+</ul>
+<p>可以通过节点的nodeType属性判断结点属于哪一种结点。每个结点都有一个childNodes属性，其中保存一个NodeList对象，其为一种类数组对象（并不是Array的实例），用于保存一组有序的节点。可以使用.childNodes[0]或childNodes.item(0)来访问子节点。获取节点可以使用属性：.parentNode .firstChild .lastChild .nextSibling .previousSibling。<br>操作节点的方法有：</p>
+<ul>
+<li>.hasChildNodes():判断是否有子节点，有则返回true，没有则返回false</li>
+<li>.appendChild(newNode):在childNodes列表末尾添加一个新节点，并返回新增的节点。如果插入已存在的结点，则改变节点的位置。</li>
+<li>.insertBefore(newNode,.old):在相应的节点前添加，如果在新的结点是某个元素的子节点，则该子节点会从该元素中自动去除。</li>
+<li>.replaceChild(newNode,.old):替换结点</li>
+<li>removeChild(.old):移除节点。</li>
+</ul>
+<h4 id="Document类型"><a href="#Document类型" class="headerlink" title="Document类型"></a>Document类型</h4><p>document对象时HTMLDocument的一个实例，表示整个HTML页面。取得特定的某个或某组元素的引用，是常用的DOM应用，Document类型为此提供了两个方法：getElementById()和getElementByTagName()。TagName指标签名称，如div、p、img等。取得元素集合后，使用.nameItem()可以获取相应name的元素。</p>
+<p>document对象还提供了一些特殊的集合，包括document.anchors()（包含文档中所有带name属性的&lt;\a&gt;元素）、document.forms()（包含文档中所有的&lt;\form&gt;元素）、document.images()（包含文档中所有的&lt;\img&gt;元素）、document.links()（包含文档中所有带href的&lt;\a&gt;元素）。</p>
+<p>document对象有将输入流写入到网页中的能力。有以下四个方法：write()（可以写js代码）、writeln()（在结尾处多一个/n）、open()、close()（打开关闭网页的输出流）。</p>
+<h4 id="Element类型"><a href="#Element类型" class="headerlink" title="Element类型"></a>Element类型</h4><p>Element类型提供了对元素标签名、子节点及特性的访问，要访问元素的标签名可以用nodeName属性或tagName属性。</p>
+<p>所有HTML元素都由HEMLElement类型表示，共有属性为：id、className、title等。操作特性的主要方法有：getAttribute(“title”)、setAttribute(“title”,”test”)、removeAttribute(“title”)。还可以使用.attributes[“id”]等来访问属性。根据HTML5规范，自定义的属性应该加上data-前缀。</p>
+<p>可以使用document.createElement(“&lt;\div&gt;&lt;\/div&gt;”)方法创建新的元素，并返回新元素，然后通过appendChild()等方法添加到文档树中。</p>
+<h4 id="Text类型"><a href="#Text类型" class="headerlink" title="Text类型"></a>Text类型</h4><p>文本节点由Text类型表示，包含的是可以照字面解释的纯文本内容。纯文本中可以包含转义后的HTML字符，但不能包含HTML代码。</p>
+<p>与element相同，可以通过document.createTextNode()创建新文本节点，并返回新文本节点，然后通过appendChild()等方法添加到文档树中。</p>
+<p>使用element.normalize()和element.firstChild.splitText(5)等方法可以合并和分割文本节点。</p>
+<h4 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h4><p>除以上常用类型外，还有Comment类型（注释）、CDATASection类型（显示代码）、DocumentType类型（文档类型声明）、DocumentFragment类型（仓库，可能要添加的节点）、Attr类型（特性节点）</p>
+<h2 id="DOM操作技术"><a href="#DOM操作技术" class="headerlink" title="DOM操作技术"></a>DOM操作技术</h2><h4 id="动态脚本"><a href="#动态脚本" class="headerlink" title="动态脚本"></a>动态脚本</h4><p>使用&lt;\script&gt;元素可以向页面中插入JavaScript代码，一种方式是通过其src特性包含外部文件，另一种方式是通过这个元素本身包含代码。动态创建脚本也有两种：插入外部文件和直接插入JavaScript代码。此时要考虑到兼容性的问题，比如：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function loadScriptString(code)&#123;&#125;</span><br><span class="line">	var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></span><br><span class="line">	<span class="keyword">script.type </span>= <span class="string">"text/javascript"</span><span class="comment">;</span></span><br><span class="line">	try&#123;</span><br><span class="line">		<span class="keyword">script.appendChild(document.createTextNode </span>code)<span class="comment">;</span></span><br><span class="line">	&#125;catch(ex)&#123;</span><br><span class="line">		<span class="keyword">script.text </span>= code<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">	document.<span class="keyword">body.appendChild(script);</span><br><span class="line"></span>&#125;</span><br><span class="line">loadScriptString(<span class="string">"function asyHi()&#123;alert('hi');&#125;"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h4 id="动态样式"><a href="#动态样式" class="headerlink" title="动态样式"></a>动态样式</h4><p>能够把CSS样式包含到HTML页面中的元素由两个，其中，&lt;\link&gt;元素用于包含来自外部的文件，而&lt;\style&gt;元素用于指定嵌入的样式。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyleString</span>(<span class="params">css</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">"style"</span>);</span><br><span class="line">	style.type = <span class="string">"text/CSS"</span>;</span><br><span class="line">	<span class="decorator"><span class="keyword">try</span></span>&#123;</span><br><span class="line">		style.appendChild(<span class="built_in">document</span>.createTextNode(css));</span><br><span class="line">	&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">		style.styleSheet.cssText = css;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">var</span> head = documentl.getElementByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</span><br><span class="line">	head.appendChild(style);</span><br><span class="line">&#125;</span><br><span class="line">loadStyleString(<span class="string">"body&#123;backgroud-color:red&#125;"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="使用NodeList"><a href="#使用NodeList" class="headerlink" title="使用NodeList"></a>使用NodeList</h4><p>理解NodeList及HTMLCollection和NamedNodeMap，是从整体上透彻理解DOM的关键所在。这单个集合都是“动态的”；每当文档结构发生变化，它们都会更新。从本质上说，所有NodeList对象都是在访问DOM文档时实时运行的查询，所以每次访问NodeList对象，都会进行一次查询。所以要尽量减少DOM操作。可以考虑将从NodeList中取得的值缓存起来，从而减少查询的次数。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cioa3rmjt001oxkq9dzy2yulr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/13/JavaScript-5/" class="article-date">
@@ -170,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cinriqlcl001oewq9zfgo9ewf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cioa3rmk0001vxkq9qrqe9cug" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -226,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cinriqld50022ewq9edpmhgz8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cioa3rmjj001dxkq99lart9j4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -276,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cinriqlcv001yewq9v2476wm4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cioa3rmkb0022xkq9i0k5ywcg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -345,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cinriqlcb001hewq9phaxsigt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cioa3rmjp001kxkq987d0zx9g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -449,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cinriqlc10018ewq91shqbo9j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cioa3rmke0025xkq9vz7qvfx4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -519,7 +601,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cinriqldf002hewq9twx08pmi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cioa3rmkk002cxkq9ddctsnux" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -728,7 +810,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cinriqle9003mewq9grg13r59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cioa3rml80039xkq998qc3h5w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -778,15 +860,20 @@
 <li>TCP模块的处理：首先计算校验和，判断数据是否被破坏。然后检查是在安装序号接收数据，最后是检查端口号，确定具体的应用程序。接收完毕后发生一个“确认回执”给发送端。</li>
 <li>应用程序的处理：接收端应用程序接收数据，解析数据。给句解析结果反馈信息，如已接受、被退回等。</li>
 </ol>
-<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP和ICMP两个协议组成，当然还有DNS、ARP等于IP相关的协议。</p>
-<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由以及IP分包和组包。</p>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><p>TCP/IP的心脏是互联网层，这一层主要由IP、ICMP、ARP、RARP协议组成。</p>
+<h4 id="IP基础"><a href="#IP基础" class="headerlink" title="IP基础"></a>IP基础</h4><p>IP大致分为三大作用模块：IP寻址、路由控制以及IP分包和组包。</p>
 <ul>
-<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。</li>
+<li>主机可以自己设置，并具有唯一性，且其不会发生改变。在网桥或交换集线器层转发设备中，不要设置IP地址。主机地址全部为0表示对应的网络地址不可获知，全部为1表示广播地址。</li>
 <li>一个数据包之所以能够成功地到达最终的目标地址，全靠路由控制。一跳（Hop）指利用数据连输层以下分层的功能传输数据帧的一起区间。</li>
 <li>分片指将较大的IP包分成多个较小的IP包（由于数据链路的最大传输单元MTU的限制）。IP属于面向无连接的数据传输，其可靠性靠上一层的TCP。</li>
 </ul>
 <h4 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h4><p>IPv4地址分为四类：ABCD类，开头分别为0 10 110 1110，网络表示分别为8位、16位、24位和32位。D类地址没有主机标示，常被用于多播。另外，主机地址全部为1通常作为广播地址，全部为0表示对应的网络地址或IP地址不可获知的情况才可以用。</p>
-<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不知检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
+<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><ol>
+<li>IP地址：172.20.100.52 子网掩码：255.255.255.192 （前26位是网络地址）</li>
+<li>IP地址：172.20.100.50 /26 （前26位是网络地址，后面6位是主机地址）</li>
+</ol>
+<h4 id="IPv4报头"><a href="#IPv4报头" class="headerlink" title="IPv4报头"></a>IPv4报头</h4><p><img src="/img/计算机基础/IPv4报头.png" alt="计算机网络的组成"></p>
+<h4 id="DNS域名服务器（IPv4、IPv6）"><a href="#DNS域名服务器（IPv4、IPv6）" class="headerlink" title="DNS域名服务器（IPv4、IPv6）"></a>DNS域名服务器（IPv4、IPv6）</h4><p>DNS为域名服务器，它可以管理所在分层的域的相关信息。根部所设置的DNS叫做根域名服务器，对DNS的检索数据功能起着至关重要的作用。进行DNS查询的主机和软件叫做DNS解析器，用户所使用的工作站或个人电脑都属于解析器。解析器为了调查IP地址，向域名服务器进行查询处理，接收这个查询请求的域名服务器首先会在自己的数据库进行查找，如果有该域名所对应的IP地址就返回，没有就像上一层服务器进行查询处理，知道找到对应的额IP地址。解析器和域名服务器将最新了解到的信息暂时保存在缓存里。DNS不止检索IP地址，还管理众多其他信息，如PTR、NS、A等。</p>
 <h4 id="ARP（IPv4、IPv6）"><a href="#ARP（IPv4、IPv6）" class="headerlink" title="ARP（IPv4、IPv6）"></a>ARP（IPv4、IPv6）</h4><p>ARP是一种解决地址问题的协议。以目标IP地址为线索，用来定位下一个应该接收数据分包的网络设备对应的MAC地址。ARP借助ARP请求与ARP响应两种类型的包确定MAC地址，源主机要通过广播发送一个ARP请求包，下一个网络设备确定是自己后，将MAC地址塞入ARP响应返回，进而实现IP通信。</p>
 <ul>
 <li>RARP是ARP反过来，从MAC地址定位IP地址的一种协议。例如通过DHCP自动获取IP地址。</li>
@@ -796,15 +883,19 @@
 <h4 id="DHCP（IPv4、IPv6）"><a href="#DHCP（IPv4、IPv6）" class="headerlink" title="DHCP（IPv4、IPv6）"></a>DHCP（IPv4、IPv6）</h4><p>DHCP协议可以实现自动设置IP地址、统一管理IP地址分配，实现即插即用。使用DHCP前，要假设DHCP服务器，并将所要分配的IP地址设置到服务器上，还需要相应的子网掩码、路由控制信息以及DNS服务器的地址等。一般的家庭网络都由宽带路由器冲到DHCP的角色。</p>
 <h4 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h4><p>IP隧道可以将IPv6网络发过来的包统和为一个数据，再为之追加一个IPv4首部在IPv4网络中传送（要在下个IPv6网络中，去除追加的IPv4首部），也可以将ipv4网络发过来的包统和为一个数据，再为之追加一个IPv6首部在IPv6网络中传送。</p>
 <h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><p>TCP和UDP是传输层具有代表性的协议。TCP提供可靠的通信传输，而UDP常被用于让广播和细节控制交给应用的不可靠通信传输。传输层要指出具体的程序，使用端口号（有逻辑端口和物理端口，此处指逻辑端口0~65535）这样的一种识别码，通过端口识别，将数据传递给HTTP、FTP等应用层协议。</p>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
-<ul>
-<li>通过序列号与确认应答提高可靠性。发送端如果没有收到接收端发送的确认应答（ACK），进行重发。</li>
-<li>重发超时，发送端等待确认应答时间超时后，重发。</li>
-<li>连接管理：在通信前，通过TCP首部发送一个SNY包作为建立连接的请求并等待应答，收到确认应答，开始发送数据。最后发送FIN请求切断连接，获取确认应答后，断开连接。</li>
-<li>利用窗口控制提高速度，并进行重发控制。</li>
-<li>拥塞控制：在通信一开始时就会通过一个叫慢启动的算法得出的数值，对发送量进行控制。</li>
-</ul>
 <h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>UDP是不具有可靠性的数据报协议。它不提供复杂的控制机制，细微的处理它会交给上层的应用去完成，它在收到应用程序发来的数据后，立即鸳鸯发送到网络。UDP主要用于那些对高速传输和实时性有较高要求的通信或广播通信，比如DNS、即时通信等。</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP是面向连接的、可靠的流协议，实行顺序控制或重发控制机制，此外还有流控制、拥塞控制、提高网络利用率等众多功能。它只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</p>
+<h4 id="TCP报头"><a href="#TCP报头" class="headerlink" title="TCP报头"></a>TCP报头</h4><p><img src="/img/计算机基础/TCP报头.png" alt="计算机网络的组成"></p>
+<h2 id="TCP功能"><a href="#TCP功能" class="headerlink" title="TCP功能"></a>TCP功能</h2><h4 id="滑动窗口控制"><a href="#滑动窗口控制" class="headerlink" title="滑动窗口控制"></a>滑动窗口控制</h4><p>TCP利用滑动窗口控制提高速度。窗口大小指无须等待确认应答而可以继续发送数据的最大值。利用滑动窗口可以顺序地将多个端同时发送，而不需要等待上一个段的应答，从而提高通信性能。</p>
+<h4 id="可靠性（seq-ack）"><a href="#可靠性（seq-ack）" class="headerlink" title="可靠性（seq ack）"></a>可靠性（seq ack）</h4><p>TCP通过肯定的确认应答（ACK）实现可靠的数据传输。在TCP三次握手连接时，主机收到SYN请求，则ACK+1，并返回ACK。在传递数据期间，如果收到的数据的seq等于上次ACK的值，则ACK=seq+len，不等于则返回上次发送的ACK，并返回ACK请求。每次主机收到一个数据或者SYN请求等，都会返回一个ACK数据。ACK的值表示下一个数据的序列号。另外，主机在发送ACK应答时，seq不会加1，但发送SYN请求时，seq会加1。</p>
+<h4 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h4><p>在建立TCP连接的同时，可以确定发送数据包的单位，称为最大消息长度（MSS:Maximum Segment Size）。最理想的情况时，最大消息长度正好是IP中不会被分片处理的最大数据长度。在三次握手时，两端的主机会在TCP首部的可选项中写入MSS选项，最终的MSS是两个MSS的较小值。</p>
+<h4 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h4><ol>
+<li>三次握手：主机A向主机B发送SYN请求（TCP数据报，seq=0，ack=0），主机B收到后返回SYN请求&amp;ACK应答（同一个TCP数据报，seq=0，ack=1），主机A收到后返回ACK应答（seq=1，ack=1），则建立连接。在此过程中，同样会携带窗口大小等数据，从而进行流控制。</li>
+<li>发送数据，主机a发送数据包（seq=1，ack=1，上次发送的ack应答并不计数），可以发送多个。主机B每收到一个非ACK数据包就会返回一个ack请求。</li>
+<li>A向B发送完数据后，可以发送FIN请求，B向A发送完数据后，也可以发送FIN请求，当双发发送FIN请求并收到ACK应答后，则会切断连接。</li>
+</ol>
+<h4 id="窗口控制与重发控制"><a href="#窗口控制与重发控制" class="headerlink" title="窗口控制与重发控制"></a>窗口控制与重发控制</h4><p>接收端在收到非自己期望序号的数据时，会将数据保存，并对之前收到的数据进行确认应答。发送端收到三次重复的确认应答后，会进行该数据重新发送。由于可能存在ACK应答丢失情况，发送端收到一个确认应答后，则会判断该应答之前的所有数据都发送成功。</p>
+<p>####　流控制与拥塞控制<br>接收端主机向发送端主机通知自己可以接收数据的大小（会变换），于是发送端会发送不超过这个限度的数据。TCP首都中有个字段来通知窗口大小。接收端的缓冲区一旦面临数据溢出时，窗口大小的值随之减小并通知发送端，从而进行流量控制。<br>计算机网络都处在一个共享的环境，在网络出现拥堵时，如果突然发送一个较大量的数据，极有可能导致整个网络的瘫痪。为避免这个问题，通信一开始，就会通过一个慢启动的算法，对发送数据量进行控制。</p>
 <h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><p>利用网络的应用程序很多，包括web浏览器、电子邮件、远程登录、文件传输、网络管理扥个，能够让这些应用程序进行特定通信处理的正是应用协议。</p>
 <h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p>远程登录主要使用TELNET和SSH两种协议，TELNET经常用于登录路由器或高性能交换机等网络设备进行相应的设置。SSH是加密的远程登录系统，可以具有更强的认证机制，可以转发文件，可以使用端口转发功能。OpenSSH是SSH协议的免费开源实现。</p>
 <h4 id="WWW万维网"><a href="#WWW万维网" class="headerlink" title="WWW万维网"></a>WWW万维网</h4><p>万维网（又称web）是将互联网中的信息以超文本形式展现的系统。WWW定义了3个重要的概念：访问信息的手段和位置（URI）、信息的表现形式（HTML）以及信息转发（HTTP）等。</p>
@@ -814,34 +905,11 @@
 <li>HTTP。当用户在浏览器的地址栏里输入所要访问的Web也的URI后，HTTP的处理机会开始，首先客户端向服务器的80端口建立一个TCP链接，然后在这个TCP连接上进行请求和应答以及数据报文的发送。</li>
 <li>HTTPS ：Web中可以通过TLS/SSL对http通信进行加密，这种http通信叫做HTTPS通信。</li>
 </ul>
-<h2 id="常用TTTP码"><a href="#常用TTTP码" class="headerlink" title="常用TTTP码"></a>常用TTTP码</h2><h4 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h4><ul>
-<li>200：服务器已成功处理了请求并提供了请求的网页。</li>
-<li>204：服务器成功处理了请求，但没有返回任何内容。<h4 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h4></li>
-<li>301：请求的网页已永久移动到新位置。当URLs发生变化时，使用301代码。搜索引擎索引中保存新的URL。</li>
-<li>302：请求的网页临时移动到新位置。搜索引擎索引中保存原来的URL</li>
-<li>304：如果网页自请求者上次请求后没有更新，则用304代码告诉搜索引擎机器人，可节省带宽和开销。<h4 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h4></li>
-<li>400：服务器不理解请求的语法。</li>
-<li>403：服务器拒绝请求。</li>
-<li>404：服务器找不到请求的网页。服务器上不存在的网页经常会返回此代码。</li>
-<li>410：请求的资源永久删除后，服务器返回此响应。该代码与404（未找到）代码相似，但在资源以前存在而现在不存在的情况下，有时用来替代404页面代码。如果资源已永久删除，应当使用301指定资源的新位置。<h4 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h4></li>
-<li>500：服务器遇到错误，无法完成请求。</li>
-<li>503：服务器目前无法使用（由于超载或停机维护）。</li>
-<li>505：HTTP版本不受支持。</li>
-</ul>
-<h2 id="域名、URL、网站名"><a href="#域名、URL、网站名" class="headerlink" title="域名、URL、网站名"></a>域名、URL、网站名</h2><p><a href="http://mail.163.com/index.html" target="_blank" rel="external">http://mail.163.com/index.html</a></p>
-<ul>
-<li>http:// 这是个协议，即http超文本传输协议，也就是网页在网上传输的协议。</li>
-<li>mail 这个是服务器名，代表一个邮箱服务器</li>
-<li>163.com 这个是域名，是用来定位网站的独一无二的名字</li>
-<li>mail.163.com 这个是网站名，由服务器名+域名组成</li>
-<li>index.html 这个是根目录下得默认网页</li>
-<li>整体叫做URL，统一资源定位符，定位网上资源。由协议 + 服务器 + 域名 + 网页html组成</li>
-</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cinriqldp002sewq9tdnl1pby" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cioa3rml9003dxkq936niwjrc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -888,7 +956,7 @@
 </ul>
 <h4 id="计算机网络的拓扑结构"><a href="#计算机网络的拓扑结构" class="headerlink" title="计算机网络的拓扑结构"></a>计算机网络的拓扑结构</h4><p>常见的拓扑结构有：网状结构、总线结构、环形结构、星形结构、树型结构</p>
 <h2 id="网络协议与网络体系结构"><a href="#网络协议与网络体系结构" class="headerlink" title="网络协议与网络体系结构"></a>网络协议与网络体系结构</h2><p>不同的设备、介质和语言的计算机网络之间进行通信和数据传输要设计并制定一系列的规则，网络协议则是一组控制数据通信的规则。一个网络协议的基本要素有：语法（指明传输数据的结构格式等）、语义（定义控制信息的具体内容）、同步（定义通信过程的时间先后和速度匹配）。</p>
-<h4 id="OSI-RM参考模型"><a href="#OSI-RM参考模型" class="headerlink" title="OSI/RM参考模型"></a>OSI/RM参考模型</h4><p>在OSI/RM擦考模型中，网络协议体系结构自下而上共分为七层，分别是物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。每个层次都从上层取得数据，加上首部信息形成新的数据单元。</p>
+<h4 id="OSI-RM参考模型"><a href="#OSI-RM参考模型" class="headerlink" title="OSI/RM参考模型"></a>OSI/RM参考模型</h4><p>在OSI/RM参考模型中，网络协议体系结构自下而上共分为七层，分别是物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。每个层次都从上层取得数据，加上首部信息形成新的数据单元。</p>
 <ul>
 <li>物理层：其任务是实现互联系统间物理介质上位流的透明传输，实现系统间物理通信，其余各层都是虚拟通信。</li>
 <li>数据链路层：在两个数据链路层之间建立和维持一条或多条数据链路。它提供无差错（差错校验）的通信服务，为网络层提供透明的帧传输服务。</li>
@@ -913,10 +981,22 @@
 <li>传输层（端口）。提供源主机进程和目的主机进程之间的数据传输服务。Internet中典型的传输层协议有TCP和UDP。TCP使用三次握手建立连接。</li>
 <li>应用层。支持网络应用，接收来自应用程序的进程并未应用程序提供数据传输服务。Internet中常见的应用层协议有FTP、SMTP、HTTP等。DNS是运行在UDP协议上的域名解析系统。</li>
 </ul>
+<h2 id="物理层、链路层"><a href="#物理层、链路层" class="headerlink" title="物理层、链路层"></a>物理层、链路层</h2><h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>采取不同的传输工作方式（单工、半双工、全双工），将相应的01数据（数字/模拟数据），进行加工转换（调制、编码）为在不同传输介质（双绞线、光纤等）传输的不同格式（高低电平、曼彻斯特、块编码）的信号（数字/模拟信号）。一个脉冲称为一个码元，由于传输的物理特性等限制，有最大传输速率限制（波特率：奈归斯特、比特率：香农）以及通道共享方案（频分、时分等）。</p>
+<ol>
+<li>数字数据到数字信号的编码技术有：不归零编码技术（NRZ-L和NRZ-I反相）、曼彻斯特编码技术（每位中间有电平跳变、二义性）、差分曼彻斯特编码技术以及以太网中采用的4B/5B、8B/10B块编码技术（用NRZ-I编码方式传输，不多于3个连续的0）等。</li>
+<li>奈茥斯特定律：理想的、频带宽度为W的低通信道，最高码元传输速率-波特率是2W。同样的带通信道，最高波特率为W。波特率：信号/码元每秒钟变化次数。</li>
+<li>香农公式：极限比特率为C=Wlog2（1+S/N）。S/N表示信噪比，S信道内信号的平均功率，N是信道内部的高斯噪声功率。比特率：每秒钟传递bit位个数</li>
+</ol>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>通过调用物理层服务，再结合差错控制（奇偶校验、海明码、CRC编码）、数据重传&amp;流量控制（发送应答、连续ARQ、ARQ选择重传等滑动窗口协议）等在网络节点间实现可靠的帧传输服务。另外还需要考虑链路控制方案ALOHA等。</p>
+<ol>
+<li>成帧的基本技术有：字符计数成帧技术（计数首部+数据）、字符填充成帧技术（帧头DLE STX+数据+DLE ETX）、位填充成帧技术（帧头01111110+数据+01111110）、物理层违例码成帧技术等。</li>
+<li>以太网常采用Ethernet II帧格式：前导码（8byte）+目的地址（6）+源地址（6）+类型（2）+数据+FCS（4）。其能传递的最大帧是1518，减去以太网帧头（14）和帧尾（4），故最大传输单元MTU为1500字节（为什么没有前导码？希望有朋友可以指出）。</li>
+<li>传输速率又称带宽，表示两个设备间数据流动的物理速度，单位为bps（Bits Per Second）。主机之间实际的传输速率被称为吞吐量（单位也是bps），与带宽、主机CPU处理能力、网络拥堵程度、报文数据字段比例等有关。</li>
+</ol>
 <h2 id="网络的构成要素"><a href="#网络的构成要素" class="headerlink" title="网络的构成要素"></a>网络的构成要素</h2><p><img src="/img/计算机基础/计算机网络构成.png" alt="计算机网络的组成"></p>
 <h4 id="通信媒介与数据链路"><a href="#通信媒介与数据链路" class="headerlink" title="通信媒介与数据链路"></a>通信媒介与数据链路</h4><p>计算机之间通过电缆相互连接。电缆分为很多种，包括双绞线电缆、光纤电缆、同轴电缆、串行电缆等。不同的数据链路有不同的媒介、传输速率和用途等。例如，以太网的通信媒介有同轴电缆、双绞线电缆、光纤电缆。</p>
 <h4 id="网卡NIC"><a href="#网卡NIC" class="headerlink" title="网卡NIC"></a>网卡NIC</h4><p>任何一台计算机连接网络时，都需要使用网卡（网络接口卡），又叫网络适配器、网卡、LAN卡。笔记本一般都有内置NIC。</p>
-<h4 id="中继器"><a href="#中继器" class="headerlink" title="中继器"></a>中继器</h4><p>中继器是在物理层面上延长网络的设备，由电缆传过来的电信号或者光信号通过中继器进行波形调整和放大，再传到另一个电缆。一般情况下，中继器两端的通信介质是相同的。有些中继器可以提供多个端口服务，这种中继器称为中继集线器或集线器。</p>
+<h4 id="中继器"><a href="#中继器" class="headerlink" title="中继器"></a>中继器</h4><p>中继器是在物理层面上延长网络的设备，由电缆传过来的电信号或者光信号通过中继器进行波形调整和放大，再传到另一个电缆。一般情况下，中继器两端的通信介质是相同的。有些中继器可以提供多个端口服务，这种中继器称为中继集线器或集线器。<br>通过中继器而进行的网络延长，其距离有限制。比如一个10Mbps的以太网最多可以用4个中继器分段连接，而一个100Mbps的以太网则最多只能连两个中继器。</p>
 <h4 id="网桥-2层交换机"><a href="#网桥-2层交换机" class="headerlink" title="网桥/2层交换机"></a>网桥/2层交换机</h4><p>网桥是在链路层层面上连接两个网络的设备。它能够识别数据链路层中的数据帧，并将这些数据帧临时存储于内存，再重新生成信号作为一个全新的帧转发给相邻的另一个网段。网桥可以校验数据是否正确送达目的地，并能通过地址（MAC地址）自学机制和过滤功能控制网络流量。以太网等网络中经常使用的交换集线器（Hub），现在基本也属于网桥的一种。</p>
 <h4 id="路由器-3层交换机"><a href="#路由器-3层交换机" class="headerlink" title="路由器/3层交换机"></a>路由器/3层交换机</h4><p>路由器是在网络层层面上连接两个网络、并对分组报文进行转发的设备。路由器是根据IP地址进行处理的。路由器可以连接两个不同的数据链路，现在人们在家或实验室连接互联网时使用的宽度路由器也是路由器的一种。路由器还有分担网络负荷的作用（隔绝链路层的广播消息等），有些路由器还具备一定的网络安全功能。</p>
 <h4 id="4-7层交换机"><a href="#4-7层交换机" class="headerlink" title="4~7层交换机"></a>4~7层交换机</h4><p>4~7层交换机负责处理从传输层到应用层的数据。它以TCP等协议的传输层以及上面的应用层为基础，分析收发数据，并对其进行特定的处理。如，企业通常假设多台服务器（同一URL）来负担前端的访问需求，这些服务器的前端加的负载均衡器就是其一。以及，实际通信是，在网络拥堵时，优先处理语音等及时性要求高的通信请求的宽度控制也是4~7层交换机的重要功能。其他如广域网加速器、特殊应用访问加速以及防火墙（防止互联网的非法访问）等。</p>
@@ -933,126 +1013,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cinriqlet0043ewq9tve5zwo2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Computer-base" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/02/Computer-base/" class="article-date">
-  <time datetime="2016-03-02T14:03:22.000Z" itemprop="datePublished">2016-03-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/02/Computer-base/">大学计算机基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="计算与计算思维"><a href="#计算与计算思维" class="headerlink" title="计算与计算思维"></a>计算与计算思维</h2><p>“计算”这个词从狭义来说，是根据已知量算出未知量，从广义上说，是一个可以领会却难以言表的概念，可以理解为考虑或谋虑，该怎么办。电子数字计算机的出现和计算机科学的发展泛化了这个概念。计算是人类基本思维活动和行为方式的主要方面之一，也是人们认识世界和改造世界的基本方法，主要是用数学和逻辑的方法来决定事情的处理过程。</p>
-<h3 id="计算思维"><a href="#计算思维" class="headerlink" title="计算思维"></a>计算思维</h3><p>计算思维是运用计算机科学基础概念进行问题求解、系统设计以及人类行为理解等涵盖计算机科学之广度的一系列思维活动。计算思维代表着一种普遍的态度和一类普适的能力，目前大家认可的计算思维有以下特征：</p>
-<ul>
-<li>计算思维是概念化的抽象思维，不只是程序设计，还要求对事物能够在抽象的多个层次上思维。</li>
-<li>计算思维是基本的，而不是刻板的技能。</li>
-<li>计算思维是人的，而不是计算机的思维方式。</li>
-<li>计算思维是数学和工程思维的互补和融合。</li>
-<li>计算思维是思想，而不是人造物。</li>
-<li>计算思维面向所有人，所有的地方。</li>
-<li>计算思维关注依旧亟待理解和解决的智力上极有挑战性并且引人入胜的科学问题。</li>
-</ul>
-<h4 id="科技创新三大思维"><a href="#科技创新三大思维" class="headerlink" title="科技创新三大思维"></a>科技创新三大思维</h4><p>科学界一般认为，科学方法分为理论、实验和计算三大类，相对应的是三大科学思维：理论思维、实验思维和计算思维</p>
-<ul>
-<li>理论思维以数学为基础。公理化方法是最重要的理论思维方法。公理化系统有三个条件：无矛盾性、独立性、完备性。</li>
-<li>实验思维以物理等学科为基础。对实验思维来说，最为重要的事情就是设计、制造实验仪器和追求理想的实验环境。</li>
-<li>计算思维以计算机科学为基础。数学和工程思维的互补和融合很好的体现在抽象、理论和设计3个形态/过程上。</li>
-</ul>
-<h2 id="可计算性和算法"><a href="#可计算性和算法" class="headerlink" title="可计算性和算法"></a>可计算性和算法</h2><p>可计算性是指一个实际问题是否可以使用计算机来解决。可计算性理论是研究计算的一般性质的数学理论，也称为算法理论。计算的过程就是执行算法的过程。可计算函数的精确定义是：能够在抽象计算机上编出程序并计算其值的函数。图灵机就是一种在理论计算机科学中广泛采用的抽象计算机，可用一个图灵机来计算其值的函数是可计算函数，找不到图灵机来计算其值的函数是不可计算函数。建立计算的数学模型是可计算性理论的中心问题。在可计算性理论中，将问题分为可计算的和不可计算的。在复杂性理论中，目标是把可计算的问题分成简单的和困难的，研究的是算法的时间复杂性和空间复杂性，主要解决算法的效率思维。</p>
-<h4 id="图灵和图灵机"><a href="#图灵和图灵机" class="headerlink" title="图灵和图灵机"></a>图灵和图灵机</h4><p>所谓的图灵机就是指一个抽象的机器，它有一条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。<br><img src="/img/计算机基础/图灵机.png" alt="图灵机"><br>图灵机的基本思想是用机器来模拟人用纸笔进行数字运算的过程，可用图灵机来计算其值的函数称为可计算函数。可以证明，存在一个通用通用图灵机，它可以模拟任何其他的图灵机，通用图灵机正是后来出现的存储指令的通用数字计算机的理论原型。半个多世纪以来，数学家提出的各种各样的计算模型都被证明是和图灵机等价的。</p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>算法可以理解为由基本运算及规定的运算顺序所构成的完整的解题步骤。或看成按照要求设计好的有限的确切的计算序列，并且他可以解决一类问题。算法不等于程序，不等于计算方法，程序的编制不可能优于算法的设计。</p>
-<p>算法的特征有：可行性、确定性、有穷性、输入、输出。描述算法的工具有自然语言、传统流程图、PAD图、N-S图和伪代码等。</p>
-<p>算法的基本要素为：</p>
-<ul>
-<li>对数据对象的运算和操作。基本的运算和操作有四类：算术运算、逻辑运算（与或非）、关系运算（大小是否相等）、数据传输（赋值、输入、输出等）</li>
-<li>算法的控制结构。算法中各操作之间的执行顺序称为算法的控制结构，基本的控制饥饿哦股有：顺序、选择、循环。</li>
-</ul>
-<p>算法设计的基本方法：列举法、归纳法、递推、递归、回溯法。</p>
-<p>算法的复杂度分为：1. 空间复杂度，是对算法所需存储空间的度量。2. 时间复杂度，指执行算法所需要的计算工作量。通常一个算法所用时间等于编译时间加上运行时间。</p>
-<h3 id="问题求解的基本步骤"><a href="#问题求解的基本步骤" class="headerlink" title="问题求解的基本步骤"></a>问题求解的基本步骤</h3><p>计算机学科为计算机有关问题的求解提供了基本的框架，一般问题求解可以归纳为4个主要步骤：</p>
-<ol>
-<li>理解问题。即弄清问题的意思，以及问题中设计的属于、词汇的含义，分清问题中的条件和结论等。</li>
-<li>制定计划。在理解问题的基础上，运用有关的数学模型和方法拟定出解决问题的思路和方法。</li>
-<li>执行计划。执行计划，检查每个执行步骤，保持执行过程的准确记录。</li>
-<li>反思展望。对整个解题过程进行必要的检查和反思，也包括检验得到的答案是否适合和符合问题的实际。</li>
-</ol>
-<h2 id="计算机概述"><a href="#计算机概述" class="headerlink" title="计算机概述"></a>计算机概述</h2><h4 id="计算机发展"><a href="#计算机发展" class="headerlink" title="计算机发展"></a>计算机发展</h4><p>计算机的发展经历了大型计算机、微型计算机和计算机网络等不同阶段。在计算机不同的发展阶段，其决定性作用的是电子元器件。所以，计算机发展阶段通常按照计算机中主要功能部件所采用的电子器件（逻辑原件）的不同来划分。一般讲计算机发展分为4个阶段，习惯上称为4代：电子管计算机、晶体管计算机、集成电路计算机和大规模/超大规模集成电路计算机。<br>第四代计算机的另一个重要分支是以大规模、超大规模集成电路为基础发展起来的微处理器（CPU）和微型计算机。未来计算机的芯片的制造技术可能为：超导技术、纳米技术、光技术、生物技术和量子技术。</p>
-<h3 id="计算机分类"><a href="#计算机分类" class="headerlink" title="计算机分类"></a>计算机分类</h3><p>目前，国内外计算机界以及各类教科书都是采用国际沿用的分类方法，一般把计算机分为巨型机、大型主机、小型机（8~12颗CPU）、工作站（以个人计算机和分布式网络计算为基础，主要面向专业应用领域而设计开发的高性能计算机）和个人计算机等几种类型。</p>
-<h3 id="计算机特点及发展趋势"><a href="#计算机特点及发展趋势" class="headerlink" title="计算机特点及发展趋势"></a>计算机特点及发展趋势</h3><p>计算机是一种可以进行自动控制、具有记忆功能的现代化计算工具和信息处理工具。它有以下5个方面的优点：1.运算速度快 2.计算精度高 3.记忆能力强 4.具有逻辑判断能力 5.可靠性高，通用性强。</p>
-<p>计算机的发展表现为：巨型化（速度、存储量等方面）、微型化、多媒体（交互方式）、网络化和智能化。</p>
-<p>计算机的主要用途为：数值计算、数据及事务处理、自动控制与人工智能、通信与网络、电子商务、物联网、云计算。</p>
-<h2 id="计算机基础知识"><a href="#计算机基础知识" class="headerlink" title="计算机基础知识"></a>计算机基础知识</h2><h4 id="计算机系统组成"><a href="#计算机系统组成" class="headerlink" title="计算机系统组成"></a>计算机系统组成</h4><p>一个完整的计算机系统是由硬件系统和软件系统组成的。<br>计算机硬件系统由运算器、控制器、存储器、输入设备和输出设备组成。控制器控制存储器、运算器、输入输出设备。数据从输入设备传给存储器，经由运算器计算后再返回给存储器，最后在输出设备上显示。存储器会传递数据给控制器。<br>计算机软件系统层次有：裸机、操作系统、开发工具（支撑软件）、应用软件。</p>
-<h4 id="计算机工作原理"><a href="#计算机工作原理" class="headerlink" title="计算机工作原理"></a>计算机工作原理</h4><p>计算机的工作原理，其主要特点是：</p>
-<ul>
-<li>计算机硬件系统由运算器等五大部件主城，并规定了他们的基本功能</li>
-<li>计算机内部采用二进制来表示指令和数据。每一条指令通常包括操作码和地址码。</li>
-<li>使用单一的处理部件来完成计算、存储以及通讯的工作。</li>
-<li>存储单位是定长的线性组织。存储空间的单元是直接寻址的。</li>
-<li>在执行程序和处理数据时，必须将程序和数据从外存储器装入内存储器中，然后才能使计算机在工作时自动地从存储器中取出指令并加以执行。</li>
-</ul>
-<h4 id="计算机编码系统"><a href="#计算机编码系统" class="headerlink" title="计算机编码系统"></a>计算机编码系统</h4><p>计算机中不但使用数值型数据（二/八/十/十六进制等），还大量使用非数值型数据，如字符、汉字等。信息编码就是指对数据计算机的各种数值和非数值型数据用二进制进行编码的方式。在输入过程中，系统自动将用户输入的各种数据按编码的类型转换成相应的二进制形式存入计算机存储单元中。在输出过程中，再由系统自动地将二进制编码数据转换成用户可以识别的数据格式输出给用户。常用的编码方式有</p>
-<ul>
-<li>BCD编码，即二-十进制编码。用四位二进制表示十进制数，四位分别表示8/4/2/1.</li>
-<li>ASCII码。一个ASCII码占用一个字节（最高位为0），来表示十进制、大小写英文字母、常用的运算符和标点符号等共128个。</li>
-<li>汉字编码。根据一字一码的原则，国际码（GB 2312-80）字符规定，每个字符有一个2字节代码（区码/位码）组成，每个字节的最高位为0。汉字通过输入设备将外码送入计算机，再由汉字系统将其转换为内码（GB内码，两个字节其高位都为1）存储、传送和处理，当需要输出时，再由汉字系统调用字库（点阵）中汉字的字形码得到结果并输出。 </li>
-</ul>
-<h2 id="微型计算机硬件"><a href="#微型计算机硬件" class="headerlink" title="微型计算机硬件"></a>微型计算机硬件</h2><p>微型计算机，简称“微型机”或“微机”，是发展最快的一类计算机。下图为微型计算机组成图：<br><img src="/img/计算机基础/微型计算机系统.png" alt="微型计算机系统组成"></p>
-<h4 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h4><p>主板是一个插槽的几何体，也是整个硬件系统的平台，微机的各个部件都要直接插在主板上或者通过电缆连接在主板上。它主要有两个功能：提供CPU、内存和各种功能卡的插座，以及，为各种常用外部设备提供通用接口。主板主要部件有：芯片组、CPU插座、内存插糟、总线扩展槽、输入/输出接口、基本输入输出系统BIOS和CMOS。</p>
-<h4 id="微机总线"><a href="#微机总线" class="headerlink" title="微机总线"></a>微机总线</h4><p>总线是各部件见有效高速传输各种信息的通道。总线一般分为内部总线、系统总线和外部总线。</p>
-<ul>
-<li>内部总线。即微处理器级总线，包括地址总线、数据综合和控制总线，从CPU引脚引出，用来实现CPU与外围控制芯片（主存、Cache等）。常见的总线有：I2C总线、SPI总线、SCI总线。</li>
-<li>数据总线。又称为I/O通道总线，同样包括地址线、数据线和控制线，用于CPU和接口卡的连接。常见的总线标准有：ISA总线、PCI总线、AGP总线等。</li>
-<li>外部总线。是微机和外部设备之间的总线，常见的总线有：RS-232C总线、USB总线、RS.485总线和IEEE-488总线等。</li>
-</ul>
-<h4 id="微处理器"><a href="#微处理器" class="headerlink" title="微处理器"></a>微处理器</h4><p>微机的CPU一般由运算器、控制器和寄存器三个部分组成，通过CPU内部总线连接在一起。其性能主要包括：主频（执行指令的速度）、字长（一次处理的二进制位数）、几核等。</p>
-<h4 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h4><p>内存储器分为只读存储器（ROM）、随机读/写存储器和高速缓冲存储器三类。</p>
-<ul>
-<li>只读存储器（Read Only Memory）。ROM所存数据稳定，断电后所存数据也不会改变，结构简单，因此常用用于存储各种固定程序和数组。ROM在没有通电时也能将数据记录下来，是一种非挥发性内存。</li>
-<li>随机读/写存储器（Random Access Memory）。RAM是计算机工作的存储区，一起要执行的程序和数据都要先装入该存储器内。存储器的数据可以反复使用，断电后，数据会消失。</li>
-<li>高速缓冲存储器（Cache）。是CPU与内存之间设置的一级或两级高速校容量存储器。</li>
-</ul>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
-<li>硬盘的存储量较大，其主要性能技术指标有：容量、转速、平常寻道时间等，常见的借口方式有：IDE接口、SATA接口、SCSI借口、SAS接口、光纤通道和USB接口等。</li>
-<li>声卡。声卡是处理声音的设备，它具有把声音编程相应数字信号，以及再将数字信号转换成声音的A/D、D/A转换功能。</li>
-<li>显卡又称显示适配器，是计算机最基本、最重要的配件之一。显卡是电脑进行数模信号转换的设备，承担输出显示图形的任务，具有图像处理能力，可协助CPU工作，提高整体的运行速度。</li>
-<li>常见输入设备：鼠标、键盘、扫描仪等。</li>
-<li>常见输出设备： 显示器、打印机、音箱等。                                                                   </li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cinriqlcl001vewq9sjy3vdm8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cioa3rmlj003rxkq95ro52zo5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -1097,7 +1058,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -1119,6 +1080,10 @@
       <ul>
         
           <li>
+            <a href="/2016/05/16/HTTP/">HTTP协议</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/03/OOP/">面向对象基础概念</a>
           </li>
         
@@ -1132,10 +1097,6 @@
         
           <li>
             <a href="/2016/04/17/react-learn/">react初步认识</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
           </li>
         
       </ul>
