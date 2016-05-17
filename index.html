@@ -214,12 +214,20 @@
 <h4 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a>首部压缩</h4><p>由于cookie和user agent以及其他明文传输的头部，很容易让头部膨胀，增大了不必要的传输，所以HTTP2.0对头部进行了压缩。实现的方法为：通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的数据的大小。</p>
 <h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h4><p>在HTTP2.0中，多个请求和响应共用一个tcp通道。一个request对应一个stream并分配一个id，这样一个连接上可以有多个stream，每个stream的frame可以随机的混杂在一起，接收方可以根据stream id将frame再归属到各自不同的request里面。同时，每个stream都可以设置优先级和依赖，以保证优先级高的stream被优先处理。</p>
 <h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>HTTP/2允许服务端针对客户端一个单独的请求，主动的发送(或推送)一个或者多个相关的响应。服务端推送语义上等同于服务端响应一个请求；然而，这种情况下请求也是由服务端发送的，作为一个PUSH_PROMISE帧。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS=HTTP+加密+认证+完整性保护，HTTPS是身披SSL外壳的HTTP，只是HTTP通信接口部分用SSL和TLS协议代替而已。<br>HTTPS采用混合加密机制，即使用公开密匙加密方式安全地交换在稍后的共享密匙加密中要使用的密匙，在确保交换的密匙是安全的前提下，使用共享密匙加密方式进行通信。公开密匙加密使用一对非对称的密匙——私有密匙和公开密匙，常用的公开密匙加密方法有：RSA算法、ElGamal算法等。除了加密外，还需要证明公开密匙正确性的证书，来证明公开密匙本身就是货真价实的公开密匙。<br>HTTPS通信步骤：</p>
+<ol>
+<li>客户端发送Client Hello报文，报文中包含客户端支持的SSL的指定版本、加密组件等。</li>
+<li>服务器可进行SSL通信时，会以Server Hello报文作为应答（包含SSL版本等），并发送证书以及公开密匙。随后发送Server Hello Done报文。</li>
+<li>客户端验证证书，然后使用公开密匙加密共享密匙（Pre-master secret），并将其包含包Client Key Exchange报文中发送，随后发送Change Cipher Spec报文，提示服务器，此后采用Pre-master secret密匙加密。最后发送Finished报文。</li>
+<li>服务器同样发送Change Cipher Spec报文，并发送Finished报文。</li>
+<li>SSL连接建立完成。</li>
+</ol>
 <p>相关资源：<br><a href="https://www.rfc-editor.org/rfc/rfc1945.txt" target="_blank" rel="external">HTTP1.0 RFC</a><br><a href="https://www.rfc-editor.org/rfc/rfc2616.txt" target="_blank" rel="external">HTTP1.1 RFC</a><br><a href="https://www.rfc-editor.org/rfc/rfc7540.txt" target="_blank" rel="external">HTTP2.0 RFC</a><br><a href="https://segmentfault.com/a/1190000004399183" target="_blank" rel="external">HTTP2.0那些事</a><br><a href="https://github.com/fex-team/http2-spec/blob/master/HTTP2%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E7%89%88%2806-29%29.md" target="_blank" rel="external">HTTP2.0 中英文对照</a><br>《图解HTTP》 上野宣 著 于均良 译</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cioazk73j000s1kq91wolhg95" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="ciob182tk0011woq9isa2mjyd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -291,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cioazk75000221kq9v89y4rgc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="ciob182v6002iwoq96npsr90o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
@@ -347,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cioazk75900291kq9ph9r3wg5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="ciob182ve002qwoq96j0bgxu1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -404,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cioazk76j003o1kq9aljpch04" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="ciob182xu005awoq94lvzy28w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
@@ -483,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cioazk769003a1kq9by1sslf2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="ciob182yb005rwoq9lvpcgh5m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -530,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cioazk72h00071kq9d6nplslf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="ciob182sr0009woq9zucjh4ip" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -580,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cioazk72n00091kq99ts2m0bv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="ciob182t3000gwoq9dupt63wy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -641,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cioazk732000f1kq93gmsxbop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="ciob182t5000jwoq9z4hrlx52" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -709,7 +717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cioazk73a000l1kq900ns5c13" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="ciob182tb000pwoq93awd7pz6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -776,7 +784,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cioazk74j001o1kq9tbyvt6f8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="ciob182ux002bwoq9zp5b4dy1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
