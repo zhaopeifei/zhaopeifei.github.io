@@ -16,7 +16,7 @@ post 传输实体主体POST方法用来">
 HTTP方法get 获取资源GET方法用来请求访问已被URI识别的资源。指定的资源经服务器端解析后返回响应内容。如果请求的资源是文本，那就保持原样返回；如果是像CGI那样的程序，则返回经过执行后的输出结果。
 post 传输实体主体POST方法用来">
 <meta property="og:image" content="http://yoursite.com/img/计算机基础/get和post的区别.png">
-<meta property="og:updated_time" content="2016-05-17T05:10:40.174Z">
+<meta property="og:updated_time" content="2016-05-17T05:12:22.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP协议">
 <meta name="twitter:description" content="HTTP（HyperText Transfer Protocol）是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端进行资源请求和应答的标准。
@@ -115,7 +115,8 @@ post 传输实体主体POST方法用来">
 </ul>
 <h2 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h2><p>HTTP报文主要由报文首部和报文主体构成（中间以空行分界）。请求报文首部由请求行（方法 URI HTTP版本）、请求首部字段、通用首部字段、实体首部字段和其他首部组成。响应报文首部由状态行（HTTP版本 状态码）、响应首部字段、通用首部字段、实体首部字段和其他首部组成。</p>
 <h4 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h4><ul>
-<li><p>Cache-Control 控制缓存的行为，更多请查看<a href="http://baike.baidu.com/link?url=DKZzZAkL3zDoA0PHRZU2hytroVcR3bRad8MplCbsnH9bfKH6XDL8MdVlGQyORnSa6fbtUuvOc9IMnsW_mje1x_" target="_blank" rel="external">百度百科</a><br>  |Cache指令|说明|<br>  |:——-:|:–:|<br>  |public      |所有内容都将被缓存(客户端和代理服务器都可缓存)|<br>  |private  |内容只缓存到私有缓存中(仅客户端可以缓存，代理服务器不可缓存)|<br>  |no-cache |必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。因此，如果存在合适的验证令牌 (ETag)，no-cache会发起往返通信来验证缓存的响应，如果资源未被更改，可以避免下载。|<br>  |no-store |所有内容都不会被缓存到缓存或 Internet 临时文件中|<br>  |must-revalidation/proxy-revalidation |如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证|<br>  |max-age=xxx (xxx is numeric)|缓存的内容将在 xxx 秒后失效, 这个选项只在HTTP 1.1可用, 并如果和Last-Modified一起使用时, 优先级较高|</p>
+<li><p>Cache-Control 控制缓存的行为，更多请查看<a href="http://baike.baidu.com/link?url=DKZzZAkL3zDoA0PHRZU2hytroVcR3bRad8MplCbsnH9bfKH6XDL8MdVlGQyORnSa6fbtUuvOc9IMnsW_mje1x_" target="_blank" rel="external">百度百科</a></p>
+<p>  |Cache指令|说明|<br>  |:——-:|:–:|<br>  |public      |所有内容都将被缓存(客户端和代理服务器都可缓存)|<br>  |private  |内容只缓存到私有缓存中(仅客户端可以缓存，代理服务器不可缓存)|<br>  |no-cache |必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。因此，如果存在合适的验证令牌 (ETag)，no-cache会发起往返通信来验证缓存的响应，如果资源未被更改，可以避免下载。|<br>  |no-store |所有内容都不会被缓存到缓存或 Internet 临时文件中|<br>  |must-revalidation/proxy-revalidation |如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证|<br>  |max-age=xxx (xxx is numeric)|缓存的内容将在 xxx 秒后失效, 这个选项只在HTTP 1.1可用, 并如果和Last-Modified一起使用时, 优先级较高|</p>
 </li>
 <li><p>Connection：管理持久连接、控制不再转发给代理的首部字段。Keep-Alive：持久连接，HTTP/1.1版本和2.0版本都默认持久连接，在遇到Connection为close时，才会断开连接。</p>
 </li>
@@ -192,7 +193,7 @@ post 传输实体主体POST方法用来">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cioazeloe0010ycq9g2edmqr8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cioazgs880011rwq9fxg704va" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
