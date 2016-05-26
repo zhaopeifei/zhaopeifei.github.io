@@ -68,6 +68,177 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-valueIsEqual" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/26/valueIsEqual/" class="article-date">
+  <time datetime="2016-05-26T12:48:44.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ES5和ES6中的比较相等的运算符"><a href="#ES5和ES6中的比较相等的运算符" class="headerlink" title="ES5和ES6中的比较相等的运算符"></a>ES5和ES6中的比较相等的运算符</h2><p>在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">ES6</a>中，则新增了一个中比较相等的方法Object.is()。<br>相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。<br>ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来比较两个值是否严格相等，与严格比较运算符的行为基本一致。</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>进行<br>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
+<h3 id="转为String"><a href="#转为String" class="headerlink" title="转为String"></a>转为String</h3><ol>
+<li>undefined null true false 均转换为相应的字符串：“undefined”等</li>
+<li>数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串</li>
+<li>对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。<br>toString()方法：数组返回逗号隔开的数组字符串；函数可以返回函数的字符串；Date、TegExp也可以返回。普通的object（{x:1,y:2}）返回[object object]。</li>
+</ol>
+<h3 id="转为Number"><a href="#转为Number" class="headerlink" title="转为Number"></a>转为Number</h3><ol>
+<li>undefined转为NaN，null转为+0</li>
+<li>true为1，false为0</li>
+<li>“”为0；”1.2”转为1.2；”one”转为NaN；其他的看下面具体规则</li>
+<li>如果为对象。先转换为原始值，再转换为数值。[]转为0；[9]转为0，其他基本都是NaN；</li>
+</ol>
+<h3 id="转为Boolean"><a href="#转为Boolean" class="headerlink" title="转为Boolean"></a>转为Boolean</h3><ol>
+<li>undefined null “” 0 -0 NaN 转为false</li>
+<li>其他的转为true（包括[]、{}） </li>
+</ol>
+<h2 id="三个方法的比较及结果"><a href="#三个方法的比较及结果" class="headerlink" title="三个方法的比较及结果"></a>三个方法的比较及结果</h2><p>下列的步骤，是有顺序的，如满足1，则不会使用2.</p>
+<h3 id="相等比较步骤"><a href="#相等比较步骤" class="headerlink" title="相等比较步骤"></a>相等<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-abstract-equality-comparison" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>如果两个值类型相同，返回严格相等（===）的结果。</li>
+<li>null和undefined返回true</li>
+<li>一个为Number，一个为String，将String转为Number；</li>
+<li>布尔类型转换为Number比较</li>
+<li>一个为String/Number/Boolean，另一个为object，则将object转换，进行比较；<br>总结：有Number类型，则将另外一个值<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber" target="_blank" rel="external">转为Number</a>进行比较。Boolean转为Number。一个为object则<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-toprimitive" target="_blank" rel="external">转换为原始值</a>进行比较。</li>
+</ol>
+<h3 id="严格相等比较步骤"><a href="#严格相等比较步骤" class="headerlink" title="严格相等比较步骤"></a>严格相等<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-strict-equality-comparison" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>类型不相同，返回false</li>
+<li>null等于null，undefined等于undefined</li>
+<li>NaN不等于任何数，包括自身；两个数值相同，返回true；+0等于-0；其他false</li>
+<li>为String，完全相等，返回true</li>
+<li>true等于true，false等于false；</li>
+<li>相同的Symbol值（Symbol.for(‘f’),Symbol.for(‘f’)），返回true；</li>
+<li>相同的object，则返回true。</li>
+<li>返回false；</li>
+</ol>
+<h3 id="Object-is-比较步骤"><a href="#Object-is-比较步骤" class="headerlink" title="Object.is()比较步骤"></a>Object.is()<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.is" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>Type(x)和Type(y)不同，返回false</li>
+<li>Type(x)为null或undefined，返回true（null等于null，undefined等于undefined）</li>
+<li>Type(x)为数字。NaN等于NaN；+0不等-0；相同数字相等；正/负无穷不等于正/负无穷；</li>
+<li>Type(x)为string，两个值为相同的序列单元返回true，否则返回false；</li>
+<li>Type(x)为Boolean，true等于true，false等于false；</li>
+<li>Type(x)为Symbol，相同的Symbol值，返回true；</li>
+<li>x和y是相同的object值，返回true，否则返回false（{}不等于{}）。</li>
+</ol>
+<h3 id="一些特殊值的比较"><a href="#一些特殊值的比较" class="headerlink" title="一些特殊值的比较"></a>一些特殊值的比较</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">值1   值2</th>
+<th style="text-align:center">==</th>
+<th style="text-align:center">===</th>
+<th style="text-align:center">Object.is()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">类型不同</td>
+<td style="text-align:center">转换</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">null undefined</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">null null</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">undefined undefined</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">NaN NaN</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">+0  -0</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">-Infinity -Infinity</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">“12345” “12345”</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">false false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol(‘f’) Symbol.for(‘f’)</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol.for(‘f’) Symbol.for(‘f’)</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">object object(全等)</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考链接及书籍"><a href="#参考链接及书籍" class="headerlink" title="参考链接及书籍"></a>参考链接及书籍</h2><p><a href="http://www.ecma-international.org/ecma-262/6.0/index.html" target="_blank" rel="external">ECMAScript2015 官方语法</a><br>JavaScript中文版</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cioofeu8k004rm4q9iyypi7tp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTTP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/16/HTTP/" class="article-date">
@@ -227,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="ciob182tk0011woq9isa2mjyd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cioofeu3s000rm4q9vgsrpap6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -299,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="ciob182v6002iwoq96npsr90o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cioofeu7e003vm4q96bcax7de" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
@@ -355,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="ciob182ve002qwoq96j0bgxu1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cioofeu7j003ym4q98iohnl3v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -412,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="ciob182xu005awoq94lvzy28w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cioofeu7l0043m4q97wyje8t4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
@@ -491,7 +662,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="ciob182yb005rwoq9lvpcgh5m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cioofeu92005fm4q9a33ccp5o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -538,7 +709,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="ciob182sr0009woq9zucjh4ip" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cioofeu2z0009m4q9lk99d2of" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -588,7 +759,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="ciob182t3000gwoq9dupt63wy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cioofeu2n0005m4q9mmygpkxu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -649,7 +820,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="ciob182t5000jwoq9z4hrlx52" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cioofeu3l000nm4q9gux3ez9t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -717,77 +888,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="ciob182tb000pwoq93awd7pz6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cioofeu3e000im4q91fly08k5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-crossOrigin" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/11/JavaScript-crossOrigin/" class="article-date">
-  <time datetime="2016-04-11T04:38:02.000Z" itemprop="datePublished">2016-04-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/11/JavaScript-crossOrigin/">跨域</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>跨域是JavaScript开发中的重要的概念，跨域是打破同源策略的限制实现跨域资源访问的技术手段。</p>
-<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略是一种约定，它是浏览器最核心也是最基本的安全功能。所谓同源是指协议、域名、端口相同，同源策略即为JavaScript文件只能访问包含它的页面所在的域的资源。此外，通过&lt; script&gt;标签等引入的JavaScript、CSS、图像等静态资源也被认为是与包含它们的界面所在的域同源。</p>
-<p>在页面中，&lt; script&gt;&lt; img&gt;&lt; link&gt;&lt; iframe&gt;标签不受同源策略的影响，可以访问其他域的内容。</p>
-<h2 id="CORS跨域资源共享"><a href="#CORS跨域资源共享" class="headerlink" title="CORS跨域资源共享"></a>CORS跨域资源共享</h2><p>跨域资源共享是一种网络浏览器的技术规范，它为Web服务器定义了一种方式，允许网页从不同域访问其资源。而这种访问是同源策略所禁止的。它定义了一种浏览器和服务器交互的方式来确定是否允许跨域请求。跨域资源共享的基本思想，是通过自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是否应该成功。<br>默认情况下，XHR对象只能访问与包含它的页面位于同一域中的资源，所以通过xhr.open()打开的是相对路径的url，如果浏览器支持CORS，则可以将url设置为指向其他域资源的绝对路径的url。将请求发送给服务器后，服务器会根据这个头部信息决定是否给予响应，可以接受的话，就在Access-Control-Allow-Origin头部中回发相同的源信息（如果是公共资源，可以回*），如果没有这个头部或者有这个头部但源信息不匹配，浏览器就会驳回请求。<br>与JSONP相比，CORS无疑更加先进：</p>
-<ol>
-<li>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求。</li>
-<li>使用CORS，开发者可以使用普通的xhr对象发起请求和获得数据，比起JSONP有更好的错误处理。</li>
-</ol>
-<h4 id="xhr与xdr"><a href="#xhr与xdr" class="headerlink" title="xhr与xdr"></a>xhr与xdr</h4><p>微软在IE8中引入了XDR类型，这个对象与XHR类似，但能实现安全可靠的跨域通信。XDR对象的安全机制部分实现了W3C的CORS规范。XHR实现Ajax通信的一个主要限制，则来源于跨域安全策略，通过CORS，则可以突破其同源策略限制。xdr与xhr的不同之处有：</p>
-<ul>
-<li>cookie不会随请求发送，也不会随响应返回。</li>
-<li>只能设置请求头部信息中的Content-Type字段</li>
-<li>不能访问相应头部信息。</li>
-<li>只支持GET和POST请求。</li>
-</ul>
-<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>JSONP是JSON with padding的简写，是应有JSON的一种方法。JSONP由两部分组成：回调函数和数据。回调函数是当相应到来时应该在页面中调用的函数。回调函数的名字一般是在请求中指定的。而数据就是传入回调函数中的JSON数据。JSONP是通过动态&lt; script&gt;元素来使用的，使用时可以为src属性指定一个跨域URL。如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//客户端</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"divCustomers"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">callbackFunction</span>(<span class="params">result, methodName</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> html = <span class="string">'&lt;ul&gt;'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; result.length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                html += <span class="string">'&lt;li&gt;'</span> + result[i] + <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            html += <span class="string">'&lt;/ul&gt;'</span>;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">'divCustomers'</span>).innerHTML = html;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//服务器端</span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">'Content-type: application/json'</span>);</span><br><span class="line"><span class="comment">//获取回调函数名</span></span><br><span class="line">$jsoncallback = htmlspecialchars($_REQUEST [<span class="string">'jsoncallback'</span>]);</span><br><span class="line"><span class="comment">//json数据</span></span><br><span class="line">$json_data = <span class="string">'["customername1","customername2"]'</span>;</span><br><span class="line"><span class="comment">//输出jsonp格式的数据</span></span><br><span class="line"><span class="keyword">echo</span> $jsoncallback . <span class="string">"("</span> . $json_data . <span class="string">")"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="document-domain设置跨子域"><a href="#document-domain设置跨子域" class="headerlink" title="document.domain设置跨子域"></a>document.domain设置跨子域</h2><p>主域相同而子域不同的情况下，可以通过设置document.domain来实现跨域。但是使用document.domain来设置域名是有限制的，比如a.b.example.com某个文档中的域名可以设成a.b.example.com/b.example.com/example.com。使用方法如下：</p>
-<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//www.a.com上的a.html</span></span><br><span class="line">document.domain = <span class="string">'a.com'</span><span class="comment">;</span></span><br><span class="line">var ifr = document.createElement(<span class="string">'iframe'</span>)<span class="comment">;</span></span><br><span class="line">ifr.src = <span class="string">'http://script.a.com/b.html'</span><span class="comment">;</span></span><br><span class="line">ifr.style.display = <span class="string">'none'</span><span class="comment">;</span></span><br><span class="line">document.body.appendChild(ifr)<span class="comment">;</span></span><br><span class="line">ifr.onload = function()&#123;</span><br><span class="line">    var doc = ifr.contentDocument || ifr.contentWindow.document<span class="comment">;</span></span><br><span class="line">    <span class="comment">// 在这里操纵b.html</span></span><br><span class="line">    alert(doc.getElementsByTagName(<span class="string">"h1"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)<span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//script.a.com上的b.html</span></span><br><span class="line">document.domain = <span class="string">"a.com"</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Web-Sockets"><a href="#Web-Sockets" class="headerlink" title="Web Sockets"></a>Web Sockets</h2><p>Web Sockets的目标是在一个单独的持久连接上提供双工、双向通信。使用标准的HTTP服务器无法实现Web Sockets，只要支持这种协议的专门服务器才能正常工作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket=<span class="keyword">new</span> WebSocket(<span class="string">"ws://www.example.com/server.php"</span>);</span><br><span class="line">socket.send(<span class="built_in">JSON</span>.stringify(message));</span><br><span class="line">socket.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> data = event.data;</span><br><span class="line">	<span class="comment">//处理数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="其他跨域技术"><a href="#其他跨域技术" class="headerlink" title="其他跨域技术"></a>其他跨域技术</h2><ul>
-<li>Commet：指一种更高级的Ajax技术，也被称为服务器推送技术。是一种服务器向页面推送数据的技术，能够让信息近乎实时地被推送到页面上，非常适合处理体育比赛的分数和股票报价等。</li>
-<li>图像Ping，利用&lt; img&gt;标签不受同源限制的性质。通过它，浏览器得不到任何具体的数据，但通过监听load和error事件，它能知道响应是什么时候收到的。常用于跟踪用户点击页面或动态广告曝光次数。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="ciob182ux002bwoq9zp5b4dy1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
 
     </footer>
   </div>
@@ -851,6 +955,10 @@
       <ul>
         
           <li>
+            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/16/HTTP/">HTTP协议</a>
           </li>
         
@@ -864,10 +972,6 @@
         
           <li>
             <a href="/2016/04/23/flexbox/">flexbox</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/17/react-learn/">react初步认识</a>
           </li>
         
       </ul>

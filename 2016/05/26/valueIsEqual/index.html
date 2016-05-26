@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JS中两个值是否相等&amp;类型转换 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中两个值是否相等&类型转换">
+<meta property="og:url" content="http://yoursite.com/2016/05/26/valueIsEqual/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
+<meta property="og:updated_time" content="2016-05-26T14:59:24.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中两个值是否相等&类型转换">
+<meta name="twitter:description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-valueIsEqual" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/26/valueIsEqual/" class="article-date">
+  <time datetime="2016-05-26T12:48:44.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS中两个值是否相等&amp;类型转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ES5和ES6中的比较相等的运算符"><a href="#ES5和ES6中的比较相等的运算符" class="headerlink" title="ES5和ES6中的比较相等的运算符"></a>ES5和ES6中的比较相等的运算符</h2><p>在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">ES6</a>中，则新增了一个中比较相等的方法Object.is()。<br>相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。<br>ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来比较两个值是否严格相等，与严格比较运算符的行为基本一致。</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>进行<br>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
+<h3 id="转为String"><a href="#转为String" class="headerlink" title="转为String"></a>转为String</h3><ol>
+<li>undefined null true false 均转换为相应的字符串：“undefined”等</li>
+<li>数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串</li>
+<li>对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。<br>toString()方法：数组返回逗号隔开的数组字符串；函数可以返回函数的字符串；Date、TegExp也可以返回。普通的object（{x:1,y:2}）返回[object object]。</li>
+</ol>
+<h3 id="转为Number"><a href="#转为Number" class="headerlink" title="转为Number"></a>转为Number</h3><ol>
+<li>undefined转为NaN，null转为+0</li>
+<li>true为1，false为0</li>
+<li>“”为0；”1.2”转为1.2；”one”转为NaN；其他的看下面具体规则</li>
+<li>如果为对象。先转换为原始值，再转换为数值。[]转为0；[9]转为0，其他基本都是NaN；</li>
+</ol>
+<h3 id="转为Boolean"><a href="#转为Boolean" class="headerlink" title="转为Boolean"></a>转为Boolean</h3><ol>
+<li>undefined null “” 0 -0 NaN 转为false</li>
+<li>其他的转为true（包括[]、{}） </li>
+</ol>
+<h2 id="三个方法的比较及结果"><a href="#三个方法的比较及结果" class="headerlink" title="三个方法的比较及结果"></a>三个方法的比较及结果</h2><p>下列的步骤，是有顺序的，如满足1，则不会使用2.</p>
+<h3 id="相等比较步骤"><a href="#相等比较步骤" class="headerlink" title="相等比较步骤"></a>相等<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-abstract-equality-comparison" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>如果两个值类型相同，返回严格相等（===）的结果。</li>
+<li>null和undefined返回true</li>
+<li>一个为Number，一个为String，将String转为Number；</li>
+<li>布尔类型转换为Number比较</li>
+<li>一个为String/Number/Boolean，另一个为object，则将object转换，进行比较；<br>总结：有Number类型，则将另外一个值<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber" target="_blank" rel="external">转为Number</a>进行比较。Boolean转为Number。一个为object则<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-toprimitive" target="_blank" rel="external">转换为原始值</a>进行比较。</li>
+</ol>
+<h3 id="严格相等比较步骤"><a href="#严格相等比较步骤" class="headerlink" title="严格相等比较步骤"></a>严格相等<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-strict-equality-comparison" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>类型不相同，返回false</li>
+<li>null等于null，undefined等于undefined</li>
+<li>NaN不等于任何数，包括自身；两个数值相同，返回true；+0等于-0；其他false</li>
+<li>为String，完全相等，返回true</li>
+<li>true等于true，false等于false；</li>
+<li>相同的Symbol值（Symbol.for(‘f’),Symbol.for(‘f’)），返回true；</li>
+<li>相同的object，则返回true。</li>
+<li>返回false；</li>
+</ol>
+<h3 id="Object-is-比较步骤"><a href="#Object-is-比较步骤" class="headerlink" title="Object.is()比较步骤"></a>Object.is()<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.is" target="_blank" rel="external">比较步骤</a></h3><ol>
+<li>Type(x)和Type(y)不同，返回false</li>
+<li>Type(x)为null或undefined，返回true（null等于null，undefined等于undefined）</li>
+<li>Type(x)为数字。NaN等于NaN；+0不等-0；相同数字相等；正/负无穷不等于正/负无穷；</li>
+<li>Type(x)为string，两个值为相同的序列单元返回true，否则返回false；</li>
+<li>Type(x)为Boolean，true等于true，false等于false；</li>
+<li>Type(x)为Symbol，相同的Symbol值，返回true；</li>
+<li>x和y是相同的object值，返回true，否则返回false（{}不等于{}）。</li>
+</ol>
+<h3 id="一些特殊值的比较"><a href="#一些特殊值的比较" class="headerlink" title="一些特殊值的比较"></a>一些特殊值的比较</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">值1   值2</th>
+<th style="text-align:center">==</th>
+<th style="text-align:center">===</th>
+<th style="text-align:center">Object.is()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">类型不同</td>
+<td style="text-align:center">转换</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">null undefined</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">null null</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">undefined undefined</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">NaN NaN</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">+0  -0</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">-Infinity -Infinity</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">“12345” “12345”</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">false false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol(‘f’) Symbol.for(‘f’)</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol.for(‘f’) Symbol.for(‘f’)</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">object object(全等)</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考链接及书籍"><a href="#参考链接及书籍" class="headerlink" title="参考链接及书籍"></a>参考链接及书籍</h2><p><a href="http://www.ecma-international.org/ecma-262/6.0/index.html" target="_blank" rel="external">ECMAScript2015 官方语法</a><br>JavaScript中文版</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cioofeu8k004rm4q9iyypi7tp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/16/HTTP/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTP协议</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/HTTP/">HTTP协议</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/OOP/">面向对象基础概念</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/WebApp/">Web应用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/flexbox/">flexbox</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
