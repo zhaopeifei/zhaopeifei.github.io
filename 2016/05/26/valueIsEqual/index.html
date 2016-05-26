@@ -5,16 +5,28 @@
   
   <title>JS中两个值是否相等&amp;类型转换 | 步步为营，勇往直前</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
+  <meta name="description" content="类型转换进行也可以参考官方版类型转换
+转为String
+undefined null true false 均转换为相应的字符串：“undefined”等
+数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中两个值是否相等&类型转换">
 <meta property="og:url" content="http://yoursite.com/2016/05/26/valueIsEqual/index.html">
 <meta property="og:site_name" content="步步为营，勇往直前">
-<meta property="og:description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
-<meta property="og:updated_time" content="2016-05-26T14:59:24.896Z">
+<meta property="og:description" content="类型转换进行也可以参考官方版类型转换
+转为String
+undefined null true false 均转换为相应的字符串：“undefined”等
+数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
+<meta property="og:updated_time" content="2016-05-26T15:02:46.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中两个值是否相等&类型转换">
-<meta name="twitter:description" content="ES5和ES6中的比较相等的运算符在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在ES6中，则新增了一个中比较相等的方法Object.is()。相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来">
+<meta name="twitter:description" content="类型转换进行也可以参考官方版类型转换
+转为String
+undefined null true false 均转换为相应的字符串：“undefined”等
+数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
   
     <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
   
@@ -93,8 +105,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="ES5和ES6中的比较相等的运算符"><a href="#ES5和ES6中的比较相等的运算符" class="headerlink" title="ES5和ES6中的比较相等的运算符"></a>ES5和ES6中的比较相等的运算符</h2><p>在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">ES6</a>中，则新增了一个中比较相等的方法Object.is()。<br>相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。<br>ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来比较两个值是否严格相等，与严格比较运算符的行为基本一致。</p>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>进行<br>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
+        <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>进行<br>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
 <h3 id="转为String"><a href="#转为String" class="headerlink" title="转为String"></a>转为String</h3><ol>
 <li>undefined null true false 均转换为相应的字符串：“undefined”等</li>
 <li>数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串</li>
@@ -110,6 +121,7 @@
 <li>undefined null “” 0 -0 NaN 转为false</li>
 <li>其他的转为true（包括[]、{}） </li>
 </ol>
+<h2 id="ES5和ES6中的比较相等的运算符"><a href="#ES5和ES6中的比较相等的运算符" class="headerlink" title="ES5和ES6中的比较相等的运算符"></a>ES5和ES6中的比较相等的运算符</h2><p>在ES5中，只有两个运算符：相等运算符（==）和严格相等运算符（===）。在<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">ES6</a>中，则新增了一个中比较相等的方法Object.is()。<br>相等运算符会自动转换数据类型，而严格相等运算符不会。但是，根据严格相等运算符，NaN不等于NaN，+0等于-0。<br>ES6的Object.is()提出“Same-value equality”（同值相等）算法，以解决上述问题。其用来比较两个值是否严格相等，与严格比较运算符的行为基本一致。</p>
 <h2 id="三个方法的比较及结果"><a href="#三个方法的比较及结果" class="headerlink" title="三个方法的比较及结果"></a>三个方法的比较及结果</h2><p>下列的步骤，是有顺序的，如满足1，则不会使用2.</p>
 <h3 id="相等比较步骤"><a href="#相等比较步骤" class="headerlink" title="相等比较步骤"></a>相等<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-abstract-equality-comparison" target="_blank" rel="external">比较步骤</a></h3><ol>
 <li>如果两个值类型相同，返回严格相等（===）的结果。</li>
@@ -226,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cioofeu8k004rm4q9iyypi7tp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cioofih7o0045qoq9kh38n0bi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
