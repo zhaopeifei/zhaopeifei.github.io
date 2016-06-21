@@ -68,6 +68,166 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C-program" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/30/C-program/" class="article-date">
+  <time datetime="2016-03-30T08:15:13.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/C-program/">c语言编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span>  //普遍需要的，支持scanf、printf等</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span>  //说明一些字符串串和内存操作函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;graphics.h&gt;</span>  //画图</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;alloc.h&gt;</span>  //说明内存管理函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;io.h&gt;</span>  //包含低级I/O子程序的结构和说明</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数定义以及调用等"><a href="#函数定义以及调用等" class="headerlink" title="函数定义以及调用等"></a>函数定义以及调用等</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> <span class="comment">//主函数，入口函数</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,comp(x,y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">comp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> <span class="comment">//必须指明形参类型，并且要匹配</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &gt; y)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(x &lt; y)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="变量的定义及初始化"><a href="#变量的定义及初始化" class="headerlink" title="变量的定义及初始化"></a>变量的定义及初始化</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//也可以在子函数中定义，但是要注意在前面定义</span><br><span class="line">double dx,sy;</span><br><span class="line">int a=5; </span><br><span class="line">char c='a';</span><br><span class="line"></span><br><span class="line">char string[20]=&#123;'s','t','r','i','n','g','\0'&#125;;</span><br><span class="line">char str[20] = "string"; //c有没有string类型。str第七位为'\0'</span><br><span class="line">char str[<span class="string">3</span>][<span class="symbol">10</span>]=&#123;"string","is","it"&#125;; //多个字符串</span><br><span class="line"></span><br><span class="line">int a[<span class="string">3</span>][<span class="symbol">3</span>]=&#123;&#123;1,2,3&#125;,&#123;1,2,3&#125;,&#123;1,2,3&#125;&#125;;  //二维数组方式1</span><br><span class="line">int a[<span class="string">3</span>][<span class="symbol">3</span>]=&#123;1,2,3,4,5,6,7,8,9&#125;;   //二维数组，方式2</span><br></pre></td></tr></table></figure>
+<h2 id="输入输出函数"><a href="#输入输出函数" class="headerlink" title="输入输出函数"></a>输入输出函数</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scanf(<span class="string">"%c%3d"</span>,<span class="symbol">&amp;x</span>,<span class="symbol">&amp;y</span>)<span class="comment">; //%f浮点小数，%c字符，%s字符串。%3d表示3位整数</span></span><br><span class="line">printf(<span class="string">"%c asicii is %d"</span>,x,x)<span class="comment">;  //输出，可以类型转换</span></span><br><span class="line"></span><br><span class="line">c=getchar()<span class="comment">; //输入字符</span></span><br><span class="line">putchar(<span class="name">c</span>)<span class="comment">; //</span></span><br><span class="line"></span><br><span class="line">gets(<span class="name">str</span>)<span class="comment">; //输入字符串，并给str</span></span><br><span class="line">puts(<span class="name">str</span>)<span class="comment">; //显示字符串</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用函数以及方法"><a href="#常用函数以及方法" class="headerlink" title="常用函数以及方法"></a>常用函数以及方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str[<span class="number">0</span>]&gt;=<span class="string">'a'</span>)&#123;&#125; <span class="comment">//字符比较，也可以用来检测数字还是其他</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(str1,str2); <span class="comment">//不可以用=直接赋值。将字符串2赋值给字符串1，不只是给指针</span></span><br><span class="line"><span class="built_in">strcat</span>(str1,str2); <span class="comment">//将str2加到str1后面</span></span><br><span class="line"><span class="built_in">strcmp</span>(str1,str2); <span class="comment">//比较，str1大于str2则返回正整数</span></span><br><span class="line"><span class="built_in">strlen</span>(str1); <span class="comment">//获得字符串str1的长度，不算'\0'</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cipous7cb0001woq97kmcig2y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-links" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/29/links/" class="article-date">
+  <time datetime="2016-03-29T05:11:59.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/链接集/">链接集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/links/">链接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端方面"><a href="#前端方面" class="headerlink" title="前端方面"></a>前端方面</h2><ul>
+<li>入门型：<a href="http://www.w3school.com.cn/" target="_blank" rel="external">W3schol在线教程</a></li>
+<li>学习型：<a href="https://developer.mozilla.org/en-US/docs/Web/Guide" target="_blank" rel="external">MDN Web开发指导</a></li>
+<li>工具型：<a href="https://www.w3.org/TR/html5/" target="_blank" rel="external">HTML5</a> <a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="external">HTTP RFC2616</a> <a href="https://www.w3.org/TR/" target="_blank" rel="external">W3C标准</a> </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cipous7fz003awoq9ahg5zgnc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-computer-theory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/28/computer-theory/" class="article-date">
+  <time datetime="2016-03-28T02:30:27.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/28/computer-theory/">计算机组成原理及操作系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h2><p>数据在计算机中以0 1表示，计算机领域中使用二进制、八进制、十进制和十六进制表示，常用的二进制编码有</p>
+<h4 id="8421BCD编码"><a href="#8421BCD编码" class="headerlink" title="8421BCD编码"></a>8421BCD编码</h4><p>0000表示数字0，1001分别表示数字9,0001 0101表示十进制15</p>
+<h4 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h4><p>0~9:0011 0000(48) ~ 0011 1001 (57)<br>A~Z:0100 0001(65) ~ 0101 1010 (90)<br>a~z:0110 0001(97) ~ 0111 1010 (122)</p>
+<h4 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h4><p>0~15:<br>0000 0001 0011 0010<br>0110 0111 0101 0100<br>1100 1101 1111 1110<br>1111 1110 1010 1000</p>
+<p>某二进制数为Bn-1 Bn-2 ……B0，其对应的格雷码为Gn-1 Gn-2 …… G0<br>则：Gn-1=Bn-1  其他 Gi=Bi+1异或Bi</p>
+<h4 id="机器码"><a href="#机器码" class="headerlink" title="机器码"></a>机器码</h4><ul>
+<li>原码：第一位0，表示正，第一位1表示负，其他位不变</li>
+<li>补码：正数不变，负数为2的n+1加上x</li>
+<li>反码：正数不变，负数则符号位不变，其他相反。</li>
+<li>正数的原码、反码、补码都一样</li>
+<li>负数符号位固定为1.原码其他位求反得反码，反码最低位加1得补码。</li>
+</ul>
+<h4 id="汉字表示方式"><a href="#汉字表示方式" class="headerlink" title="汉字表示方式"></a>汉字表示方式</h4><ul>
+<li>汉字输入编码：数字编码（用数字串代表一个汉字输入） 拼音码（用拼音代码汉字，但重码率高，还要进行同音字选择） 字形编码（比如五笔）</li>
+<li>汉字内码：是用于汉字信息的存储、交换、检索扥各操作的机内代码，一般采用两个字节表示，类似七位ASCII码，但最高位为1</li>
+<li>汉字字模码：用点阵表示的汉字字形代码。</li>
+</ul>
+<h2 id="内部存储器"><a href="#内部存储器" class="headerlink" title="内部存储器"></a>内部存储器</h2><p>主存储器和中央处理器一样是计算机系统的重要资源，它为操作系统、各种系统程序和用户程序所共享。现代操作系统区分两类主存：物理主存和逻辑主存。主存中分片的方式分为两种：</p>
+<ul>
+<li>划分为大小不等的区域，这些区域根据用户程序实际需要而被分割。</li>
+<li>划分为大小相等的块，以快为单位进行分配，操作系统和用户程序根据需要占用若干主存块。</li>
+</ul>
+<h4 id="主存管理的功能"><a href="#主存管理的功能" class="headerlink" title="主存管理的功能"></a>主存管理的功能</h4><ul>
+<li>为了支持多道程序运行，每个应用程序必须为每个用户提供0~n-1的一组逻辑地址。程序执行时，必须将逻辑地址正确地转换为物理地址，此即为地址映射。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cipous7fa002kwoq9n7ynvz6r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-nodejs-project" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/27/nodejs-project/" class="article-date">
@@ -99,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cioofih74003nqoq9pqylsrx3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cipous7g3003hwoq9mo1x1pjg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -157,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cioofih78003qqoq9328nlgon" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cipous7gj0040woq95fto884z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -211,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cioofih70003jqoq9aixuzd7x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cipous7fx0035woq9ic5t1bfa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -306,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cioofih3x001eqoq9iwt15oa7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cipous7dr001awoq9q3hrfild" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -383,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cioofih43001hqoq94ckymivw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cipous7e1001lwoq9spmlw0ud" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -476,7 +636,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cioofih3r0016qoq9okpkv3vq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cipous7e4001nwoq9aiftnu4d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -570,256 +730,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cioofih59002bqoq9c3kqy0gl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cipous7e7001swoq9q1wzd0vg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/18/JavaScript-8/" class="article-date">
-  <time datetime="2016-03-18T08:31:34.000Z" itemprop="datePublished">2016-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/JavaScript-8/">事件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JavaScript与HTML之间的交互式通过事件实现的。可以通过监听器来预定事件，以便事件发生时执行相应的代码。</p>
-<h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。IE和Netscape团队提出了完全相反的事件流的概念。IE的事件流是事件冒泡流（逐级向上），Netscape Communicator的事件流是事件捕获流（逐级向下）。DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。可以在最后阶段对事件做出响应。</p>
-<h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><p>事件有click/load和mouseover等，事件处理程序的名字以“on”开头。为时间制定处理程序的方式由多种。</p>
-<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> value=<span class="string">"Click me"</span> onclick=<span class="string">"alert('click')"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>缺点：1.存在时差问题，可能导致时间处理程序不能执行。2.这样扩展时间处理程序的作用域链在不同浏览器中可能会导致不同结果。3.HTML与JavaScript代码紧密耦合。</p>
-<h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"click"</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.onclick = <span class="literal">null</span>; <span class="comment">//删除时间处理程序</span></span><br></pre></td></tr></table></figure>
-<h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><p>DOM2级事件定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListenter()和removeEventListener()。使用前者添加的事件，必须使用后者删除。一个事件可以引发多个事件处理程序。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="keyword">this</span>.id); &#125;</span><br><span class="line">btn.addEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>); <span class="comment">//false表示冒泡阶段调用事件处理程序，true表示捕获阶段</span></span><br><span class="line"><span class="comment">//其他代码</span></span><br><span class="line">btn.removeEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>); <span class="comment">//可以。但无法移除匿名程序</span></span><br></pre></td></tr></table></figure>
-<h4 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h4><p>IE实现了与DOM中类似的两个方法：attachEvent()和detachEvent()。接收两个参数。事件处理程序添加到冒泡阶段。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="keyword">this</span>.id); &#125;</span><br><span class="line">btn.attachEvent(<span class="string">"onclick"</span>,handler); </span><br><span class="line"><span class="comment">//其他代码</span></span><br><span class="line">btn.detachEvent(<span class="string">"onclick"</span>,handler; <span class="comment">//移除</span></span><br></pre></td></tr></table></figure>
-<h4 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="type">EventUtil</span> = &#123;</span><br><span class="line">	addHandler:functiong(element,<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(element.addEventListener)&#123;</span><br><span class="line">			element.addEventListener(<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>,<span class="title">false</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.attachEvent)&#123;</span><br><span class="line">			element.attachEvent(<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			element[<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>] </span>= handler;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	removeHandler:functiong(element,<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(element.removeEventListener)&#123;</span><br><span class="line">			element.removeEventListener(<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>,<span class="title">false</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.detachEvent)&#123;</span><br><span class="line">			element.detachEvent(<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>,<span class="title">handler</span>)</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			element[<span class="string">"on"</span>+<span class="class"><span class="keyword">type</span>] </span>= <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">EventUtil</span>.addHandler(btn,<span class="string">"click"</span>,handler);</span><br></pre></td></tr></table></figure>
-<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>在触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含着所有与事件有关的信息。</p>
-<h4 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h4><p>兼容DOM的浏览器会将一个event对象传入到事件处理程序中。无论指定事件处理程序时使用什么方法（DOM0或DOM2级），都会传入event对象。event常用的属性方法有：</p>
-<ul>
-<li>currentTarget：其事件处理程序当前正在处理事件的那个元素，即事件处理程序注册的元素。等同于this。</li>
-<li>target：事件的目标。最小的直接发生事件的元素。</li>
-<li>type：事件的类型，即click、mouseover等。</li>
-<li>prenentDefault()：取消特定事件的默认行为，如点击链接导航到其href特性指定的URL</li>
-<li>stopPropagation()：立即停止事件在DOM层次中的传播，即取消进一步的时间捕获或冒泡。</li>
-</ul>
-<h4 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h4><p>与访问DOM中的event对象不同，要访问IE中的event对象有几种不同的方式，取决于指定事件处理程序的方法。因为事件处理程序的作用域是根据指定它的方式来确定的，所以不能认为this始终等于事件目标，故而，最好使用event.srcElement比较保险。属性有cancelBubble（设为true可以取消事件冒泡）、returnValue（设为false可以取消事件的默认行为）、srcElement（事件的目标，等同于DOM中的target）、type（被触发的事件的类型）。</p>
-<h4 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h4><p>虽然DOM和IE中的event对象不同，但基于他们之间的相似性依旧可以拿出跨浏览器的方案来。</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventUtil=&#123;</span><br><span class="line">	addHandler:<span class="comment">//略</span></span><br><span class="line">	getEvent:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">event</span>? <span class="keyword">event</span>:window.<span class="keyword">event</span>;</span><br><span class="line">	&#125;,</span><br><span class="line">	getTarget:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">event</span>.target? <span class="keyword">event</span>.target:<span class="keyword">event</span>.srcElement;</span><br><span class="line">	&#125;,</span><br><span class="line">	preventDefault:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">event</span>.preventDefault)&#123;</span><br><span class="line">			<span class="keyword">event</span>.preventDefault();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">event</span>.returnValue = <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	stopPropagation:function(<span class="keyword">event</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">event</span>.stopPropagation)&#123;</span><br><span class="line">			<span class="keyword">event</span>.stopPropagation();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">event</span>.cancelBubble = <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h2><p>Web浏览器中可能发生的事件有很多类型。DOM3级事件规定了一下几类事件：</p>
-<ul>
-<li>UI事件，当用户与页面上的元素交互时触发。</li>
-<li>焦点事件，当元素获得或失去焦点时触发。</li>
-<li>鼠标事件，当用户通过鼠标在页面上执行操作时触发。</li>
-<li>滚轮事件，当使用鼠标滚轮或类似设备时触发。</li>
-<li>文本事件：当用户在文档中输入文本时触发。</li>
-<li>键盘事件，当用户通过键盘在页面上执行操作时触发。</li>
-<li>合成事件，当为IME（输入法编辑器）输入字符时触发。</li>
-<li>变动事件，当底层DOM结构发生变化时触发。</li>
-</ul>
-<h2 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h2><p>在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体性能。首先，每个函数都是对象，都会占用内存。其次，必须事先指定所有事件处理程序而导致的DOM访问次数，会延迟整个页面的交互就绪时间。</p>
-<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>对“事件处理程序过多”的解决方案是事件委托。事件委托利用了事件冒泡，只指定了一个事件处理程序，就可以管理某一类型的所有事件。例如，可以将一个列表的点击事件交给其body元素解决，判断发生事件的元素，再执行相应的操作。</p>
-<h4 id="移除事件处理程序"><a href="#移除事件处理程序" class="headerlink" title="移除事件处理程序"></a>移除事件处理程序</h4><p>每当将事件处理程序指定给元素时，运行中的浏览器代码与支持页面交互的JavaScript代码之间就会建立一个连接。在不需要的时候移除事件处理程序，也是解决问题的一种方案。</p>
-<h2 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h2><p>事件经常由用户操作或通过其他浏览器功能来触发，但其实也可以使用JavaScript在任意时刻来触发特定的事件，而此时的事件如同浏览器创建的事件一样。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cioofih4y0024qoq9g3bvnw89" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-7" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/18/JavaScript-7/" class="article-date">
-  <time datetime="2016-03-18T07:14:51.000Z" itemprop="datePublished">2016-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/JavaScript-7/">DOM扩展及DOM2、DOM3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>尽管DOM作为API已经非常完善了，但为了实现更多的功能，仍然会有一些标准或专有的扩展。W3C着手将一些已经称为事实标准的专有扩展标准化并写入规范当中。</p>
-<h2 id="选择符API"><a href="#选择符API" class="headerlink" title="选择符API"></a>选择符API</h2><p>众多JavaScript库中最常用的一项功能，就是根据CSS选择符选择与某个模式匹配的DOM元素。jquery的核心就是通过选择符查询DOM文档取得元素的引用，从而抛开了getElementById()和getElementByTagName()。Selectors API致力于让浏览器原生支持CSS查询，这样一来，解析和树查询操作可以在浏览器内部通过编译后的代码来完成，极大地改善了性能。其核心方法有querySelector(“img.button”)和querySelectorAll(“#myDiv”),分别返回匹配的第一个元素和全部元素。<br>Selectors API Level2规范为Element类型新增了一个方法matchesSelector()。这个方法接收了一个参数，即CSS选择符，匹配则返回true。</p>
-<h2 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h2><p>对于元素间的空格，IE9及之前的版本不会返回文本节点，而其他浏览器都会返回文本节点。为了弥补此差异，Element Traversal API为DOM添加了5个属性：childElementCount、firstElementChild、lastElementChild、previousElementSibling、nextElementSibling。利用这些元素就不必担心空白文本节点。</p>
-<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h4 id="与类相关的扩充"><a href="#与类相关的扩充" class="headerlink" title="与类相关的扩充"></a>与类相关的扩充</h4><ul>
-<li>getElementByClassName()方法。接收一个参数，包含一个或多个类名的字符串，类名的先后顺序不重要。返回带有指定类的所有元素的NodeList。</li>
-<li>classList属性。是新集合类型DOMTokenList的实例。包含一个元素的类名列表。有方法：add() contains() remove() toggle()（如果已经存在，删除，如果没有，添加）。</li>
-</ul>
-<h4 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h4><p>document.activeElement属性，始终引用DOM中当前获得了焦点的元素。元素获得焦点的方式有页面加载、用户输入和在代码中调用focus()方法。</p>
-<h4 id="HTMLDocument的变化"><a href="#HTMLDocument的变化" class="headerlink" title="HTMLDocument的变化"></a>HTMLDocument的变化</h4><ul>
-<li>document.readyState属性，有两个可能值：loading和complete，分别表示正在加载文档和已经加载完文档。</li>
-<li>head属性。HTML5新增了document.head属性，引用文档的&lt;\head&gt;元素。</li>
-</ul>
-<h4 id="自定义数据属性"><a href="#自定义数据属性" class="headerlink" title="自定义数据属性"></a>自定义数据属性</h4><p>HTML5规定可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息。</p>
-<h4 id="innerHTML属性和outerHTML属性"><a href="#innerHTML属性和outerHTML属性" class="headerlink" title="innerHTML属性和outerHTML属性"></a>innerHTML属性和outerHTML属性</h4><ul>
-<li>innerHTML属性：在读模式下，innerHTML属性返回与调用元素的所有子节点对应的HTML标记。</li>
-<li>outerHTML属性：在读模式下，outerHTML属性返回调用它的元素及所有子节点的HTML标记。</li>
-<li>insertAdjacentHTML()方法。在特定的位置插入HTML文本。</li>
-<li>使用以上方法替换子节点可能会导致浏览器的内存占用问题。所以要避免频繁使用以上方法。</li>
-</ul>
-<h2 id="专有扩展"><a href="#专有扩展" class="headerlink" title="专有扩展"></a>专有扩展</h2><h4 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h4><p>页面的文档模式决定了可以使用什么功能。即，文档模式决定了可以使用哪个级别的CSS，可以在JavaScript中使用那些API，以及如何对待文档类型（doctype）。</p>
-<h4 id="children属性和contains-方法"><a href="#children属性和contains-方法" class="headerlink" title="children属性和contains()方法"></a>children属性和contains()方法</h4><ul>
-<li>children属性，是HTMLCollection的实例，只包含元素中同样还是元素的子节点。除此外，children属性与childNodes没有什么区别。</li>
-<li>contains()方法：用于检测某个节点是不是另一个节点的后代，是则返回true</li>
-</ul>
-<h4 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h4><ul>
-<li>innerText属性。操作元素中包含的所有文本内容，包括子文档书中的文本。会去掉元素内容</li>
-<li>outerText属性。作用范围扩大到调用它的节点。在写模式喜爱，outerText会替换掉整个元素，包括子节点。</li>
-</ul>
-<h2 id="DOM2和DOM3"><a href="#DOM2和DOM3" class="headerlink" title="DOM2和DOM3"></a>DOM2和DOM3</h2><p>DOM1级主要定义的是HTML和XML文档的底层结构。DOM2和DOM3级则在这个结构的基础上引入了更多的交互能力，也支持了更高级的XML特性。DOM2和DOM3分为了许多模块，分别描述了DOM的某个非常具体的子集。</p>
-<ul>
-<li>DOM2级核心：在1级核心基础上构建，为节点添加了更多方法和属性。</li>
-<li>DOM2级视图：为文档定义了基于样式信息的不同视图。</li>
-<li>DOM2级事件：说明了如何使用事件与DOM文档交换。</li>
-<li>DOM2级样式：定义了如何以编程方式来访问和改变CSS样式信息。</li>
-<li>DOM2级遍历和范围：引入了遍历DOM文档和选择其特定部分的新接口。</li>
-<li>DOM2级HTML：在1级HTML基础上构建，添加了更多属性、方法和新接口。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cioofih4v0021qoq9x5f1p7r6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/16/CSS-3/" class="article-date">
-  <time datetime="2016-03-16T07:45:54.000Z" itemprop="datePublished">2016-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/16/CSS-3/">CSS-3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。</p>
-<h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><p>CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的CSS样式中。其优先权从高到低为：</p>
-<ol>
-<li>内联样式（在HTML元素内部）</li>
-<li>内部样式表（位于<head>标签内部）</head></li>
-<li>外部样式表（.css文件）</li>
-<li>浏览器缺省设置</li>
-</ol>
-<h2 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h2><p>CSS规则有两个主要部分构成：选择器和声明。每条声明由一个属性和一个值组成。与XHTML不同，css对大小写不敏感。存在其一例外：如果涉及到与HTML文档一起工作的话，class和id名称对大小写是敏感的。例如<br><code>h1 {color:red; font-size:14px; }</code></p>
-<h2 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
-<li>backgroud-color: 设置背景颜色，有时简写为bgcolor，如body元素等。</li>
-<li>backgroud-image：设置背景图片。</li>
-<li>backgroud-repeat：设置背景的重复</li>
-<li>backgroud-position：改变图像在背景中的位置。</li>
-</ul>
-<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
-<li>text-align：center 文本行相互之间的对齐方式</li>
-<li>text-indent：5em 文本缩进</li>
-<li>word-spacing：-0.5em 单词间隔</li>
-<li>letter——spacing：5px 字母间隔</li>
-<li>text-transform：uppercase 处理文本的大小写</li>
-</ul>
-<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><ul>
-<li>font-family：Times 字体样式</li>
-<li>font-size：14px 字体大小</li>
-<li>font-style：italic 规定斜体</li>
-</ul>
-<h2 id="CSS框模型及定位"><a href="#CSS框模型及定位" class="headerlink" title="CSS框模型及定位"></a>CSS框模型及定位</h2><h4 id="框模型"><a href="#框模型" class="headerlink" title="框模型"></a>框模型</h4><p>CSS框模型从外向里分别是：border（边框）、margin（外边距）|padding（内边距）、element（height、width）。</p>
-<ul>
-<li>内边距有四个单独属性，分别设置上下左右内边距：padding-top padding-bottom padding-left padding-right</li>
-<li>外边距也有相应的四个属性，分别设置上下左右外边距：略</li>
-<li>边框有3个方面：样式、宽度和颜色。样式：border-style/border-top-style等四个；宽度：border-width/border-top-width等四个；颜色：border-color/border-top-color等四个。</li>
-</ul>
-<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>CSS定位属性允许对元素进行定位。元素定位有相对定位、绝对定位和浮动等三种。一下分别为相对定位、绝对定位和浮动定位。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">box_relative</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box_absolute</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:absolute;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box</span>&#123;</span><br><span class="line">	<span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:blue;<span class="attribute">font-family</span>:sans-serif;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;这个元素的内容会引用上面的样式&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,h4&#123;<span class="attribute">color</span>:bule;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;以上所有元素内容都会应用样式&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[href][title=<span class="string">"123"</span>]&#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> title=<span class="string">"123"</span> href=<span class="string">"http://w3school.com.cn"</span>&gt; 可以应用样式 &lt;/a&gt;</span><br><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"http://w3school.com.cn"</span>&gt;不可以应用样式&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.important</span> &#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> class=<span class="string">"important"</span>&gt;还可以在.前面加元素，则既是相应元素又是相应类则满足&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#intro&#123;<span class="attribute">font-weight</span>:bold;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> id=<span class="string">"intro"</span>&gt;应用样式&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 em&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>只要有<span class="tag">&lt;<span class="name">em</span>&gt;</span>这个后代元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，后代元素就应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">h1&gt;strong&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>必须<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>是子元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，而不能是后代元素。不应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="CSS-Override"><a href="#CSS-Override" class="headerlink" title="CSS Override"></a>CSS Override</h2><h4 id="两个类"><a href="#两个类" class="headerlink" title="两个类"></a>两个类</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">  <span class="selector-class">.pink-text</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: pink;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.blue-text</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"blue-text pink-text"</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>与h1中的class的顺序无关，而与样式表中两个类的顺序有关，后者会重写前者的color属性。故上面字体的颜色是blue</p>
-<h4 id="ID与class"><a href="#ID与class" class="headerlink" title="ID与class"></a>ID与class</h4><p>ID的优先级要高于class</p>
-<h4 id="inline-style与id"><a href="#inline-style与id" class="headerlink" title="inline style与id"></a>inline style与id</h4><p>inline style优先级高于id</p>
-<h4 id="绝对最高级-important"><a href="#绝对最高级-important" class="headerlink" title="绝对最高级!important"></a>绝对最高级!important</h4><p>如果要保证某个属性为绝对最高级，则在属性值后加!important。如：color:blue !important;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cioofih2b0007qoq9qvvo3osk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
 
     </footer>
   </div>
@@ -841,7 +755,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -851,7 +765,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -861,7 +775,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -870,7 +784,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
     </div>
   </div>
 
@@ -883,23 +797,23 @@
       <ul>
         
           <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/JS-binding/">JS-binding</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
           </li>
         
           <li>
             <a href="/2016/05/16/HTTP/">HTTP协议</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/OOP/">面向对象基础概念</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/23/WebApp/">Web应用</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/23/flexbox/">flexbox</a>
           </li>
         
       </ul>

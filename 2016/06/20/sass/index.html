@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SASS学习 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装及使用安装gem先按照ruby，在安装gem，过程略。
+安装sass1gem install sass
+sass转换为css编译模式有四种：nested(默认)、expanded、compact、compressed1sass input.scss output.css
+监视修改watch1sass --watch input.scss:output.css
+也可以使用gulp、grunt等自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SASS学习">
+<meta property="og:url" content="http://yoursite.com/2016/06/20/sass/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="安装及使用安装gem先按照ruby，在安装gem，过程略。
+安装sass1gem install sass
+sass转换为css编译模式有四种：nested(默认)、expanded、compact、compressed1sass input.scss output.css
+监视修改watch1sass --watch input.scss:output.css
+也可以使用gulp、grunt等自">
+<meta property="og:updated_time" content="2016-06-21T02:49:20.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SASS学习">
+<meta name="twitter:description" content="安装及使用安装gem先按照ruby，在安装gem，过程略。
+安装sass1gem install sass
+sass转换为css编译模式有四种：nested(默认)、expanded、compact、compressed1sass input.scss output.css
+监视修改watch1sass --watch input.scss:output.css
+也可以使用gulp、grunt等自">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sass" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/20/sass/" class="article-date">
+  <time datetime="2016-06-20T09:14:44.000Z" itemprop="datePublished">2016-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SASS学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装及使用"><a href="#安装及使用" class="headerlink" title="安装及使用"></a>安装及使用</h2><h4 id="安装gem"><a href="#安装gem" class="headerlink" title="安装gem"></a>安装gem</h4><p>先按照ruby，在安装gem，过程略。</p>
+<h4 id="安装sass"><a href="#安装sass" class="headerlink" title="安装sass"></a>安装sass</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="keyword">install</span> sass</span><br></pre></td></tr></table></figure>
+<h4 id="sass转换为css"><a href="#sass转换为css" class="headerlink" title="sass转换为css"></a>sass转换为css</h4><p>编译模式有四种：nested(默认)、expanded、compact、compressed<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass <span class="selector-tag">input</span><span class="selector-class">.scss</span> output.css</span><br></pre></td></tr></table></figure></p>
+<h4 id="监视修改watch"><a href="#监视修改watch" class="headerlink" title="监视修改watch"></a>监视修改watch</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch <span class="selector-tag">input</span><span class="selector-class">.scss</span>:output.css</span><br></pre></td></tr></table></figure>
+<h4 id="也可以使用gulp、grunt等自动化构建工具"><a href="#也可以使用gulp、grunt等自动化构建工具" class="headerlink" title="也可以使用gulp、grunt等自动化构建工具"></a>也可以使用gulp、grunt等自动化构建工具</h4><p>略</p>
+<h2 id="Sass基础"><a href="#Sass基础" class="headerlink" title="Sass基础"></a>Sass基础</h2><ul>
+<li>变量：以美元符号$开头，在SCSS中，可以代替值进行加减乘除、也可以代替名值对的名称等。Data类型有：strings、lists、maps、colors。</li>
+<li>嵌套：属性可以嵌套，选择器也可以嵌套。在嵌套代码块中，&amp;可以引用父元素，常用于a:hover伪类等。</li>
+<li>注释：//编译后不保留，/<em>编译为CSS后保留</em>/，/<em>! 重要注释，压缩模式编译也会保留 </em>/</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编译后不保留</span></span><br><span class="line"><span class="variable">$color</span> : <span class="number">#333</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*编译后保留*/</span></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$color</span> + <span class="number">#555</span>;</span><br><span class="line">    <span class="selector-tag">a</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="variable">$color</span>;</span><br><span class="line">        &amp;:hover  &#123;</span><br><span class="line">            <span class="attribute">color</span>: <span class="variable">$color</span> - <span class="number">#222</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>颜色可以相加、相减，也可以乘以或除以某个数。对于变量，scss在可以进行运算时会进行运算，所以如果将要作为plain CSS的话，使用#{}插入（在拼接选择器或样式名称时，也用#{}插入）。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">    $font-size: <span class="number">12</span>px;</span><br><span class="line">    $line-height: <span class="number">30</span>px;</span><br><span class="line">    font: #&#123;$font-size&#125;/#&#123;$line-height&#125;;</span><br><span class="line">&#125;</span><br><span class="line">//编译为以下代码：</span><br><span class="line">p &#123;</span><br><span class="line">    font: <span class="number">12</span>px/<span class="number">30</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于string变量，可以使用+进行字符串连接，如sans- + “serif”编译后为sans-serif</p>
+<h2 id="混入、继承、引入"><a href="#混入、继承、引入" class="headerlink" title="混入、继承、引入"></a>混入、继承、引入</h2><p>合理使用混入和继承可以是SASS代码可重用、可读性以及可维护性更高。混入适合将某一类的特征提取出来，可以考虑将布局样式（如居中）、边框样式（三维边框圆角、阴影）提取出来。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以为scss格式(默认)，也可以为css格式</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"path/foo.scss"</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">mixin</span> left &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    @<span class="keyword">include</span> left;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以添加参数，这是mixin最强大的地方</span></span><br><span class="line">@<span class="keyword">mixin</span> sexy-border(<span class="variable">$color</span>, <span class="variable">$width</span>) &#123;</span><br><span class="line">  <span class="attribute">border</span>: &#123;</span><br><span class="line">    color: <span class="variable">$color</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">    <span class="selector-tag">style</span>: dashed;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.class1</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.class2</span> &#123;</span><br><span class="line">    @<span class="keyword">extend</span> .class1;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">120%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，还有@media、@debug、@warn、@error、@at-root等</p>
+<h2 id="条件控制"><a href="#条件控制" class="headerlink" title="条件控制"></a>条件控制</h2><p>条件控制有：if @if @for @each @while</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>, <span class="number">1</span>px, <span class="number">2</span>px) //<span class="number">1</span>px</span><br><span class="line"><span class="keyword">if</span>(<span class="literal">false</span>, <span class="number">1</span>px, <span class="number">2</span>px) //<span class="number">2</span>px</span><br><span class="line"></span><br><span class="line">$type: monster;</span><br><span class="line">p &#123;</span><br><span class="line">    @if $type == ocean&#123;</span><br><span class="line">        color: blue;</span><br><span class="line">    &#125; @else if $type == monster &#123;</span><br><span class="line">        color: green;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">for</span> $i from <span class="number">1</span> through <span class="number">3</span> &#123;</span><br><span class="line">    .item-#&#123;$i&#125; &#123; width: <span class="number">2</span>em * $i; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@each $animal <span class="keyword">in</span> puma, egret, salamander &#123;</span><br><span class="line">    .#&#123;$animal&#125;-icon &#123;</span><br><span class="line">        background-image:url(<span class="string">'/images/#&#123;$animal&#125;.png'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@each $animal, $color, $cursor <span class="keyword">in</span> (puma, black, <span class="keyword">default</span>),</span><br><span class="line">                                  (sea-slug, blue, pointer),</span><br><span class="line">                                  (egret, white, move) &#123;</span><br><span class="line">  .#&#123;$animal&#125;-icon &#123;</span><br><span class="line">    background-image: url(<span class="string">'/images/#&#123;$animal&#125;.png'</span>);</span><br><span class="line">    border: <span class="number">2</span>px solid $color;</span><br><span class="line">    cursor: $cursor;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@each $header, $size <span class="keyword">in</span> (h1: <span class="number">2</span>em, h2: <span class="number">1.5</span>em, h3: <span class="number">1.2</span>em) &#123;</span><br><span class="line">  #&#123;$header&#125; &#123;</span><br><span class="line">    font-size: $size;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$i: <span class="number">6</span>;</span><br><span class="line">@<span class="keyword">while</span> $i &gt; <span class="number">0</span> &#123;</span><br><span class="line">  .item-#&#123;$i&#125; &#123; width: <span class="number">2</span>em * $i; &#125;</span><br><span class="line">  $i: $i - <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank" rel="external">Sass官网文档</a><br><a href="http://www.ruanyifeng.com/blog/2012/06/sass.html" target="_blank" rel="external">SASS用法指南-阮一峰</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="cipous7ge003swoq93rtjpvak" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/10/blog-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">个人网站搭建系列——选型及基本框架搭建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/JS-binding/">JS-binding</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/HTTP/">HTTP协议</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

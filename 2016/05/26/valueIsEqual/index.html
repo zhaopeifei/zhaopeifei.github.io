@@ -5,28 +5,28 @@
   
   <title>JS中两个值是否相等&amp;类型转换 | 步步为营，勇往直前</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类型转换进行也可以参考官方版类型转换
+  <meta name="description" content="类型转换也可以参考官方版类型转换
 转为String
 undefined null true false 均转换为相应的字符串：“undefined”等
 数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
-对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中两个值是否相等&类型转换">
 <meta property="og:url" content="http://yoursite.com/2016/05/26/valueIsEqual/index.html">
 <meta property="og:site_name" content="步步为营，勇往直前">
-<meta property="og:description" content="类型转换进行也可以参考官方版类型转换
+<meta property="og:description" content="类型转换也可以参考官方版类型转换
 转为String
 undefined null true false 均转换为相应的字符串：“undefined”等
 数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
-对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
-<meta property="og:updated_time" content="2016-05-26T15:02:46.645Z">
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组字符">
+<meta property="og:updated_time" content="2016-06-02T11:55:32.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中两个值是否相等&类型转换">
-<meta name="twitter:description" content="类型转换进行也可以参考官方版类型转换
+<meta name="twitter:description" content="类型转换也可以参考官方版类型转换
 转为String
 undefined null true false 均转换为相应的字符串：“undefined”等
 数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串
-对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组">
+对象对有toString()方法，则直接调用。否则，尝试调用valueOf()。否则返回类型错误异常。toString()方法：数组返回逗号隔开的数组字符">
   
     <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
   
@@ -105,7 +105,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>进行<br>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
+        <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>也可以参考官方版<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion" target="_blank" rel="external">类型转换</a></p>
 <h3 id="转为String"><a href="#转为String" class="headerlink" title="转为String"></a>转为String</h3><ol>
 <li>undefined null true false 均转换为相应的字符串：“undefined”等</li>
 <li>数值：+0和-0转为“0”；NaN、Infinity、-Infinity均转换为相应的字符串</li>
@@ -226,10 +226,16 @@ undefined null true false 均转换为相应的字符串：“undefined”等
 <td style="text-align:center">true</td>
 </tr>
 <tr>
-<td style="text-align:center">object object(全等)</td>
+<td style="text-align:center">object object(引用相同)</td>
 <td style="text-align:center">true</td>
 <td style="text-align:center">true</td>
 <td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">{} {} (引用不同)</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
 </tr>
 </tbody>
 </table>
@@ -238,7 +244,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cioofih7o0045qoq9kh38n0bi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cipous7h0004bwoq9oe8axbch" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -248,6 +254,15 @@ undefined null true false 均转换为相应的字符串：“undefined”等
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/05/28/JS-binding/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS-binding
+        
+      </div>
+    </a>
   
   
     <a href="/2016/05/16/HTTP/" id="article-nav-older" class="article-nav-link-wrap">
@@ -268,7 +283,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -278,7 +293,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -288,7 +303,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -297,7 +312,7 @@ undefined null true false 均转换为相应的字符串：“undefined”等
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
     </div>
   </div>
 
@@ -310,23 +325,23 @@ undefined null true false 均转换为相应的字符串：“undefined”等
       <ul>
         
           <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/JS-binding/">JS-binding</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
           </li>
         
           <li>
             <a href="/2016/05/16/HTTP/">HTTP协议</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/OOP/">面向对象基础概念</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/23/WebApp/">Web应用</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/23/flexbox/">flexbox</a>
           </li>
         
       </ul>

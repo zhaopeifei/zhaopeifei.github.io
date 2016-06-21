@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>个人网站搭建系列——选型及基本框架搭建 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="个人网站搭建初衷在搭建这个个人网站前，我已经有了一个由hexo+github page搭建的静态博客。但由于那个博客是静态页面，所以功能多有限制。一方面，我想拥有更多的功能，比如可以加载脑图，并可以通过点击脑图中的节点选择相应的文章等功能，从而真正构建更加满足我个人需求的学习中心、实验中心、分享中心。另一方面，又想以个人网站为个人的试验田，积极尝试各种有趣的技术。因此，我认为有必要自己建一个动态的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人网站搭建系列——选型及基本框架搭建">
+<meta property="og:url" content="http://yoursite.com/2016/06/10/blog-0/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="个人网站搭建初衷在搭建这个个人网站前，我已经有了一个由hexo+github page搭建的静态博客。但由于那个博客是静态页面，所以功能多有限制。一方面，我想拥有更多的功能，比如可以加载脑图，并可以通过点击脑图中的节点选择相应的文章等功能，从而真正构建更加满足我个人需求的学习中心、实验中心、分享中心。另一方面，又想以个人网站为个人的试验田，积极尝试各种有趣的技术。因此，我认为有必要自己建一个动态的">
+<meta property="og:updated_time" content="2016-06-10T13:11:24.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="个人网站搭建系列——选型及基本框架搭建">
+<meta name="twitter:description" content="个人网站搭建初衷在搭建这个个人网站前，我已经有了一个由hexo+github page搭建的静态博客。但由于那个博客是静态页面，所以功能多有限制。一方面，我想拥有更多的功能，比如可以加载脑图，并可以通过点击脑图中的节点选择相应的文章等功能，从而真正构建更加满足我个人需求的学习中心、实验中心、分享中心。另一方面，又想以个人网站为个人的试验田，积极尝试各种有趣的技术。因此，我认为有必要自己建一个动态的">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-blog-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/10/blog-0/" class="article-date">
+  <time datetime="2016-06-10T12:45:38.000Z" itemprop="datePublished">2016-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客搭建/">博客搭建</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      个人网站搭建系列——选型及基本框架搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="个人网站搭建初衷"><a href="#个人网站搭建初衷" class="headerlink" title="个人网站搭建初衷"></a>个人网站搭建初衷</h2><p>在搭建这个个人网站前，我已经有了一个由hexo+github page搭建的静态博客。但由于那个博客是静态页面，所以功能多有限制。一方面，我想拥有更多的功能，比如可以加载脑图，并可以通过点击脑图中的节点选择相应的文章等功能，从而真正构建更加满足我个人需求的学习中心、实验中心、分享中心。另一方面，又想以个人网站为个人的试验田，积极尝试各种有趣的技术。因此，我认为有必要自己建一个动态的个人网站了。</p>
+<h2 id="网站内容"><a href="#网站内容" class="headerlink" title="网站内容"></a>网站内容</h2><p>目前来说，个人网站主要分为主页、博客（附带脑图及脑图选择功能）、实验室（个人的一些demo）以及关于该网站的介绍。</p>
+<h2 id="关于网站后端的技术选型"><a href="#关于网站后端的技术选型" class="headerlink" title="关于网站后端的技术选型"></a>关于网站后端的技术选型</h2><h4 id="后端语言及服务器"><a href="#后端语言及服务器" class="headerlink" title="后端语言及服务器"></a>后端语言及服务器</h4><p>鉴于node使用的语言为JavaScript，并且node是一个单线程的基于事件驱动的异步无阻塞I/O的服务器，非常适合处理高并发，高I/O操作，所以就选择了node。还有一个很重要的原因，node很火呀！并且单线程、基于事件驱动、异步I/O等这些概念太有趣了。</p>
+<h4 id="node框架"><a href="#node框架" class="headerlink" title="node框架"></a>node框架</h4><p>由于node有许多很好用的框架，就省去了很多初级的框架搭建事件，并且可以保证稳定性，所以选择使用node框架，并选择express。</p>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>由于个人网站中，文档性质的东西偏多，使用文档型数据库很好，并且，node对mongoDB数据库的支持很好，所以就选用了mongoDB作为数据库。</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h2 id="编程规范及插件等"><a href="#编程规范及插件等" class="headerlink" title="编程规范及插件等"></a>编程规范及插件等</h2><p>编程规范采用了腾讯Alloy团队制定的<a href="http://alloyteam.github.io/CodeGuide/" target="_blank" rel="external">编程规范</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="cipous7fw0032woq9j61fqakj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客搭建/">博客搭建</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/20/sass/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SASS学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/28/JS-binding/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS-binding</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/JS-binding/">JS-binding</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/HTTP/">HTTP协议</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
