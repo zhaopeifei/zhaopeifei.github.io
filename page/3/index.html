@@ -68,6 +68,114 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-compiler-theroy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/31/compiler-theroy/" class="article-date">
+  <time datetime="2016-03-31T03:59:37.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/compiler-theroy/">编译原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h2><p>从功能上看，一个编译程序就是一个语言翻译程序。语言翻译程序把一种语言（源语言）书写的程序翻译成另一种语言（目标语言）的等价程序。典型的高级语言程序的处理过程为：将预处理的源程序进行预处理得到源程序；将源程序进行编译，获得目标汇编语言程序；将目标汇编语言程序进行汇编，得到可再装配的机器代码；将可再装配的机器代码进行装配/连接编译程序，加上可再装配目标文件，得到绝对机器代码。</p>
+<p>编译程序完成从源程序到目标程序的翻译工作，按过程可以分为：词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成6个阶段。这只是典型的编译过程，有的编译程序没有代码优化等过程。</p>
+<h2 id="运行时存储组织"><a href="#运行时存储组织" class="headerlink" title="运行时存储组织"></a>运行时存储组织</h2><p>通常，在有操作系统的情况下，目标程序将在自己的逻辑地址空间内存储和运行。编译程序所产生的目标程序的大小通常是确定的，一般存放在指定的专用存储区域，即代码区。相应的，目标程序运行过程中需要创建或访问的数据对象将存放在数据区。</p>
+<h4 id="程序运行时存储空间的布局"><a href="#程序运行时存储空间的布局" class="headerlink" title="程序运行时存储空间的布局"></a>程序运行时存储空间的布局</h4><p>一般来说，程序运行时的存储空间从逻辑上可分为“代码区”和“数据区”，但为了方便存储组织和管理，往往需要将存储空间划分为更多的逻辑区域。具体的划分方法会依赖于目标机体系结构，但一般情况下至少含有保留地址区、代码区、静态数据区及动态数据区等逻辑区域。</p>
+<ul>
+<li>保留地址去。专门为目标机体系结构和操作系统保留的内存地址区。通常，该区域不允许普通的用户程序存取，只允许操作系统的某些特权操作进行读写。</li>
+<li>代码区。静态存放编译程序产生的目标代码。</li>
+<li>静态数据区。存放全局数据，是普通程序可读可写的区域。存放程序中用到的所有常量和数据对象，以及各类全局变量和静态变量所对应的数据对象。</li>
+<li>动态数据区。运行时动态变化的堆区和栈区。</li>
+<li>共享库和分别编译模块区。静态存放共享库模块和分别编译模块的代码和全局数据。</li>
+</ul>
+<h4 id="存储分配策略"><a href="#存储分配策略" class="headerlink" title="存储分配策略"></a>存储分配策略</h4><p>数据区分为静态数据区和动态数据区（堆区、栈区），分别对应了3种规则：静态存储分配、栈式存储分配和堆式存储分配。</p>
+<ul>
+<li>静态存储分配，即在编译期间为数据对象分配存储空间。要求在编译期间就可以确定数据对象的大小，同时还可以确定数据对象的数目。如可全程访问的全局变量、静态变量、程序中的常量以及class的虚函数表等。</li>
+<li>栈式存储分配，将数据对象的运行时存储按照栈的方式来管理。栈式存储分配是动态的，也就说必须是运行的时候才能确定数据对象的分配结果。运行时每当进入一个过程/函数，就在栈顶为该过程/函数分配存放活动记录的数据空间，当一个过程/函数工作完毕返回时，它在栈顶的活动记录数据空间也随即释放。在编译过程中，过程、函数以及嵌套程序块的活动记录大小（最小值）应该是可以确定的，这是进行栈式存储分配的必要条件，如果不满足应该使用堆式存储管理。</li>
+<li>堆式存储分配，当数据对象的生产期与创建它的过程/函数的执行期无关时，例如某些数据对象可能在该过程/函数结束之后仍然长期存在，就不适合使用栈式存储分配。堆式存储分配和释放数据对象的操作是应用程序通过向操作系统提出申请实现的，因此要占用相当的时间。堆式存储空间的释放分为：不释放、显示释放（如malloc和free、new和delete）、隐式释放（垃圾回收）。</li>
+</ul>
+<h4 id="面向对象语言存储分配策略"><a href="#面向对象语言存储分配策略" class="headerlink" title="面向对象语言存储分配策略"></a>面向对象语言存储分配策略</h4><p>面向对象语言中，与存储组织关系密切的概念是类和对象。类扮演的角色是程序的静态定义，对象扮演的角色是程序运行时的动态结构。</p>
+<ul>
+<li>类是一组运行时对象的共同性质的静态描述，包含变量和方法。存储在静态存储区。</li>
+<li>对象时类的一个实例，在堆区为对象申请空间并创建对象，同时在栈区保存引用对象的存储单元。在堆区的对象包含局部变量，但并不包含方法，而是有一个指向该方法的引用。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="cipqm0ern002n6sq9fkxtux38" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C-add-add" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/30/C-add-add/" class="article-date">
+  <time datetime="2016-03-30T12:51:11.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/C-add-add/">C++</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C-程序范例"><a href="#C-程序范例" class="headerlink" title="C++程序范例"></a>C++程序范例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span> //格式化输入输出。 也可以使用C的库#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="comment">//using std::cout //命名空间，可以使下面的std::cout简写为cout</span></span><br><span class="line"><span class="comment">//using std::string //可以使std::string简写为string </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>:<span class="built_in">cout</span> &lt;&lt; <span class="string">"enter two numbers:"</span> &lt;&lt; <span class="built_in">std</span>::end1; <span class="comment">//cout处理输出，读see-out。end1具有输出换行的效果，并刷新与设备相关联的缓冲区。</span></span><br><span class="line">	<span class="keyword">int</span> v1,v2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; v1 &gt;&gt; v2; <span class="comment">//cin处理输入，读see-in</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"the sum of"</span> &lt;&lt; v1 &lt;&lt; <span class="string">"and"</span> &lt;&lt; v2</span><br><span class="line">			  &lt;&lt; <span class="string">"is"</span> &lt;&lt; v1+v2 &lt;&lt; <span class="built_in">std</span>:end1;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//返回0表示成功执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针及取址等"><a href="#指针及取址等" class="headerlink" title="指针及取址等"></a>指针及取址等</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ival = <span class="number">1024</span>; <span class="comment">//const 表示定义常量。类似c中的define</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;refVal = ival; <span class="comment">//构造一个引用指向ival，两者指向同一内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *pi=<span class="number">0</span>； <span class="comment">//指针初始化</span></span><br></pre></td></tr></table></figure>
+<h2 id="内存管理和分配"><a href="#内存管理和分配" class="headerlink" title="内存管理和分配"></a>内存管理和分配</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *<span class="keyword">sp</span> = <span class="keyword">new</span> String(<span class="string">"string"</span>);</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">sp</span>; //<span class="keyword">new</span> <span class="keyword">delete</span>配合使用</span><br><span class="line"></span><br><span class="line">//malloc和free配合使用</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="cipqm0enl00006sq942egtrmw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-C-program" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/30/C-program/" class="article-date">
@@ -102,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cipous7cb0001woq97kmcig2y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="cipqm0enw00016sq9kcniq22g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -149,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cipous7fz003awoq9ahg5zgnc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="cipqm0ess003p6sq9g70bw5hx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
@@ -216,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cipous7fa002kwoq9n7ynvz6r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="cipqm0esm003l6sq9ft9jpues" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -259,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cipous7g3003hwoq9mo1x1pjg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="cipqm0esv003t6sq9x3t7g1h0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -317,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cipous7gj0040woq95fto884z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="cipqm0evd006h6sq9t5frnnx4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -371,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cipous7fx0035woq9ic5t1bfa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="cipqm0esi003h6sq9jk41pp9j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -466,7 +574,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cipous7dr001awoq9q3hrfild" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="cipqm0eqo001v6sq9ok1v0ixg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -543,194 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cipous7e1001lwoq9spmlw0ud" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/19/JavaScript-10/" class="article-date">
-  <time datetime="2016-03-19T03:42:55.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/19/JavaScript-10/">Ajax与JSON</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON是一种数据格式，而不是一种编程语言。JSON并不从属于JavaScript，并不是只有JavaScript才可以用JSON，但JSON在JavaScript中读写结构化数据的更好的方式。JSON作为一个轻量级的数据格式，可以简化表示复杂数据结构的工作量。</p>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>JSON使用JavaScript语法的子集表示对象、数组、字符串、数值、布尔值和null，但不能表示特殊值undefined。JSON字符串必须使用双引号，而不能使用单引号。JSON的书写格式为：名称/值对,键值对之间用“，”分开。名称需要使用双引号。数组则使用“[]”包含子元素。实例如下：</p>
-<p><code>{
-    &quot;name&quot;:[&quot;liming&quot;,&quot;papa&quot;],
-    &quot;qita&quot;:&quot;不能为undefined。可以为字符串、数值、null或布尔值&quot;,
-    &quot;children&quot;:[{
-        &quot;name&quot;:&quot;laoda&quot;,
-        &quot;qita&quot;:null
-    },{
-        &quot;name&quot;:&quot;laoer&quot;,
-        &quot;qita&quot;:true
-    }]
-}</code></p>
-<h4 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h4><p>JSON字符串与原生JavaScript值的主要区别在于名称，JSON名称需要使用双引号，而JavaScript的属性则不需要。还有JavaScript支持undefined，而JSON不支持。ECMAScript5对解析JSON的行为进行规范，定义了全局对象JSON，JSON对象有两个方法：stringify()和parse()，分别将JavaScript对象序列化为JSON字符串和将JSON字符串解析为JavaScript值。<br>对于JSON.stringify()方法，除了第一个为对象外，还可以接收两个参数：过滤器（可以为数组或函数）和是否保留缩进。如果需要将对象的名字也加入JSON字符串，可以在对象中使用toJSON():functiong(){……}方法。<br>JSON.parse()方法也可以接收另一个参数，该参数是一个函数，将在每个键值对上调用。</p>
-<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax技术的核心是XMLHttpRequest对象。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多消息，意味着用户点击后，可以不必刷新页面也能取得新数据。Ajax通信与数据格式无关。</p>
-<h4 id="XMLHttpRequest对象使用方法"><a href="#XMLHttpRequest对象使用方法" class="headerlink" title="XMLHttpRequest对象使用方法"></a>XMLHttpRequest对象使用方法</h4><p>使用XHR对象要先获得，此处假设已经获得xhr。</p>
-<ol>
-<li>首要使用open()方法，它接收3个参数：请求类型、请求的URL、是否异步发送请求的布尔值，如：<code>xhr.open(&quot;get&quot;,&quot;example.php&quot;,false)</code>，open()方法只是启动一个请求准备发送。</li>
-<li>使用send()方法发送特定的请求。参数为请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null。</li>
-<li>false表示同步，所以JavaScript代码会等到服务器响应之后再继续执行。接收到相应后，响应的数据会自动填充XHR对象的属性，相关的属性有：responseText（响应主体返回的文本）、status（相应的HTTP状态）、statusText（HTTP状态的说明）。</li>
-<li>接收响应后，第一步是检查status属性，以确定响应已经成功返回。一般HTTP状态代码为200表示成功，此时responseText属性内容已经准备就绪。</li>
-</ol>
-<p>多数情况下，我们还要发送异步请求，才能让JavaScript继续执行而不必等待响应。此时，可以检测xhr对象的readyState属性，该属性表示请求/响应过程的当前活动阶段。0表示未初始化；1表示启动，调用了open()方法；2表示发送，已经调用了send()方法；3表示接收，已经接收部分响应数据。4.完成，已经接收全部数据，可以使用。只要readyState属性的改变，就会茶法一次readystatechange事件。</p>
-<h4 id="GET请求和POST请求"><a href="#GET请求和POST请求" class="headerlink" title="GET请求和POST请求"></a>GET请求和POST请求</h4><p>GET是最常见的请求类型，最常用于向服务器查询某些信息。必要时，可以将查询字符串参数值追加到URL的末尾。使用GET请求经常会发生的一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码。<br>使用频率仅次于GET的是POST请求，通常用于向服务器发送应该被保存的数据。POST请求应该把数据作为请求的主体提交，而GET请求传统上不是这样。POST请求的主体可以包含非常多的数据，而且格式不限。发送POST请求的第二步是向send()方法中传入某些数据。</p>
-<h2 id="XMLHttpRequest-2级"><a href="#XMLHttpRequest-2级" class="headerlink" title="XMLHttpRequest 2级"></a>XMLHttpRequest 2级</h2><h4 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">//方法1，先新建，再使用append方法添加</span></span><br><span class="line">data.append(<span class="string">"name"</span>,<span class="string">"liming"</span>); <span class="comment">//append()方法接收两个参数，属性和值</span></span><br><span class="line"></span><br><span class="line">data = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.form[<span class="number">0</span>]); <span class="comment">//方法2，直接传入表单，自动转换</span></span><br><span class="line"></span><br><span class="line">xhr.send(data); <span class="comment">//可以直接将formdata实例作为请求传入后台</span></span><br></pre></td></tr></table></figure>
-<h4 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h4><p>通过xhr.timeout=1000（1秒）属性设置超时。再通过xhr.ontimeout:function(){}设置超时响应事件。</p>
-<h2 id="进度事件"><a href="#进度事件" class="headerlink" title="进度事件"></a>进度事件</h2><p>W3C定义了与客户服务器通信有关的事件（这些事件目前也被其他API借鉴）。有以下6个进度事件：</p>
-<ol>
-<li>loadstart：在接收到响应数据的第一个字节时触发</li>
-<li>progress：在接收响应期间持续不断地触发。可以动态地更新HTML元素的内容。如何相应头部有Content-Length字段，可以计算接收到的数据的百分比。</li>
-<li>error：在请求发生错误时触发</li>
-<li>abort: 在因为调用abort()方法时而终止连接时触发</li>
-<li>load：在接收到完整的响应数据时触发。不管状态如何，所以要检查status属性，确定数据可用性</li>
-<li>loadend：在通信完成或者触发error、abort、load事件后触发</li>
-</ol>
-<h2 id="跨域资源共享"><a href="#跨域资源共享" class="headerlink" title="跨域资源共享"></a>跨域资源共享</h2><p>通过XHR实现Ajax通信的一个主要限制，来源于跨域安全策略。默认情况下，XHR对象只能访问与包含它的页面位于同一个域中的资源。CORS是W3C的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通，其基本思想是：利用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。除此外，还有其他跨域方法：</p>
-<ol>
-<li>图像Ping，还有一种跨域请求技术是使用&lt;\img&gt;标签。一个网页可以从任何网页中加载图像，不用担心是否跨域。</li>
-<li>JSONP。是应用JSON的一种新方法，它由两部分组成：回调函数和数据，它非常简单易用。</li>
-<li>Comet。是一种更高级的Ajax技术。Ajax是一种从页面向服务器请求数据的技术，而Comet则是一种服务器向页面推送数据的技术。由于其实时性，非常适合处理体育比赛的分数和股票报价。</li>
-<li>SSE（服务器发送事件）：围绕只读Comet交互推出的API或者模式。SSE API用于创建到服务器的单向连接，服务器可以通过连接发送任意数量的数据。</li>
-<li>Web Sockets：最令人津津乐道的新浏览器API，目标是在一个单独的持久连接上提供全双工、双向通信。它非常适合移动应用。</li>
-</ol>
-<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>为确保通过XHR访问的URL安全，通行的做法就是验证发送请求者是否有权限访问相应的资源。有以下几种方式可供选择：</p>
-<ul>
-<li>要求以SSL连接来访问可以通过XHR请求的资源</li>
-<li>要求每一次请求都要附带经过相应算法计算得到的验证码</li>
-<li>要求发送POST而不是GET请求——容易改变</li>
-<li>检查来源URL以确定是否可信——来源记录容易伪造</li>
-<li>基于cookie信息进行验证——容易伪造</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cipous7e4001nwoq9aiftnu4d" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-9" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/18/JavaScript-9/" class="article-date">
-  <time datetime="2016-03-18T12:04:02.000Z" itemprop="datePublished">2016-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/JavaScript-9/">表单脚本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="表单的基础知识"><a href="#表单的基础知识" class="headerlink" title="表单的基础知识"></a>表单的基础知识</h2><p>在HTML中，表单由&lt; form &gt;元素来表示，而在JavaScript中，表单对应的则是HTMLFormElement类型。其有以下独有的属性和方法：</p>
-<ul>
-<li>acceptCharset：服务器能够处理的字符集。</li>
-<li>action：接受请求的URL；等价于HTML中的action特性</li>
-<li>elements：表单中所有控件的集合。</li>
-<li>method：要发送的HTTP请求类型，通常是“get”或“post”</li>
-<li>reset()；将所有表单域重置为默认值</li>
-<li>submit()：提交表单</li>
-<li>target：用于发送请求和接受响应的窗口名称。</li>
-</ul>
-<p>取得from元素的方式有多种，常见的方法有document.getElementById(“form1”)和document.forms[“form1”]。</p>
-<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><p>使用&lt; input &gt;和&lt; button &gt;都可以定义提交按钮，只要将其type特性的值设置为“submit”即可，而图像按钮则通过将&lt; input &gt;的type特性值设置为“image”来定义的。因此我们只要点击相应的按钮，就可以提交表单。这样，我们既有机会验证表单数据，并决定是否允许表单提交。如下：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = document.getElementById(<span class="string">"myForm"</span>);</span><br><span class="line">EventUtil.addHandler(form,<span class="string">"submit"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//阻止默认事件</span></span><br><span class="line">	EventUtil.preventDefault(<span class="keyword">event</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">form.submit(); <span class="comment">//以这种方式提交表单是不会触发“submit”事件，因此事先要先验证表单数据</span></span><br></pre></td></tr></table></figure>
-<p>此外，还可能出现用户重复提交表单。解决问题的方法有两个：</p>
-<ol>
-<li>在第一次提交表单后就禁用提交按钮</li>
-<li>利用onsubmit事件处理程序取消后序的表单提交操作。</li>
-</ol>
-<h4 id="重置表单"><a href="#重置表单" class="headerlink" title="重置表单"></a>重置表单</h4><p>在用户单击重置按钮时，表单会被重置。使用type特性值为“reset”的&lt; input &gt;或&lt; button &gt;都可以创建重置按钮。此方法同样会触发“reset”事件，可以通过监听此时间，取消重置。此外，调用reset()方法也会触发reset事件，这与submit()方法不同。</p>
-<h4 id="表单字段"><a href="#表单字段" class="headerlink" title="表单字段"></a>表单字段</h4><p>每个表单都有elements属性，该属性是表单中素有表单元素（字段）的集合。每个表单字段在elements集合中的顺序，与它们出现在标记中的顺序相同，可以按照位置和name特性来访问它们。<br>共有的表单字段属性、方法和事件有：</p>
-<ul>
-<li>disabled：布尔值，表示当前字段是否被禁用</li>
-<li>form：指向当前字段所属表单的指针；只读。</li>
-<li>name：当前字段的名称</li>
-<li>readOnly：布尔值，表示当前字段是否只读。</li>
-<li>tabIndex：表示当前字段的切换序号。</li>
-<li>type： 当前字段的类型，如“checkbox”等</li>
-<li>value：当前字段将被提交给服务器的值。对文件字段来说，这个属性是只读的，包含着文件在计算机中的路径。</li>
-<li>focus()：将浏览器的焦点设置到此表单字段。</li>
-<li>blur()：移走焦点。仅仅是将焦点从调用这个方法的元素上面移走而已。</li>
-<li>blur事件：当前字段失去焦点是触发。</li>
-<li>focus事件：当前字段获得焦点时触发。</li>
-<li>change事件：对于&lt; input &gt;和&lt; textarea &gt;元素，在他们失去焦点且value值改变时触发；对于&lt; select &gt;元素，其选项发生改变时触发。</li>
-</ul>
-<h2 id="文本框脚本"><a href="#文本框脚本" class="headerlink" title="文本框脚本"></a>文本框脚本</h2><p>在HTML中，有两种方式来表现文本框：使用&lt; input &gt;元素的单行文本框和使用&lt; textarea &gt;元素的多行文本框。<br>必须将&lt; input &gt;元素的type属性设置为“text”才表现文本框。size指定文本框中能够显示的字符数。value可以设置文本框的初始值。而maxlength特性则用与指定文本框可以接受的最大字符数。<br>&lt; textarea &gt;始终为一个多行文本框。要指定大小可以使用rows和cols特性，分别指文本框的字符行数和列数。</p>
-<h4 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h4><p>这两种文本框都支持select()方法，这个方法用于选择文本框中的所有文本。在文本框获得焦点时，选择其所有文本，这是一种常见的做法。</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox,<span class="string">"focus"</span>,function(<span class="keyword">event</span>)&#123;</span><br><span class="line">	<span class="keyword">event</span> = EventUtil.getEvent(<span class="keyword">event</span>);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(<span class="keyword">event</span>);</span><br><span class="line"></span><br><span class="line">	target.<span class="keyword">select</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>通过textbox.value.subString(textbox.selectionStart,textbox.selectionEnd)方法来获得选中的文本。</p>
-<h4 id="过滤输入"><a href="#过滤输入" class="headerlink" title="过滤输入"></a>过滤输入</h4><p>我们经常要求用户在文本框中输入特定的数据，或者输入特定格式的数据。所以必须使用JavaScript来完成此类过滤输入的操作。<br>相应向文本框中插入字符操作的是keypress事件，可以检测其对应的字符编码，再决定如何相应。比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="regexp">/\d/</span>.test(<span class="built_in">String</span>.fromCharCode(charCode)))&#123;</span><br><span class="line">	<span class="comment">//如果不是数值，则……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="自动切换焦点"><a href="#自动切换焦点" class="headerlink" title="自动切换焦点"></a>自动切换焦点</h4><p>在用户填写完当前字段时，自动将焦点切换到下个子弹。通常，在自动切换焦点前，必须知道用户已经输入了既定长度的数据。在keyup事件后，检测当前字符串的长度是否达到了文本框的maxlength，如果达到了，则使用focus()方法，将焦点移到下一个元素。</p>
-<h4 id="HTML5约束验证API"><a href="#HTML5约束验证API" class="headerlink" title="HTML5约束验证API"></a>HTML5约束验证API</h4><p>为了在将表单提交到服务器之前验证数据，HTML5新增了一些功能。有了这些功能，即便JavaScript被禁用或者由于种种原因未能加载，也可以确保基本的验证。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--required表示必填字段，适用于&lt;input&gt;&lt;textarea&gt;&lt;select&gt;等--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--email和url是两个得到支持最多的类型--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--只能输入0到100的值，且必须是5的倍数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">main</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">step</span>=<span class="string">"5"</span> <span class="attr">name</span>=<span class="string">"count"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--pattern属性，一个正则表达式，用于匹配文本框中的值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">pattern</span>=<span class="string">"\d+"</span> <span class="attr">name</span>=<span class="string">"count"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>使用checkValidity()方法可以检测表单中某个字段是否有效。字段的值是否有效判断的一句是本节前面介绍过的那些约束。</p>
-<h2 id="选择框脚本"><a href="#选择框脚本" class="headerlink" title="选择框脚本"></a>选择框脚本</h2><p>通过&lt; select &gt;和&lt; option &gt;元素创建。还有以下属性和方法</p>
-<ul>
-<li>add(newOption,relOption)：向空间中插入新的&lt; option &gt;元素，在相关项之前</li>
-<li>multiple：布尔值，表示是否允许多选；</li>
-<li>selectedIndex：基于0的选中项的索引，如果没有选中项，值为-1</li>
-<li>size：选择框中可见的行数；</li>
-</ul>
-<h2 id="表单序列化"><a href="#表单序列化" class="headerlink" title="表单序列化"></a>表单序列化</h2><p>随着ajax的出现，表单序列化已经成为一种常见需求。在JavaScript中，可以利用表单的type属性，连同name和value属性一起实现对表单的序列化。在表单序列化过程中，一般不包含任何按钮字段，因为结果字符串很可能是通过其他方式提交的。</p>
-<h2 id="富文本编辑"><a href="#富文本编辑" class="headerlink" title="富文本编辑"></a>富文本编辑</h2><p>富文本编辑，又称WYSIWYG（所见即所得）。可以给iframe指定一个非常简单的HTML页面作为其内容来源。这个页面在iframe中可以向其他页面一样被加载。要它可以编辑，必须要将designMode设置为“on”。另一种编辑富文本内容的方式是使用名为contenteditable的特殊属性，而且这种方法更受欢迎，因为它不需要iframe、空白页和JavaScript，值需要将元素设置为contenteditable属性即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cipous7e7001swoq9q1wzd0vg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="cipqm0eq3001b6sq9q2jduw2c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -745,7 +666,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -755,7 +676,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -765,7 +686,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -775,7 +696,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -797,6 +718,14 @@
       <ul>
         
           <li>
+            <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-center/">css-块级/内联元素与居中</a>
+          </li>
+        
+          <li>
             <a href="/2016/06/20/sass/">SASS学习</a>
           </li>
         
@@ -806,14 +735,6 @@
         
           <li>
             <a href="/2016/05/28/JS-binding/">JS-binding</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/16/HTTP/">HTTP协议</a>
           </li>
         
       </ul>

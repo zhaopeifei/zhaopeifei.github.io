@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS盒模型与布局 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS盒模型盒模型CSS盒模型(CSS2.1盒模型标准)从内到外依次为：
+
+content边或内边。content边环绕着盒的width和height指出的矩形，通常取决于元素的呈现内容。
+padding边。如果padding宽为0，则与content边相同。定义了内容与border的距离。
+border边。边框，可以通过定义border显示需要的元素的边框。
+margin边。定义了border与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS盒模型与布局">
+<meta property="og:url" content="http://yoursite.com/2016/06/22/css-box/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="CSS盒模型盒模型CSS盒模型(CSS2.1盒模型标准)从内到外依次为：
+
+content边或内边。content边环绕着盒的width和height指出的矩形，通常取决于元素的呈现内容。
+padding边。如果padding宽为0，则与content边相同。定义了内容与border的距离。
+border边。边框，可以通过定义border显示需要的元素的边框。
+margin边。定义了border与">
+<meta property="og:updated_time" content="2016-06-22T08:19:46.102Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS盒模型与布局">
+<meta name="twitter:description" content="CSS盒模型盒模型CSS盒模型(CSS2.1盒模型标准)从内到外依次为：
+
+content边或内边。content边环绕着盒的width和height指出的矩形，通常取决于元素的呈现内容。
+padding边。如果padding宽为0，则与content边相同。定义了内容与border的距离。
+border边。边框，可以通过定义border显示需要的元素的边框。
+margin边。定义了border与">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css-box" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/22/css-box/" class="article-date">
+  <time datetime="2016-06-22T06:03:13.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS盒模型与布局
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h2><h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h4><p>CSS盒模型(<a href="http://www.ayqy.net/doc/css2-1/box.html" target="_blank" rel="external">CSS2.1盒模型标准</a>)从内到外依次为：</p>
+<ol>
+<li>content边或内边。content边环绕着盒的width和height指出的矩形，通常取决于元素的呈现内容。</li>
+<li>padding边。如果padding宽为0，则与content边相同。定义了内容与border的距离。</li>
+<li>border边。边框，可以通过定义border显示需要的元素的边框。</li>
+<li>margin边。定义了border与包含块的距离。margin的背景总是透明的，所以不能通过本元素的background指定背景样式。</li>
+</ol>
+<h4 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h4><p>box-sizing：content-box|border-box|inherit<br>在现在的浏览器中，widht和height默认指的是content的宽和高。设为border-box时，动态改变border和padding宽度，就不会撑破包含块了。</p>
+<h4 id="margin赋值"><a href="#margin赋值" class="headerlink" title="margin赋值"></a>margin赋值</h4><p>margin: <margin-width>{1,4}|inherit</margin-width></p>
+<ul>
+<li>初始值为0，不使用继承，但可以通过继承关键字继承。可以为负值。</li>
+<li>margin-top、margin-bottom对不可替换的内联元素无效。</li>
+<li>margin-width可能为length（如px、em、rem、vm等）、百分比（参照包含块的宽度）、auto。</li>
+<li>margin的值为一个时，四个边都使用这一个值。为两个值时，第一个指定上下，第二个左右。四个值，上右下左。</li>
+<li>margin合并：正常流中两个或多个相邻的竖直方向上的margin会被合并。根元素的margin不合并，浮动元素绝对定位的元素不合并。</li>
+</ul>
+<h4 id="padding赋值"><a href="#padding赋值" class="headerlink" title="padding赋值"></a>padding赋值</h4><p>padding: <padding-width>{1,4}|inherit<br>与margin不同在于，padding-width不能为auto，padding不会合并。</padding-width></p>
+<h4 id="border赋值"><a href="#border赋值" class="headerlink" title="border赋值"></a>border赋值</h4><p>因为对边框的设计的需求，border属性也越来越多。</p>
+<ul>
+<li>border-width：<border-width>{1,4} | inherit</border-width></li>
+<li>border-color: <color>|transparent|inherit。在css3中，可以设置多种颜色，一种颜色对应一个像素。</color></li>
+<li>border-style: <border-style> | inherit。如none、hidden、dotted、solid等</border-style></li>
+<li>border-image: 可以使用图片，比较复杂，参考标准。</li>
+<li>border-radius: none|<length>{1,4}[/<length>{1,4}]?</length></length></li>
+</ul>
+<h2 id="块级元素与内联级元素"><a href="#块级元素与内联级元素" class="headerlink" title="块级元素与内联级元素"></a>块级元素与内联级元素</h2><h4 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h4><p>p元素、div元素等许多html元素都是块级元素。diaplay设为block、list-item、table可以是一个元素变为块级的。块盒是参与块格式化上下文的盒，每个块级元素生成一个主块级盒，用来包含后代盒和生产的内容。</p>
+<h4 id="内联级元素"><a href="#内联级元素" class="headerlink" title="内联级元素"></a>内联级元素</h4><p>内联级元素是源文档中那些不会为其内容形成新块的元素，内容分布于多行，如内联图片等。display设为inline、inline-block、inline-table，可以使一个元素变成内联级。</p>
+<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p>决定元素的布局的属性主要有：position(staic|relative|absoluted|fixed|inherit，不继承)、float(left|right|none|inherit)。</p>
+<h4 id="常规流"><a href="#常规流" class="headerlink" title="常规流"></a>常规流</h4><p>默认情况下，或者position为static|relative时，元素属于常规流。<br>常规流中的盒属于一个格式化上下文，可能是块或内联。在一个格式化上下文中，盒在竖直方向上一个接一个放置，同一个块格式化上下文中的相邻块级盒之间的竖直margin会合并。浮动、绝对定位元素、非块盒的块容器（inline-block等）和overflow不为visible的块盒会为他们的内容建立一个新的块格式化上下文。内联格式化上下文中，盒是一个接一个水平放置的。<br>相对定位：和根据常规流摆放好后，进行相对原位置的移动。如top:1em，则向下移动1em。</p>
+<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><p>将float设为left或right时，盒子会相对当前位置向左浮动或者向右浮动，直到其外边挨到包含块或者另一个浮动盒的外边。如果没有足够的水平空间来浮动，它会向下移动，直到空间合适。浮动元素会推开内联内容，如果希望浮动元素不浮于某个块级元素之上，该元素可以使用clear(left|right|both)。</p>
+<h4 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h4><p>当position设为absolute或者fixed时，元素脱离常规流，即不影响后面兄弟的布局，不进行margin合并。absolute是相对包含块的绝对定位，而fixed是相对视口的绝对定位。<br>同时使用绝对定位来处理网页的导航栏、页脚等。在处理导航栏时，经常希望导航栏一致在视口顶部，而主要内容从导航栏处往下排列。为了使导航栏为绝对定位，并且占据布局空间，可以使用伪元素::before、::after生产与导航栏高度相同的块，这样就更好的实现了既达到绝对定位的效果，又使其应用兄弟节点。</p>
+<h2 id="堆叠"><a href="#堆叠" class="headerlink" title="堆叠"></a>堆叠</h2><p>可以使用z-index来指定堆叠顺序，其数越大，离用户越近。<br>绘制顺序（<a href="http://www.ayqy.net/doc/css2-1/zindex.html" target="_blank" rel="external">详细</a>）大致为：</p>
+<ol>
+<li>根元素</li>
+<li>块级元素的背景（先颜色后图片）</li>
+<li>具有负z-index的后代形成的堆叠上下文</li>
+<li>流内非定位的块级后代</li>
+<li>所有非定位的浮动后代</li>
+<li>内联元素</li>
+<li>所有定位具有z-index：auto或0的后代</li>
+<li>定位大于等于1的后代形成的堆叠上下文。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="cipqm0es2002y6sq92s0234yd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/22/css-center/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">css-块级/内联元素与居中</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-center/">css-块级/内联元素与居中</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/JS-binding/">JS-binding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

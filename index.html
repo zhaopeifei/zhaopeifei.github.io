@@ -68,6 +68,132 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css-box" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/22/css-box/" class="article-date">
+  <time datetime="2016-06-22T06:03:13.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h2><h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h4><p>CSS盒模型(<a href="http://www.ayqy.net/doc/css2-1/box.html" target="_blank" rel="external">CSS2.1盒模型标准</a>)从内到外依次为：</p>
+<ol>
+<li>content边或内边。content边环绕着盒的width和height指出的矩形，通常取决于元素的呈现内容。</li>
+<li>padding边。如果padding宽为0，则与content边相同。定义了内容与border的距离。</li>
+<li>border边。边框，可以通过定义border显示需要的元素的边框。</li>
+<li>margin边。定义了border与包含块的距离。margin的背景总是透明的，所以不能通过本元素的background指定背景样式。</li>
+</ol>
+<h4 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h4><p>box-sizing：content-box|border-box|inherit<br>在现在的浏览器中，widht和height默认指的是content的宽和高。设为border-box时，动态改变border和padding宽度，就不会撑破包含块了。</p>
+<h4 id="margin赋值"><a href="#margin赋值" class="headerlink" title="margin赋值"></a>margin赋值</h4><p>margin: <margin-width>{1,4}|inherit</margin-width></p>
+<ul>
+<li>初始值为0，不使用继承，但可以通过继承关键字继承。可以为负值。</li>
+<li>margin-top、margin-bottom对不可替换的内联元素无效。</li>
+<li>margin-width可能为length（如px、em、rem、vm等）、百分比（参照包含块的宽度）、auto。</li>
+<li>margin的值为一个时，四个边都使用这一个值。为两个值时，第一个指定上下，第二个左右。四个值，上右下左。</li>
+<li>margin合并：正常流中两个或多个相邻的竖直方向上的margin会被合并。根元素的margin不合并，浮动元素绝对定位的元素不合并。</li>
+</ul>
+<h4 id="padding赋值"><a href="#padding赋值" class="headerlink" title="padding赋值"></a>padding赋值</h4><p>padding: <padding-width>{1,4}|inherit<br>与margin不同在于，padding-width不能为auto，padding不会合并。</padding-width></p>
+<h4 id="border赋值"><a href="#border赋值" class="headerlink" title="border赋值"></a>border赋值</h4><p>因为对边框的设计的需求，border属性也越来越多。</p>
+<ul>
+<li>border-width：<border-width>{1,4} | inherit</border-width></li>
+<li>border-color: <color>|transparent|inherit。在css3中，可以设置多种颜色，一种颜色对应一个像素。</color></li>
+<li>border-style: <border-style> | inherit。如none、hidden、dotted、solid等</border-style></li>
+<li>border-image: 可以使用图片，比较复杂，参考标准。</li>
+<li>border-radius: none|<length>{1,4}[/<length>{1,4}]?</length></length></li>
+</ul>
+<h2 id="块级元素与内联级元素"><a href="#块级元素与内联级元素" class="headerlink" title="块级元素与内联级元素"></a>块级元素与内联级元素</h2><h4 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h4><p>p元素、div元素等许多html元素都是块级元素。diaplay设为block、list-item、table可以是一个元素变为块级的。块盒是参与块格式化上下文的盒，每个块级元素生成一个主块级盒，用来包含后代盒和生产的内容。</p>
+<h4 id="内联级元素"><a href="#内联级元素" class="headerlink" title="内联级元素"></a>内联级元素</h4><p>内联级元素是源文档中那些不会为其内容形成新块的元素，内容分布于多行，如内联图片等。display设为inline、inline-block、inline-table，可以使一个元素变成内联级。</p>
+<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p>决定元素的布局的属性主要有：position(staic|relative|absoluted|fixed|inherit，不继承)、float(left|right|none|inherit)。</p>
+<h4 id="常规流"><a href="#常规流" class="headerlink" title="常规流"></a>常规流</h4><p>默认情况下，或者position为static|relative时，元素属于常规流。<br>常规流中的盒属于一个格式化上下文，可能是块或内联。在一个格式化上下文中，盒在竖直方向上一个接一个放置，同一个块格式化上下文中的相邻块级盒之间的竖直margin会合并。浮动、绝对定位元素、非块盒的块容器（inline-block等）和overflow不为visible的块盒会为他们的内容建立一个新的块格式化上下文。内联格式化上下文中，盒是一个接一个水平放置的。<br>相对定位：和根据常规流摆放好后，进行相对原位置的移动。如top:1em，则向下移动1em。</p>
+<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><p>将float设为left或right时，盒子会相对当前位置向左浮动或者向右浮动，直到其外边挨到包含块或者另一个浮动盒的外边。如果没有足够的水平空间来浮动，它会向下移动，直到空间合适。浮动元素会推开内联内容，如果希望浮动元素不浮于某个块级元素之上，该元素可以使用clear(left|right|both)。</p>
+<h4 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h4><p>当position设为absolute或者fixed时，元素脱离常规流，即不影响后面兄弟的布局，不进行margin合并。absolute是相对包含块的绝对定位，而fixed是相对视口的绝对定位。<br>同时使用绝对定位来处理网页的导航栏、页脚等。在处理导航栏时，经常希望导航栏一致在视口顶部，而主要内容从导航栏处往下排列。为了使导航栏为绝对定位，并且占据布局空间，可以使用伪元素::before、::after生产与导航栏高度相同的块，这样就更好的实现了既达到绝对定位的效果，又使其应用兄弟节点。</p>
+<h2 id="堆叠"><a href="#堆叠" class="headerlink" title="堆叠"></a>堆叠</h2><p>可以使用z-index来指定堆叠顺序，其数越大，离用户越近。<br>绘制顺序（<a href="http://www.ayqy.net/doc/css2-1/zindex.html" target="_blank" rel="external">详细</a>）大致为：</p>
+<ol>
+<li>根元素</li>
+<li>块级元素的背景（先颜色后图片）</li>
+<li>具有负z-index的后代形成的堆叠上下文</li>
+<li>流内非定位的块级后代</li>
+<li>所有非定位的浮动后代</li>
+<li>内联元素</li>
+<li>所有定位具有z-index：auto或0的后代</li>
+<li>定位大于等于1的后代形成的堆叠上下文。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="cipqm0es2002y6sq92s0234yd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css-center" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/22/css-center/" class="article-date">
+  <time datetime="2016-06-22T03:12:56.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/css-center/">css-块级/内联元素与居中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="内联级元素与块级元素"><a href="#内联级元素与块级元素" class="headerlink" title="内联级元素与块级元素"></a>内联级元素与块级元素</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/22/css-center/" data-id="cipqm0es800356sq98bkpmls7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-sass" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/06/20/sass/" class="article-date">
@@ -118,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="cipous7ge003swoq93rtjpvak" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="cipqm0evf006k6sq9hmrpon36" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -166,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="cipous7fw0032woq9j61fqakj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="cipqm0esf003d6sq981aqwf7v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客搭建/">博客搭建</a></li></ul>
@@ -204,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="cipous7dg0010woq9j2vrxfjq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="cipqm0epf000w6sq9zvops7yl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -379,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cipous7h0004bwoq9oe8axbch" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cipqm0ev8006e6sq92pcactql" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -550,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cipous7dd000uwoq9we1i1hb0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cipqm0epi000z6sq9siod42yh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -622,7 +748,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cipous7em0022woq9mn2negkf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cipqm0esc00396sq9zumtc8l2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
@@ -678,7 +804,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cipous7gb003pwoq98pnlhoqb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cipqm0erq002q6sq99tu8gxym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -735,7 +861,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cipous7g7003lwoq9odpek2uq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cipqm0et0003x6sq9bynvea5s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
@@ -747,136 +873,10 @@
 
 
   
-    <article id="post-react-learn" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/17/react-learn/" class="article-date">
-  <time datetime="2016-04-17T13:13:55.000Z" itemprop="datePublished">2016-04-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端框架/">前端框架</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/17/react-learn/">react初步认识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>React起源于Facebook的内部项目，其设计思想及其独特，属于革命性创新，性能出众，代码逻辑简单。其主要优点有：</p>
-<ol>
-<li>虚拟DOM，在必要的时候才将组件渲染到真正的DOM上，减少频繁的DOM操作造成的性能问题。</li>
-<li>组件化，React都是关于构建可复用的组件。事实上，通过React唯一要做的事情就是构建组件。得益于其良好的封装性，组件使代码复用、测试和关注分离更加简单。</li>
-</ol>
-<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Hello React&lt;/title&gt;
-    &lt;script src=&quot;http://fb.me/react-0.13.0.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;http://fb.me/JSXTransformer-0.13.0.js&quot;&gt;&lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
-    &lt;script type=&quot;text/jsx&quot;&gt;
-      var HelloWorld = React.createClass({
-          render: function() {
-            return (
-                  &lt;p&gt;
-                    Hello, &lt;input type=&quot;text&quot; placeholder=&quot;Your name here&quot; /&gt;!
-                    It is {this.props.date.toTimeString()}
-                  &lt;/p&gt;
-            );
-          }
-        });
-
-        setInterval(function() {
-              React.render(
-                &lt;HelloWorld date={new Date()} /&gt;,
-                document.getElementById(&apos;example&apos;)
-              );
-        }, 500);
-
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h2 id="官方例子"><a href="#官方例子" class="headerlink" title="官方例子"></a>官方例子</h2><p>React提供了一个官方例子<a href="http://reactjs.cn/react/blog/2013/11/05/thinking-in-react.html" target="_blank" rel="external">英文</a><a href="http://reactjs.cn/react/docs/thinking-in-react.html" target="_blank" rel="external">中文</a>，从如何拆分组件树、如何利用React创建静态版本、如何识别最小的state、如何确认state的声明周期到添加方向数据流，较完整的展现了react的应用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cipous7hb004jwoq9vc6se4tp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ECMAScript6-async" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/15/ECMAScript6-async/" class="article-date">
-  <time datetime="2016-04-14T19:25:50.000Z" itemprop="datePublished">2016-04-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/15/ECMAScript6-async/">ECMAScript6中的异步操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h2><p>Generator函数是ES6提供的一种异步编程解决方案，我们可以将Generator函数理解成一个状态机，执行这个函数会返回一个遍历器对象。Generator函数内部使用yield语句，没执行一次函数的next方法，执行到下一个yield，直到函数结束，从而达到异步调用函数的目的。此外，yield本身没有返回值，next方法可以带一个参数，该参数将被当做上一个yield语句的返回值，实现在generator函数运行的不同阶段，从外部向内部注入不同的值，从而调整函数行为。</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般与for of结合的使用方法，不需要使用next方法</span></span><br><span class="line"><span class="built_in">var</span> arr = [<span class="number">1</span>, [[<span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]];</span><br><span class="line"><span class="built_in">var</span> flat = <span class="function"><span class="keyword">function</span>* (<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">var</span> length = a.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="built_in">var</span> item = a[i];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> item !== <span class="string">'number'</span>) &#123;</span><br><span class="line">      <span class="keyword">yield</span>* flat(item);  <span class="comment">//在generator函数中调用另一个generator函数，要使用yield*</span></span><br><span class="line">    &#125; <span class="decorator"><span class="keyword">else</span></span> &#123;</span><br><span class="line">      <span class="keyword">yield</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">var</span> f <span class="keyword">of</span> flat(arr)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(f);</span><br><span class="line">&#125; <span class="comment">//1,2,3,4,5,6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通过next函数注入不同的值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">var</span> y = <span class="number">2</span> * (<span class="keyword">yield</span> (x + <span class="number">1</span>));</span><br><span class="line">  <span class="built_in">var</span> z = <span class="keyword">yield</span> (y / <span class="number">3</span>);</span><br><span class="line">  <span class="keyword">return</span> (x + y + z);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> b = foo(<span class="number">5</span>);</span><br><span class="line">b.next() <span class="comment">// &#123; value:6, done:false &#125;</span></span><br><span class="line">b.next(<span class="number">12</span>) <span class="comment">// &#123; value:8, done:false &#125;</span></span><br><span class="line">b.next(<span class="number">13</span>) <span class="comment">// &#123; value:42, done:true &#125; 5+24+13=42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//回调函数的改写</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">loadUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  showLoadingScreen();</span><br><span class="line">  <span class="keyword">yield</span> loadUIDataAsynchronously();</span><br><span class="line">  hideLoadingScreen();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> loader = loadUI();</span><br><span class="line"></span><br><span class="line">loader.next();<span class="comment">// 加载UI</span></span><br><span class="line">loader.next(); <span class="comment">//// 卸载UI</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//部署Ajax操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">var</span> result = <span class="keyword">yield</span> request(<span class="string">"http://some.url"</span>);</span><br><span class="line">  <span class="built_in">var</span> resp = <span class="built_in">JSON</span>.parse(result);</span><br><span class="line">    <span class="built_in">console</span>.log(resp.value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  makeAjaxCall(<span class="built_in">url</span>, <span class="function"><span class="keyword">function</span>(<span class="params">response</span>)</span>&#123;</span><br><span class="line">    it.next(response); <span class="comment">//将response作为值传入</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> it = main();</span><br><span class="line">it.next(); <span class="comment">//执行request操作</span></span><br></pre></td></tr></table></figure>
-<h2 id="Promise对象"><a href="#Promise对象" class="headerlink" title="Promise对象"></a>Promise对象</h2><p>Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。Promise独享的状态（pending、resolved、rejected）不受外界影响，只有异步操作的结果可以决定当前是哪一种状态。一旦状态发生改变，就不再变。如果某些事件不断反复发生，一般阿狸说，使用stream模式比部署Promise更好。</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基本用法</span></span><br><span class="line"><span class="built_in">var</span> promise = <span class="keyword">new</span> Promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; <span class="comment">//接收一个函数，函数有两个参数</span></span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="decorator"><span class="keyword">else</span></span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123; <span class="comment">//接收两个函数，分别在成功和失败的时候执行</span></span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//异步加载图片</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImageAsync</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> image = <span class="keyword">new</span> Image();</span><br><span class="line"></span><br><span class="line">    image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      resolve(image);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    image.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Could not load image at '</span> + <span class="built_in">url</span>));</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    image.src = <span class="built_in">url</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//generator和promise的结合</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFoo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">'foo'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> g = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="decorator"><span class="keyword">try</span></span> &#123;</span><br><span class="line">    <span class="built_in">var</span> foo = <span class="keyword">yield</span> getFoo();</span><br><span class="line">    <span class="built_in">console</span>.log(foo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span> (<span class="params">generator</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">var</span> it = generator();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (result.done) <span class="keyword">return</span> result.value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.value.then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> go(it.next(value));</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> go(it.throw(error));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  go(it.next());</span><br><span class="line">&#125;</span><br><span class="line">run(g);</span><br></pre></td></tr></table></figure>
-<h2 id="异步操作和Async函数"><a href="#异步操作和Async函数" class="headerlink" title="异步操作和Async函数"></a>异步操作和Async函数</h2><p>ES6之前，异步编程的方法，大概有：回调函数、事件监听、发布/订阅、Promise对象，ES6则应用generator函数是异步编程进入全新的阶段，ES7的Async函数更是提出了异步编程的终极解决方案。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文件</span></span><br><span class="line"><span class="comment">//1.回调函数</span></span><br><span class="line">fs.readFile(<span class="string">'/etc/passwd'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.Promise</span></span><br><span class="line">fs.readFile(fileA, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  fs.readFile(fileB, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;); <span class="comment">//读入A后，读取B，则会出现多重嵌套</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3.协程</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">asnycJob</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...其他代码</span></span><br><span class="line">  <span class="keyword">var</span> f = <span class="keyword">yield</span> readFile(fileA);</span><br><span class="line">  <span class="comment">// ...其他代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.generator</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> readFile = <span class="function"><span class="keyword">function</span> (<span class="params">fileName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    fs.readFile(fileName, <span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (error) reject(error);</span><br><span class="line">      resolve(data);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/fstab'</span>);</span><br><span class="line">  <span class="keyword">var</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/shells'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//5.Async</span></span><br><span class="line"><span class="keyword">var</span> asyncReadFile = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> f1 = <span class="keyword">await</span> readFile(<span class="string">'/etc/fstab'</span>); <span class="comment">//await表示紧跟后面的表达式需要等待结果</span></span><br><span class="line">  <span class="keyword">var</span> f2 = <span class="keyword">await</span> readFile(<span class="string">'/etc/shells'</span>); <span class="comment">//返回Promise对象，如果不是，则转为promise</span></span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cipous7cn0007woq9mvc18uiz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -886,7 +886,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -896,7 +896,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -906,7 +906,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -928,6 +928,14 @@
       <ul>
         
           <li>
+            <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-center/">css-块级/内联元素与居中</a>
+          </li>
+        
+          <li>
             <a href="/2016/06/20/sass/">SASS学习</a>
           </li>
         
@@ -937,14 +945,6 @@
         
           <li>
             <a href="/2016/05/28/JS-binding/">JS-binding</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/26/valueIsEqual/">JS中两个值是否相等&amp;类型转换</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/16/HTTP/">HTTP协议</a>
           </li>
         
       </ul>
