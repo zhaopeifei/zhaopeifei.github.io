@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>CSS-3 | 步步为营，勇往直前</title>
+  <title>CSS3主要内容 | 步步为营，勇往直前</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。
 CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS-3">
+<meta property="og:title" content="CSS3主要内容">
 <meta property="og:url" content="http://yoursite.com/2016/03/16/CSS-3/index.html">
 <meta property="og:site_name" content="步步为营，勇往直前">
 <meta property="og:description" content="CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。
 CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的">
-<meta property="og:updated_time" content="2016-04-25T13:40:33.581Z">
+<meta property="og:updated_time" content="2016-06-23T11:01:43.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS-3">
+<meta name="twitter:title" content="CSS3主要内容">
 <meta name="twitter:description" content="CSS指层叠样式表（cascading style sheets），样式定义如何显示HTML元素。
 CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML元素，样式通常保存在外部的.css文件中。通过仅仅编辑一个简单的CSS文档，外部样式表就可以同时改变站点中所有页面中的布局和外观。样式表允许以多种方式规定样式信息。样式可以规定在单个的HTML元素中，在HTML页的头元素中，或在外部的">
   
@@ -77,7 +77,7 @@ CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML�
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
   </div>
 
   </div>
@@ -88,7 +88,7 @@ CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML�
         
   
     <h1 class="article-title" itemprop="name">
-      CSS-3
+      CSS3主要内容
     </h1>
   
 
@@ -105,17 +105,17 @@ CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML�
 <li>浏览器缺省设置</li>
 </ol>
 <h2 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h2><p>CSS规则有两个主要部分构成：选择器和声明。每条声明由一个属性和一个值组成。与XHTML不同，css对大小写不敏感。存在其一例外：如果涉及到与HTML文档一起工作的话，class和id名称对大小写是敏感的。例如<br><code>h1 {color:red; font-size:14px; }</code></p>
-<h2 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
-<li>backgroud-color: 设置背景颜色，有时简写为bgcolor，如body元素等。</li>
-<li>backgroud-image：设置背景图片。</li>
-<li>backgroud-repeat：设置背景的重复</li>
-<li>backgroud-position：改变图像在背景中的位置。</li>
-</ul>
-<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:blue;<span class="attribute">font-family</span>:sans-serif;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;这个元素的内容会引用上面的样式&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,h4&#123;<span class="attribute">color</span>:bule;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;以上所有元素内容都会应用样式&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[href][title=<span class="string">"123"</span>]&#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> title=<span class="string">"123"</span> href=<span class="string">"http://w3school.com.cn"</span>&gt; 可以应用样式 &lt;/a&gt;</span><br><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"http://w3school.com.cn"</span>&gt;不可以应用样式&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.important</span> &#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> class=<span class="string">"important"</span>&gt;还可以在.前面加元素，则既是相应元素又是相应类则满足&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#intro&#123;<span class="attribute">font-weight</span>:bold;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> id=<span class="string">"intro"</span>&gt;应用样式&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 em&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>只要有<span class="tag">&lt;<span class="name">em</span>&gt;</span>这个后代元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，后代元素就应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">h1&gt;strong&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>必须<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>是子元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，而不能是后代元素。不应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS文本及字体"><a href="#CSS文本及字体" class="headerlink" title="CSS文本及字体"></a>CSS文本及字体</h2><h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
 <li>text-align：center 文本行相互之间的对齐方式</li>
 <li>text-indent：5em 文本缩进</li>
 <li>word-spacing：-0.5em 单词间隔</li>
-<li>letter——spacing：5px 字母间隔</li>
+<li>letter-spacing：5px 字母间隔</li>
 <li>text-transform：uppercase 处理文本的大小写</li>
 </ul>
 <h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><ul>
@@ -123,19 +123,33 @@ CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML�
 <li>font-size：14px 字体大小</li>
 <li>font-style：italic 规定斜体</li>
 </ul>
-<h2 id="CSS框模型及定位"><a href="#CSS框模型及定位" class="headerlink" title="CSS框模型及定位"></a>CSS框模型及定位</h2><h4 id="框模型"><a href="#框模型" class="headerlink" title="框模型"></a>框模型</h4><p>CSS框模型从外向里分别是：border（边框）、margin（外边距）|padding（内边距）、element（height、width）。</p>
+<h2 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h2><h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h4><p>CSS框模型从外向里分别是：外边、margin、border、padding、内边、content。</p>
 <ul>
-<li>内边距有四个单独属性，分别设置上下左右内边距：padding-top padding-bottom padding-left padding-right</li>
-<li>外边距也有相应的四个属性，分别设置上下左右外边距：略</li>
-<li>边框有3个方面：样式、宽度和颜色。样式：border-style/border-top-style等四个；宽度：border-width/border-top-width等四个；颜色：border-color/border-top-color等四个。</li>
+<li>内边距可分为top、right、bottom、left四个，border和margin也可以这么分。</li>
+<li>边框有三个重要部分：style、width和color。但是在CSS3中添加了很多新属性。</li>
+<li>外边距透明，即本元素的背景不能作用域外边距，另外margin-left和margin-right都设为auto可以实现水平居中。</li>
 </ul>
-<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>CSS定位属性允许对元素进行定位。元素定位有相对定位、绝对定位和浮动等三种。一下分别为相对定位、绝对定位和浮动定位。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">box_relative</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box_absolute</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:absolute;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box</span>&#123;</span><br><span class="line">	<span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:blue;<span class="attribute">font-family</span>:sans-serif;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;这个元素的内容会引用上面的样式&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,h4&#123;<span class="attribute">color</span>:bule;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;以上所有元素内容都会应用样式&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[href][title=<span class="string">"123"</span>]&#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> title=<span class="string">"123"</span> href=<span class="string">"http://w3school.com.cn"</span>&gt; 可以应用样式 &lt;/a&gt;</span><br><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"http://w3school.com.cn"</span>&gt;不可以应用样式&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.important</span> &#123;<span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> class=<span class="string">"important"</span>&gt;还可以在.前面加元素，则既是相应元素又是相应类则满足&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#intro&#123;<span class="attribute">font-weight</span>:bold;&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> id=<span class="string">"intro"</span>&gt;应用样式&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h1 em&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>只要有<span class="tag">&lt;<span class="name">em</span>&gt;</span>这个后代元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，后代元素就应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">h1&gt;strong&#123;color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>必须<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>是子元素<span class="tag">&lt;/<span class="name">em</span>&gt;</span>，而不能是后代元素。不应用样式<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>backgroud-color: transparent||<color> 格式：rgb rgba hls hlsa #ffffff red</color></li>
+<li>backgroud-image：none||<url></url></li>
+<li>backgroud-repeat：repeat||repeat-x||repeat-y||no-repeat</li>
+<li>backgroud-position：改变图像在背景中的位置。</li>
+<li><p>background-attachment：scroll||fixed</p>
+</li>
+<li><p>background-origin: padding||border||content，背景图片定位的起点</p>
+</li>
+<li>background-clip: border-box||padding-box||content-box，背景图像的裁剪区域</li>
+<li>background-size：auto||<length>||cover||contain，指定背景图片的尺寸</length></li>
+<li>background-break，指定内联元素的背景图片进行平铺时的循环方式</li>
+</ul>
+<h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><ul>
+<li>border-width：<border-width>{1,4} | inherit</border-width></li>
+<li>border-color: <color>|transparent|inherit。在css3中，可以设置多种颜色，一种颜色对应一个像素。</color></li>
+<li>border-style: <border-style> | inherit。如none、hidden、dotted、solid等</border-style></li>
+<li>border-image: 可以使用图片，比较复杂，参考标准。</li>
+<li>border-radius: none|<length>{1,4}[/<length>{1,4}]?</length></length></li>
+</ul>
+<h4 id="盒子阴影"><a href="#盒子阴影" class="headerlink" title="盒子阴影"></a>盒子阴影</h4><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>CSS定位属性允许对元素进行定位。元素定位有相对定位、绝对定位和浮动等三种。一下分别为相对定位、绝对定位和浮动定位。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">box_relative</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box_absolute</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:absolute;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">box</span>&#123;</span><br><span class="line">	<span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="CSS-Override"><a href="#CSS-Override" class="headerlink" title="CSS Override"></a>CSS Override</h2><h4 id="两个类"><a href="#两个类" class="headerlink" title="两个类"></a>两个类</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">  <span class="selector-class">.pink-text</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: pink;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.blue-text</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"blue-text pink-text"</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>与h1中的class的顺序无关，而与样式表中两个类的顺序有关，后者会重写前者的color属性。故上面字体的颜色是blue</p>
 <h4 id="ID与class"><a href="#ID与class" class="headerlink" title="ID与class"></a>ID与class</h4><p>ID的优先级要高于class</p>
@@ -145,10 +159,10 @@ CSS简介CSS样式表极大地提高了工作效率。它定义如何显示HTML�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cipqw0u3v000ldoq90dgqb5rv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cipsfjow90001u8q94iuzpvi5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
 
     </footer>
   </div>
