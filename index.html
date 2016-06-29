@@ -68,6 +68,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js-scope" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/28/js-scope/" class="article-date">
+  <time datetime="2016-06-28T08:12:50.000Z" itemprop="datePublished">2016-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/28/js-scope/">作用域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域的概念"><a href="#作用域的概念" class="headerlink" title="作用域的概念"></a>作用域的概念</h2><p>存储变量中的值，并能对其进行访问和修改，是几乎所有的编程语言最基本的功能之一。而正是这种功能是程序具有了状态。那些随之而来就有很多问题了，这些变量如何存储，程序如何访问和修改。如此一来，就需要一系列的规则来指明如何存储变量，如何更方便的寻找访问变量。我们可以将这一系列的规则称为作用域。然而，在我看来，我们通常所说的一个个作用域，可以认为是包含了变量的存储访问等一系列规则的变量的集合。</p>
+<h4 id="JavaScript编译原理"><a href="#JavaScript编译原理" class="headerlink" title="JavaScript编译原理"></a>JavaScript编译原理</h4><p>传统的编译语言的流程中，一般可以分为三个步骤：分词/词法分析（分解为词法单元）、解析/语法分析（构建抽象语法树）、代码生成（生成可执行代码）。与传统的编译语言不同，JavaScript的编译过程不发生在构建之前，而是通常发生在代码执行前的几微妙时间内（也可称为预编译）。故，JavaScript常称为动态解释性语言。</p>
+<h4 id="JavaScript的处理"><a href="#JavaScript的处理" class="headerlink" title="JavaScript的处理"></a>JavaScript的处理</h4><p>在处理过程中，涉及到的有引擎、编译器和作用域。</p>
+<ul>
+<li>引擎：负责整个JS程序的编译和执行过程</li>
+<li>编译器：负责语法分析及代码生成等dirty work</li>
+<li>作用域：负责收集和维护变量组成的一系列查询（值查询RHS、位置查询LHS），并通过一套严格的规则，确定当前执行的代码对这些变量的访问权限。</li>
+</ul>
+<h4 id="JavaScript处理实例"><a href="#JavaScript处理实例" class="headerlink" title="JavaScript处理实例"></a>JavaScript处理实例</h4><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(a)</span>  <span class="comment">&#123;</span><br><span class="line">    console.log( a ); // 2</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">foo</span><span class="params">(2)</span>;</span></span><br></pre></td></tr></table></figure>
+<p>在上述代码中，编译器先将函数foo的定义放入作用域中；在执行foo(2)时，通过RHS查询foo变量的值，并执行；然后，对参数a进行LHS查询其位置，并将2赋值给a；通过RHS查询console变量，及其子变量log；通过RHS查询a的值，并运行。</p>
+<ul>
+<li>在JS执行前会先进行预编译，此时会提取var定义的变量（不进行赋值操作，故都为undefined）和函数声明，将其加到作用域。然后进行赋值操作、函数执行、条件判断等。</li>
+<li>LHS为左查询，获取其位置，进行赋值操作。RHS为右查询，获取变量的值。</li>
+<li>在作用域中，定义一个变量var a时，会先在当前作用域中查找是否存在，存在则忽略，否则新建。</li>
+<li>在进行LHS时，如果在全局作用域中仍然无法找到：“严格模式”下，抛出ReferenceError，“非严格模式”下，在全局作用域中新建这个全局变量。</li>
+<li>在进行RHS时，当前作用域中找不到，则去上一层作用域找，直到在全局作用域中也找不到时，抛出ReferenceError。</li>
+<li>ReferenceError同作用域判断失败有关。如果查到到相应的值，但是在其值上进行了不合理的操作，如引用null类型的值的属性，会抛出TypeError错误。</li>
+</ul>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域有两种主要的工作模式，第一种为比较普遍的词法作用域，另一种为动态作用域（如bash脚本等）。JavaScript采用此法作用域。词法作用域意味着作用域由书写代码时函数声明的位置来决定，即JavaScript的嵌套作用域机制。<br>词法作用域是由写代码时将变量和块作用域写在哪里来决定的，因此当词法分析器处理代码时会保持作用域不变。然而使用eval和with可以欺骗词法（但这两种方法都对性能不好，轻易不要使用）。如：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">str, a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>( str ); <span class="comment">// 欺骗！</span></span><br><span class="line">    <span class="built_in">console</span>.log( a, b );</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> b = <span class="number">2</span>;</span><br><span class="line">foo( <span class="string">"var b = 3;"</span>, <span class="number">1</span> ); <span class="comment">// 1, 3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">with</span> (obj) &#123; <span class="comment">//修改作用域</span></span><br><span class="line">        a = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> o2 = &#123;</span><br><span class="line">    <span class="attribute">b</span>: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line">foo( o2 ); <span class="comment">//o2.a未定义，a泄漏到了全局作用域</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数作用域与块作用域"><a href="#函数作用域与块作用域" class="headerlink" title="函数作用域与块作用域"></a>函数作用域与块作用域</h2><p>在JavaScript中，函数是最常见的作用域单元。从ES3开始，try/catch结构在catch语句中具有块级作用域。另外，with也是块级作用域的一个例子。但是目前在for选好语句、if/else语句、while语句等控制语句中，任然不存在块级作用域，但是可以使用let声明在这些控制语句中声明块级变量。因为let在ES6以上版本中才可以使用，所以要使用let，就要对代码进行转换，从而使其可以转换为与let效果相同的可以在ES5中运行的代码（使用try/catch）。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( i );</span><br><span class="line">    &#125;, i*<span class="number">1000</span> );</span><br><span class="line">&#125;<span class="comment">//连续输出5个6</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log( j );</span><br><span class="line">        &#125;, j*<span class="number">1000</span> );</span><br><span class="line">    &#125;)( i );</span><br><span class="line">&#125;<span class="comment">//1、2、3、4、5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//let每次迭代都会声明，随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123; </span><br><span class="line">    <span class="keyword">let</span> j = i; <span class="comment">// 是的，闭包的块作用域！</span></span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( j );</span><br><span class="line">    &#125;, j*<span class="number">1000</span> );</span><br><span class="line">&#125;<span class="comment">//1、2、3、4、5</span></span><br></pre></td></tr></table></figure>
+<p>上面的例子为经常出现的问题。ES6的let可以更好的解决这个问题。在上面的例子中，timer()依然持有对该作用域的引用，而这个引用就称为闭包，如果作用域中还有这种引用，那么这个作用域包含其外层作用域就不会被回收。所以，在闭包使用完成后，要对闭包进行回收，就要将其设置为null引用。<br>根据《你不知道的JS》一书的定义，Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.<br>用任何形式的函数类型的值进行传递，且该函数在别处调用时就会产生闭包。另外，在定时器、事件监听器、AJAX请求等任务中，只要使用了回调函数，其实就是在使用闭包。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//现代的模块机制</span></span><br><span class="line"><span class="keyword">var</span> MyModules = (<span class="function"><span class="keyword">function</span> <span class="title">Manager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> modules = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">define</span><span class="params">(name, deps, impl)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;deps.length; i++) &#123;</span><br><span class="line">            deps[i] = modules[deps[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        modules[name] = impl.apply( impl, deps );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> modules[name];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        define: define,</span><br><span class="line">        <span class="keyword">get</span>: <span class="keyword">get</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/28/js-scope/" data-id="ciq0gso45003stcq9h7h44dx6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-css-box" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/06/22/css-box/" class="article-date">
@@ -140,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="cipsfjp03003hu8q9ysnp30fe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="ciq0gso3g003atcq9tgydzyz0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -207,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/22/css-center/" data-id="cipsfjp0a003lu8q9lobxwt3d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/22/css-center/" data-id="ciq0gso42003ptcq9ag2q3a47" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -269,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="cipsfjp1i004lu8q92xy81r7j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="ciq0gso55004utcq9lhdzi9gj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -317,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="cipsfjozl002uu8q99nbt1tfj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="ciq0gso3t003htcq9dmehcp80" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客搭建/">博客搭建</a></li></ul>
@@ -355,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="cipsfjoxi000uu8q9sbek4aii" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="ciq0gso0r0015tcq9sw1n4aqs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="cipsfjp1l004pu8q9zy24xck6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="ciq0gso56004xtcq9737hgd2d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -701,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="cipsfjoyb001ou8q94z4v3ui9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="ciq0gso1c001ktcq9ocznrt03" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -773,7 +838,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cipsfjozi002qu8q96ffgjxs3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="ciq0gso31002vtcq9027v01bt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
@@ -829,67 +894,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cipsfjozt0031u8q9lhcooyf1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="ciq0gso3a0033tcq9j2zjf8e2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/23/flexbox/" class="article-date">
-  <time datetime="2016-04-23T05:26:23.000Z" itemprop="datePublished">2016-04-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/23/flexbox/">flexbox</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文大量参考了Helen Emerson的<a href="http://helephant.com/2013/03/23/css3-flexbox-layout/" target="_blank" rel="external">《Using the CSS3 flexbox layout》</a>，如有需要，请移步此文。</p>
-<h2 id="Flexbox简述"><a href="#Flexbox简述" class="headerlink" title="Flexbox简述"></a>Flexbox简述</h2><p>Flexbox的布局是一个用于页面布局的CSS3模块，目前为止，大部分的浏览器都支持或部分支持此功能，支持情况请参考<a href="http://caniuse.com/#search=flexbox" target="_blank" rel="external">caniuse网站</a>。Flexbox可以简单快速的创建一个具有弹性功能的布局，当在一个小屏幕上显示的时候，Flexbox可以让元素在伸缩容器中进行自由扩展和收缩，从而调整整个布局。</p>
-<h2 id="伸缩容器和伸缩项目"><a href="#伸缩容器和伸缩项目" class="headerlink" title="伸缩容器和伸缩项目"></a>伸缩容器和伸缩项目</h2><p>一个flexbox布局由伸缩容器和其中的伸缩项目组成。伸缩容器是一个HTML标签元素，并且“display”属性显示设置“flex”属性值，伸缩容器中的所有子元素都会自动变成伸缩项目（flex items）。</p>
-<h2 id="伸缩方向与换行（flex-flow）"><a href="#伸缩方向与换行（flex-flow）" class="headerlink" title="伸缩方向与换行（flex-flow）"></a>伸缩方向与换行（flex-flow）</h2><p>伸缩容器有一个CSS属性“flex-flow”用来决定伸缩项目的布局方式。常见的flex-flow的值有row、column、row wrap等，其伸缩项目排列方式如下：</p>
-<p><img src="/img/CSS3/flexflow-row.png" alt="flex-flow:row"><br><img src="/img/CSS3/flex-flow-column.png" alt="flex-flow:column"><br><img src="img/CSS3/flexbox-rowwrap.png" alt="flex-flow:row wrap"></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row; <span class="comment">//还有columen、warp、row warp等</span></span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">1000px</span>; <span class="comment">//还可以使用max-widht等属性设置最大/最小宽度/高度等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="伸缩项目设置"><a href="#伸缩项目设置" class="headerlink" title="伸缩项目设置"></a>伸缩项目设置</h2><p>伸缩容器中的所有子元素都将自动变成伸缩项目，仅需要设置伸缩项目的尺寸即可。设置其尺寸可以使用widht、height等固定伸缩项目的宽和高，也可以使用flex属性（还可以结合min-widht等属性）动态改变伸缩项目的尺寸。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row wrap；</span><br><span class="line">	max-width: <span class="number">1500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-widht</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">2</span>;</span><br><span class="line">	<span class="attribute">min-widht</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/img/CSS3/flex-item-width.png" alt=""><br>在以上容器中，为left right都设置flex，最小/最大宽度，而mian设置了固定宽600px。其排列规则如下（在chrome中验证）：</p>
-<ol>
-<li>当宽度足够宽时，先去除main的600px固定宽，left和right宽度比为1:2（超过max-widht，长度自动设为max-width的值）。</li>
-<li>当宽度不足时，优先满足left的min-widht和mian的widht。如果无法满足right的min-widht，right转到第二行。一次类推。</li>
-<li>所以，可以结合min-widht、max-widht和flex动态调整元素大小，并使元素不至于过大或者过小。</li>
-<li>计算规则为先按照flex分配元素尺寸（如果只有一个flex，则其填充剩余空白），然后参考最大最小尺寸，确定元素尺寸。每个元素都自动有一个隐式的最小尺寸，这里需要注意一下。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cipsfjp00003du8q9alomroad" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
 
     </footer>
   </div>
@@ -911,7 +919,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -953,6 +961,10 @@
       <ul>
         
           <li>
+            <a href="/2016/06/28/js-scope/">作用域</a>
+          </li>
+        
+          <li>
             <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
           </li>
         
@@ -966,10 +978,6 @@
         
           <li>
             <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/28/JS-binding/">JS-binding</a>
           </li>
         
       </ul>

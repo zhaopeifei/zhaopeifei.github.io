@@ -68,6 +68,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/flexbox/" class="article-date">
+  <time datetime="2016-04-23T05:26:23.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/flexbox/">flexbox</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文大量参考了Helen Emerson的<a href="http://helephant.com/2013/03/23/css3-flexbox-layout/" target="_blank" rel="external">《Using the CSS3 flexbox layout》</a>，如有需要，请移步此文。</p>
+<h2 id="Flexbox简述"><a href="#Flexbox简述" class="headerlink" title="Flexbox简述"></a>Flexbox简述</h2><p>Flexbox的布局是一个用于页面布局的CSS3模块，目前为止，大部分的浏览器都支持或部分支持此功能，支持情况请参考<a href="http://caniuse.com/#search=flexbox" target="_blank" rel="external">caniuse网站</a>。Flexbox可以简单快速的创建一个具有弹性功能的布局，当在一个小屏幕上显示的时候，Flexbox可以让元素在伸缩容器中进行自由扩展和收缩，从而调整整个布局。</p>
+<h2 id="伸缩容器和伸缩项目"><a href="#伸缩容器和伸缩项目" class="headerlink" title="伸缩容器和伸缩项目"></a>伸缩容器和伸缩项目</h2><p>一个flexbox布局由伸缩容器和其中的伸缩项目组成。伸缩容器是一个HTML标签元素，并且“display”属性显示设置“flex”属性值，伸缩容器中的所有子元素都会自动变成伸缩项目（flex items）。</p>
+<h2 id="伸缩方向与换行（flex-flow）"><a href="#伸缩方向与换行（flex-flow）" class="headerlink" title="伸缩方向与换行（flex-flow）"></a>伸缩方向与换行（flex-flow）</h2><p>伸缩容器有一个CSS属性“flex-flow”用来决定伸缩项目的布局方式。常见的flex-flow的值有row、column、row wrap等，其伸缩项目排列方式如下：</p>
+<p><img src="/img/CSS3/flexflow-row.png" alt="flex-flow:row"><br><img src="/img/CSS3/flex-flow-column.png" alt="flex-flow:column"><br><img src="img/CSS3/flexbox-rowwrap.png" alt="flex-flow:row wrap"></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row; <span class="comment">//还有columen、warp、row warp等</span></span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">1000px</span>; <span class="comment">//还可以使用max-widht等属性设置最大/最小宽度/高度等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="伸缩项目设置"><a href="#伸缩项目设置" class="headerlink" title="伸缩项目设置"></a>伸缩项目设置</h2><p>伸缩容器中的所有子元素都将自动变成伸缩项目，仅需要设置伸缩项目的尺寸即可。设置其尺寸可以使用widht、height等固定伸缩项目的宽和高，也可以使用flex属性（还可以结合min-widht等属性）动态改变伸缩项目的尺寸。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row wrap；</span><br><span class="line">	max-width: <span class="number">1500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">	<span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-widht</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">2</span>;</span><br><span class="line">	<span class="attribute">min-widht</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/img/CSS3/flex-item-width.png" alt=""><br>在以上容器中，为left right都设置flex，最小/最大宽度，而mian设置了固定宽600px。其排列规则如下（在chrome中验证）：</p>
+<ol>
+<li>当宽度足够宽时，先去除main的600px固定宽，left和right宽度比为1:2（超过max-widht，长度自动设为max-width的值）。</li>
+<li>当宽度不足时，优先满足left的min-widht和mian的widht。如果无法满足right的min-widht，right转到第二行。一次类推。</li>
+<li>所以，可以结合min-widht、max-widht和flex动态调整元素大小，并使元素不至于过大或者过小。</li>
+<li>计算规则为先按照flex分配元素尺寸（如果只有一个flex，则其填充剩余空白），然后参考最大最小尺寸，确定元素尺寸。每个元素都自动有一个隐式的最小尺寸，这里需要注意一下。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="ciq0gso4c0040tcq91jsr5q83" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-react-learn" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/17/react-learn/" class="article-date">
@@ -135,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cipsfjp2a006pu8q9mw9ic9lq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="ciq0gso4j004btcq9zyskb2rb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -182,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cipsfjowu000bu8q9p49m6g23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="ciq0gsnzi0008tcq9xd7japbw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -232,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cipsfjox4000fu8q9m4vq8geq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="ciq0gsnzx000htcq9ab0mpvor" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -293,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cipsfjown0007u8q9rdn17u6a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="ciq0gso0c000qtcq9dor34txm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -361,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cipsfjox8000iu8q9q18myw94" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="ciq0gso0o0012tcq9f36eo6l0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -428,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cipsfjozd002ju8q9v74nxpv1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="ciq0gso2u002ltcq92pczg3v9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -475,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cipsfjoxc000nu8q96be6hef2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="ciq0gso05000otcq9w8z7qpha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -521,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="cipsfjoy2001eu8q9utfvqjdi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="ciq0gso0h000vtcq9dy91dyjw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -570,114 +627,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="cipsfjoxt0016u8q9fxce7hrb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="ciq0gso16001htcq9dq3xafgl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dataBase-system" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/31/dataBase-system/" class="article-date">
-  <time datetime="2016-03-31T05:56:12.000Z" itemprop="datePublished">2016-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/dataBase-system/">数据库概论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>数据模型是对现实世界数据特征的抽象，也就是说数据模型是用来描述数据、组织数据和对数据进行操作的。现有的数据库系统均是基于某种数据模型的。</p>
-<p>根据模型应用的不同目的，数据模型分为两类：概念模型、逻辑模型和物理模型。概念模型是按用户的观点来对数据和信息建模，主要用于数据库设计。第二类逻辑模型主要包括关系模型、层次模型、网状模型、层次模型、面向对象数据模型和对象关系模型、半结构化模型等。其中关系模型是最重要的一种数据模型。</p>
-<p>从数据库应用开发人员角度看，数据库系统通常采用三级模式结构（外模式、模式、内模式）。从最终用户角度看，数据库系统的结构分为单用户结构、主从式结构、分布式结构、客户-服务器、浏览器-应用服务器/数据库服务器多层结构等。这是数据库外部的体系结构。</p>
-<h2 id="常用数据库以及模型"><a href="#常用数据库以及模型" class="headerlink" title="常用数据库以及模型"></a>常用数据库以及模型</h2><ul>
-<li>MySQL 小型关系型数据库管理系统，适用于中小型网站</li>
-<li>Oracle 一种大型关系数据库系统，一般用于商业、政府机关等。能处理大批量的数据。</li>
-<li>SQL Server 关系数据库管理系统。有微软和Sybase两家</li>
-<li>DB2 IBM的一系列关系型数据库管理系统，主要应用于大型应用系统。对大型分布式应用系统尤为适用。</li>
-<li>Informix IBM出品的关系数据库管理系统家族。</li>
-<li>Sybase 关系型数据库，是一种典型的UNIX或WindowsNT平台上客户机/服务器环境下的代行数据库系统。</li>
-<li>PostgreSQL 一种特性非常齐全的自由软件的对象-关系型数据库。</li>
-<li>MongoDB 跨平台、高性能、开源、无模式的文档型数据库。</li>
-<li>NoSQL 泛指非关系型数据库，如Redis、HBase、MongoDB、CouchDB等。</li>
-</ul>
-<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><p>关系模型的数据结构非常简单，只包含单一的数据结构——关系。关系的每一个分类必须是一个不可分的数据项，即不允许表中有表，一列只能有一个head。行和列的顺序无所谓，可以任意交换。</p>
-<h4 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h4><p>R(D1，D2，……Dn)</p>
-<ul>
-<li>R表示关系的名字，n是关系的目或度（degree），即列长度</li>
-<li>表的每行对应一个元组，表的每列对应一个域。</li>
-<li>候选码：若关系中的某一属性组可以唯一表示一个元祖而其子集不能，则称该属性组为候选码。</li>
-<li>主码/主键（Primary Key）：选定一个候选码作为唯一标识。</li>
-</ul>
-<h2 id="关系数据库标准语言SQL"><a href="#关系数据库标准语言SQL" class="headerlink" title="关系数据库标准语言SQL"></a>关系数据库标准语言SQL</h2><p>结构化查询语言是关系数据库的标准语言，也是一个通用的、功能极强的关系数据库语言，可以实现数据库模式创建、数据库数据的增删改查、数据库安全性完整性定义与控制等一系列功能。</p>
-<h4 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">操作对象</th>
-<th style="text-align:left">创建</th>
-<th style="text-align:left">删除</th>
-<th style="text-align:left">修改</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">模式</td>
-<td style="text-align:left">CREATE SCHEMA</td>
-<td style="text-align:left">DROP SCHEMA</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">表</td>
-<td style="text-align:left">CREATE TABLE</td>
-<td style="text-align:left">DROP TABLE</td>
-<td style="text-align:left">ALTER TABLE</td>
-</tr>
-<tr>
-<td style="text-align:center">视图</td>
-<td style="text-align:left">CREATE VIEW</td>
-<td style="text-align:left">DROP VIEW</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">索引</td>
-<td style="text-align:left">CREATE INDEX</td>
-<td style="text-align:left">DROP INDEX</td>
-<td style="text-align:left">ALTER INDEX</td>
-</tr>
-</tbody>
-</table>
-<p>一个关系数据库管理系统的实例中可以创建多个数据库，一个数据库中可以建立多个模式，一个模式下通常包含多个表、视图和索引等数据库对象。当表的数据量比较大时，查询操作会比较耗时，建立索引是加快查询速度的有效手段。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt; //也可以在后面继续创建表、视图等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">TEST</span> AUTHORIZATION ZHANG //为用户ZHANG创建一个模式<span class="keyword">TEST</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; &lt;<span class="keyword">CASCADE</span>|RESTRICT&gt; //删除模式，<span class="keyword">cascade</span>表示删除模式下所有数据库对象，restrict表示如果存在下属数据库，则不执行</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; (&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件下]) //如设置主码等</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> StudentCourse (</span><br><span class="line">	Sno <span class="built_in">CHAR</span>(<span class="number">9</span>),  //也可以在其后面直接加PRIMARY <span class="keyword">KEY</span>，表示其为主键。这样称为列级完整性</span><br><span class="line">	Cpo <span class="built_in">CHAR</span>(<span class="number">4</span>),</span><br><span class="line">	Grade <span class="built_in">SMALLINT</span>,</span><br><span class="line">	PRIMARY <span class="keyword">KEY</span>(Sno,Cno), //主码由两个属性构成，必须作为表级完整性进行定义</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Sno) <span class="keyword">REFERENCES</span> Student(Sno), //表级完整性定义，Sno是外码，被参照表示Student</span><br><span class="line">	FOREING <span class="keyword">KEY</span> (Cno) <span class="keyword">REFERENCES</span> Course(Cno),  //表级完整性定义，Cno是外码，被参照表示Course</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;&gt;</span><br><span class="line">[<span class="keyword">ADD</span> &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]] //<span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Student <span class="keyword">ADD</span> S_entrance <span class="built_in">DATE</span>;</span><br><span class="line">[<span class="keyword">DROP</span> &lt;列名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt; &lt;数据类型&gt;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt; [<span class="keyword">CASCADE</span>|RESTRICT]; //删除基本表</span><br></pre></td></tr></table></figure>
-<h4 id="数据查询与操作SQL"><a href="#数据查询与操作SQL" class="headerlink" title="数据查询与操作SQL"></a>数据查询与操作SQL</h4><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表的查询</span></span><br><span class="line"><span class="keyword">SELECT</span> [ALL|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;]…… <span class="comment">//指明选择要获取的列</span></span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt; [,&lt;表名或视图名&gt;……]   <span class="comment">//指明从什么表格里面取，可以多个表格</span></span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件表达式&gt;]   <span class="comment">//Sage&lt;20，指明条件</span></span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [HAVING &lt;条件表达式&gt;]] </span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">By</span> &lt;列名<span class="number">2</span>&gt; [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]];  <span class="comment">//按某列排序，ASC表示升序，DESC表示降序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Student.Sno,Sname <span class="comment">//*表示全部取出来</span></span><br><span class="line"><span class="keyword">FROM</span> Student,SC,Course</span><br><span class="line"><span class="keyword">WHERE</span> Student.Sno=SC.Sno <span class="keyword">AND</span></span><br><span class="line">	  SC.Cno=Course.Cno <span class="keyword">AND</span></span><br><span class="line">	  Course.Cname=<span class="string">'信息系统'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Sno <span class="keyword">ASC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入新项</span></span><br><span class="line">INSERT <span class="keyword">INTO</span> &lt;表名&gt; [(&lt;属性列<span class="number">1</span>&gt;[,&lt;属性列<span class="number">2</span>&gt;]……)]</span><br><span class="line">VALUES (&lt;常量<span class="number">1</span>&gt;[,&lt;常量<span class="number">2</span>&gt;]……);</span><br><span class="line"></span><br><span class="line">INSERT <span class="keyword">INTO</span> Student(Sno,Sname) <span class="comment">//如果新元组与属性列一一对应，则可以省略属性</span></span><br><span class="line">VALUES(<span class="string">'20121515'</span>,<span class="string">'黎明'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//更新表格内容</span></span><br><span class="line">UPDATE &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span> &lt;列名&gt;=&lt;表达式&gt; [,&lt;列名&gt;=&lt;表达式&gt;]</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br><span class="line"></span><br><span class="line">UPDATE Student</span><br><span class="line"><span class="keyword">SET</span> Sage=<span class="number">22</span></span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除数据</span></span><br><span class="line">DELETE <span class="keyword">FROM</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;]</span><br><span class="line"></span><br><span class="line">DELETE <span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'20121515'</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="cipsfjp0q0043u8q96atxtezr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 
     </footer>
   </div>
@@ -699,7 +652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -741,6 +694,10 @@
       <ul>
         
           <li>
+            <a href="/2016/06/28/js-scope/">作用域</a>
+          </li>
+        
+          <li>
             <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
           </li>
         
@@ -754,10 +711,6 @@
         
           <li>
             <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/28/JS-binding/">JS-binding</a>
           </li>
         
       </ul>

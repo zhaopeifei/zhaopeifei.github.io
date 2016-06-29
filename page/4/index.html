@@ -68,6 +68,83 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/JavaScript-11/" class="article-date">
+  <time datetime="2016-03-19T06:41:18.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/19/JavaScript-11/">离线应用于客户端存储</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>支持离线Web应用开发是HTML5的另一个重点。开发离线Web应用需要几个步骤。首先要确保知道设备是否能上网。然后，应用还必须能访问一定的资源。最后，必须有一块本地空间用于保存数据，无论能否上网都不妨碍读写。</p>
+<h2 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h2><p>HTML5定义了一个navigator.online属性，true表示能上网，false表示设备离线。以下是检测属性状态的示例。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(navigator.online)</span></span>&#123;</span><br><span class="line">	<span class="comment">//正常工作</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//执行离线状态时的任务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，HTML5还定义了两个事件：onlin和offline。分别在网络离线变在线和在线变离线时触发。</p>
+<h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5的应用缓存可以简称为appcache，是专门为开发离线Web应用而设计的。Appcache是从浏览器的缓存中分出来的一块缓存区。可以使用一个描述文件，列出要下载和缓存的资源，就可以将相应的资源存储到这个区域。<br>要将描述文件与页面关联起来，可以在&lt; html &gt;中的manifest属性中指定这个描述文件的路径。</p>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>随着Web应用程序的出现，也产生了对于能够直接在客户端上存储用户信息能力的要求。一下为几种客户端存储数据的方式。</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP Cookie，最初是在客户端用于存储会话信息的。由于HTTP是一种无状态的协议，服务器单从网络连接上无从知道客户身份，所以可以使用cookie作为身份标识，服务器就能确认用户身份了。该标准要求服务器对任意HTTP请求发送Set-Cookie HTTP头最为相应的一部分，其中包含会话信息。<br>cookie有访问者限制，有长度限制，每个域的cookie总数也有限制。cookie由浏览器保存到额以下几块信息构成：名称、值、域、路径、失效时间、安全标志等。<br>在JavaScript中处理cookie有些复杂，因为其蹩脚的接口，即BOM的document.cookie属性。这个属性的独特之处在于它会因为使用它的方式不同而表现不同的行为。基本的cookie操作有三种：读取、写入和删除。</p>
+<h4 id="Session机制"><a href="#Session机制" class="headerlink" title="Session机制"></a>Session机制</h4><p>除了使用Cookie，Web应用程序中还经常使用Session来记录客户端状态。Session是服务器端使用的一种记录客户端状态的机制，使用上比Cookie简单一些，相应的也增加了服务器的存储压力。Session是另一种记录客户状态的机制，不同的是Cookie保存在客户端浏览器中，而Session保存在服务器上。客户端浏览器访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上。这就是Session。</p>
+<h4 id="IE用户数据"><a href="#IE用户数据" class="headerlink" title="IE用户数据"></a>IE用户数据</h4><p>在IE5.0中，微软通过一个自定义行为引入了持久化用户数据的概念。要使用持久化用户数据，就必须使用CSS在某个元素上指定userData行为，该元素即可使用setAttribute()方法在上面保存数据了。为了将数据提交到浏览器缓存中，还必须调用save()方法并告诉它要保存到的数据空间的名字。如下：<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> style=<span class="string">"behavior:url(#default#userData)"</span> id=<span class="string">"dataStore"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">dataStore = setAttribute(<span class="string">"name"</span>,<span class="string">"liming"</span>);</span><br><span class="line">dataStore = setAttribute(<span class="string">"sex"</span>,<span class="string">"men"</span>);</span><br><span class="line">dataStore.save(<span class="string">"staffInfo"</span>); <span class="comment">//存储</span></span><br><span class="line"></span><br><span class="line">dataStore1.load(<span class="string">"staffInfo"</span>); <span class="comment">//调用，加载。staffInfo的信息就会加载到dataStore1中</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Web存储机制（更大容量存储）"><a href="#Web存储机制（更大容量存储）" class="headerlink" title="Web存储机制（更大容量存储）"></a>Web存储机制（更大容量存储）</h4><p>Web Storage成为了HTML5的一部分。其目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。其目标有：提供一种在cookie之外存储会话数据的路径，提供一种存储大量可以跨会话存在的数据的机制。</p>
+<ul>
+<li>Storage类型提供最大的存储空间来存储名值对儿，但只能存储字符串。Storage的实例有以下方法：clear()、getItem(name)、key(index)、removeItem(name)、setItem(name,value)，此外还有length等属性。</li>
+<li>sessionStorage对象。非持久存储，用于存储特定于某个会话的数据，也就是该数据只保持到浏览器关闭。</li>
+<li>globalStorage对象。其目的是跨越会话存储数据，但有特定的访问限制。要使用它，首先指定哪些域可以访问该数据，可以通过方括号来标记使用属性来实现。globalStorage的每个属性都是Storage的实例。</li>
+</ul>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">globalStorage[<span class="string">"www.wrox.com"</span>].<span class="keyword">name</span>=<span class="string">"Nicholas"</span>;</span><br><span class="line">var <span class="keyword">name</span> = globalStorage[<span class="string">"www.wrox.com"</span>].<span class="keyword">name</span>; <span class="comment">//取数据</span></span><br></pre></td></tr></table></figure>
+<p>它会一直保存在磁盘上，所以非常适合在客户端存储文档或者长期保持用户票号设置。</p>
+<ul>
+<li>localStorage对象<br>localStorage对象在修订过的HTML5规范中作为持久保存客户端数据的方案取代了globalStorage。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"name"</span>,<span class="string">"liming"</span>); <span class="comment">//使用方法存储数据</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> name</span> = localStorage.getItem(<span class="string">"name"</span>);</span><br><span class="line">localStorage.age=<span class="number">22</span>; <span class="comment">//使用属性存储数据</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> age</span>=localStorage.age;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>storage事件。对Storage对象进行任何修改，都会在文档上触发storage事件。该event事件有这几个属性：domain（发生变化的存储空间的域名）、key（设置或删除的键名）、newValue、oldValue。</li>
+</ul>
+<h4 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h4><p>Indexed Database API，是在浏览器中保存结构化数据的一种数据库。其思想是创建一套API，方便保存和读取JavaScript对象，同时还支持查询及搜索。IndexedDB设计的操作完全是异步进行的。因此，大多数操作会以请求方式进行，但这些操作会在后期执行。差不多每次IndexedDB操作，都需要注册onerror或onsuccess事件处理程序，以确保适当地处理结果。<br>它是一种类似SQL数据的结构haunted数据存储机制，但它的数据不是保存在表中，而是保存在对象存储空间中。创建对象存储空间时，需要定义一个键，然后就可以添加数据。可以使用游标在对象存储空间中查询特定的对象。而索引则是为了提高查询速度而基于特定的属性创建的。</p>
+<h2 id="cookie-sessionStorage-localStorage区别"><a href="#cookie-sessionStorage-localStorage区别" class="headerlink" title="cookie/sessionStorage/localStorage区别"></a>cookie/sessionStorage/localStorage区别</h2><p>cookie作为HTTP协议的一部分用来处理客户端和服务器通信是不可或缺的，WebStorage的意图在于解决本来不应该cookie做，却不得不用cookie的本地存储。共同点：保存在浏览器用户端，且都是同源的。（golbalStorage可以不同源）</p>
+<ul>
+<li>网络负担：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。</li>
+<li>存储大小限制不同：cookie有大小和数目的限制，sessionStorage和localStorage属于Web Storage，则用于更大容量的存储，如chrome每个来源限制为2.5M。</li>
+<li>安全性：HTTP请求中的cookie是明文传递的（https不是），WebStorage并不作为HTTP header发送的浏览器，所以相对安全。</li>
+<li>使用方便：cookie需要前端开发者自己封装setCookie，getCookie，而Web Storage则拥有setItem、getItem等方法。</li>
+<li>数据有效期：cookie有失效时间。sessionStorage用于非持久存储，用于存储会话数据，浏览器关闭即销毁。localStorage用于持久存储，访问时，页面也localStorage必须来自同一个域名。</li>
+<li>作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。</li>
+<li>Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。Web Storage 的 api 接口使用更方便。 </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="ciq0gso1z001vtcq94gvdugt8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/19/JavaScript-10/" class="article-date">
@@ -149,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="cipsfjoxn000zu8q9ax3w04sz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="ciq0gso0v001atcq9obv55dlq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -243,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="cipsfjoyn0020u8q971fgnf0f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="ciq0gso2e0028tcq9l92dgidj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -323,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="cipsfjoyj001wu8q9ze1ijeu6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="ciq0gso2w002otcq9f3dzo44h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -402,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="cipsfjoyz0028u8q92vzith19" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="ciq0gso2z002stcq9jr01bgxi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -503,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="cipsfjow90001u8q94iuzpvi5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="ciq0gso02000ktcq9ynce1u69" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -831,7 +908,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="cipsfjoxf000pu8q9p31gx1xo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="ciq0gso11001dtcq9e9hie9b4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -913,7 +990,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="cipsfjoyf001su8q9gt3r9n8c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="ciq0gso2a0025tcq943wwonyr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1027,7 +1104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cipsfjoza002gu8q9drja0syv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="ciq0gso2k002ctcq9lp11j4qg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1083,57 +1160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cipsfjoxz0019u8q9xnq4h36h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/12/JavaScript-3/" class="article-date">
-  <time datetime="2016-03-12T08:30:48.000Z" itemprop="datePublished">2016-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/12/JavaScript-3/">面向对象</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>面向对象的语言有一个标志，那就是他们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。然而，ECMAScript中没有类的概念，所以它的对象也与基于类的语言中的对象有所不同。ECMA-262把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”。</p>
-<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>在没有类的情况下，ECMAScript可以采用工厂模式、构造函数模式或者原型模式创建对象。</p>
-<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="title">g</span> <span class="title">createPerson</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="number">0</span> = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">	o.name = name;</span><br><span class="line">	o.age = age;</span><br><span class="line">	o.sayName = funciont()&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"liming"</span>, <span class="number">20</span>); <span class="comment">//person1的类型为object</span></span><br></pre></td></tr></table></figure>
-<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题，即怎么知道一个对象的类型。</p>
-<h4 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h4><p>由于工厂模式没有解决对象识别的问题，所以可以采用构造函数模式来做。但是构造函数模式的每个成员无法得到复用，包括函数。不能在多个对象间共享函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">this</span>.sayName = funchion()&#123; <span class="comment">//每次都会创建一个function的新实例</span></span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"liming"</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure></p>
-<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><p>我们创建的每个函数都有一个prototype（原型）属性，这个属性时一个指针，指向一个对象，而对这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">Person.prototy.name = <span class="string">"liming"</span>;</span><br><span class="line">Person.prototy.age = <span class="number">20</span>;</span><br><span class="line">Person.prototy.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(); <span class="comment">//可以修改person1的属性</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>除此以上三种基本方法外，还有结合几种方法产生的动态原型模式、寄生构造函数模式、稳妥构造函数模式等方法，分别有不同的优缺点。可根据需求选择相应的模式。</p>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>许多OO语言都支持两种继承方式：接口继承和实现继承。由于函数没有签名，在ECMAScript中无法实现接口继承，所以主要依靠原形链来实现。原形链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的，这样子类型就能够访问超类型的所有属性和方法。使用最多的继承模式是组成继承，这种模式使用原形链继承共享的属性和方法，而通过借用构造函数继承实例属性。除此外，还有原形链继承、寄生式继承、寄生组合式继承等方法。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法实现原型链的一种基本模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	teturn <span class="keyword">this</span>.property;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line">alert(instance.getSuperValue()); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cipsfjoy5001hu8q94tk7m7r0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="ciq0gso2n002ftcq919vrjgo9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1158,7 +1185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -1200,6 +1227,10 @@
       <ul>
         
           <li>
+            <a href="/2016/06/28/js-scope/">作用域</a>
+          </li>
+        
+          <li>
             <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
           </li>
         
@@ -1213,10 +1244,6 @@
         
           <li>
             <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/28/JS-binding/">JS-binding</a>
           </li>
         
       </ul>
