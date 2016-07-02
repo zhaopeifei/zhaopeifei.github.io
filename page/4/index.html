@@ -133,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="ciq0gso1z001vtcq94gvdugt8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-11/" data-id="ciq58p4on001b94q9g68e0ts4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -185,17 +185,34 @@
     }]
 }</code></p>
 <h4 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h4><p>JSON字符串与原生JavaScript值的主要区别在于名称，JSON名称需要使用双引号，而JavaScript的属性则不需要。还有JavaScript支持undefined，而JSON不支持。ECMAScript5对解析JSON的行为进行规范，定义了全局对象JSON，JSON对象有两个方法：stringify()和parse()，分别将JavaScript对象序列化为JSON字符串和将JSON字符串解析为JavaScript值。<br>对于JSON.stringify()方法，除了第一个为对象外，还可以接收两个参数：过滤器（可以为数组或函数）和是否保留缩进。如果需要将对象的名字也加入JSON字符串，可以在对象中使用toJSON():functiong(){……}方法。<br>JSON.parse()方法也可以接收另一个参数，该参数是一个函数，将在每个键值对上调用。</p>
-<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax技术的核心是XMLHttpRequest对象。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多消息，意味着用户点击后，可以不必刷新页面也能取得新数据。Ajax通信与数据格式无关。</p>
-<h4 id="XMLHttpRequest对象使用方法"><a href="#XMLHttpRequest对象使用方法" class="headerlink" title="XMLHttpRequest对象使用方法"></a>XMLHttpRequest对象使用方法</h4><p>使用XHR对象要先获得，此处假设已经获得xhr。</p>
-<ol>
-<li>首要使用open()方法，它接收3个参数：请求类型、请求的URL、是否异步发送请求的布尔值，如：<code>xhr.open(&quot;get&quot;,&quot;example.php&quot;,false)</code>，open()方法只是启动一个请求准备发送。</li>
-<li>使用send()方法发送特定的请求。参数为请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null。</li>
-<li>false表示同步，所以JavaScript代码会等到服务器响应之后再继续执行。接收到相应后，响应的数据会自动填充XHR对象的属性，相关的属性有：responseText（响应主体返回的文本）、status（相应的HTTP状态）、statusText（HTTP状态的说明）。</li>
-<li>接收响应后，第一步是检查status属性，以确定响应已经成功返回。一般HTTP状态代码为200表示成功，此时responseText属性内容已经准备就绪。</li>
-</ol>
-<p>多数情况下，我们还要发送异步请求，才能让JavaScript继续执行而不必等待响应。此时，可以检测xhr对象的readyState属性，该属性表示请求/响应过程的当前活动阶段。0表示未初始化；1表示启动，调用了open()方法；2表示发送，已经调用了send()方法；3表示接收，已经接收部分响应数据。4.完成，已经接收全部数据，可以使用。只要readyState属性的改变，就会茶法一次readystatechange事件。</p>
-<h4 id="GET请求和POST请求"><a href="#GET请求和POST请求" class="headerlink" title="GET请求和POST请求"></a>GET请求和POST请求</h4><p>GET是最常见的请求类型，最常用于向服务器查询某些信息。必要时，可以将查询字符串参数值追加到URL的末尾。使用GET请求经常会发生的一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码。<br>使用频率仅次于GET的是POST请求，通常用于向服务器发送应该被保存的数据。POST请求应该把数据作为请求的主体提交，而GET请求传统上不是这样。POST请求的主体可以包含非常多的数据，而且格式不限。发送POST请求的第二步是向send()方法中传入某些数据。</p>
-<h2 id="XMLHttpRequest-2级"><a href="#XMLHttpRequest-2级" class="headerlink" title="XMLHttpRequest 2级"></a>XMLHttpRequest 2级</h2><h4 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">//方法1，先新建，再使用append方法添加</span></span><br><span class="line">data.append(<span class="string">"name"</span>,<span class="string">"liming"</span>); <span class="comment">//append()方法接收两个参数，属性和值</span></span><br><span class="line"></span><br><span class="line">data = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.form[<span class="number">0</span>]); <span class="comment">//方法2，直接传入表单，自动转换</span></span><br><span class="line"></span><br><span class="line">xhr.send(data); <span class="comment">//可以直接将formdata实例作为请求传入后台</span></span><br></pre></td></tr></table></figure>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax技术的核心是XMLHttpRequest对象。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多消息，意味着用户点击后，可以不必刷新页面也能取得新数据。Ajax通信与数据格式无关。另外可以查看<a href="https://www.w3.org/TR/XMLHttpRequest/" target="_blank" rel="external">XMLHttpRequest标准</a></p>
+<h4 id="新建XMLHttpRequest对象"><a href="#新建XMLHttpRequest对象" class="headerlink" title="新建XMLHttpRequest对象"></a>新建XMLHttpRequest对象</h4><p>目前大多数浏览器都支持XMLHttpRequest（IE6之前的不支持），所以可以放心使用XMLHttpRequest。如下</p>
+<h4 id="使用open-启动请求"><a href="#使用open-启动请求" class="headerlink" title="使用open()启动请求"></a>使用open()启动请求</h4><p>使用open启动一个请求，准备发送。最新的open()语法为：client.open(method, url [, async = true [, username = null [, password = null]]])。例子如下：</p>
+<ul>
+<li>method支持GET、POST、PUT、DELETE、OPTIONS、HEAD（建议写成大写，与HTTP方法保持一致），以及CONNECT、TRACE、TRACK（会报安全警告）等，如果不是以上方法，报TypeError</li>
+<li>url支持完整路径(<a href="http://www.peytonzhao88.com/blogs/peyton)、相对路径()、根绝对路径(/blogs/peyton)等。" target="_blank" rel="external">http://www.peytonzhao88.com/blogs/peyton)、相对路径()、根绝对路径(/blogs/peyton)等。</a></li>
+<li>async默认为异步，true，JavaScript可以继续执行不必等待响应。也可设为false。其他两个属性略。</li>
+</ul>
+<h4 id="设置监听事件"><a href="#设置监听事件" class="headerlink" title="设置监听事件"></a>设置监听事件</h4><p>一般我们将请求设为异步，可以通过onreadystatechange为xhr对象设置监听函数。接收到相应后，响应的数据会自动填充XHR对象的属性，相关的属性有：responseText、responseXML、status、statusText。</p>
+<ul>
+<li>onreadystatechange：xhr的事件。readyState改变会触发此事件，所以通过监听此事件并检查状态确定请求所处状态</li>
+<li>readyState：xhr的属性。0表示未初始化，即未调用open()方法。1表示启动，调用open()。2表示发送，调用send()。3表示接收，在接收数据。4表示完成，接收到全部响应数据。</li>
+<li>responseText：xhr的属性。接收完响应后，该属性会被填充作为响应主体被返回的文本。</li>
+<li>status：响应的HTTP状态。200表示成功、404表示未找到等。</li>
+</ul>
+<h4 id="设置XHR头、超时事件等"><a href="#设置XHR头、超时事件等" class="headerlink" title="设置XHR头、超时事件等"></a>设置XHR头、超时事件等</h4><p>有时为了让后台可以解析我们发送的数据，我们需要设置请求头。如在发送json数据时，将Content-Type设为’application/json;charset=UTF-8’。语法为：client.setRequestHeader(header, value)。<br>我们可能需要设置的请求头为：Cookie、Cookie2、Host、Keep-Alive、Upgrade、Content-Type等。<br>此外，为了防止等待响应时间过长，我们可以设置client.timeout来设置等待时间，单位为毫秒。</p>
+<h4 id="处理数据并发送"><a href="#处理数据并发送" class="headerlink" title="处理数据并发送"></a>处理数据并发送</h4><p>新建了xhr对象，启动，并设置相关的请求头后，我们要对要发送的数据进行处理并发送。语法为：client.send([data = null])</p>
+<ul>
+<li>通过JSON.stringify()可以将对象转换为json数据。在解析json数据时使用JSON.parse()。</li>
+<li>如果xhr方法为GET或HEAD，忽略传入的data，设为null。</li>
+<li>如果发送的数据为对象，将对象类型作为要发送的值，如object，则发送主体为[object object]</li>
+<li>如果发送的数据为string，将Content-Type设为”text/plain;charset=UTF-8”。（注意，json也为string类型，所以发送json时，要设置请求头的内容类型）</li>
+<li>还可以发送document、FormData或ArrayBufferView类型</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 发送请求的方法</span></span><br><span class="line">通常我们像一个url发送请求有三种方法，通过路径、query以及数据请求主体。</span><br><span class="line"><span class="bullet">* </span>通过路径。我们制定url并不意味着这个url路径就存在。路径也可以作为请求而存在，并通过RESTful的设计，与GET、POST、PUT、DELETE四个方法结合，实现增删改查。[<span class="string">RESTful维基</span>](<span class="link">https://www.wikiwand.com/zh/REST</span>)</span><br><span class="line"><span class="bullet">* </span>通过query。在使用GET方法追加请求信息时必须使用此方法。即在url后追加?key=value。</span><br><span class="line"><span class="bullet">* </span>通过数据体。即通过数据处理，并将内容通过send(data)方法发送。GET和HEAD发送不能采用这种方式，因为会忽略data。</span><br><span class="line"></span><br><span class="line"><span class="section">## GET请求和POST请求</span></span><br><span class="line"><span class="bullet">* </span>GET是最常见的请求类型，最常用于向服务器查询某些信息。使用频率仅次于GET的是POST请求，通常用于向服务器发送应该被保存的数据。</span><br><span class="line"><span class="bullet">* </span>GET方法不能修改服务器的内容，是绝对安全的,但要修改服务器内容，不能使用GET。而POST方法可以修改服务器的内容。</span><br><span class="line"><span class="bullet">* </span>GET将查询字符串参数值追加到URL的末尾（不能使用请求主体方式提交）。查询字符串中每个参数的名称和值都必须使用encodeURIComponent()进行编码。POST请求应该把数据作为请求的主体提交。</span><br><span class="line"><span class="bullet">* </span>POST请求的主体可以包含非常多的数据。而GET追加的字符串有限制（由于浏览器等限制）。</span><br><span class="line"><span class="bullet">* </span>GET方法将查询字符串追加到url后，相对不安全。最安全的是使用https。</span><br><span class="line"><span class="bullet">* </span>//有一个方法会缓存内容</span><br><span class="line"></span><br><span class="line"><span class="section">## XMLHttpRequest 2级</span></span><br><span class="line"><span class="section">#### FormData</span></span><br></pre></td></tr></table></figure>
+<p>var data = new FormData(); //方法1，先新建，再使用append方法添加<br>data.append(“name”,”liming”); //append()方法接收两个参数，属性和值</p>
+<p>data = new FormData(document.form[0]); //方法2，直接传入表单，自动转换</p>
+<p>xhr.send(data); //可以直接将formdata实例作为请求传入后台<br>```</p>
 <h4 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h4><p>通过xhr.timeout=1000（1秒）属性设置超时。再通过xhr.ontimeout:function(){}设置超时响应事件。</p>
 <h2 id="进度事件"><a href="#进度事件" class="headerlink" title="进度事件"></a>进度事件</h2><p>W3C定义了与客户服务器通信有关的事件（这些事件目前也被其他API借鉴）。有以下6个进度事件：</p>
 <ol>
@@ -226,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="ciq0gso0v001atcq9obv55dlq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/19/JavaScript-10/" data-id="ciq58p4o7000v94q936j1gjel" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -320,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="ciq0gso2e0028tcq9l92dgidj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-9/" data-id="ciq58p4pa002394q9pc29sqjo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -400,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="ciq0gso2w002otcq9f3dzo44h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-8/" data-id="ciq58p4pq002k94q97i80fagq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -479,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="ciq0gso2z002stcq9jr01bgxi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/18/JavaScript-7/" data-id="ciq58p4pc002794q9vugdayfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -580,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="ciq0gso02000ktcq9ynce1u69" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/16/CSS-3/" data-id="ciq58p4nc000594q9apdobcvh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -908,7 +925,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="ciq0gso11001dtcq9e9hie9b4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/14/HTML5/" data-id="ciq58p4p2001w94q90yyzlb69" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -990,7 +1007,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="ciq0gso2a0025tcq943wwonyr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-6/" data-id="ciq58p4re005394q9d9qja1aw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1104,7 +1121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="ciq0gso2k002ctcq9lp11j4qg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="ciq58p4p8002094q9fkmcdxko" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -1160,7 +1177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="ciq0gso2n002ftcq919vrjgo9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="ciq58p4ov001m94q92r6vvvie" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
