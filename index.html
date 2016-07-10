@@ -68,6 +68,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-timeout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/10/JS-timeout/" class="article-date">
+  <time datetime="2016-07-10T02:51:33.000Z" itemprop="datePublished">2016-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/10/JS-timeout/">JavaScript计时</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript与时间相关的函数或对象"><a href="#JavaScript与时间相关的函数或对象" class="headerlink" title="JavaScript与时间相关的函数或对象"></a>JavaScript与时间相关的函数或对象</h2><p>在JavaScript中，与时间相关的对象为Date类型对象，可以获取现在的时间等。如果要对使一个函数延迟执行，可以使用setTimeout()；如果要让一个函数周期性执行，可以使用setInterval()。同时在最新的Web Timing API中，可以使用window.performance来获取页面在被加载到浏览器都经历了哪些阶段，以及这些阶段的时间，从而找出性能瓶颈并解决。</p>
+<h2 id="setTimeout-与setInterval"><a href="#setTimeout-与setInterval" class="headerlink" title="setTimeout()与setInterval()"></a>setTimeout()与setInterval()</h2><p>JavaScript是单线程语言，但它允许通过超时值setTimeout()和间歇时间值setInterval()来调用代码在特定的时刻执行。由于JavaScript的单线程特性，这两个方法对于时间的控制都是不精确的。这两个方法都是有window对象提供的，所以其具体实现与浏览器相关，故对时间控制的准确程度因为浏览器不同而不同。通过测试，火狐对于时间的控制更加精确一些。</p>
+<h4 id="setTimeout-与clearTimeout"><a href="#setTimeout-与clearTimeout" class="headerlink" title="setTimeout()与clearTimeout()"></a>setTimeout()与clearTimeout()</h4><p>setTimeout接受两个参数：要执行的代码和以毫秒表示的时间。第一个参数可以是一个包含JavaScript代码的字符串（和在eval()中一样，所以不推荐此方式），也可以是一个函数。通过setTimeout()设置后，会返回一个数值ID，是这个将要执行代码的唯一标示；要取消，就需要调用clearTimout(ID)来取消它。示例如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setTimout(<span class="string">"alert('hello')"</span>,<span class="number">1000</span>)l;<span class="comment">//不推荐此参数类型。一秒后调用</span></span><br><span class="line"><span class="keyword">var</span> timeoutId = setTimout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    alert(<span class="string">'hello'</span>);</span><br><span class="line">    &#125;,<span class="number">1000</span>);<span class="comment">//推荐此参数类型。</span></span><br><span class="line">clearTimeout(timeoutId);<span class="comment">//取消这个超时调用。</span></span><br></pre></td></tr></table></figure>
+<h4 id="setInterval-与clearInterval"><a href="#setInterval-与clearInterval" class="headerlink" title="setInterval()与clearInterval()"></a>setInterval()与clearInterval()</h4><p>setInterval与setTimeout一样都接受两个参数。不同之处在于：setInterval为间歇调用。下面实例中，展示了一个倒计时如下：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> num=<span class="number">10</span>, max=<span class="number">10</span>, interval=<span class="literal">null</span>;</span><br><span class="line">intervalId = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(num);</span><br><span class="line">    &#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">        clearInterval(intervalId);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Time Up!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    num--;</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>暂时略，以后补上~</p>
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><p>ECMAScript中的Date类型是在早期Java的java.util.Date类基础上构建的。Date类型使用UTC1970年1月1日零时开始经过的毫秒数来保存日期。</p>
+<h4 id="Date创建"><a href="#Date创建" class="headerlink" title="Date创建"></a>Date创建</h4><p>要创建一个日期对象，可以使用new来新建，并传入相应的日期参数（如果为空，则表示当前时刻）。另外，如果只是为了获取当前时间，也可以使用Date.now()方法。Date提供了Date.parse()和Date.UTC()来将你输入的日期转化为UTC格式的Date。<br>Date.parse解析的格式：将地区设置为美国的浏览器接受的日期格式为：月/日/年、 英文月名 日，年、 英文星期几 英文月 日 年 时:分:秒 时区(如TUE May 25 2004 00:00:00 GMT-0700)、YYYY-MM-DDTHH:mm:ss.sssZ<br>Date.UTC()的参数分别为年份、月份（0表示1月）、日、小时、分钟、秒、毫秒。上述参数中，只有年份和月份是必须要有的。示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();<span class="comment">//现在时刻，格式与浏览器行为有关。</span></span><br><span class="line"><span class="keyword">var</span> now = <span class="built_in">Date</span>.now();<span class="comment">//格式为一系列数字</span></span><br><span class="line"><span class="keyword">var</span> someDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'May 25,2004'</span>));<span class="comment">//2004年5月25日零时</span></span><br><span class="line"><span class="keyword">var</span> someDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'May 25,2004'</span>);<span class="comment">//同上，会自动调用Date.parse</span></span><br><span class="line"><span class="keyword">var</span> otherDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2005</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">55</span>,<span class="number">55</span>));<span class="comment">//GMT时间2005年5月5日下午5:55:55</span></span><br><span class="line"><span class="keyword">var</span> otherDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2005</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">55</span>,<span class="number">55</span>);<span class="comment">//*本地时间*2005年5月5日下午5:55:55</span></span><br></pre></td></tr></table></figure>
+<p>在不同的浏览器中，时间的表示格式可能不同，对于时区的处理也不相同。如上面的例子中，chrome在处理otherDate都是按照本地时区，而火狐则是根据上述行为处理的。由于这些时间都是对象，所以不能通过==来判断两个时间是否相同（对象引用相同才会相等），而应该判断两个时间插值是否为0。</p>
+<h4 id="日期表示"><a href="#日期表示" class="headerlink" title="日期表示"></a>日期表示</h4><p>Date类型有重写了toLocaleString()、toString()方法，其可以返回特定格式的时间，但浏览器之前可能存在不同。菜外还有些其他专门用于将日期格式化为字符串的方法。如下：</p>
+<ul>
+<li>toLocaleString()，按照与浏览器设置的地区相适应的格式返回日期和时间。</li>
+<li>toString()，通常返回带有时区信息的日期和时间</li>
+<li>toDateString()，星期几 月 日 年（特定于格式）</li>
+<li>toTimeString()，时:分:秒 时区（特定于格式）</li>
+<li>toLocalDateString()，星期几 月 日 年（特定于本地区）</li>
+<li>toLocalTimeString()，时:分:秒 时区（特定于本地区）</li>
+<li>toUTCString()，与toGMTString()方法等价</li>
+</ul>
+<h4 id="日期相关的方法"><a href="#日期相关的方法" class="headerlink" title="日期相关的方法"></a>日期相关的方法</h4><p>特别注意，日期中的月份都是从0开始的。下面的方法也是如此。</p>
+<ul>
+<li>getTime()，返回表示日期的毫秒数；与valueOf()返回值相同</li>
+<li>getMonth()，略。还有返回getFullYear、getDate、getHours、getMinutes、getSeconds、getMilliseconds等。</li>
+<li>setMonth()，略。可以set的也同上。</li>
+</ul>
+<h2 id="Web计时"><a href="#Web计时" class="headerlink" title="Web计时"></a>Web计时</h2><p>Web Timing API让开发人员通过JavaScript就能使用浏览器内部的度量结果，从而进行分析。通过浏览器开始请求页面的时间、发生load事件的时间等一系列过程的时间值，就可以知道哪些阶段可能是影响性能的瓶颈的。当然，也可以使用chrome的强大的调试工具，这是一种非常方便的方法。该API不再进行内容介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/10/JS-timeout/" data-id="ciqg86hjp001268q9ekkownww" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BOM/">BOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js-scope" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/06/28/js-scope/" class="article-date">
@@ -121,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/28/js-scope/" data-id="ciq6civlw006r9sq9tqeuoh7n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/28/js-scope/" data-id="ciqg86hnc005e68q9gmnvpfve" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -205,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="ciq6civik00309sq91eb71ygn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/22/css-box/" data-id="ciqg86hne005h68q9vfi7ick4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -272,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/22/css-center/" data-id="ciq6civj2003f9sq9cwzf2rf2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/22/css-center/" data-id="ciqg86hnh005m68q95xdbbupd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -334,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="ciq6civkc004c9sq976f408u2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/20/sass/" data-id="ciqg86hnr006368q93a04r6xg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -382,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="ciq6civht002d9sq9vcm0e50r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/10/blog-0/" data-id="ciqg86hmq004k68q9xhn92w0q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客搭建/">博客搭建</a></li></ul>
@@ -420,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="ciq6civfh000m9sq9nzpl0m98" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/28/JS-binding/" data-id="ciqg86hjl000x68q9info86co" class="article-share-link">Share</a>
       
       
     </footer>
@@ -595,7 +665,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="ciq6civko004n9sq917mmwx92" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/26/valueIsEqual/" data-id="ciqg86hnw006a68q9xx09myp4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -766,7 +836,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="ciq6civg300189sq95szwnywu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/HTTP/" data-id="ciqg86hjr001468q9bb8jmljp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -838,66 +908,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="ciq6civhx002h9sq9nl0urepo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="ciqg86hmo004h68q97a3j6oij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-WebApp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/23/WebApp/" class="article-date">
-  <time datetime="2016-04-23T08:46:13.000Z" itemprop="datePublished">2016-04-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端框架/">前端框架</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/23/WebApp/">Web应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>所谓Web应用，指的是使用web技术构建的业务繁杂、逻辑较多、交互频繁的单页Web应用，它在一个界面上集成多种功能，甚至整个系统就只有一个页面，所有的业务功能都是它的子模块，通过特定的方式挂接到主界面。它是Ajax技术的进一步升华，把Ajax的无刷新机制发挥到极致，因此能早就与桌面程序媲美的流畅用户体验。</p>
-<h2 id="Web应用需要解决的问题"><a href="#Web应用需要解决的问题" class="headerlink" title="Web应用需要解决的问题"></a>Web应用需要解决的问题</h2><p>根据徐飞前辈的分类，Web应用中要解决的问题分为三类：状态、组织、效率。<a href="http://www.zhihu.com/question/39943474" target="_blank" rel="external">原文</a></p>
-<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><p>在一个业务界面中，我们可能会根据某些数据去生成一块界面，然后根据界面上的某些操作，改变一些数据，进而影响界面另外一部分。所以抽象出来就有两种关系：数据改变造成界面改变、界面改变造成数据改变。能够描述界面当前状态的数据，就称为状态。如果不对状态进行抽象，则可能造成逻辑的混乱，所以，不同的框架采用不同的方式进行了处理。</p>
-<h4 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h4><p>所谓组织，指两个方面，一方面是模块关系，一方面是业务模型。<br>目前解决模块关系的问题的共识是组件化。整个应用形成倒置的组件树，每个组件提供对外接口，然后内部只关注自己的实现。最原始的组件，其功能可以单独开发测试，然后逐级拼装成更复杂的组件，直到整个应用。每一级都是易装配，可追踪，可管控的。组件化的目标有分治和复用，其中分治的价值更大。由于组件设计需要更高的成本和更高的难度，所以对web应用“全组件化”是有一定的难度的，可综合考虑。<br>所谓业务模型指的是所处领域中的业务数据、规则、流程的集合。目前解决业务模型的方法有flux、redux之类的架构。</p>
-<h4 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h4><p>效率分为开发效率和运行效率。开发效率与选用的框架、技术以及组件化等都有很大的关系。运行效率主要因素有数据变更检测方式和创建、修改DOM。数据变更检测方式和框架有很大的关系，创建DOM的过程中，各个框架之间没有太大差异，而在修改DOM的时候，React的虚拟DOM有很大的优秀，其他框架内部实现也在逐渐借鉴。</p>
-<h2 id="常见的架构"><a href="#常见的架构" class="headerlink" title="常见的架构"></a>常见的架构</h2><p>目前在Web应用中，常用的架构有MVC、MVP、MVVM三种。下面这两篇文章讲的很好。<br><a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/" target="_blank" rel="external">Scaling Isomorphic Javascript Code</a><br><a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="external">MVC，MVP 和 MVVM 的图示</a></p>
-<h2 id="开发框架与类库"><a href="#开发框架与类库" class="headerlink" title="开发框架与类库"></a>开发框架与类库</h2><p>通常，我们会开始用类库和框架来解决构建动态应用的问题。类库是一些函数的集合，它可以帮助我们写Web应用，但起主导作用的是我们的代码，如jQuery。而框架是一种特殊的、已经实现了的Web应用，它只需要填充具体的业务逻辑，其主导作用的是框架。</p>
-<ul>
-<li>ExtJS可以称为第一代单页应用框架的典型，它封装了各种UI组件，用户主要使用JavaScript来完成前端的开发以及布局。然而，随着功能的逐渐增加，ExtJS的体积变得日益庞大，性能也变得越来越差。</li>
-<li>React可以认为是MVC中的V视图，其产生的意义是：解决构建随时间数据不断变化的大规模应用程序的问题。其主要特点是组件化（也可以使用其独有的jsx）和虚拟DOM树（只会更新需要更新的DOM，节省大量的DOM修改的时间）。React推崇的是单向数据流：给定原始界面，施加一个变化，就可以推导出顶一个状态（界面或数据的更新）</li>
-<li>Angular是为了克服HTML在构建应用上的不足而设计的。它采用了MVVM的架构，采用了数据与界面的双向数据绑定，当界面发生变化时，按照配置规则去更新相应的数据，然后，在根据配置好的规则，把数据更新到界面状态。</li>
-<li>Vue是一个构建数据驱动的web界面的库。Vue.js的目标是通过尽可能简单的API实现相应的数据绑定和组合的视图组件。它只聚焦于视图层，非常容易与其他库或已有项目整合。其核心是一个响应的数据绑定系统，它让数据与DOM保持同步变得非常简单。<a href="http://cn.vuejs.org/guide/comparison.html" target="_blank" rel="external">与其他框架的对比</a></li>
-<li>jQuery是一个优秀的JavaScript库，它是轻量级的js库，兼容CSS3以及各种浏览器。jQuery是用户能更方便地处理HTML、events、实现动画效果和AJAX交互。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="ciq6civid002x9sq9ks2p3fqx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
 
     </footer>
   </div>
@@ -919,7 +933,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -929,7 +943,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -939,7 +953,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -948,7 +962,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
     </div>
   </div>
 
@@ -959,6 +973,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
+          </li>
         
           <li>
             <a href="/2016/06/28/js-scope/">作用域</a>
@@ -974,10 +992,6 @@
         
           <li>
             <a href="/2016/06/20/sass/">SASS学习</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
           </li>
         
       </ul>

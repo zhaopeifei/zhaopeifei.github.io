@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript计时 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JavaScript与时间相关的函数或对象在JavaScript中，与时间相关的对象为Date类型对象，可以获取现在的时间等。如果要对使一个函数延迟执行，可以使用setTimeout()；如果要让一个函数周期性执行，可以使用setInterval()。同时在最新的Web Timing API中，可以使用window.performance来获取页面在被加载到浏览器都经历了哪些阶段，以及这些阶段的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript计时">
+<meta property="og:url" content="http://yoursite.com/2016/07/10/JS-timeout/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="JavaScript与时间相关的函数或对象在JavaScript中，与时间相关的对象为Date类型对象，可以获取现在的时间等。如果要对使一个函数延迟执行，可以使用setTimeout()；如果要让一个函数周期性执行，可以使用setInterval()。同时在最新的Web Timing API中，可以使用window.performance来获取页面在被加载到浏览器都经历了哪些阶段，以及这些阶段的时">
+<meta property="og:updated_time" content="2016-07-10T06:34:21.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript计时">
+<meta name="twitter:description" content="JavaScript与时间相关的函数或对象在JavaScript中，与时间相关的对象为Date类型对象，可以获取现在的时间等。如果要对使一个函数延迟执行，可以使用setTimeout()；如果要让一个函数周期性执行，可以使用setInterval()。同时在最新的Web Timing API中，可以使用window.performance来获取页面在被加载到浏览器都经历了哪些阶段，以及这些阶段的时">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS-timeout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/10/JS-timeout/" class="article-date">
+  <time datetime="2016-07-10T02:51:33.000Z" itemprop="datePublished">2016-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript计时
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript与时间相关的函数或对象"><a href="#JavaScript与时间相关的函数或对象" class="headerlink" title="JavaScript与时间相关的函数或对象"></a>JavaScript与时间相关的函数或对象</h2><p>在JavaScript中，与时间相关的对象为Date类型对象，可以获取现在的时间等。如果要对使一个函数延迟执行，可以使用setTimeout()；如果要让一个函数周期性执行，可以使用setInterval()。同时在最新的Web Timing API中，可以使用window.performance来获取页面在被加载到浏览器都经历了哪些阶段，以及这些阶段的时间，从而找出性能瓶颈并解决。</p>
+<h2 id="setTimeout-与setInterval"><a href="#setTimeout-与setInterval" class="headerlink" title="setTimeout()与setInterval()"></a>setTimeout()与setInterval()</h2><p>JavaScript是单线程语言，但它允许通过超时值setTimeout()和间歇时间值setInterval()来调用代码在特定的时刻执行。由于JavaScript的单线程特性，这两个方法对于时间的控制都是不精确的。这两个方法都是有window对象提供的，所以其具体实现与浏览器相关，故对时间控制的准确程度因为浏览器不同而不同。通过测试，火狐对于时间的控制更加精确一些。</p>
+<h4 id="setTimeout-与clearTimeout"><a href="#setTimeout-与clearTimeout" class="headerlink" title="setTimeout()与clearTimeout()"></a>setTimeout()与clearTimeout()</h4><p>setTimeout接受两个参数：要执行的代码和以毫秒表示的时间。第一个参数可以是一个包含JavaScript代码的字符串（和在eval()中一样，所以不推荐此方式），也可以是一个函数。通过setTimeout()设置后，会返回一个数值ID，是这个将要执行代码的唯一标示；要取消，就需要调用clearTimout(ID)来取消它。示例如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setTimout(<span class="string">"alert('hello')"</span>,<span class="number">1000</span>)l;<span class="comment">//不推荐此参数类型。一秒后调用</span></span><br><span class="line"><span class="keyword">var</span> timeoutId = setTimout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    alert(<span class="string">'hello'</span>);</span><br><span class="line">    &#125;,<span class="number">1000</span>);<span class="comment">//推荐此参数类型。</span></span><br><span class="line">clearTimeout(timeoutId);<span class="comment">//取消这个超时调用。</span></span><br></pre></td></tr></table></figure>
+<h4 id="setInterval-与clearInterval"><a href="#setInterval-与clearInterval" class="headerlink" title="setInterval()与clearInterval()"></a>setInterval()与clearInterval()</h4><p>setInterval与setTimeout一样都接受两个参数。不同之处在于：setInterval为间歇调用。下面实例中，展示了一个倒计时如下：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> num=<span class="number">10</span>, max=<span class="number">10</span>, interval=<span class="literal">null</span>;</span><br><span class="line">intervalId = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(num);</span><br><span class="line">    &#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">        clearInterval(intervalId);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Time Up!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    num--;</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>暂时略，以后补上~</p>
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><p>ECMAScript中的Date类型是在早期Java的java.util.Date类基础上构建的。Date类型使用UTC1970年1月1日零时开始经过的毫秒数来保存日期。</p>
+<h4 id="Date创建"><a href="#Date创建" class="headerlink" title="Date创建"></a>Date创建</h4><p>要创建一个日期对象，可以使用new来新建，并传入相应的日期参数（如果为空，则表示当前时刻）。另外，如果只是为了获取当前时间，也可以使用Date.now()方法。Date提供了Date.parse()和Date.UTC()来将你输入的日期转化为UTC格式的Date。<br>Date.parse解析的格式：将地区设置为美国的浏览器接受的日期格式为：月/日/年、 英文月名 日，年、 英文星期几 英文月 日 年 时:分:秒 时区(如TUE May 25 2004 00:00:00 GMT-0700)、YYYY-MM-DDTHH:mm:ss.sssZ<br>Date.UTC()的参数分别为年份、月份（0表示1月）、日、小时、分钟、秒、毫秒。上述参数中，只有年份和月份是必须要有的。示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();<span class="comment">//现在时刻，格式与浏览器行为有关。</span></span><br><span class="line"><span class="keyword">var</span> now = <span class="built_in">Date</span>.now();<span class="comment">//格式为一系列数字</span></span><br><span class="line"><span class="keyword">var</span> someDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'May 25,2004'</span>));<span class="comment">//2004年5月25日零时</span></span><br><span class="line"><span class="keyword">var</span> someDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'May 25,2004'</span>);<span class="comment">//同上，会自动调用Date.parse</span></span><br><span class="line"><span class="keyword">var</span> otherDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2005</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">55</span>,<span class="number">55</span>));<span class="comment">//GMT时间2005年5月5日下午5:55:55</span></span><br><span class="line"><span class="keyword">var</span> otherDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2005</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">55</span>,<span class="number">55</span>);<span class="comment">//*本地时间*2005年5月5日下午5:55:55</span></span><br></pre></td></tr></table></figure>
+<p>在不同的浏览器中，时间的表示格式可能不同，对于时区的处理也不相同。如上面的例子中，chrome在处理otherDate都是按照本地时区，而火狐则是根据上述行为处理的。由于这些时间都是对象，所以不能通过==来判断两个时间是否相同（对象引用相同才会相等），而应该判断两个时间插值是否为0。</p>
+<h4 id="日期表示"><a href="#日期表示" class="headerlink" title="日期表示"></a>日期表示</h4><p>Date类型有重写了toLocaleString()、toString()方法，其可以返回特定格式的时间，但浏览器之前可能存在不同。菜外还有些其他专门用于将日期格式化为字符串的方法。如下：</p>
+<ul>
+<li>toLocaleString()，按照与浏览器设置的地区相适应的格式返回日期和时间。</li>
+<li>toString()，通常返回带有时区信息的日期和时间</li>
+<li>toDateString()，星期几 月 日 年（特定于格式）</li>
+<li>toTimeString()，时:分:秒 时区（特定于格式）</li>
+<li>toLocalDateString()，星期几 月 日 年（特定于本地区）</li>
+<li>toLocalTimeString()，时:分:秒 时区（特定于本地区）</li>
+<li>toUTCString()，与toGMTString()方法等价</li>
+</ul>
+<h4 id="日期相关的方法"><a href="#日期相关的方法" class="headerlink" title="日期相关的方法"></a>日期相关的方法</h4><p>特别注意，日期中的月份都是从0开始的。下面的方法也是如此。</p>
+<ul>
+<li>getTime()，返回表示日期的毫秒数；与valueOf()返回值相同</li>
+<li>getMonth()，略。还有返回getFullYear、getDate、getHours、getMinutes、getSeconds、getMilliseconds等。</li>
+<li>setMonth()，略。可以set的也同上。</li>
+</ul>
+<h2 id="Web计时"><a href="#Web计时" class="headerlink" title="Web计时"></a>Web计时</h2><p>Web Timing API让开发人员通过JavaScript就能使用浏览器内部的度量结果，从而进行分析。通过浏览器开始请求页面的时间、发生load事件的时间等一系列过程的时间值，就可以知道哪些阶段可能是影响性能的瓶颈的。当然，也可以使用chrome的强大的调试工具，这是一种非常方便的方法。该API不再进行内容介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/10/JS-timeout/" data-id="ciqg86hjp001268q9ekkownww" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BOM/">BOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/28/js-scope/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">作用域</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/28/js-scope/">作用域</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-center/">CSS伸缩布局与居中</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/sass/">SASS学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

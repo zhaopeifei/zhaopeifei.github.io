@@ -68,6 +68,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ExtJS-define" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/ExtJS-define/" class="article-date">
+  <time datetime="2016-04-07T03:22:20.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/ExtJS-define/">ExtJS定义类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在ExtJS中，用户可以使用Ext.define自定义类或进行重载。此处将对其使用方法以及实现原理进行剖析。</p>
+<h2 id="定义一个类"><a href="#定义一个类" class="headerlink" title="定义一个类"></a>定义一个类</h2><h4 id="定义一个新的基本类"><a href="#定义一个新的基本类" class="headerlink" title="定义一个新的基本类"></a>定义一个新的基本类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'My.awesome.Class'</span>, &#123;</span><br><span class="line">    <span class="attribute">someProperty</span>: <span class="string">'something'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attribute">someMethod</span>: <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">        alert(s + <span class="keyword">this</span>.someProperty);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> obj = <span class="keyword">new</span> My.awesome.Class();</span><br><span class="line"></span><br><span class="line">obj.someMethod(<span class="string">'Say '</span>); <span class="comment">// alerts 'Say something'</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建一个匿名类"><a href="#创建一个匿名类" class="headerlink" title="创建一个匿名类"></a>创建一个匿名类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="literal">null</span>, &#123;</span><br><span class="line">  <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="创建一个包含私有类型的嵌套域"><a href="#创建一个包含私有类型的嵌套域" class="headerlink" title="创建一个包含私有类型的嵌套域"></a>创建一个包含私有类型的嵌套域</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.foo.Bar'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> id = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">nextId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ++id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> bar=Ext.create(<span class="string">'MyApp.foo.Bar'</span>);</span><br><span class="line">alert(bar.nextId()); <span class="comment">//1</span></span><br><span class="line">alert(bar.nextId()); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h4 id="Ext实现"><a href="#Ext实现" class="headerlink" title="Ext实现"></a>Ext实现</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">define</span>: <span class="title">function</span> </span>(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">            <span class="comment">//如果是重载，则应用Manager.createOverride方法，否则应用Manager.create</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">data</span>.override) &#123;</span><br><span class="line">                <span class="keyword">return</span> Manager.createOverride.apply(Manager, arguments);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Manager.create.apply(Manager, arguments);</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个新的类</span></span><br><span class="line">create: function(className, <span class="built_in">data</span>, createdFn) &#123;</span><br><span class="line">			</span><br><span class="line">            <span class="built_in">var</span> ctor = makeCtor();<span class="comment">//建立构造器</span></span><br><span class="line">            <span class="keyword">if</span> (typeof <span class="built_in">data</span> == <span class="string">'function'</span>) &#123;</span><br><span class="line">                <span class="built_in">data</span> = <span class="built_in">data</span>(ctor);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">data</span>.$className = className; <span class="comment">//更改类名</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//返回创建好的类，创建类的过程中，不仅要将自定义的类的属性和方法添加到类中，</span></span><br><span class="line">            <span class="comment">//还需要将ext基本类的属性和方法添加到新建的类中。</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">new</span> Class(ctor, <span class="built_in">data</span>, function() &#123;<span class="comment">//……&#125;);</span></span><br><span class="line"></span><br><span class="line">Ext.Class = ExtClass = function(Class, <span class="built_in">data</span>, onCreated) &#123;</span><br><span class="line">        <span class="keyword">if</span> (typeof Class != <span class="string">'function'</span>) &#123;</span><br><span class="line">            onCreated = <span class="built_in">data</span>;</span><br><span class="line">            <span class="built_in">data</span> = Class;</span><br><span class="line">            Class = <span class="built_in">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">data</span>) &#123;</span><br><span class="line">            <span class="built_in">data</span> = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Class = ExtClass.create(Class, <span class="built_in">data</span>); <span class="comment">//先创建基于ExtClass的类的实例，添加应有的属性和方法</span></span><br><span class="line"></span><br><span class="line">        ExtClass.process(Class, <span class="built_in">data</span>, onCreated); <span class="comment">//将添加的属性和方法放至正确的位置</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Class; <span class="comment">//返回创建好的类</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="重载类"><a href="#重载类" class="headerlink" title="重载类"></a>重载类</h2><h4 id="定义基于EXT组件的重载"><a href="#定义基于EXT组件的重载" class="headerlink" title="定义基于EXT组件的重载"></a>定义基于EXT组件的重载</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyApp.override.BaseOverride'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">var</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attribute">override</span>: <span class="string">'Ext.Component'</span>,</span><br><span class="line">        <span class="attribute">logId</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(++counter, <span class="keyword">this</span>.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<h4 id="分解类"><a href="#分解类" class="headerlink" title="分解类"></a>分解类</h4><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: /src/app/Panel.js</span></span><br><span class="line"></span><br><span class="line"> Ext.define(<span class="string">'My.app.Panel'</span>, &#123;</span><br><span class="line">     <span class="attribute">extend</span>: <span class="string">'Ext.panel.Panel'</span>,</span><br><span class="line">     <span class="attribute">requires</span>: [</span><br><span class="line">         <span class="string">'My.app.PanelPart2'</span>,</span><br><span class="line">         <span class="string">'My.app.PanelPart3'</span></span><br><span class="line">     ]</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls Ext.panel.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">statics</span>: &#123;</span><br><span class="line">         <span class="attribute">method</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// File: /src/app/PanelPart2.js</span></span><br><span class="line"> Ext.define(<span class="string">'My.app.PanelPart2'</span>, &#123;</span><br><span class="line">     <span class="attribute">override</span>: <span class="string">'My.app.Panel'</span>,</span><br><span class="line"></span><br><span class="line">     <span class="attribute">constructor</span>: <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.callParent(<span class="built_in">arguments</span>); <span class="comment">// calls My.app.Panel's constructor</span></span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Ext重载类的实现"><a href="#Ext重载类的实现" class="headerlink" title="Ext重载类的实现"></a>Ext重载类的实现</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">createOverride: function (className, data, createdFn) &#123;</span><br><span class="line">            var me = this,</span><br><span class="line">                overriddenClassName = data.override,</span><br><span class="line">                requires = data.requires,</span><br><span class="line">                uses = data.uses,</span><br><span class="line">                compat = data.compatibility,</span><br><span class="line">                classReady = function () &#123;</span><br><span class="line">                    var <span class="keyword">cls</span>, temp<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">               		<span class="comment">//requires加载需要的类时机是：当前类初始化之前被加载。</span></span><br><span class="line">                    <span class="keyword">if</span> (requires) &#123;</span><br><span class="line">                        temp = requires<span class="comment">;</span></span><br><span class="line">                        requires = null<span class="comment">; </span></span><br><span class="line"></span><br><span class="line">                        Ext.Loader.require(temp, classReady)<span class="comment">;</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">cls</span> = me.get(overriddenClassName)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">delete</span> data.override<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.compatibility<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.requires<span class="comment">;</span></span><br><span class="line">                        <span class="keyword">delete</span> data.uses<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        Ext.override(<span class="keyword">cls</span>, data)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">                        me.triggerCreated(className)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">						<span class="comment">//uses记载需要的类的时机是，当前类初始化之后被加载。</span></span><br><span class="line">                        <span class="keyword">if</span> (uses) &#123;</span><br><span class="line">                            Ext.Loader.addUsedClasses(uses)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> (createdFn) &#123;</span><br><span class="line">                            createdFn.call(<span class="keyword">cls</span>)<span class="comment">; </span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            me.existCache[className] = true<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!compat || Ext.checkVersion(compat)) &#123;</span><br><span class="line">                </span><br><span class="line">                me.onCreated(classReady, me, overriddenClassName)<span class="comment">;</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> me<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/ExtJS-define/" data-id="ciqg86hjt001968q9vhnykw7x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dataBase-system" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/31/dataBase-system/" class="article-date">
@@ -160,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="ciq6civjw003x9sq9ydmv15a2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/dataBase-system/" data-id="ciqg86hn3004y68q9r6qsg36u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
@@ -224,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="ciq6civj6003j9sq9phh4utay" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/31/compiler-theroy/" data-id="ciqg86hmh004b68q9a04tbiuz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -268,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="ciq6civiu00389sq9oojqnvh4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-add-add/" data-id="ciqg86hik000168q9c8g5mwdv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -314,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="ciq6cive100009sq9fcbkye0h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/30/C-program/" data-id="ciqg86hid000068q9siy6x55r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -361,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="ciq6civjy00409sq9n852e9m7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/links/" data-id="ciqg86hn5005168q917f03d1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
@@ -428,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="ciq6civi6002s9sq9rdaplvry" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/computer-theory/" data-id="ciqg86hml004e68q9ujvdjd6f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -471,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="ciq6civjk003m9sq9j3qxvdt2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/nodejs-project/" data-id="ciqg86hnn005w68q904ej49sn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -529,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="ciq6civk200449sq93sjehqk3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/24/operating-system/" data-id="ciqg86hni005p68q9dvk0wt7t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -583,105 +632,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="ciq6civiy003c9sq9jz4ldoby" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/heap-stack/" data-id="ciqg86hn7005668q991fldr9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaScript-12" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/19/JavaScript-12/" class="article-date">
-  <time datetime="2016-03-19T07:49:31.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/19/JavaScript-12/">可维护性、性能及部署</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性"></a>可维护性</h2><p>可维护的代码一般遵循以下特点</p>
-<ul>
-<li>可理解性：其他人可以接受代码并理解它的意图和一般途径</li>
-<li>直观性：代码中的东西一看就能明白，而不管其操作过程多么复杂</li>
-<li>可适应性：代码以一种数据上的变换不要求完全重写的方法撰写</li>
-<li>可扩展性：在damageSumarry结构上已经考虑到在未来允许对核心功能进行扩展</li>
-<li>可调试性：当有地方出错时，代码可以给予你足够的信息来尽可能直接地确定问题所在</li>
-</ul>
-<h4 id="代码约定"><a href="#代码约定" class="headerlink" title="代码约定"></a>代码约定</h4><p>由于JavaScript的可适应性，代码约定对它也很重要。由于和大多数面向对象语言不通，JavaScript并不强制开发人员将所有东西都定义为对象。</p>
-<ul>
-<li>可读性：一部分和代码缩进相关。一部分是注释。比如要在函数和方法、大段代码、复杂的算法和Hack处进行注释。</li>
-<li>变量和函数命名：变量名应该是名词。函数名应该以动词开始。变量和函数都应使用合乎逻辑的名字，长度问题可以通过后处理和压缩来缓解。一般第一个词为小写，以后的词都是大写。</li>
-<li>变量类型透明：一种是定义的时候初始化，则知道它是什么类型。一种是在变量名前加一个标记，比如bFound（布尔型）、iCount（整数）。最后一种是使用类型注释。</li>
-</ul>
-<h4 id="松解耦合"><a href="#松解耦合" class="headerlink" title="松解耦合"></a>松解耦合</h4><p>只要应用的某个部分过于依赖另一部分，代码就是耦合过紧，难于维护。典型的问题如：对象直接引用另一个对象，并且修改其中一个的同时需要修改另外一个。显示问题的唯一来源应该是CSS，行为问题的唯一来源应该是JavaScript。</p>
-<ul>
-<li>解耦HTML/JavaScript：HTML是数据，JavaScript是行为。当JavaScript用于插入数据时，尽量不要直接插入标记。一般可以在页面中直接包含并隐藏标记，然后等到整个页面渲染好之后，就可以用JavaScript显示该编辑，而非生成它。更改行为只需要在JavaScript中进行，而更改标记则只要在渲染文件中。</li>
-<li>解耦CSS/JavaScript：要更改样式时，不应该直接更改属性，应该更改元素的类名，达到改变样式的目的，可实现CSS对JavaScript的松散耦合。还要避免在CSS中使用表达式。</li>
-<li>解耦应用逻辑/事件处理程序：这两者分别处理各自的东西，一个事件处理程序应该从事件对象中提取相关信息，并将这些信息传送到处理应用逻辑的某个方法中。不能讲event对象传给其他方法，只传来自event对象所需的数据；任何可以在应用层面的动作都应该可以再不执行任何事件处理程序的情况下进行；任何事件处理程序都应该处理事件，然后将处理转交给应用逻辑。</li>
-</ul>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
-<li>尊重对象所有权。不修改不属于自己的对象。</li>
-<li>避免全局变量。最多创建一个全局变量，让其他对象和函数都存在其中。</li>
-<li>避免与null进行比较，容易出错。而应该使用instanceof、typeof等。</li>
-<li>使用常量。关键在于将数据和使用它的逻辑进行分离。</li>
-</ul>
-<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h4 id="注意作用域"><a href="#注意作用域" class="headerlink" title="注意作用域"></a>注意作用域</h4><p>随着作用域链中的作用域数量的增加，访问当前作用域以外的变量的时间也在增加。访问全局变量总是比访问局部变量蛮，因为需要遍历作用域链。只要能减少花费在作用域链上的时间，就能增加脚本的整体性能。总的来说，就是使用局部变量代替全局变量，减少全局变量使用次数。</p>
-<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function updateUI()&#123;  <span class="comment">//要避免全局查找</span></span><br><span class="line">	var doc = document<span class="comment">; //将document对象存在本地的doc变量中，所以只有一次全局查找</span></span><br><span class="line">	var imgs = doc.getElementByTagName(<span class="string">"img"</span>)<span class="comment">;</span></span><br><span class="line">	<span class="keyword">for</span>(var i=<span class="number">0</span>,len=imgs.<span class="keyword">length</span><span class="comment">;i &lt; len; i++)&#123;</span></span><br><span class="line">		imgs[i].<span class="keyword">title</span> = doc.<span class="keyword">title</span> + <span class="string">"image"</span> + i<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">	var msg = doc.getElementById(<span class="string">"msg"</span>)<span class="comment">;</span></span><br><span class="line">	msg.innerHTML = <span class="string">"update complete"</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//此外，还要避免with语句。因为with语句会创建自己的作用域。</span></span><br></pre></td></tr></table></figure>
-<h4 id="选择正确的方法"><a href="#选择正确的方法" class="headerlink" title="选择正确的方法"></a>选择正确的方法</h4><p>在计算机科学中，算法的复杂度使用O符号来表示。要选择最简单、最快捷的算法。使用变量和数组要比访问对象上的属性更有效率，前者是O(1)，后者为O(n)。所以，属性查找越多，执行时间越长。</p>
-<p>对于循环来说，如果循环的次数是确定的，消除循环并使用多次函数调用往往更快。</p>
-<p>性能优化过程中很重要的一部分还有优化循环。一个循环的基本优化步骤如下：</p>
-<ul>
-<li>减值迭代：在很多情况下，从最大值（特定值）开始，在循环中不断减值的迭代器更加高效</li>
-<li>简化终止条件：由于每次循环都要计算终止条件，所以要避免属性查找和其他复杂度高的操作。</li>
-<li>简化循环体：确保没有某些可以被很容易移除循环的密集计算。</li>
-<li>使用后测试循环：使用do-while这种后测试循环，可以避免最初终止条件的计算。</li>
-</ul>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">query</span> = <span class="keyword">window</span>.location.href.substring(<span class="keyword">window</span>.location.href.indexof("?)); <span class="comment">//6次属性查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url = <span class="keyword">window</span>.location.href;</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">query</span> = url.substring(url.indexof(<span class="string">"?"</span>)); <span class="comment">//4次属性查找</span></span><br></pre></td></tr></table></figure>
-<h2 id="最小化语句数"><a href="#最小化语句数" class="headerlink" title="最小化语句数"></a>最小化语句数</h2><p>多个变量声明可以写成一个语句。在插入迭代值的时候，尽可能合并语句。尽量使用字面量而不是构造函数来创建数组和对象。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> count = <span class="number">5</span>,</span><br><span class="line">	<span class="built_in">color</span> = <span class="string">"blue"</span>,</span><br><span class="line">	now = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">//合并变量声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> name = values[i++]; <span class="comment">//插入迭代值时，合并语句</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> person = &#123;</span><br><span class="line">	<span class="attribute">name</span>:<span class="string">"liming"</span>,</span><br><span class="line">	<span class="attribute">age</span>:<span class="number">20</span></span><br><span class="line">&#125;; <span class="comment">//应该使用这种字面量的方式创建对象或数组</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">//这种方式不好。这种问题要重点关注</span></span><br><span class="line">person.name = <span class="string">"liming"</span>;</span><br><span class="line">person.age = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="优化DOM交互"><a href="#优化DOM交互" class="headerlink" title="优化DOM交互"></a>优化DOM交互</h2><p>在JavaScript各个方面中，DOM毫无疑问是最慢的一部分。DOM操作与交互要消耗大量时间。</p>
-<h4 id="最小化现场更新"><a href="#最小化现场更新" class="headerlink" title="最小化现场更新"></a>最小化现场更新</h4><p>一旦需要访问的DOM部分是已经显示的页面的额一部分，那么就是在进行一个现场更新。每一个修改，都有一个性能惩罚，因为浏览器要重新计算无数尺寸已进行更新。所以要进行减少现场更新次数。<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var list = document.getElementById(<span class="string">"myList"</span>),</span><br><span class="line">	fragment = document.createDocumentFragment(),</span><br><span class="line">	item,</span><br><span class="line">	i<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span><span class="comment">;i&lt;10;i++)&#123;</span></span><br><span class="line">	item = document.createElement(<span class="string">"li"</span>)<span class="comment">;</span></span><br><span class="line">	fragment.appendChild(item)<span class="comment">;</span></span><br><span class="line">	item.appendChild(document.createTextNode(<span class="string">"Item"</span> + i))<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">list.appendChild(fragment)<span class="comment">; //只有一次现场更新，而不是10次。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法2 使用innerHTML，速度更快</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span><span class="comment">;i&lt;10;i++)&#123;</span></span><br><span class="line">	html += <span class="string">"&lt;li&gt;Item"</span> +i+ <span class="string">"&lt;/li&gt;"</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">list.innerHTML = html<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="使用innerHTML"><a href="#使用innerHTML" class="headerlink" title="使用innerHTML"></a>使用innerHTML</h4><p>对于小的DOM更改而言，使用createElement()和appendChild()，以及innerTHML来说效率差不多。然而，对于大的DOM更改，使用innerHTML要比使用标准的DOM方法创建同样的DOM结构快得多。当把innerHTML设置为某个值时，后台会创建一个HTML解析器，然后使用内部的DOM调用来创建DOM结构，而非基于JavaScript的DOM调用。由于内部方法是编译好的而非解释执行的，所以执行快得多。</p>
-<h4 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h4><p>大多数Web应用在用户交互上大量用到事件处理程序。页面上的时间处理程序的数量和页面相应用户交互的速度之间负相关。为了减轻这种惩罚，最好使用事件代理。</p>
-<h4 id="注意HTMLCollection"><a href="#注意HTMLCollection" class="headerlink" title="注意HTMLCollection"></a>注意HTMLCollection</h4><p>HTMLCollection对于Web应用的性能而言是巨大的损害。也许优化HTMLCollection访问最重要的地方就是循环了。编写JavaScript的时候，一定要知道何时返回HTMLCollection对象，这样你就可以最小化对他们的访问。发生以下情况时会返回HTMLCollection对象：</p>
-<ul>
-<li>进行了对getElementsByTagName()的调用；</li>
-<li>获取了元素的childNodes属性；</li>
-<li>获取了元素的attributes属性；</li>
-<li>访问了特殊的集合，如document.forms、document.images等。</li>
-</ul>
-<h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2><p>避免解析包含了JavaScript代码的字符串，因为要解析字符串还需要再启动一个解析器，这就是JavaScript代码想解析JavaScript的时候的双重解释乘法。所以要避免出现需要按照JavaScript解释的字符串，比如<code>eval(&quot;alert(&#39;hello&#39;)&quot;);</code><br>原生方法比较快，所以尽量使用原生方法。因为原生方法是用诸如c/c++之类的编译型语言写出来的。</p>
-<p>switch语句较快，如果有一系列复杂的if-else语句，可以转换成单给switch语句。</p>
-<p>位运算符比较快，比如取模、逻辑与和逻辑或都可以考虑用位运算来替换。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/19/JavaScript-12/" data-id="ciq6civgk001k9sq9o3hb8ymy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
 
     </footer>
   </div>
@@ -703,7 +657,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -713,7 +667,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -723,7 +677,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -732,7 +686,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
     </div>
   </div>
 
@@ -743,6 +697,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
+          </li>
         
           <li>
             <a href="/2016/06/28/js-scope/">作用域</a>
@@ -758,10 +716,6 @@
         
           <li>
             <a href="/2016/06/20/sass/">SASS学习</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/10/blog-0/">个人网站搭建系列——选型及基本框架搭建</a>
           </li>
         
       </ul>
