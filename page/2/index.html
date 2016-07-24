@@ -68,6 +68,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-OOP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/03/OOP/" class="article-date">
+  <time datetime="2016-05-03T12:39:17.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/软件开发基础/">软件开发基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/03/OOP/">面向对象基础概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="对象、类、实例"><a href="#对象、类、实例" class="headerlink" title="对象、类、实例"></a>对象、类、实例</h2><p>一起事物皆为对象，对象是一个自包含的实体，用一组可识别的特性和行为来标识。类就是具有相同的属性和功能的对象的抽象的集合，可以认为类是创建某一类对象的模板。实例是根据类实现的一个真实的对象，实现的过程称为实例化。</p>
+<h2 id="构造方法与方法重载（overload）"><a href="#构造方法与方法重载（overload）" class="headerlink" title="构造方法与方法重载（overload）"></a>构造方法与方法重载（overload）</h2><p>构造方法又叫构造函数，其实就是对类进行初始化。根据参数的不同，可以由多种构造方法，方法重载提供了创建同名的多个方法的能力（参数不同）。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Cat</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">string</span> name = <span class="string">""</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Cat</span>(<span class="params"><span class="keyword">string</span> name</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="属性及方法"><a href="#属性及方法" class="headerlink" title="属性及方法"></a>属性及方法</h2><h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>类的访问修饰符只有public、abstract等，不能使用private、protected等修饰符。属性和方法都有访问修饰符，常见的修饰符有（C#）：</p>
+<ul>
+<li>private 私有，只允许本类中的成员访问，子类、实例不能访问；</li>
+<li>protected 保护访问， 允许本类、子类访问，实例不能访问；</li>
+<li>internal 内部访问，指向本项目内访问，其他项目不能访问；</li>
+<li>public 共有访问，不受任何限制；</li>
+</ul>
+<h4 id="set、get访问器"><a href="#set、get访问器" class="headerlink" title="set、get访问器"></a>set、get访问器</h4><p>属性有两个方法get、set。get访问器返回与声明的属性相同的数据类型；set访问器有一个隐式参数，用关键字value表示，进行赋值。使用构造器的好处有控制读写(是否可读、可写、对值的范围进行控制等)。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> shoutNum = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> ShouNum</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">get</span>&#123; <span class="keyword">return</span> shouNum; &#125;</span><br><span class="line">	<span class="keyword">set</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">value</span>&lt;=<span class="number">10</span>)&#123;</span><br><span class="line">			shouNum = <span class="keyword">value</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象三大特性"><a href="#面向对象三大特性" class="headerlink" title="面向对象三大特性"></a>面向对象三大特性</h2><h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p>每个对象都包含它能进行操作所需要的所有信息，这个特性称为封装。适当的封装，可以将对象使用接口的程序实现部分隐藏起来，同时确保用户无法任意更改对象内部的重要的数据。封装有这两层的概念，指的是方法的实现。使用封装的好处有：减少耦合、类内部实现可以自由修改、类具有清晰的对外接口。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>继承定义了类如何相互关联，共享特性。子类（派生类）不但继承了父类（基类）的所有特性，还可以定义新的特性。继承的特性有：</p>
+<ul>
+<li>子类拥有父类非private的属性和功能；</li>
+<li>子类具有自己的属性和功能，即子类可以扩展父类没有的属性和功能；</li>
+<li>子类还可以以自己的方式实现父类的功能（方法重写）；</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Cat</span>:<span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//对于构造方法，不能被继承，只能被调用</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Cat</span>(<span class="params"><span class="keyword">string</span> name</span>):<span class="title">base</span>(<span class="params">name</span>)</span>&#123;&#125;</span><br><span class="line">	<span class="function">pulic <span class="keyword">string</span> <span class="title">Shout</span>(<span class="params"></span>)</span>&#123;<span class="comment">//...&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="多态（override）"><a href="#多态（override）" class="headerlink" title="多态（override）"></a>多态（override）</h4><p>多态表示不同的对象可以执行相同的动作，但要通过它们自己的实现代码来执行。<br>在C#中，多态的实现方法为：父类通过virtual关键词，将成员声明为虚拟的，表示这个方法/属性可以被重写；然后，子类可以选择使用override关键字，来重写方法。不同的语言实现多态的方法有差别。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Animal</span>&#123;</span><br><span class="line">	....</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> <span class="title">Shout</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">//在C#中，要声明为虚函数，才可以重写</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Cat</span>:<span class="title">Animal</span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">string</span> <span class="title">Shout</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	 ... <span class="comment">//重写的方法</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><p>类是对对象的抽象，抽象类是对类的抽象，接口是对行为的抽象。如果行为跨越不同类的对象，可使用接口，对于一些相似的类对象，用继承抽象类。从设计角度看，抽象类是从子类中发现了公共的东西，泛化出父类，然后子类继承父类，而接口是根本不知子类的存在，方法如何实现还不确认，预先定义。<br>抽象类和接口还有一些其他的具体的区别：</p>
+<ul>
+<li>抽象类可以给出一些成员的实现，接口却不包含成员的实现。</li>
+<li>抽象类的抽象成员可被子类部分实现，接口的成员需要实现类完全实现。</li>
+<li>一个类只能继承一个抽象类，但可以实现多个接口等</li>
+</ul>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类不能实例化，只是类的抽象</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">string</span> getShoutSound();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口，应该是现有接口，再由类</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IChange</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">string</span> ChangeThing(<span class="keyword">string</span> thing);<span class="comment">//此为继承接口的类要实现的方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MachineCat</span>:<span class="title">Cat</span>,<span class="title">IChange</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">string</span> ChangeThing(<span class="keyword">string</span> thing) <span class="comment">//不需要override</span></span><br><span class="line">	&#123; <span class="comment">//方法的实现 &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合和泛型"><a href="#集合和泛型" class="headerlink" title="集合和泛型"></a>集合和泛型</h2><p>集合ArrayList是使用大小可按需动态增加的数组，可以通过泛型为其制定集合中的类型。泛型是具有占位符（类型参数）的类、结构、接口和方法，这些占位符是类、接口、接口和方法所存储和使用的一个或多个类型的占位符。泛型集合类可以将类型参数用作为它所存储的对象的类型的占位符。使用方法如: List<animal> arrayAnimal。</animal></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/03/OOP/" data-id="cir0r64360033n4q9pyuumvpx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-WebApp" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/23/WebApp/" class="article-date">
@@ -112,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="ciqg86hmu004r68q9vdgr67o8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/WebApp/" data-id="cir0r643a003bn4q9j6l8itux" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -169,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="ciqg86hna005968q9vs0tlp8g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/23/flexbox/" data-id="cir0r643c003dn4q94w56m5ra" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li></ul>
@@ -248,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="ciqg86hnl005t68q9nqnk5wh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/17/react-learn/" data-id="cir0r644m0051n4q9ey7ulbmg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -295,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="ciqg86hjb000g68q9n1gokmgg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-async/" data-id="cir0r6415000on4q9ihl6nodp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -345,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="ciqg86hj2000b68q9me5catyk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/15/ECMAScript6-class/" data-id="cir0r641w001qn4q9yz8vs3yf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -406,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="ciqg86hjj000v68q9qkg34ut5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6-iterator/" data-id="cir0r640y000fn4q9wxsut3jo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -474,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="ciqg86hjf000o68q9jy2cst8w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/14/ECMAScript6/" data-id="cir0r641d000wn4q9wlzbizcx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -549,7 +621,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="ciqg86hly004568q910tyff66" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/11/JavaScript-crossOrigin/" data-id="cir0r642y002tn4q9x8b50dlf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -596,56 +668,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="ciqg86hjd000j68q9ephxg4mv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Ext-Ajax/" data-id="cir0r641k0014n4q90tnnk4lf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ExtJS-model" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/07/ExtJS-model/" class="article-date">
-  <time datetime="2016-04-07T11:05:26.000Z" itemprop="datePublished">2016-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ExtJS/">ExtJS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/ExtJS-model/">ExtJS中Store与TreeStore</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ExtJS中将后台数据交由前端显示的一般过程为：将数据库中数据通过交互文件和AJAX技术传到前端，根据前端定义的相应的model，将数据加载到相应的store中，将创建的store赋给相应的前端组件即可显示。采取这样的方式，就避免了原生JavaScript等要先将json数据解析，再分析数据，然后根据结果进行显示的耦合性比较高的问题。</p>
-<h2 id="Model与TreeModel"><a href="#Model与TreeModel" class="headerlink" title="Model与TreeModel"></a>Model与TreeModel</h2><p>Model类型指定了解析json等数据的格式。store可以根据model直接将json等数据解析为model定义的格式。</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'treeModel'</span>, &#123; <span class="comment">//定义Model类</span></span><br><span class="line">    <span class="attribute">extend</span>: <span class="string">'Ext.data.Model'</span>, <span class="comment">//从Ext.data.Model扩展，此外还有treeModel</span></span><br><span class="line">    <span class="attribute">fields</span>: [ <span class="comment">//其域的名称以及类型要和传递的json数据的格式对应</span></span><br><span class="line">        &#123; <span class="attribute">name</span>: <span class="string">'id'</span>, <span class="attribute">type</span>: <span class="string">'string'</span> &#125;, </span><br><span class="line">        &#123; <span class="attribute">name</span>: <span class="string">'text'</span>, <span class="attribute">type</span>: <span class="string">'string'</span> &#125;, <span class="comment">//还可以定义默认值等属性</span></span><br><span class="line">        &#123; <span class="attribute">name</span>:<span class="string">'name'</span>,<span class="attribute">type</span>:<span class="string">'string'</span>&#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="TreeStore"><a href="#TreeStore" class="headerlink" title="TreeStore"></a>TreeStore</h2><p>本文以TreeStore为例分析，此外还有JsonPStore、JsonStore、XmlStore等store类。</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.创建store</span></span><br><span class="line"><span class="built_in">var</span> treeStore = Ext.create(<span class="string">'Ext.data.TreeStore'</span>, &#123; </span><br><span class="line">    <span class="attribute">model</span>: <span class="string">'treeModel'</span>, <span class="comment">//按照treeModel格式解析</span></span><br><span class="line">    <span class="attribute">proxy</span>: &#123;</span><br><span class="line">        <span class="attribute">type</span>: <span class="string">'ajax'</span>,</span><br><span class="line">        <span class="attribute">url</span>: <span class="string">'..'</span>, <span class="comment">//指向请求的相应的处理文件的位置。可以通过更改url，使store加载不同的值</span></span><br><span class="line">        <span class="attribute">reader</span>: &#123; <span class="comment">//定义reader，即对数据进行解码的方式。可采用默认值</span></span><br><span class="line">            <span class="attribute">type</span>: <span class="string">'json'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.给相应的组件赋值</span></span><br><span class="line">Ext.create(<span class="string">"Ext.tree.Panel"</span>,&#123;</span><br><span class="line">		<span class="comment">//其他属性</span></span><br><span class="line">		<span class="attribute">store</span>:<span class="attribute">treeStore //将store赋给某个组件的store</span><br><span class="line">	&#125;); </span><br><span class="line"></span><br><span class="line">//3.加载数据及重加载数据</span><br><span class="line">treeStore.load(); //加载，将数据加载到treeStore中。执行这个方法后，控件就会显示数据</span><br><span class="line"></span><br><span class="line">treeStore.reload(); //再次加载。当数据更新后，调用此方法重新加载以显示新数据。</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/ExtJS-model/" data-id="ciqg86hjv001b68q94wc9c2dp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
 
     </footer>
   </div>
@@ -677,7 +703,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-Prototype/">JavaScript Prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -687,7 +713,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/JavaScript-Prototype/" style="font-size: 10px;">JavaScript Prototype</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -709,6 +735,10 @@
       <ul>
         
           <li>
+            <a href="/2016/07/24/js-proto/">JavaScript原型</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
           </li>
         
@@ -722,10 +752,6 @@
         
           <li>
             <a href="/2016/06/22/css-center/">CSS伸缩布局与居中</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/20/sass/">SASS学习</a>
           </li>
         
       </ul>

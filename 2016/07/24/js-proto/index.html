@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript原型 | 步步为营，勇往直前</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原型概述JavaScript中的对象有一个特殊的[[Prototype]]内置属性，它是对于其他对象的引用。当查找对象的属性和方法时，如果在该对象本身不存在时，就会去[[Prototype]]（浏览器的实现为属性proto）所指的对象（也成为对象原型）中查找，正是对象和对象原型的这种单向的关系，将对象与对象有层次地关联起来。由于几乎每个对象都有原型(通过Object.create(null)创建的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript原型">
+<meta property="og:url" content="http://yoursite.com/2016/07/24/js-proto/index.html">
+<meta property="og:site_name" content="步步为营，勇往直前">
+<meta property="og:description" content="原型概述JavaScript中的对象有一个特殊的[[Prototype]]内置属性，它是对于其他对象的引用。当查找对象的属性和方法时，如果在该对象本身不存在时，就会去[[Prototype]]（浏览器的实现为属性proto）所指的对象（也成为对象原型）中查找，正是对象和对象原型的这种单向的关系，将对象与对象有层次地关联起来。由于几乎每个对象都有原型(通过Object.create(null)创建的">
+<meta property="og:updated_time" content="2016-07-24T15:21:20.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript原型">
+<meta name="twitter:description" content="原型概述JavaScript中的对象有一个特殊的[[Prototype]]内置属性，它是对于其他对象的引用。当查找对象的属性和方法时，如果在该对象本身不存在时，就会去[[Prototype]]（浏览器的实现为属性proto）所指的对象（也成为对象原型）中查找，正是对象和对象原型的这种单向的关系，将对象与对象有层次地关联起来。由于几乎每个对象都有原型(通过Object.create(null)创建的">
+  
+    <link rel="alternate" href="/atom.xml" title="步步为营，勇往直前" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">步步为营，勇往直前</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">赵培霏的学习博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-proto" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/24/js-proto/" class="article-date">
+  <time datetime="2016-07-24T12:59:37.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript原型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原型概述"><a href="#原型概述" class="headerlink" title="原型概述"></a>原型概述</h2><p>JavaScript中的对象有一个特殊的[[Prototype]]内置属性，它是对于其他对象的引用。当查找对象的属性和方法时，如果在该对象本身不存在时，就会去[[Prototype]]（浏览器的实现为属性<strong>proto</strong>）所指的对象（也成为对象原型）中查找，正是对象和对象原型的这种单向的关系，将对象与对象有层次地关联起来。由于几乎每个对象都有原型(通过Object.create(null)创建的对象没有原型，一般的原型链的终点Object.prototype没有原型)，这些对象通过<strong>proto</strong>就形成了我们常说的原型链。原型链是JavaScript中非常重要的一环。</p>
+<h4 id="原型链中属性查找规则"><a href="#原型链中属性查找规则" class="headerlink" title="原型链中属性查找规则"></a>原型链中属性查找规则</h4><p>由于对象与对象原型之间是由单向的引用关联的，所以，如果对象原型的属性或方法发生改变时，对象取得的处于原型对象的该属性或方法也将发生改变。对象读取属性和方法的规则为：如果对象中不存在，则去对象原型中寻找，还不存在，再去对象原型的对象原型中查找，直至原型链的终点Object.prototype（一般都是它）。</p>
+<p>上述查找方法适用于一般的获取操作，如：.操作获取、for(var property in obj)（该方法只能获取属性，不能获取方法）。另外，如果只想在对象本身查找，而不去原型链中查找的话，就要使用Object.getOwnPropertyNames(o)返回非继承属性的名字，或者使用Object.hasOwnProperty(propname)检查该属性是否是继承的。</p>
+<h4 id="原型链中属性的赋值规则"><a href="#原型链中属性的赋值规则" class="headerlink" title="原型链中属性的赋值规则"></a>原型链中属性的赋值规则</h4><p>考虑到对象和对象原型的关系，我们在给对象属性和方法赋值时，不应该去修改对象原型中对象的属性和方法。所以，在给对象属性和方法赋值时，一般会在对象中添加相应的属性和方法，而不是去修改原型对象中的属性和方法，这样就保证了原型的改变不会影响原型对象（原型对象改变倒是可能影响原型），实例如以下代码。为什么说一般呢？因为假如给对象a添加属性name，其原型对象中也有name属性，但是却被标记为只读(writable:false)时，那么就无法给a添加name属性，严格模式下会报错。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> a = &#123; <span class="attribute">name</span>: <span class="string">'a'</span> &#125;;</span><br><span class="line"><span class="built_in">var</span> b = <span class="built_in">Object</span>.create(a, &#123; <span class="attribute">name</span>: &#123; <span class="attribute">value</span>: <span class="string">'b'</span>, <span class="attribute">writable</span>: <span class="literal">true</span>, <span class="attribute">enumerable</span>: <span class="literal">true</span>, <span class="attribute">configurable</span>: <span class="literal">true</span> &#125;&#125;); <span class="comment">//</span></span><br><span class="line">b.name; <span class="comment">//'b' b对象有name属性和__proto__（指向a）</span></span><br><span class="line">a.name; <span class="comment">//'a' a对象有name属性和__proto__（指向Object.prototype）</span></span><br></pre></td></tr></table></figure>
+<h4 id="获取-检查原型链"><a href="#获取-检查原型链" class="headerlink" title="获取/检查原型链"></a>获取/检查原型链</h4><ul>
+<li>Object.create(proto,descriptions)，创建指定原型对象的对象。</li>
+<li>Object.getPrototypeOf(o)，返回对象o的原型，一般都等于o.<strong>proto</strong>。</li>
+<li>a.isPrototypeOf(b)，检查a是不是b的原型链中的一员。</li>
+<li>o.<strong>proto</strong>，指向o的原型对象，也可以使用o.<strong>proto</strong>.<strong>proto</strong>获取o原型的原型，依次类推。也可以通过该属性修改原型对象。但不同的浏览器实现不同。</li>
+<li><p>a instanceof Object，检查a的原型链中是否有Object.prototype。a和Object只是示例，此方法常用于检查前者是否是后者使用new构造出的函数。</p>
+</li>
+<li><p>Object.setPrototypeOf(b,a)，ES6中的新方法，将b的原型对象设为a，相当于b.<strong>proto</strong> = a;</p>
+</li>
+</ul>
+<h2 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h2><p>上面讲了很多关于原型和原型链的基础知识，熟悉原型链并熟练应用原型链是JavaScript的基本功。特别是使用运行原型链实现“继承”。<br>对象o的原型对象是o.<strong>proto</strong>，而函数Foo有一个prototype属性，指向使用new Foo()产生的对象f的f.<strong>proto</strong>。</p>
+<h4 id="函数-prototype-new"><a href="#函数-prototype-new" class="headerlink" title="函数/prototype/new"></a>函数/prototype/new</h4><p>每个函数都有一个属性prototype（且只有函数有，对象没有），该属性指向一个对象，虽然很多地方都称其为该函数的原型，但是它的真正作用是：在<code>var f = new Foo()</code>时，会产生一个对象f（不是函数），f.<strong>proto</strong>指向Foo.prototype。在我看来，将Foo.prototype说为Foo函数的原型是不准确的，会造成很多误会，而Foo的原型对象（即Foo.<strong>proto</strong>）其实为Funciton.prototype原型对象。所以，此处应该多加注意。</p>
+<p>那么，接下来，我们看看<code>var f = new Foo()</code>到底做了什么。在我们执行new操作时，会调用Foo.prototype.constructor()函数，而该函数指向Foo，即：Foo.prototype.constructor 等于 Foo，调用Foo函数本身。并在调用完成后返回this对象，所以在Foo函数中指定<code>this.name = &#39;f&#39;</code>的话，返回的对象就会拥有name属性，且name属于对象本身。另外，new操作会将f.<strong>proto</strong>指向Foo.prototype对象。</p>
+<p>一般情况下，Foo.prototype中由一个构造constructor和一个指向Objcet.prototype的原型对象组成（不考虑多层原型链的情况下）。</p>
+<h4 id="原型’继承’"><a href="#原型’继承’" class="headerlink" title="原型’继承’"></a>原型’继承’</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.myName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params">name, label</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.label = label</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B.prototype = <span class="built_in">Object</span>.create(A.prototype); <span class="comment">//此处使用B.prototype = new A()；并不好，会调用A()函数，可能产生副作用。</span></span><br><span class="line"></span><br><span class="line">B.prototype.myLabel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.label;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B(<span class="string">'b'</span>, <span class="string">'label b'</span>);</span><br><span class="line">b.myName(); <span class="comment">//'a'</span></span><br><span class="line">b.myLabel(); <span class="comment">//'label b'</span></span><br><span class="line"></span><br><span class="line">b.__proto__ === B.prototype; <span class="comment">//true</span></span><br><span class="line">B.prototype.__proto__ === A.prototype; <span class="comment">//true</span></span><br><span class="line">b.__proto__.__proto__ === A.prototype; <span class="comment">//true</span></span><br><span class="line">A.prototype.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">//true</span></span><br><span class="line">b.__proto__.__proto__.__proto__ === <span class="built_in">Object</span>.prototype; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>上面例子中将B的prototype的原型指向A的prototype，这样b就形成了原型链，依次指向B.prototype、A.prototype、Object.prototype。而B的prototype的原型指向A的prototype的方法主要有；</p>
+<ol>
+<li>B.prototype = Object.create(A.prototype); B.prototype中只有一个原型属性<strong>proto</strong>，很干净纯粹；</li>
+<li>B.prototype = new A(); 会执行A()函数。另外，如果使用B.prototype = new A(‘a’); 会造成b.<strong>proto</strong>不等于B.prototype。因为b.<strong>proto</strong>没有name属性。</li>
+<li>Object.setPrototypeOf( B.prototype, A.prototype ); 这个是ES6中提供的原生方法，当然是最好的。</li>
+</ol>
+<h2 id="原生函数"><a href="#原生函数" class="headerlink" title="原生函数"></a>原生函数</h2><p>前面说过，只有函数才有prototype属性，然而为什么Object、Array、Function等都有prototype呢，是的因为他们也是函数，并且可以使用new操作符来构造相应的对象。我们都知道Array、Function这些静态对象也都是对象，他们的原型链中自然也有Object.prototype。其关系为：Array.prototype.<strong>proto</strong> = Function.prototype.<strong>proto</strong> = Object.prototype; </p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Array</span>.proto<span class="keyword">type</span>; //[]</span><br><span class="line"><span class="type">Function</span>.proto<span class="keyword">type</span>; //function () &#123;&#125;</span><br><span class="line"><span class="type">Object</span>.proto<span class="keyword">type</span>; // <span class="type">Object</span> &#123;&#125; 对象，包含constructor、toString等</span><br><span class="line"><span class="type">Function</span>.proto<span class="keyword">type</span>.__proto__; // <span class="type">Object</span>.prototype，包含constructor、toString等</span><br><span class="line"></span><br><span class="line"><span class="type">Object</span>.__proto__; //function () &#123;&#125;, 即<span class="type">Function</span>.proto<span class="keyword">type</span>;因为<span class="type">Object</span>也是函数</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/24/js-proto/" data-id="cir0r644j004xn4q9ttp3c6ec" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript-Prototype/">JavaScript Prototype</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/10/JS-timeout/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript计时</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ExtJS/">ExtJS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端框架/">前端框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件开发基础/">软件开发基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-Prototype/">JavaScript Prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/JavaScript-Prototype/" style="font-size: 10px;">JavaScript Prototype</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/24/js-proto/">JavaScript原型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/28/js-scope/">作用域</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-box/">CSS盒模型与布局</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/22/css-center/">CSS伸缩布局与居中</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Rancho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

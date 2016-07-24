@@ -68,6 +68,120 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/13/JavaScript-5/" class="article-date">
+  <time datetime="2016-03-13T03:02:10.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/13/JavaScript-5/">BOM-浏览器对象模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。</p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</p>
+<ol>
+<li>所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。后面的很多全局JavaScript对象（location和navigator）实际上都是window对象的属性。</li>
+<li>如果页面中包含框架（frame），则每个框架都拥有自己的window对象。在使用框架的情况下，浏览器中会存在多个Global对象，每个框架中定义的全局变量会自动成为框架中window对象的属性。</li>
+<li>IE、Safari、Oprea、Chrome使用screenLeft和screenTop属性表示窗口相对屏幕左边和上边的位置；Firefox则使用screenX和screenY属性，Safari和chrome也支持这个属性。使用moveTo()和moveBy()也可以将窗口精确地移动到一个新位置。这些属性和方法与使用的浏览器有很大的关系。</li>
+<li>使用window.open()方法既可以导航到一个特定的URL，也可以打开一个新的浏览器窗口。这个方法接收4个参数：要加载的URL、窗口目标、一个特性字符串以及一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值。</li>
+<li>JavaScript是单线程语言，但它允许通过设置超时值和间歇时间值（一般不使用）来调度代码在特定的时刻执行。setTimeout(function(){},1000)，延迟一秒</li>
+<li>系统对话框：浏览器通过alert()、confirm()、prompt()来调用警告、确认、提示框。<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"hello world!"</span>); <span class="comment">//一个OK</span></span><br><span class="line"><span class="keyword">confirm</span>(<span class="string">"are you sure?"</span>); <span class="comment">//一个OK，一个Cancel</span></span><br><span class="line">prompt(<span class="string">"what is your name?"</span>,<span class="string">"Michael"</span>); <span class="comment">//OK Cancle 和一个默认为Michael的输入框</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">print</span>(); <span class="comment">//显示“打印”对话框</span></span><br><span class="line"><span class="keyword">window</span>.find(); <span class="comment">//显示“查找”对话框</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location是最有用的BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一个写导航功能。它既是window对象的属性，也是document对象的属性。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性名</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">hash</td>
+<td style="text-align:center">“#contents”</td>
+<td style="text-align:center">返回URL中的hash</td>
+</tr>
+<tr>
+<td style="text-align:center">host</td>
+<td style="text-align:center">“www.wrox.com:80”</td>
+<td style="text-align:center">返回服务器名和端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">hostname</td>
+<td style="text-align:center">“www.wrox.com”</td>
+<td style="text-align:center">不带端口号的服务器名</td>
+</tr>
+<tr>
+<td style="text-align:center">href</td>
+<td style="text-align:center">“<a href="http://www.wrox.com" target="_blank" rel="external">http://www.wrox.com</a>“</td>
+<td style="text-align:center">加载页面的完整的URL</td>
+</tr>
+<tr>
+<td style="text-align:center">pathname</td>
+<td style="text-align:center">“/WileCDA/“</td>
+<td style="text-align:center">URL中的目录和文件名</td>
+</tr>
+<tr>
+<td style="text-align:center">port</td>
+<td style="text-align:center">“8080”</td>
+<td style="text-align:center">URL中指定的端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">protocol</td>
+<td style="text-align:center">“http:”</td>
+<td style="text-align:center">页面使用的协议</td>
+</tr>
+<tr>
+<td style="text-align:center">search</td>
+<td style="text-align:center">“?q=javascript”</td>
+<td style="text-align:center">URL的查询字符串</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>查询字符串参数：根据location的serch方法获取查询字符串，根据&amp;来分割字符串，再将相应的参数和值放入args数组中，就可以方便对每个参数进行访问了。</li>
+<li>通过location.assign(“<a href="http://www.wrox.com" target="_blank" rel="external">http://www.wrox.com</a>“) 可以立即打开新URL。此外通过window.location和location.href（常用）也可以达到上面的效果。还可以通过修改location的hash、search等属性进而修改location。</li>
+</ul>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>navigator对象现在已经成为识别客户端浏览器的事实标准。navigator对象时所有支持JavaScript的浏览器所共有的，但是每个浏览器的navigator对象也都有一套自己的属性。<br>对于非IE浏览器，可以使用navigator对象的plugins数组来检车插件。navigator.plugins[n]即保存了插件。if(navigator.plugins[i].name.toLowerCase().indexOf(name)&gt;-1)即便是存在名称为name的插件。</p>
+<h1 id="客户端检测"><a href="#客户端检测" class="headerlink" title="客户端检测"></a>客户端检测</h1><p>面对普遍存在的浏览器的不一致性问题，开发人员要么采取迁就各方的“最小公分母”策略，要么（也是最常见的）利用各种客户端检测方法，来突破或者规避种种局限性。检测Web客户端的手段很多，而且各有利弊。但不到万不得已，不要使用客户端检测，应该优先使用更通用的方法。一言以蔽之，先设计最通用的方案，然后再使用特定于浏览器的技术增强方案。</p>
+<h2 id="能力检测"><a href="#能力检测" class="headerlink" title="能力检测"></a>能力检测</h2><p>最常用也最为人们广泛接受的客户端检测形式是能力检测。其目标不是识别特定的浏览器，而是识别浏览器的功能。能力检测不是浏览器检测，所以不能根据能力检测判断浏览器为何种浏览器。在可能的情况下，尽量采用typeof进行能力检测。例如：<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单的能力检测</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElement</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">document</span>.getElementById)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.all)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">document</span>.all[id];</span><br><span class="line">	&#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"no way to retrieve element"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用typeof检测。要检测具体的要使用的属性方法是否存在</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSortable</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> object.sort == <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="怪癖检测"><a href="#怪癖检测" class="headerlink" title="怪癖检测"></a>怪癖检测</h2><p>与能力检测类似，怪癖检测的目标是识别浏览器的特殊行为。通常需要运行一小段代码，一确定某一特性不能正常工作。一般来说，“怪癖”是个别浏览器所独有的，而且通常被归为bug。</p>
+<h2 id="用户代理检测"><a href="#用户代理检测" class="headerlink" title="用户代理检测"></a>用户代理检测</h2><p>用户代理检测通过检测用户代理字符串来确定实际使用的浏览器，包括浏览器、平台、操作系统以及浏览器版本。在每一次HTTP请求过程中，用户代理字符串是作为响应首部发送的，而且该字符串可以通过JavaScript的navigator.userAgent属性访问。在服务器端，通过检测用户代理字符串来确定用户使用的浏览器是一种常见而且广为接受的做法。而在客户端，用户代理检测一般被当做一种万不得才用的做法，其优先级排在能力检测和怪癖检测之后。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/JavaScript-5/" data-id="cir0r642h002an4q92d2lgifp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JavaScript-4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/12/JavaScript-4/" class="article-date">
@@ -112,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="ciqg86hk7001o68q9xxx8hlt9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-4/" data-id="cir0r6423001xn4q9c8aymxox" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -162,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="ciqg86hkr002a68q9kd5vohqn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/12/JavaScript-3/" data-id="cir0r642w002qn4q90u1vzryn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -231,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="ciqg86hk3001i68q9k2ja17q3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/11/JavaScript-2/" data-id="cir0r64260020n4q9socpzjms" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -335,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="ciqg86hk9001r68q9xygsyt4e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript-1/" data-id="cir0r641u001mn4q9z5axs5pk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -405,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="ciqg86hkw002d68q95dh8gw1n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/09/JavaScript_0/" data-id="cir0r642u002nn4q9dv022iw2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端开发/">前端开发</a></li></ul>
@@ -614,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="ciqg86hmw004u68q9vtjv3eme" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/08/data-structure/" data-id="cir0r643p003qn4q94mo3qsrk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -713,7 +827,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="ciqg86hms004p68q98w8i733d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/07/TCP-IP/" data-id="cir0r64380038n4q9cgk4e4gi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -817,7 +931,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="ciqg86hnq005z68q9a3b2cuh0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/03/web-base/" data-id="cir0r644b004mn4q97m4qojpw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
@@ -936,96 +1050,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="ciqg86hir000468q9ptt7j90r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/Computer-base/" data-id="cir0r6413000ln4q9byj4rem3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-C-gaishu" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/01/C-gaishu/" class="article-date">
-  <time datetime="2016-03-01T07:45:21.000Z" itemprop="datePublished">2016-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/C-gaishu/">C语言概述及流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="C语言概论"><a href="#C语言概论" class="headerlink" title="C语言概论"></a>C语言概论</h2><h4 id="C语言简介"><a href="#C语言简介" class="headerlink" title="C语言简介"></a>C语言简介</h4><p>C语言是一门通用计算机编程语言，应用广泛，它对编写需要进行硬件操作的场合，优于其他高级语言。C语言的设计目标是提供一种能以简易的方式编译、处理低级存储器、产生少量的机器码以及不需要任何运行环境支持便能运行的编程语言，它兼具汇编语言（执行速度快，能充分发挥硬件的潜力）和高级语言（编程/调试方便、可读性/可移植性好）的优点。尽管C语言体提供了许多低级处理的功能，但仍然保持着良好跨平台的特性，不仅可以在电脑平台编译，还可以在一些嵌入式处理器以及超级电脑等作业平台。目前，C语言仍然具有非常强的活力。</p>
-<h4 id="微型计算机系统"><a href="#微型计算机系统" class="headerlink" title="微型计算机系统"></a>微型计算机系统</h4><ol>
-<li><p>二进制编码系统<br>计算机只能识别和处理二进制码，现在，英文字母、运算符和标点符号等字符都采用<a href="http://baike.baidu.com/link?url=4HqGUw2qbiz6aCZrELg1b2WRGChKcXncb_doav_Ml6vlejh3G1xT6AZgyT1ba_v6Q0U-EiyRRiIbQ9pj-3WZe11JKg8JfKp7H2G7yxuPn1x7dnPwpbhmQXheVU7wwMTBfeZWsu8zBMCzwJoVxB4_oK" target="_blank" rel="external">ASCII码</a>。对于多媒体计算机，把文本、图像、声音等信息按某种标准格式进行二进制编码，就可以解决文本、图像和声音等的控制管理、存储、变换和传送等。行使这些功能的系统都统称为二进制编码系统。</p>
-</li>
-<li><p>微型计算机硬件的基本组成<br>计算机发展至今，其结构依然为<a href="http://baike.baidu.com/link?url=Xqi6R2MTk-ywT4dARLDyZs1rGAlZ11wyvSWUk-6RApdYzWr3wMXsHN2vG4s5uQZeyyMjbUumtaZAKsvT-eXuZ_" target="_blank" rel="external">冯*诺依曼结构</a>。即由运算器、控制器、存储器、输入设备和输出设备等5部分组成。<br><img src="/img/C-Language/主机系统的基本结构图.png" alt="主机系统的基本结构图"></p>
-</li>
-</ol>
-<ul>
-<li>微型计算机将控制器和运算器集成为中央处理单元CPU，其输出有三种总线：地址总线（A0~A31）、数据总线（64位）和控制总线。</li>
-<li>存储器分为外存储器和内存储器（RAM和ROM）。每个存储单元为一个字节byte/B（8bits）。</li>
-<li>输入/输出接口和外部设备是人机交互的接口。<br>计算机的层次结构有：裸机/操作系统/语言处理系统（核心为程序设计语言的编译系统）/通用软件、应用软件、工具软件。<br><img src="/img/C-Language/微型机系统的构成.png" alt="微型机系统的构成"></li>
-</ul>
-<h4 id="C语言语法简述"><a href="#C语言语法简述" class="headerlink" title="C语言语法简述"></a>C语言语法简述</h4><ul>
-<li>高级语言程序均由一个主程序和若干个子程序组成，C语言也不例外。函数是一个独立的程序块，相互不能嵌套函数定义。函数分为标准函数和用户自定义函数。</li>
-<li>C语言的基本语言单位称为单词，分为5大类：标识符、关键字、常量、运算符和分隔符。</li>
-<li>运行一个C程序，指从建立源程序文件到执行该程序并输出正确结果的全过程。其包含编辑（建议源程序文件）、编译（翻译为二进制代码形式的目标程序）、连接（与C库函数装配成可执行的程序.exe）、运行（运行exe）。</li>
-</ul>
-<h2 id="程序和流程控制"><a href="#程序和流程控制" class="headerlink" title="程序和流程控制"></a>程序和流程控制</h2><h4 id="一般程序版式"><a href="#一般程序版式" class="headerlink" title="一般程序版式"></a>一般程序版式</h4><p>程序的编写有一定的逻辑和规范，一般情况C语言程序包含以下几个部分：</p>
-<ol>
-<li>注释部分：/<em>内容</em>/  或者  //内容</li>
-<li>预处理块（#include&lt;&gt;等）、全局变量说明</li>
-<li>函数定义部分：包含函数类型、函数名及参数表</li>
-<li>变量说明部分：对变量进行定义说明</li>
-<li>数据输入部分：对要使用的变量赋初值。可输入</li>
-<li>执行部分：整个程序的核心，一般是对程序算法用结构化程序设计方法进行描述，然后转换为C语言语句</li>
-<li>信息输出部分</li>
-</ol>
-<h4 id="结构化程序设计"><a href="#结构化程序设计" class="headerlink" title="结构化程序设计"></a>结构化程序设计</h4><p>结构化设计的基本思想是：任何程序都可以用三种基本结构表示，即顺序结构、选择结构、循环结构。这三种基本结构可进行反复嵌套。C语言为这种流程结构提供了相应的流程控制语句：</p>
-<ul>
-<li>选择语句：if else    switch case break</li>
-<li>循环语句：for while  do while 辅助词：break continue return goto </li>
-</ul>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="结构化软件及其优越性"><a href="#结构化软件及其优越性" class="headerlink" title="结构化软件及其优越性"></a>结构化软件及其优越性</h4><p>当开发一些比较复杂的软件时，结构化方法是常常采用的方法。结构化开发方法的基本要点是：</p>
-<ol>
-<li>自顶向下：将复杂的大问题分解为相对简单的小问题，找出每个问题的关键和重点所在</li>
-<li>逐步求精：将现实世界的问题经过几次抽象/细化处理，最后到求解域中只是一些简单的算法描述和算法实现问题。</li>
-<li>模块化设计：逐步求精的结果是以子功能块为单位的算法描述。以子功能为单位进行程序设计时，实现其求解算法的方式称为模块化。其目的为：为了降低程序复杂性，使程序设计、调试和维护等操作简单化。</li>
-</ol>
-<h4 id="函数的定义和调用"><a href="#函数的定义和调用" class="headerlink" title="函数的定义和调用"></a>函数的定义和调用</h4><ul>
-<li>函数定义的一般格式：&lt;存储类型&gt; &lt;数据函数体&gt; 函数名 (&lt;形式参数及说明&gt;){ 说明语句；执行语句；}</li>
-<li>函数的存储类型说明只有extern和static，缺省表示定义的函数为外部函数。</li>
-<li>形式参数对应说明，如（int x, int y）</li>
-<li>函数的调用：调用的函数必须是应经存在的，如果调用库函数要用#include命令包含其所在文件，实参与形参必须保持一致。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/01/C-gaishu/" data-id="ciqg86hit000568q9d09vm91u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
 
     </footer>
   </div>
@@ -1057,7 +1085,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BOM/">BOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Language/">C-Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExtJS/">ExtJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript-Prototype/">JavaScript Prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发/">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端开发，CSS3/">前端开发，CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件开发基础/">软件开发基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接集/">链接集</a></li></ul>
     </div>
   </div>
 
@@ -1067,7 +1095,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
+      <a href="/tags/Ajax/" style="font-size: 11.67px;">Ajax</a> <a href="/tags/BOM/" style="font-size: 10px;">BOM</a> <a href="/tags/C-Language/" style="font-size: 10px;">C-Language</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/ExtJS/" style="font-size: 13.33px;">ExtJS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a> <a href="/tags/JavaScript-Prototype/" style="font-size: 10px;">JavaScript Prototype</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/TCP-IP/" style="font-size: 11.67px;">TCP/IP</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/前端开发/" style="font-size: 20px;">前端开发</a> <a href="/tags/前端开发，CSS3/" style="font-size: 10px;">前端开发，CSS3</a> <a href="/tags/前端框架/" style="font-size: 11.67px;">前端框架</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/计算机基础/" style="font-size: 16.67px;">计算机基础</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/软件开发基础/" style="font-size: 10px;">软件开发基础</a> <a href="/tags/链接集/" style="font-size: 10px;">链接集</a>
     </div>
   </div>
 
@@ -1089,6 +1117,10 @@
       <ul>
         
           <li>
+            <a href="/2016/07/24/js-proto/">JavaScript原型</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/10/JS-timeout/">JavaScript计时</a>
           </li>
         
@@ -1102,10 +1134,6 @@
         
           <li>
             <a href="/2016/06/22/css-center/">CSS伸缩布局与居中</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/20/sass/">SASS学习</a>
           </li>
         
       </ul>
